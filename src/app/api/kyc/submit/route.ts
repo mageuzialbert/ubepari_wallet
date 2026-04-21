@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { getSession } from "@/lib/session";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import { logEvent } from "@/lib/events";
 
 const MAX_BYTES = 5 * 1024 * 1024;
 const ACCEPTED = new Set(["image/jpeg", "image/jpg", "image/png", "application/pdf"]);
@@ -87,5 +88,6 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  logEvent("kyc.submitted", { userId, nidaLastFour: nida.slice(-4) });
   return NextResponse.json({ ok: true });
 }

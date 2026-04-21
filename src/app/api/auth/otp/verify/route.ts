@@ -4,6 +4,7 @@ import { normalizeTzPhone } from "@/lib/phone";
 import { verifyChallenge } from "@/lib/otp";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { mintAccessToken, setSessionCookie } from "@/lib/session";
+import { logEvent } from "@/lib/events";
 
 type VerifyBody = {
   phone?: unknown;
@@ -115,5 +116,6 @@ export async function POST(req: NextRequest) {
   const token = await mintAccessToken({ userId, phone, email: userEmail });
   await setSessionCookie(token);
 
+  logEvent("otp.verified", { userId, phone, newUser: !existing });
   return NextResponse.json({ ok: true, userId });
 }

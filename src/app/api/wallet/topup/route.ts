@@ -4,6 +4,8 @@ import { getSession } from "@/lib/session";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { normalizeTzPhone } from "@/lib/phone";
 import { generateReference, pushMno, type EvmarkProvider } from "@/lib/evmark";
+import { logEvent } from "@/lib/events";
+import { hasPendingPush } from "@/lib/payments";
 
 const ALLOWED: EvmarkProvider[] = ["mpesa", "tigopesa", "airtelmoney"];
 const MIN_TOPUP_TZS = 1000;
@@ -46,6 +48,10 @@ export async function POST(req: NextRequest) {
   }
   const phone = normalized.value;
 
+  if (await hasPendingPush(session.claims.userId)) {
+    return NextResponse.json({ error: "pending_push" }, { status: 429 });
+  }
+
   const admin = supabaseAdmin();
   const reference = generateReference(phone);
 
@@ -77,13 +83,27 @@ export async function POST(req: NextRequest) {
   });
 
   if (!push.ok) {
-    console.error("[wallet-topup] evmark push failed", push.reason);
+    logEvent("payment.push_failed", {
+      kind: "topup",
+      userId: session.claims.userId,
+      reference,
+      reason: push.reason,
+    });
     await admin.from("payments").update({ status: "failed" }).eq("id", payment.id);
     return NextResponse.json(
       { error: "push_failed", detail: push.reason },
       { status: 502 },
     );
   }
+
+  logEvent("payment.pushed", {
+    kind: "topup",
+    userId: session.claims.userId,
+    paymentId: payment.id,
+    reference,
+    amount,
+    provider,
+  });
 
   return NextResponse.json({
     ok: true,

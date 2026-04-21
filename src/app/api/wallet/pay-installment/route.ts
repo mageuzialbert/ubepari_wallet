@@ -4,6 +4,8 @@ import { getSession } from "@/lib/session";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { normalizeTzPhone } from "@/lib/phone";
 import { generateReference, pushMno, type EvmarkProvider } from "@/lib/evmark";
+import { logEvent } from "@/lib/events";
+import { hasPendingPush } from "@/lib/payments";
 
 const ALLOWED: EvmarkProvider[] = ["mpesa", "tigopesa", "airtelmoney"];
 
@@ -72,6 +74,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "order_not_active" }, { status: 409 });
   }
 
+  if (await hasPendingPush(userId)) {
+    return NextResponse.json({ error: "pending_push" }, { status: 429 });
+  }
+
   const reference = generateReference(phone);
 
   const { data: payment, error: payErr } = await admin
@@ -103,13 +109,28 @@ export async function POST(req: NextRequest) {
   });
 
   if (!push.ok) {
-    console.error("[pay-installment] evmark push failed", push.reason);
+    logEvent("payment.push_failed", {
+      kind: "installment",
+      userId,
+      reference,
+      reason: push.reason,
+    });
     await admin.from("payments").update({ status: "failed" }).eq("id", payment.id);
     return NextResponse.json(
       { error: "push_failed", detail: push.reason },
       { status: 502 },
     );
   }
+
+  logEvent("payment.pushed", {
+    kind: "installment",
+    userId,
+    paymentId: payment.id,
+    orderId: installment.order_id,
+    reference,
+    amount: installment.amount_tzs,
+    provider,
+  });
 
   return NextResponse.json({
     ok: true,

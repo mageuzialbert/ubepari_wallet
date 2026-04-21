@@ -7,6 +7,8 @@ import { getProduct } from "@/lib/products";
 import { defaultLocale } from "@/i18n/config";
 import { normalizeTzPhone } from "@/lib/phone";
 import { generateReference, pushMno, type EvmarkProvider } from "@/lib/evmark";
+import { logEvent } from "@/lib/events";
+import { hasPendingPush } from "@/lib/payments";
 
 const ALLOWED_PROVIDERS: EvmarkProvider[] = ["mpesa", "tigopesa", "airtelmoney"];
 
@@ -64,6 +66,10 @@ export async function POST(req: NextRequest) {
   }
   if (profile.kyc_status !== "approved") {
     return NextResponse.json({ error: "kyc_not_approved" }, { status: 403 });
+  }
+
+  if (await hasPendingPush(userId)) {
+    return NextResponse.json({ error: "pending_push" }, { status: 429 });
   }
 
   const plan = computeCreditPlan(product.priceTzs, planMonths);
@@ -141,7 +147,12 @@ export async function POST(req: NextRequest) {
   });
 
   if (!push.ok) {
-    console.error("[orders] evmark push failed", push.reason);
+    logEvent("payment.push_failed", {
+      kind: "deposit",
+      userId,
+      reference,
+      reason: push.reason,
+    });
     await admin.from("payments").update({ status: "failed" }).eq("id", payment.id);
     await admin.from("orders").update({ status: "cancelled" }).eq("id", order.id);
     return NextResponse.json(
@@ -149,6 +160,17 @@ export async function POST(req: NextRequest) {
       { status: 502 },
     );
   }
+
+  logEvent("order.created", {
+    userId,
+    orderId: order.id,
+    reference,
+    productSlug,
+    planMonths,
+    deposit: plan.deposit,
+    total: plan.totalPayable,
+    provider,
+  });
 
   return NextResponse.json({
     ok: true,

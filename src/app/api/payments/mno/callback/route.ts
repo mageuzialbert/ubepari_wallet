@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { isValidCallbackHash, parseCallback, type CallbackBody } from "@/lib/evmark";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import { logEvent } from "@/lib/events";
 
 function ackSuccess() {
   return NextResponse.json({ Status: "Success" });
@@ -55,6 +56,13 @@ export async function POST(req: NextRequest) {
     if (payment.kind === "deposit" && payment.order_id) {
       await admin.from("orders").update({ status: "cancelled" }).eq("id", payment.order_id);
     }
+    logEvent("payment.settled", {
+      paymentId: payment.id,
+      kind: payment.kind,
+      status: "failed",
+      reference: parsed.reference,
+      transactionStatus: parsed.transactionStatus,
+    });
     return ackSuccess();
   }
 
@@ -131,5 +139,14 @@ export async function POST(req: NextRequest) {
     });
   }
 
+  logEvent("payment.settled", {
+    paymentId: payment.id,
+    kind: payment.kind,
+    orderId: payment.order_id,
+    amount: payment.amount_tzs,
+    status: "success",
+    transId: parsed.transId,
+    reference: parsed.reference,
+  });
   return ackSuccess();
 }

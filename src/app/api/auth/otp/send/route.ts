@@ -5,8 +5,15 @@ import { getDictionary } from "@/app/[locale]/dictionaries";
 import { normalizeTzPhone } from "@/lib/phone";
 import { canRequestOtp, createChallenge, generateOtpCode } from "@/lib/otp";
 import { sendSms } from "@/lib/sms";
+import { checkRate, clientIp } from "@/lib/rate-limit";
+import { logEvent } from "@/lib/events";
 
 export async function POST(req: NextRequest) {
+  const ip = clientIp(req);
+  const ipRate = checkRate(`otp-send:ip:${ip}`, 5, 60 * 60);
+  if (!ipRate.ok) {
+    return NextResponse.json({ error: "too_many_requests" }, { status: 429 });
+  }
   let body: unknown;
   try {
     body = await req.json();
@@ -37,8 +44,10 @@ export async function POST(req: NextRequest) {
 
   const result = await sendSms(phone, text);
   if (!result.ok) {
+    logEvent("otp.sms_failed", { phone, reason: result.reason });
     return NextResponse.json({ error: "sms_failed", detail: result.reason }, { status: 502 });
   }
 
+  logEvent("otp.sent", { phone });
   return NextResponse.json({ ok: true, phone });
 }
