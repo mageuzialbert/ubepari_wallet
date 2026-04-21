@@ -13,7 +13,7 @@ export function FeaturedPcs() {
   const dict = useDictionary();
   const locale = useLocale();
   const t = dict.featured;
-  const products = getFeaturedProducts();
+  const products = getFeaturedProducts(locale);
 
   return (
     <section className="mx-auto mt-24 max-w-6xl px-4 sm:px-6">

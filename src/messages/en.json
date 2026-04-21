@@ -48,6 +48,68 @@
     "copyright": "© {year} Ubepari PC. Built in Dar es Salaam.",
     "legalNote": "Credit facility operated by Ubepari PC. Hire-purchase regulated under Tanzanian consumer-finance law."
   },
+  "support": {
+    "metaTitle": "Support",
+    "eyebrow": "Support",
+    "heading": "A real person, every time.",
+    "channels": {
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Fastest. Your order ID gets pre-filled.",
+        "cta": "Message us"
+      },
+      "call": {
+        "title": "Call us",
+        "description": "Mon–Sat, 9 AM – 6 PM EAT.",
+        "cta": "+255 000 000 000"
+      },
+      "email": {
+        "title": "Email",
+        "description": "Best for warranty & documentation.",
+        "cta": "support@ubepari.co.tz"
+      }
+    },
+    "faqsHeading": "Frequently asked",
+    "faqs": [
+      {
+        "q": "How does hire-purchase work?",
+        "a": "You pay 20% today and own the PC immediately. The balance is split over 3, 6, 9, or 12 months — paid through your Ubepari Wallet via mobile money or card."
+      },
+      {
+        "q": "What happens if I miss a payment?",
+        "a": "A 2% late fee applies after 7 days. Your PC is never repossessed without written notice and a 30-day grace window."
+      },
+      {
+        "q": "Can I pay the balance off early?",
+        "a": "Yes, and there's no fee for doing so. Early payoff may also unlock credit-point rewards."
+      },
+      {
+        "q": "Which payment providers work with Ubepari?",
+        "a": "M-Pesa, Tigo Pesa, Airtel Money, and Visa / Mastercard — all processed through Evmark's certified gateway."
+      }
+    ]
+  },
+  "recommend": {
+    "metaTitle": "AI Tech Tips",
+    "badge": "AI Tech Tips · beta",
+    "heading": "Tell us who you are.",
+    "subheading": "What will you do with this PC? Budget? Any brands you love or hate? Type anything — the more natural, the better the match.",
+    "placeholder": "e.g. I'm a graphic designer who edits 4K video on weekends…",
+    "submitHint": "⌘/Ctrl + Enter to send",
+    "submit": "Find my PC",
+    "examplesLabel": "Or try one of these",
+    "examples": [
+      "I'm a graphic designer who edits 4K video on weekends. Budget 4M.",
+      "University student studying computer science. Need it for coding and light gaming. Under 2.5M.",
+      "I run a small accounting firm — 3 laptops for staff. Office-grade, budget 6M total.",
+      "Serious Valorant and CS2 player. Want 165Hz and RTX 4060 minimum."
+    ],
+    "yourMatch": "Your match",
+    "matchResult": "Based on your story, I recommend the {product} — the 3.5K OLED is a gift for retouching work, and the RTX 4060 handles 4K timelines without choking. Fits your budget at TZS 380K/month over 12 months.",
+    "matchProduct": "Dell XPS 15 OLED",
+    "seeSpec": "See full spec",
+    "disclaimer": "Full conversational AI advisor ships with the next release. Prototype shows a static recommendation here."
+  },
   "hero": {
     "badge": "New — Own your dream PC in 3 taps",
     "headingLine1": "Own it today.",

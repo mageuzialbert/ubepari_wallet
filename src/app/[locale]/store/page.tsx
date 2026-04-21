@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 import { ProductCard } from "@/components/product/product-card";
 import { FilterRail } from "@/components/product/filter-rail";
-import { PRODUCTS, type Brand, type UsageTag } from "@/lib/products";
+import { getProducts, type Brand, type UsageTag } from "@/lib/products";
 import { hasLocale } from "@/i18n/config";
 import { getDictionary } from "../dictionaries";
 
@@ -42,7 +42,7 @@ export default async function StorePage({
 
   const { usage, brand, price } = await searchParams;
 
-  let filtered = PRODUCTS;
+  let filtered = getProducts(locale);
   if (usage) {
     filtered = filtered.filter((p) =>
       p.usageTags.includes(usage as UsageTag),

@@ -48,6 +48,68 @@
     "copyright": "© {year} Ubepari PC. Imejengwa Dar es Salaam.",
     "legalNote": "Huduma za mikopo zinaendeshwa na Ubepari PC. Ununuzi wa awamu unasimamiwa chini ya sheria za fedha za walaji za Tanzania."
   },
+  "support": {
+    "metaTitle": "Msaada",
+    "eyebrow": "Msaada",
+    "heading": "Mtu halisi, kila wakati.",
+    "channels": {
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Njia ya haraka. ID ya oda yako imejazwa tayari.",
+        "cta": "Tutumie ujumbe"
+      },
+      "call": {
+        "title": "Tupigie",
+        "description": "Jumatatu – Jumamosi, 9 AM – 6 PM EAT.",
+        "cta": "+255 000 000 000"
+      },
+      "email": {
+        "title": "Barua pepe",
+        "description": "Bora kwa dhamana na nyaraka.",
+        "cta": "support@ubepari.co.tz"
+      }
+    },
+    "faqsHeading": "Maswali ya mara kwa mara",
+    "faqs": [
+      {
+        "q": "Lipa kidogo kidogo inafanyaje kazi?",
+        "a": "Unalipa 20% leo na unamiliki PC papo hapo. Sehemu iliyobaki inagawanywa miezi 3, 6, 9, au 12 — malipo yanapitia Ubepari Wallet yako kupitia mobile money au kadi."
+      },
+      {
+        "q": "Nini kitatokea nikipitisha malipo?",
+        "a": "Ada ya 2% inatumika baada ya siku 7. PC yako kamwe haichukuliwi bila taarifa ya maandishi na muda wa kusamehe wa siku 30."
+      },
+      {
+        "q": "Ninaweza kulipa iliyobaki mapema?",
+        "a": "Ndiyo, na hakuna ada kwa kufanya hivyo. Kulipa mapema kunaweza pia kufungua zawadi za pointi za mkopo."
+      },
+      {
+        "q": "Ni huduma zipi za malipo zinazofanya kazi na Ubepari?",
+        "a": "M-Pesa, Tigo Pesa, Airtel Money, na Visa / Mastercard — zote zinaendeshwa kupitia lango lililoidhinishwa la Evmark."
+      }
+    ]
+  },
+  "recommend": {
+    "metaTitle": "AI Tech Tips",
+    "badge": "AI Tech Tips · beta",
+    "heading": "Tuambie wewe ni nani.",
+    "subheading": "Utafanya nini na PC hii? Bajeti yako? Chapa unayopenda au usiyopenda? Andika chochote — asili zaidi, mlinganisho bora zaidi.",
+    "placeholder": "mfano: Mimi ni mbunifu wa graphic anayehariri video za 4K wikendi…",
+    "submitHint": "⌘/Ctrl + Enter kutuma",
+    "submit": "Tafuta PC yangu",
+    "examplesLabel": "Au jaribu mmoja wa hawa",
+    "examples": [
+      "Mimi ni mbunifu wa graphic anayehariri video za 4K wikendi. Bajeti 4M.",
+      "Mwanafunzi wa chuo kikuu anayesoma sayansi ya komputa. Naihitaji kwa coding na gaming nyepesi. Chini ya 2.5M.",
+      "Ninaendesha kampuni ndogo ya uhasibu — laptop 3 kwa wafanyakazi. Kiwango cha ofisi, bajeti 6M jumla.",
+      "Mchezaji makini wa Valorant na CS2. Nataka 165Hz na RTX 4060 chini."
+    ],
+    "yourMatch": "Mlinganisho wako",
+    "matchResult": "Kulingana na hadithi yako, ninapendekeza {product} — 3.5K OLED ni zawadi kwa kazi za retouching, na RTX 4060 inashughulikia timeline za 4K bila shida. Inaendana na bajeti yako kwa TZS 380K/mwezi kwa miezi 12.",
+    "matchProduct": "Dell XPS 15 OLED",
+    "seeSpec": "Tazama vipimo kamili",
+    "disclaimer": "Mshauri kamili wa AI wa mazungumzo utatolewa katika toleo linalofuata. Prototype inaonyesha pendekezo tuli hapa."
+  },
   "hero": {
     "badge": "Mpya — Miliki PC unayoitamani kwa mibofyo 3",
     "headingLine1": "Itumie leo.",
