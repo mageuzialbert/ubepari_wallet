@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-04-21
 **Launch target:** ~2026-04-25
-**Current stage:** Going live. UI + bilingual copy done, Supabase foundation + auth adapter + KYC wired. **Phase 5 (Payments) is next.**
+**Current stage:** Going live. Phases 0–5 done: UI, copy, Supabase foundation, auth, KYC, Evmark deposit + callback, wallet top-up + installment payments, real data reads. **Phase 6 (Production polish — real AI, SEO, rate limits) is next.**
 
 ---
 
@@ -26,6 +26,9 @@ Bilingual EN/SW wallet + hire-purchase UI, Next.js 16 App Router, dark Apple-ish
 | `42892f9` | Supabase foundation — deps, schema + RLS migration, client helpers |
 | `29e1c91` | Auth adapter — SMS OTP + custom Supabase JWT session |
 | `f644ee8` | KYC submit — upload to Storage, insert row, flip profile status |
+| `882f3b7` | KYC status-aware page + specific error mapping |
+| `4eca43a` | Evmark deposit + callback + reserve dialog (Phase 5 round A) |
+| `bd40730` | Wallet topup + installment payments, real data reads (Phase 5 round B) |
 
 ---
 
