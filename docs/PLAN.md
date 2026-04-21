@@ -22,7 +22,7 @@ Bilingual EN/SW wallet + hire-purchase prototype, Next.js 16 App Router, dark Ap
 | `6a4a1e4` | Store, product detail, filters, credit calc translated |
 | `de759a5` | Wallet, orders, top-up dialog translated |
 | `a1fe755` | Support, AI Tech Tips, localized product catalog |
-| _pending_ | Swahili copy review — grammar, class agreement, natural phrasing |
+| `76c3acb` | Swahili copy review — grammar, class agreement, natural phrasing |
 
 **Every user-visible string** resolves through `src/messages/{en,sw}.json` or `src/lib/products.ts`. No inline English copy remains in `.tsx` files.
 
