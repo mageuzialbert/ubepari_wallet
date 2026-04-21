@@ -275,6 +275,30 @@
       "6000000-99999999": "6M+"
     }
   },
+  "reserve": {
+    "title": "Reserve with deposit",
+    "description": "Choose how to pay {amount} today. We'll push a prompt to your phone.",
+    "providerLabel": "Pay with",
+    "providers": {
+      "mpesa": "M-Pesa",
+      "tigopesa": "Tigo Pesa",
+      "airtelmoney": "Airtel Money"
+    },
+    "phoneLabel": "Phone number",
+    "confirmButton": "Send prompt",
+    "cancelButton": "Cancel",
+    "pendingTitle": "Check your phone",
+    "pendingBody": "We sent a {provider} USSD prompt. Confirm it to activate your order.",
+    "doneTitle": "Order confirmed",
+    "doneBody": "Your PC is reserved. See details in your orders.",
+    "doneCta": "View orders",
+    "failedTitle": "Payment didn't go through",
+    "failedBody": "The prompt was cancelled or expired. Try again when you're ready.",
+    "retryButton": "Try again",
+    "needsSignIn": "Sign in to reserve.",
+    "needsKyc": "Finish KYC to reserve.",
+    "errorGeneric": "Something went wrong. Try again."
+  },
   "credit": {
     "planLabel": "Hire-purchase plan",
     "perMonthSuffix": "/ month",

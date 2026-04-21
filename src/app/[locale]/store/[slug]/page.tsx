@@ -127,7 +127,7 @@ export default async function ProductDetailPage({
             </span>
           </div>
 
-          <CreditCalculator price={product.priceTzs} />
+          <CreditCalculator price={product.priceTzs} productSlug={product.slug} />
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <Perk

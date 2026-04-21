@@ -275,6 +275,30 @@
       "6000000-99999999": "6M+"
     }
   },
+  "reserve": {
+    "title": "Hifadhi kwa malipo ya awali",
+    "description": "Chagua jinsi ya kulipa {amount} leo. Tutatuma ombi kwenye simu yako.",
+    "providerLabel": "Lipa kupitia",
+    "providers": {
+      "mpesa": "M-Pesa",
+      "tigopesa": "Tigo Pesa",
+      "airtelmoney": "Airtel Money"
+    },
+    "phoneLabel": "Nambari ya simu",
+    "confirmButton": "Tuma ombi",
+    "cancelButton": "Ghairi",
+    "pendingTitle": "Angalia simu yako",
+    "pendingBody": "Tumetuma ombi la USSD la {provider}. Lithibitishe ili oda yako ianze.",
+    "doneTitle": "Oda imethibitishwa",
+    "doneBody": "PC yako imehifadhiwa. Tazama maelezo katika oda zako.",
+    "doneCta": "Tazama oda",
+    "failedTitle": "Malipo hayakukamilika",
+    "failedBody": "Ombi liligharika au muda ulikwisha. Jaribu tena ukiwa tayari.",
+    "retryButton": "Jaribu tena",
+    "needsSignIn": "Ingia ili kuhifadhi.",
+    "needsKyc": "Maliza KYC ili kuhifadhi.",
+    "errorGeneric": "Kuna tatizo. Jaribu tena."
+  },
   "credit": {
     "planLabel": "Mpango wa Lipa kidogo kidogo",
     "perMonthSuffix": "/ mwezi",

@@ -4,6 +4,7 @@ import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
 
 import { Button } from "@/components/ui/button";
+import { ReserveDialog } from "@/components/product/reserve-dialog";
 import { formatTzs } from "@/lib/currency";
 import {
   CREDIT_TERMS,
@@ -12,8 +13,15 @@ import {
 } from "@/lib/credit";
 import { useDictionary, useLocale } from "@/i18n/provider";
 
-export function CreditCalculator({ price }: { price: number }) {
+export function CreditCalculator({
+  price,
+  productSlug,
+}: {
+  price: number;
+  productSlug: string;
+}) {
   const [term, setTerm] = React.useState<CreditTerm>(12);
+  const [reserveOpen, setReserveOpen] = React.useState(false);
   const plan = React.useMemo(() => computeCreditPlan(price, term), [price, term]);
   const locale = useLocale();
   const t = useDictionary().credit;
@@ -86,7 +94,11 @@ export function CreditCalculator({ price }: { price: number }) {
       </dl>
 
       <div className="mt-6 flex flex-col gap-2">
-        <Button size="lg" className="rounded-full">
+        <Button
+          size="lg"
+          className="rounded-full"
+          onClick={() => setReserveOpen(true)}
+        >
           {reserveLabel}
         </Button>
         <Button size="lg" variant="outline" className="rounded-full">
@@ -97,6 +109,14 @@ export function CreditCalculator({ price }: { price: number }) {
       <p className="mt-4 text-[11px] leading-relaxed text-muted-foreground">
         {t.disclaimer}
       </p>
+
+      <ReserveDialog
+        open={reserveOpen}
+        onOpenChange={setReserveOpen}
+        productSlug={productSlug}
+        planMonths={term}
+        deposit={plan.deposit}
+      />
     </div>
   );
 }
