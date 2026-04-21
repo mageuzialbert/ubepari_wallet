@@ -51,6 +51,7 @@ export async function POST(req: NextRequest) {
     .from("kyc-documents")
     .upload(path, bytes, { contentType: file.type, upsert: true });
   if (upload.error) {
+    console.error("[kyc-submit] storage upload failed", upload.error);
     return NextResponse.json(
       { error: "unknown", detail: upload.error.message },
       { status: 500 },
@@ -67,6 +68,7 @@ export async function POST(req: NextRequest) {
     status: "pending",
   });
   if (insertErr) {
+    console.error("[kyc-submit] kyc_submissions insert failed", insertErr);
     return NextResponse.json(
       { error: "unknown", detail: insertErr.message },
       { status: 500 },
@@ -78,6 +80,7 @@ export async function POST(req: NextRequest) {
     .update({ kyc_status: "pending" })
     .eq("id", userId);
   if (profileErr) {
+    console.error("[kyc-submit] profile update failed", profileErr);
     return NextResponse.json(
       { error: "unknown", detail: profileErr.message },
       { status: 500 },

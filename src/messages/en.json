@@ -368,7 +368,16 @@
       "You get your credit limit by SMS and email, usually within 4 hours."
     ],
     "submitted": "Submitted. We'll let you know within a few hours.",
-    "errorGeneric": "Something went wrong. Try again."
+    "errorGeneric": "Something went wrong. Try again.",
+    "errorInvalidNida": "NIDA must be 20 digits.",
+    "errorMissingName": "Legal first and last name are both required.",
+    "errorMissingDoc": "Please attach your ID document.",
+    "errorDocTooLarge": "File must be under 5 MB.",
+    "errorDocType": "Use JPG, PNG, or PDF.",
+    "alreadyPendingTitle": "Under review",
+    "alreadyPendingBody": "We've received your documents. Most reviews clear within a few hours — we'll text and email when you're approved.",
+    "alreadyApprovedTitle": "You're verified",
+    "alreadyApprovedBody": "Your KYC is approved. Browse the store and choose your plan."
   },
   "trustStrip": {
     "items": [

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { ShieldCheck } from "lucide-react";
+import { CheckCircle2, Clock, ShieldCheck } from "lucide-react";
 
 import { hasLocale } from "@/i18n/config";
 import { getSession } from "@/lib/session";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import { getDictionary } from "../dictionaries";
 import { KycForm } from "./kyc-form";
 
@@ -27,6 +28,14 @@ export default async function KycPage({ params }: { params: PageParams }) {
   const session = await getSession();
   if (!session) redirect(`/${locale}/signin`);
 
+  const { data: profile } = await supabaseAdmin()
+    .from("profiles")
+    .select("kyc_status")
+    .eq("id", session.claims.userId)
+    .maybeSingle();
+
+  const kycStatus = profile?.kyc_status ?? "none";
+
   const dict = await getDictionary(locale);
   const t = dict.kyc;
 
@@ -43,7 +52,29 @@ export default async function KycPage({ params }: { params: PageParams }) {
       </header>
 
       <div className="mt-10 space-y-4">
-        <KycForm />
+        {kycStatus === "pending" ? (
+          <div className="rounded-3xl border border-border/60 bg-card p-8">
+            <Clock className="h-8 w-8 text-muted-foreground" />
+            <h2 className="mt-4 text-2xl font-semibold tracking-tight">
+              {t.alreadyPendingTitle}
+            </h2>
+            <p className="mt-2 text-[14px] text-muted-foreground">
+              {t.alreadyPendingBody}
+            </p>
+          </div>
+        ) : kycStatus === "approved" ? (
+          <div className="rounded-3xl border border-border/60 bg-card p-8">
+            <CheckCircle2 className="h-8 w-8 text-primary" />
+            <h2 className="mt-4 text-2xl font-semibold tracking-tight">
+              {t.alreadyApprovedTitle}
+            </h2>
+            <p className="mt-2 text-[14px] text-muted-foreground">
+              {t.alreadyApprovedBody}
+            </p>
+          </div>
+        ) : (
+          <KycForm />
+        )}
 
         <div className="rounded-3xl border border-border/60 bg-card p-6 sm:p-8">
           <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">

@@ -9,6 +9,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useDictionary, useLocale } from "@/i18n/provider";
 
+type KycError =
+  | "invalid_nida"
+  | "missing_name"
+  | "missing_doc"
+  | "doc_too_large"
+  | "doc_type"
+  | "unknown";
+
 export function KycForm() {
   const dict = useDictionary();
   const locale = useLocale();
@@ -21,14 +29,29 @@ export function KycForm() {
   const [lastName, setLastName] = useState("");
   const [workplace, setWorkplace] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<KycError | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [pending, startTransition] = useTransition();
+
+  const errorMsg = (e: KycError | null) =>
+    e === null
+      ? null
+      : e === "invalid_nida"
+        ? t.errorInvalidNida
+        : e === "missing_name"
+          ? t.errorMissingName
+          : e === "missing_doc"
+            ? t.errorMissingDoc
+            : e === "doc_too_large"
+              ? t.errorDocTooLarge
+              : e === "doc_type"
+                ? t.errorDocType
+                : t.errorGeneric;
 
   async function submit() {
     setError(null);
     if (!file) {
-      setError(t.errorGeneric);
+      setError("missing_doc");
       return;
     }
     const form = new FormData();
@@ -38,20 +61,28 @@ export function KycForm() {
     form.set("workplace", workplace);
     form.set("doc", file);
 
-    const res = await fetch("/api/kyc/submit", {
-      method: "POST",
-      body: form,
-    });
+    let res: Response;
+    try {
+      res = await fetch("/api/kyc/submit", {
+        method: "POST",
+        body: form,
+      });
+    } catch (err) {
+      console.error("[kyc-submit] network error", err);
+      setError("unknown");
+      return;
+    }
     if (res.status === 401) {
       router.push(`/${locale}/signin`);
       return;
     }
+    const body = await res.json().catch(() => ({}));
     if (!res.ok) {
-      setError(t.errorGeneric);
+      if (body && body.detail) console.error("[kyc-submit]", body);
+      setError((body.error as KycError) ?? "unknown");
       return;
     }
     setSubmitted(true);
-    router.refresh();
   }
 
   if (submitted) {
@@ -148,7 +179,7 @@ export function KycForm() {
         <p className="mt-1.5 text-[11px] text-muted-foreground">{t.workplaceHint}</p>
       </div>
 
-      {error && <p className="text-center text-[12px] text-destructive">{error}</p>}
+      {error && <p className="text-center text-[12px] text-destructive">{errorMsg(error)}</p>}
 
       <Button
         className="w-full rounded-full"

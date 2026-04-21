@@ -368,7 +368,16 @@
       "Unapata kiwango chako cha mkopo kwa SMS na barua pepe, mara nyingi ndani ya masaa 4."
     ],
     "submitted": "Umewasilisha. Tutakujulisha ndani ya masaa machache.",
-    "errorGeneric": "Kuna tatizo. Jaribu tena."
+    "errorGeneric": "Kuna tatizo. Jaribu tena.",
+    "errorInvalidNida": "Nambari ya NIDA lazima iwe tarakimu 20.",
+    "errorMissingName": "Majina yote mawili ya kisheria yanahitajika.",
+    "errorMissingDoc": "Tafadhali ambatisha kitambulisho chako.",
+    "errorDocTooLarge": "Faili lazima iwe chini ya MB 5.",
+    "errorDocType": "Tumia JPG, PNG, au PDF.",
+    "alreadyPendingTitle": "Inakaguliwa",
+    "alreadyPendingBody": "Tumepokea nyaraka zako. Ukaguzi wengi hukamilika ndani ya masaa machache — tutakujulisha kwa SMS na barua pepe utakapoidhinishwa.",
+    "alreadyApprovedTitle": "Umethibitishwa",
+    "alreadyApprovedBody": "KYC yako imeidhinishwa. Pitia duka na uchague mpango wako."
   },
   "trustStrip": {
     "items": [
