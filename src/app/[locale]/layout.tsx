@@ -34,12 +34,35 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!hasLocale(locale)) return {};
   const dict = await getDictionary(locale);
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ubeparipc.tech";
   return {
+    metadataBase: new URL(siteUrl),
     title: {
       default: dict.meta.siteTitle,
       template: dict.meta.titleTemplate,
     },
     description: dict.meta.siteDescription,
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        en: "/en",
+        sw: "/sw",
+        "x-default": "/en",
+      },
+    },
+    openGraph: {
+      title: dict.meta.siteTitle,
+      description: dict.meta.siteDescription,
+      url: `${siteUrl}/${locale}`,
+      siteName: "Ubepari Wallet",
+      locale: locale === "sw" ? "sw_TZ" : "en_TZ",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.meta.siteTitle,
+      description: dict.meta.siteDescription,
+    },
   };
 }
 
