@@ -1,20 +1,20 @@
 # Ubepari Wallet — Implementation Plan
 
 **Last updated:** 2026-04-21
-**Prototype deadline:** ~2026-04-25
-**Current stage:** Bilingual prototype. Phases 0–3 done. **Phase 4 (Evmark + SMS OTP) is next.**
+**Launch target:** ~2026-04-25
+**Current stage:** Going live. UI + bilingual copy done. **Phase 4 (Supabase foundation) is next.**
 
 ---
 
 ## Snapshot — what's built
 
-Bilingual EN/SW wallet + hire-purchase prototype, Next.js 16 App Router, dark Apple-ish UI.
+Bilingual EN/SW wallet + hire-purchase UI, Next.js 16 App Router, dark Apple-ish UI. All user-visible strings resolve through `src/messages/{en,sw}.json` or the `{en,sw}` fields in `src/lib/products.ts`. No inline English copy remains in `.tsx` files.
 
 **Commit trail on `master`:**
 
 | SHA | What |
 |---|---|
-| `0d6176d` | Initial prototype baseline |
+| `0d6176d` | Initial baseline (UI, credit calc, mock wallet/orders/products) |
 | `cb04c3a` | Locale routing + dictionary scaffolding |
 | `62b4449` | Locale toggle in site header |
 | `c9be528` | Dictionary provider + shared chrome translated |
@@ -24,8 +24,6 @@ Bilingual EN/SW wallet + hire-purchase prototype, Next.js 16 App Router, dark Ap
 | `a1fe755` | Support, AI Tech Tips, localized product catalog |
 | `76c3acb` | Swahili copy review — grammar, class agreement, natural phrasing |
 
-**Every user-visible string** resolves through `src/messages/{en,sw}.json` or `src/lib/products.ts`. No inline English copy remains in `.tsx` files.
-
 ---
 
 ## Architecture (i18n)
@@ -33,30 +31,62 @@ Bilingual EN/SW wallet + hire-purchase prototype, Next.js 16 App Router, dark Ap
 - **Routes:** `src/app/[locale]/*` — every page under `/en/*` or `/sw/*`.
 - **Locale detection:** `src/proxy.ts` redirects unlocalized paths using cookie `NEXT_LOCALE` → `Accept-Language` → `defaultLocale` (`en`).
 - **Server components:** call `getDictionary(locale)` from `src/app/[locale]/dictionaries.ts`.
-- **Client components:** call `useDictionary()` / `useLocale()` from `@/i18n/provider`. The provider wraps every page in the root layout.
+- **Client components:** `useDictionary()` / `useLocale()` from `@/i18n/provider`. The provider wraps every page in the root layout.
 - **Types:** `Dictionary` derived via `typeof` from `messages/en.json` in `@/i18n/types`. Hooks return strongly-typed `dict.namespace.key`.
-- **Interpolation:** chained `.replace("{token}", value)`. No ICU lib yet; add only when needed for plural agreement beyond the single/plural pair in `store.*`.
-- **Locale toggle:** `src/components/locale-toggle.tsx` — pill button in header, writes cookie + `router.replace()` to swap locale segment.
-- **Currency:** `formatTzs(amount, locale)` in `src/lib/currency.ts`. Uses `en-TZ` / `sw-TZ` `Intl.NumberFormat`. Currency code always TZS.
+- **Interpolation:** chained `.replace("{token}", value)`. No ICU library; add only if plural agreement beyond the single/plural pair in `store.*` becomes necessary.
+- **Currency:** `formatTzs(amount, locale)` in `src/lib/currency.ts`. `en-TZ` / `sw-TZ` `Intl.NumberFormat`, code always TZS.
 - **Dates:** `formatDate(date, locale, options)` in `src/lib/datetime.ts`. `en-GB` / `sw-TZ`.
-- **Product data:** `lib/products.ts` — `RawProduct` has `{en, sw}` for name/tagline/description; consumers call `getProducts(locale)` / `getProduct(slug, locale)` / `getFeaturedProducts(locale)` which return flat `Product`.
+- **Products:** `lib/products.ts` — `RawProduct` has `{en, sw}` for name/tagline/description; consumers call `getProducts(locale)` etc. which return flat `Product`.
+
+---
+
+## Architecture (data)
+
+Supabase postgres + Storage + Auth. Every data table has RLS; every write happens server-side from route handlers or server actions.
+
+### Tables
+
+- **`public.profiles`** — 1:1 with `auth.users`. `id` (FK `auth.users`), `phone` (unique, `255XXXXXXXXX`), `first_name`, `last_name`, `email`, `credit_limit_tzs`, `credit_points`, `kyc_status` (`pending|approved|rejected`), `is_admin`, `created_at`.
+- **`public.kyc_submissions`** — `id`, `user_id`, `nida_number`, `legal_first_name`, `legal_last_name`, `id_doc_path` (Storage key), `workplace`, `status`, `submitted_at`, `reviewed_at`, `reviewed_by`, `review_notes`.
+- **`public.orders`** — `id`, `user_id`, `product_slug`, `plan_months`, `cash_price_tzs`, `deposit_tzs`, `financed_tzs`, `service_fee_tzs`, `total_tzs`, `monthly_tzs`, `status` (`pending|active|completed|cancelled`), `reference`, `created_at`, `activated_at`, `completed_at`.
+- **`public.order_installments`** — `id`, `order_id`, `sequence`, `due_date`, `amount_tzs`, `paid_at`, `payment_id`.
+- **`public.payments`** — `id`, `user_id`, `order_id` (nullable, null for top-ups), `kind` (`deposit|installment|topup|refund`), `amount_tzs`, `provider` (`mpesa|tigopesa|airtelmoney|card`), `evmark_ref`, `evmark_reference_id`, `status` (`pending|success|failed`), `raw_callback` (jsonb), `created_at`, `settled_at`.
+- **`public.wallet_entries`** — `id`, `user_id`, `kind` (`credit|debit`), `amount_tzs`, `payment_id`, `note_key` (matches `wallet.activityNotes.*` dict keys so UI localizes from the key, not the stored note), `note_params` (jsonb), `created_at`. Balance = sum of credits − sum of debits.
+- **`public.otp_challenges`** — `id`, `phone`, `code_hash` (bcrypt), `expires_at`, `consumed_at`, `attempts`, `created_at`. Service-role only.
+
+### Storage
+
+- **Bucket `kyc-documents`** — private. Policies: user can upload to `{user_id}/*`; user can read their own path; service role has full read.
+
+### RLS outline
+
+- `profiles` — user selects/updates own row; insert server-side only via service role.
+- `kyc_submissions` — user inserts/selects own; update only via service role (admin review).
+- `orders`, `order_installments`, `payments`, `wallet_entries` — user selects own; all writes server-side.
+- `otp_challenges` — no anon/auth policy (service-role only).
+
+### Auth adapter
+
+SMS OTP via `messaging-service.co.tz`; on verify the server creates the `auth.users` row via `admin.createUser` (if phone is new) or looks it up by phone, then signs a custom JWT with `SUPABASE_JWT_SECRET` and returns it as a cookie. Client calls `supabase.auth.setSession(...)` on arrival. RLS trusts `auth.uid()` from the JWT.
 
 ---
 
 ## Locked decisions
 
-- **Default locale:** `en`
-- **URL shape:** `/en/*`, `/sw/*` (path segment)
-- **i18n library:** none — Next 16 native dictionary pattern
-- **Evmark:** real, account `user='ipab'`, `api_source='iPAB'` (iPAB International's shared account, deliberate)
-- **SMS OTP:** real, via `messaging-service.co.tz` (creds in `.env.local.example`, username `ubeparipc`)
-- **Auth:** phone+OTP via SMS gateway, session in cookie. No Supabase in prototype.
-- **AI:** OpenAI first (`sk-proj-...`), behind `askLlm()` adapter so Claude swap is one-file later.
-- **Google Maps:** deferred. Key is in `.env.local.example` for later.
+- **Default locale:** `en`. **URL shape:** `/en/*`, `/sw/*` (path segment).
+- **i18n library:** none — Next 16 native dictionary pattern.
+- **Supabase:** live in **Frankfurt (eu-central-1)** for TZ latency. Postgres + Storage + Auth. RLS on every data table.
+- **Auth:** phone+OTP via `messaging-service.co.tz` → custom JWT signed with `SUPABASE_JWT_SECRET` → Supabase session cookie. Not Supabase's built-in phone auth (which would force a Twilio swap).
+- **Product catalog:** stays static in `lib/products.ts` for launch. Migrate to a `products` table post-launch when the admin/inventory surface lands.
+- **KYC review:** manual via Supabase dashboard at launch. In-app admin queue is post-launch.
+- **Evmark:** live, account `user='ipab'`, `api_source='iPAB'` (iPAB International's shared account, deliberate).
+- **AI Tech Tips:** real OpenAI (`gpt-4o-mini`), behind `askLlm()` adapter so Claude swap is one-file later.
+- **Deploy:** Vercel. Production domain + Evmark callbacks pointed at it — no ngrok in prod.
+- **Google Maps:** deferred; key stays in env for when the showroom map ships.
 - **Glossary (both locales unless noted):**
   - **Wallet** — keep English
   - **KYC** — keep English
-  - **AI Tech Tips** — both locales (renamed from "AI Advisor")
+  - **AI Tech Tips** — both locales
   - **Hire-purchase** → **Lipa kidogo kidogo** (Swahili, marketing-led)
 
 ---
@@ -64,123 +94,140 @@ Bilingual EN/SW wallet + hire-purchase prototype, Next.js 16 App Router, dark Ap
 ## Stack & conventions
 
 - Next.js **16.2.4**, React 19, Tailwind v4, shadcn/ui, motion, next-themes.
+- Supabase client: `@supabase/supabase-js` v2 + `@supabase/ssr` for cookie-based server session.
 - **Breaking changes vs. training data** — see `AGENTS.md`. Read `node_modules/next/dist/docs/` before writing routing / metadata / middleware.
   - `middleware.ts` → **`proxy.ts`** (renamed)
   - `params` in pages/layouts is a Promise — always `await`
-- Phone format **`255XXXXXXXXX`** (12 digits, no `+`) for Evmark.
+- Phone format **`255XXXXXXXXX`** (12 digits, no `+`) everywhere — Evmark and Supabase.
 - Credit math in `src/lib/credit.ts` — do not duplicate.
+- Server-only env (`SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_JWT_SECRET`, `SMS_PASSWORD`, `OPENAI_API_KEY`, Evmark) must never reach the browser. Only `NEXT_PUBLIC_*` is client-safe.
 - Apple aesthetic: near-black surfaces, `rounded-full` pills, `tracking-tight` semibold. No RGB/gamer accents.
 - Dependencies added for i18n: `@formatjs/intl-localematcher`, `negotiator`, `@types/negotiator`.
 
 ---
 
-## Phase 3 — Swahili copy review (next up, ~1 day)
+## Phase 4 — Supabase foundation (~1.5 days)
 
-**Goal:** make every Swahili string read natural. My draft translations used the locked glossary but some lines feel literal.
+**Goal:** schema, RLS, storage, and an auth adapter that issues real Supabase sessions from SMS OTP.
 
 ### Scope
-- `src/messages/sw.json` — all namespaces
-- `src/lib/products.ts` — 12 products × `{tagline.sw, description.sw}` fields
 
-### Priority spots for a native speaker's eye
-Ordered by visual impact:
-
-1. **Hero** (`hero.*`) — headings, subheading, CTAs. Needs to feel as confident as the English.
-2. **Landing marketing** (`howItWorks.*`, `aiCta.*`, `trustStrip.*`) — especially `aiCta.body` and chat mock.
-3. **Credit calculator** (`credit.*`) — row labels, reserve button, disclaimer.
-4. **Top-up dialog** (`topup.*`) — short flow, many users will see it.
-5. **Support FAQs** (`support.faqs`) — 4 Q&A pairs, each load-bearing for trust.
-6. **Product taglines** (`lib/products.ts`) — 12 one-liners; some are quite idiomatic.
-7. **KYC** (`kyc.*`) — process steps + form labels.
-8. **Wallet activity notes** (`wallet.activityNotes`) — "Awamu · UBE-00412" etc.
+1. **Project + envs.** Create the Supabase project in Frankfurt (if not already done). Fill `.env.local` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_JWT_SECRET`.
+2. **Schema migration.** Create `supabase/migrations/0001_init.sql` with every table in the data architecture above, indexes, and RLS policies. Apply via Supabase CLI (`supabase db push`).
+3. **Storage bucket.** Create `kyc-documents` private bucket with the three RLS policies above. Include as a SQL migration, not dashboard-only.
+4. **Client helpers.** `src/lib/supabase/server.ts` (server components / route handlers, reads cookies), `src/lib/supabase/browser.ts` (client components), `src/lib/supabase/admin.ts` (service-role, server-only).
+5. **Auth adapter.**
+   - `src/lib/sms.ts` — `sendOtp(phone, code)` wrapping `messaging-service.co.tz`.
+   - `POST /api/auth/otp/send` — rate-limit by phone+IP, hash+store code in `otp_challenges`, send SMS.
+   - `POST /api/auth/otp/verify` — bcrypt-check the code, mark consumed, upsert profile, sign custom JWT (`iss=supabase`, `aud=authenticated`, `sub=user.id`, `role=authenticated`, `exp=1h` access / 1w refresh), return as httpOnly cookies the Supabase SSR client reads.
+   - Client: `useSession()` hook backed by `supabase.auth.getUser()`.
+6. **Signup/signin pages wired.** Real OTP round trip. Success routes to `/wallet`.
+7. **KYC submit wired.** `POST /api/kyc/submit` — upload doc to Storage under `{user_id}/id.{ext}`, insert `kyc_submissions` row with `status='pending'`, set `profiles.kyc_status='pending'`. UI shows "under review" after submit.
 
 ### Deliverable
-- Reviewed `sw.json` + `products.ts` with any phrasing changes.
-- Flag any strings that broke layout (buttons clipped, card headers wrapping) — Swahili often runs ~20% longer. Common risk spots: credit calc rows, filter pills, store result line, nav labels.
+- Migrations applied, RLS green (can't select someone else's profile as anon or as another auth user).
+- End-to-end: fresh phone → OTP SMS received → verify → profile row exists → signed in → can submit KYC → row visible in Supabase dashboard → doc in Storage.
 
-### Workflow for next agent
-1. Read `MEMORY.md` + this file top-to-bottom. No other prep needed.
-2. Run `npm run dev`; walk `/sw/` on every page.
-3. When you change a string in `sw.json`, the whole site hot-reloads — open the relevant page to verify fit.
-4. Do NOT change key names or en.json values — only sw.json values and `products.ts` `.sw` fields.
-5. Commit: `feat(i18n): swahili copy review`
+### Commit boundary
+- `feat(supabase): schema, RLS, storage bucket`
+- `feat(auth): sms otp + custom jwt session`
+- `feat(kyc): wire submit to supabase storage + table`
 
 ---
 
-## Phase 4 — Evmark + SMS OTP (after Phase 3, ~1.5 days)
+## Phase 5 — Payments (~1 day)
 
-Infrastructure scaffolded. Integration is net-new.
+**Goal:** real money moves, backed by Supabase rows.
 
-### Demo strategy
+### Scope
 
-| Capability | Real vs. mock |
-|---|---|
-| Phone OTP | **Real** via SMS gateway |
-| KYC submission | **Mock** — accept upload client-side, show "under review" |
-| Product catalog | **Static** — `lib/products.ts` |
-| Credit calculator | **Real** — already works via `lib/credit.ts` |
-| Wallet balance / activity | **Mock** — `lib/mock-wallet.ts` |
-| Deposit via Evmark USSD push | **Real** — happy path, single flow |
-| Wallet top-up | **Mock confirmation** — UI is done, wire a stub |
-| AI Tech Tips (`/recommend`) | **Mock** — OpenAI call optional, static match fine for demo |
+1. **Evmark server client.** `src/lib/evmark.ts` — daily `md5(EVMARK_USER + "|" + DD-MM-YYYY)` hash, MNO push, card redirect, callback verification. Port notes from `docs/evmark_doc/` — do **not** disable TLS verification like the PHP sample.
+2. **Deposit happy path (order creation).**
+   - Store product detail: "Reserve with deposit" → `POST /api/orders` with `{slug, plan_months, provider, phone}`.
+   - Server validates KYC approved, creates `orders` row (`status='pending'`), creates installment rows, generates reference (4 alnum + `X` + phone-without-255), triggers Evmark MNO push, creates a `payments` row (`kind='deposit'`, `status='pending'`).
+3. **Evmark callback handler.** `POST /api/payments/mno/callback` — verify signature, find `payments` by `evmark_reference_id`, update to `success|failed`, and on success: set `orders.status='active'`, add a `wallet_entries` credit+debit pair for the deposit (so activity feed is clean), flip first installment due date window start.
+4. **Wallet top-up.** Top-up dialog → `POST /api/wallet/topup` → Evmark MNO push → callback → `wallet_entries` credit.
+5. **Installment payment.** "Pay this month" → `POST /api/wallet/pay-installment` → Evmark MNO push (or wallet-balance deduction if sufficient) → callback → mark `order_installments.paid_at`, `payments.status='success'`.
+6. **Wallet + Orders pages read real data.** Remove `lib/mock-wallet.ts` and the mock activity seed. Server components query Supabase with the user's session.
 
-### Evmark integration notes
+### Deliverable
+- Place an order end-to-end with a test phone: deposit push → STK/USSD on phone → confirm → order goes `pending → active`, wallet activity shows deposit, schedule is populated.
+- Wallet top-up round-trips and reflects in balance.
+- Missed callback retries / webhook idempotency: safe to replay.
 
-`POST https://vodaapi.evmak.com/prd/` with:
-- `hash = md5(EVMARK_USER + "|" + DD-MM-YYYY)` (rotates daily)
-- Full payload schema + callback verification in `docs/evmark_doc/`
-- Port notes: do **not** disable TLS verification as the PHP sample does
-- Dev webhook needs ngrok or a preview deploy (localhost unreachable from Evmark)
-- Reference format: 4 random alnum + `X` + phone (without `255`)
-
-### SMS OTP
-`GET https://messaging-service.co.tz/link/sms/v1/text/single` with username/password/from/to/text query params. **Server-only** — never expose creds to client.
-
-### Mocked auth session
-Minimal cookie-based session, `useSession()` hook. Issue on successful OTP verify. No Supabase.
+### Commit boundary
+- `feat(payments): evmark client + daily hash`
+- `feat(orders): create order + deposit push`
+- `feat(payments): mno callback handler`
+- `feat(wallet): topup + installment payment`
+- `refactor: remove mock wallet/orders seeds`
 
 ---
 
-## Phase 5 — QA + deploy (half day)
+## Phase 6 — Production polish (~0.5 day)
 
-- Walk every page in both locales, both themes
-- Check overflow (Swahili ~20% longer)
-- SEO: `hreflang` alternates in metadata, OG tags per locale
-- Vercel deploy with env vars set
-- Demo script written into this file before handoff
+1. **Real AI Tech Tips.** `/recommend` calls OpenAI with tool-use over the `lib/products.ts` catalog. Static fallback for quota/error cases.
+2. **SEO.** `hreflang` alternates in each page's metadata; OG image per locale; canonical to self-locale; `sitemap.ts` listing both locale trees.
+3. **Error + empty states.** Any Supabase read returning empty arrays must render a real empty state (orders, wallet activity), not a blank card. Show a toast on Evmark timeout/failure with "try again" CTA.
+4. **Rate limits.** OTP endpoint: 1/min per phone, 5/hour per IP. Payment endpoints: 1 in-flight push per user.
+5. **Observability stub.** Log structured events (`otp.sent`, `payment.pushed`, `payment.settled`, `order.created`) so Sentry or Axiom can be dropped in post-launch without refactoring.
+
+### Commit boundary
+- `feat(ai): real openai-backed recommendations`
+- `feat(seo): hreflang, og, sitemap`
+- `feat(reliability): rate limits + error states`
+
+---
+
+## Phase 7 — Launch (~0.5 day)
+
+1. **Vercel project.** Link repo, set all env vars (prod), set `NEXT_PUBLIC_SITE_URL` to production domain.
+2. **Production Evmark callbacks.** Update `EVMARK_MNO_CALLBACK_URL` / `EVMARK_CARD_CALLBACK_URL` to the prod domain. Share the callback URL with Evmark if allowlisting is required.
+3. **Supabase prod.** If launch project is separate from dev, rerun migrations there; otherwise confirm the single project is configured for prod traffic (email templates, redirect URLs).
+4. **Smoke tests.** Both locales × both themes on every page. Real deposit with a live MNO number. Real top-up. KYC approval toggle via dashboard flows through to `/wallet`.
+5. **Security checklist.**
+   - Restrict Google Maps API key by HTTP referrer (GCP Console).
+   - Set monthly spending cap on the OpenAI project.
+   - Confirm `SUPABASE_SERVICE_ROLE_KEY` is not in any client bundle (`grep` on `.next/static`).
+   - Verify `otp_challenges` is not readable via anon key.
+6. **Demo/handoff script.** Short appendix below this file with the exact happy-path walk.
+
+### Commit boundary
+- `chore(deploy): vercel + prod env wiring`
+- `docs: launch checklist + runbook`
 
 ---
 
 ## Known issues (not blocking)
 
-- **`next-themes@0.4.6` script-tag warning** under React 19 — cosmetic, theme works. Revisit when upstream ships React 19 fix.
+- **`next-themes@0.4.6` script-tag warning** under React 19 — cosmetic, theme works. Revisit when upstream ships a React 19 fix.
 
 ---
 
-## Post-prototype backlog
+## Post-launch backlog
 
-- Supabase: real auth, users, orders, KYC docs, RLS
-- Evmark card flow + reconciliation
-- Real AI Tech Tips via Claude/OpenAI adapter, tool use over `products.ts`
-- Admin surface: KYC approval queue, order review, inventory
-- Observability: Sentry, webhook audit trail
-- Google Maps (shop pickup, KYC address)
-- Legal: T&Cs, privacy policy, hire-purchase agreement
-- ICU plural library if/when needed
+- **Admin surface:** KYC approval queue, order review, inventory edits, refund issuance.
+- **Products table:** migrate `lib/products.ts` into Supabase; CMS-like admin.
+- **Evmark card flow:** currently scoped to MNO only. Add Visa/Mastercard happy path + reconciliation.
+- **Observability:** Sentry, Axiom or Logtail for structured events, webhook audit trail.
+- **Google Maps:** showroom pickup + KYC address autocomplete.
+- **Legal pages:** Terms, Privacy, Hire-Purchase Agreement (currently 404 from footer).
+- **ICU plural library** if copy grows beyond single/plural.
+- **Referral program:** `Mpango wa Ushirikiano` link in footer points nowhere today.
 
 ---
 
-## Credentials (local only, never commit)
+## Credentials
 
-Live values in `config&credentials.txt` (gitignored) and `.env.local` (gitignored). Placeholders in `.env.local.example`. Covers:
-- SMS gateway (Ubepari account)
-- Evmark MNO + card URLs (using `ipab` account)
-- OpenAI project key + org
-- Google Maps key (deferred use)
+Live values live in `.env.local` (gitignored). Placeholders in `.env.local.example`. Covers:
 
-**Security TODOs (user to do):**
-- GCP Console: restrict Maps API key by HTTP referrer
-- OpenAI dashboard: set monthly spending cap on the project
+- **SMS gateway** — Ubepari account, `messaging-service.co.tz`.
+- **Evmark** — MNO + card URLs, `ipab` account.
+- **OpenAI** — project key + org.
+- **Google Maps** — deferred use.
+- **Supabase** — `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (server-only), `SUPABASE_JWT_SECRET` (server-only).
+
+**Never-commit list:** `.env.local`, any file matching `.env*` other than `.env.local.example` (which must contain only empty placeholders).
 
 ---
 
@@ -188,5 +235,6 @@ Live values in `config&credentials.txt` (gitignored) and `.env.local` (gitignore
 
 1. Read `CLAUDE.md`, `AGENTS.md`, and this file.
 2. Read `MEMORY.md` for the user's working preferences + project context.
-3. **Begin Phase 3.** The Phase 3 section above is self-contained with scope, priorities, deliverable, and workflow.
-4. Update the "Snapshot — what's built" section with the Phase 3 commit when done.
+3. Confirm `.env.local` has all Supabase vars set. If not, ask the user before doing anything else — Phase 4 can't start without them.
+4. **Begin Phase 4.** It's self-contained with scope, deliverable, and commit boundary.
+5. Update the snapshot table with each commit SHA as phases land.
