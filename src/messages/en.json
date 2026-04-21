@@ -189,7 +189,13 @@
       "topup": "Wallet top-up",
       "deposit": "Deposit · {orderId}",
       "refund": "Refund · {orderId}"
-    }
+    },
+    "emptyOrdersTitle": "No orders yet",
+    "emptyOrdersBody": "Reserve a PC and your plan lives here.",
+    "emptyActivity": "No activity yet.",
+    "browseStore": "Browse the store →",
+    "payInstallment": "Pay installment",
+    "emptyGreeting": "Welcome."
   },
   "orders": {
     "metaTitle": "My Orders",
@@ -202,7 +208,14 @@
     "progressHint": "{pct}% to full ownership · {months} months remaining",
     "scheduleLabel": "Repayment schedule",
     "browseStorePrefix": "Looking for another machine? ",
-    "browseStoreLink": "Browse the store →"
+    "browseStoreLink": "Browse the store →",
+    "emptyTitle": "No orders yet",
+    "emptyBody": "When you reserve a PC, it lives here with your full payment schedule.",
+    "payNow": "Pay now",
+    "statusPending": "Awaiting deposit",
+    "statusActive": "Active",
+    "statusCompleted": "Completed",
+    "statusCancelled": "Cancelled"
   },
   "topup": {
     "title": "Top up your Wallet",
@@ -218,8 +231,12 @@
     "pendingTitle": "Awaiting {provider} confirmation",
     "pendingBody": "Check your phone and approve the USSD prompt.",
     "doneTitle": "{amount} added to your Wallet",
-    "doneReference": "Reference: TX-{ref}",
-    "doneButton": "Done"
+    "doneReference": "Reference: {ref}",
+    "doneButton": "Done",
+    "failedTitle": "Top-up didn't go through",
+    "failedBody": "The prompt was cancelled or expired. Try again when you're ready.",
+    "retryButton": "Try again",
+    "errorGeneric": "Something went wrong. Try again."
   },
   "store": {
     "metaTitle": "Store — Every PC we stock",
@@ -274,6 +291,23 @@
       "4000000-6000000": "4M – 6M",
       "6000000-99999999": "6M+"
     }
+  },
+  "payInstallment": {
+    "title": "Pay this installment",
+    "description": "Push {amount} to {provider}. Approve on your phone to clear the installment.",
+    "providerLabel": "Pay with",
+    "phoneLabel": "Phone number",
+    "confirmButton": "Send prompt",
+    "cancelButton": "Cancel",
+    "pendingTitle": "Check your phone",
+    "pendingBody": "We sent a {provider} USSD prompt. Confirm it to mark the installment paid.",
+    "doneTitle": "Installment paid",
+    "doneBody": "Your schedule is updated. Nice work.",
+    "doneButton": "Close",
+    "failedTitle": "Payment didn't go through",
+    "failedBody": "The prompt was cancelled or expired. Try again when you're ready.",
+    "retryButton": "Try again",
+    "errorGeneric": "Something went wrong. Try again."
   },
   "reserve": {
     "title": "Reserve with deposit",

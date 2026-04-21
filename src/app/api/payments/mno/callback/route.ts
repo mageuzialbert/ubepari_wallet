@@ -72,10 +72,13 @@ export async function POST(req: NextRequest) {
   if (payUpdErr) return ackRejected(`payment_update_error: ${payUpdErr.message}`);
 
   if (payment.kind === "deposit" && payment.order_id) {
-    await admin
+    const { data: orderRow } = await admin
       .from("orders")
       .update({ status: "active", activated_at: settledAt })
-      .eq("id", payment.order_id);
+      .eq("id", payment.order_id)
+      .select("reference")
+      .maybeSingle();
+    const orderRef = orderRow?.reference ?? payment.order_id;
 
     await admin.from("wallet_entries").insert({
       user_id: payment.user_id,
@@ -83,7 +86,7 @@ export async function POST(req: NextRequest) {
       amount_tzs: payment.amount_tzs,
       payment_id: payment.id,
       note_key: "deposit",
-      note_params: { orderId: payment.order_id },
+      note_params: { orderId: orderRef },
     });
     await admin.from("wallet_entries").insert({
       user_id: payment.user_id,
@@ -91,7 +94,7 @@ export async function POST(req: NextRequest) {
       amount_tzs: payment.amount_tzs,
       payment_id: payment.id,
       note_key: "deposit",
-      note_params: { orderId: payment.order_id },
+      note_params: { orderId: orderRef },
     });
   } else if (payment.kind === "topup") {
     await admin.from("wallet_entries").insert({
@@ -103,6 +106,13 @@ export async function POST(req: NextRequest) {
       note_params: {},
     });
   } else if (payment.kind === "installment" && payment.order_id) {
+    const { data: orderRow } = await admin
+      .from("orders")
+      .select("reference")
+      .eq("id", payment.order_id)
+      .maybeSingle();
+    const orderRef = orderRow?.reference ?? payment.order_id;
+
     await admin
       .from("order_installments")
       .update({ paid_at: settledAt, payment_id: payment.id })
@@ -117,7 +127,7 @@ export async function POST(req: NextRequest) {
       amount_tzs: payment.amount_tzs,
       payment_id: payment.id,
       note_key: "payment",
-      note_params: { orderId: payment.order_id },
+      note_params: { orderId: orderRef },
     });
   }
 

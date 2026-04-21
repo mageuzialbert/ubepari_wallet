@@ -189,7 +189,13 @@
       "topup": "Kuongeza pesa kwenye Wallet",
       "deposit": "Malipo ya awali · {orderId}",
       "refund": "Marejesho · {orderId}"
-    }
+    },
+    "emptyOrdersTitle": "Hakuna oda bado",
+    "emptyOrdersBody": "Hifadhi PC na mpango wako utaonekana hapa.",
+    "emptyActivity": "Hakuna shughuli bado.",
+    "browseStore": "Pitia duka →",
+    "payInstallment": "Lipa awamu",
+    "emptyGreeting": "Karibu."
   },
   "orders": {
     "metaTitle": "Oda zangu",
@@ -202,7 +208,14 @@
     "progressHint": "{pct}% kuelekea umilikaji kamili · miezi {months} iliyobaki",
     "scheduleLabel": "Ratiba ya malipo",
     "browseStorePrefix": "Unatafuta kifaa kingine? ",
-    "browseStoreLink": "Tembelea duka →"
+    "browseStoreLink": "Tembelea duka →",
+    "emptyTitle": "Hakuna oda bado",
+    "emptyBody": "Utakapoweka hifadhi ya PC, itaonekana hapa na ratiba kamili ya malipo.",
+    "payNow": "Lipa sasa",
+    "statusPending": "Inasubiri malipo ya awali",
+    "statusActive": "Hai",
+    "statusCompleted": "Imekamilika",
+    "statusCancelled": "Imeghairiwa"
   },
   "topup": {
     "title": "Ongeza pesa kwenye Wallet yako",
@@ -218,8 +231,12 @@
     "pendingTitle": "Inasubiri uthibitisho wa {provider}",
     "pendingBody": "Angalia simu yako na idhinisha ombi la USSD.",
     "doneTitle": "{amount} imeongezwa kwenye Wallet yako",
-    "doneReference": "Kumbukumbu: TX-{ref}",
-    "doneButton": "Sawa"
+    "doneReference": "Kumbukumbu: {ref}",
+    "doneButton": "Sawa",
+    "failedTitle": "Malipo ya kuongeza hayakukamilika",
+    "failedBody": "Ombi liligharika au muda ulikwisha. Jaribu tena ukiwa tayari.",
+    "retryButton": "Jaribu tena",
+    "errorGeneric": "Kuna tatizo. Jaribu tena."
   },
   "store": {
     "metaTitle": "Duka — PC zote tulizonazo",
@@ -274,6 +291,23 @@
       "4000000-6000000": "4M – 6M",
       "6000000-99999999": "6M+"
     }
+  },
+  "payInstallment": {
+    "title": "Lipa awamu hii",
+    "description": "Tuma {amount} kwa {provider}. Thibitisha kwenye simu yako ili kumaliza awamu.",
+    "providerLabel": "Lipa kupitia",
+    "phoneLabel": "Nambari ya simu",
+    "confirmButton": "Tuma ombi",
+    "cancelButton": "Ghairi",
+    "pendingTitle": "Angalia simu yako",
+    "pendingBody": "Tumetuma ombi la USSD la {provider}. Lithibitishe ili awamu ihesabiwe kulipwa.",
+    "doneTitle": "Awamu imelipwa",
+    "doneBody": "Ratiba yako imeboreshwa. Hongera.",
+    "doneButton": "Funga",
+    "failedTitle": "Malipo hayakukamilika",
+    "failedBody": "Ombi liligharika au muda ulikwisha. Jaribu tena ukiwa tayari.",
+    "retryButton": "Jaribu tena",
+    "errorGeneric": "Kuna tatizo. Jaribu tena."
   },
   "reserve": {
     "title": "Hifadhi kwa malipo ya awali",
