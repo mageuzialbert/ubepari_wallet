@@ -39,6 +39,10 @@ config&credentials.txt
 *.credentials.txt
 /secrets/
 
+# local transients
+dev-server.log
+.claude/
+
 # vercel
 .vercel
 

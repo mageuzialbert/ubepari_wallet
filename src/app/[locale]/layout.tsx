@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { notFound } from "next/navigation";
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { hasLocale, locales } from "@/i18n/config";
+import { getDictionary } from "./dictionaries";
 
 const geistSans = Geist({
   variable: "--font-sans",
@@ -16,23 +19,42 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "Ubepari Wallet — Own your dream PC. Pay in parts.",
-    template: "%s · Ubepari Wallet",
-  },
-  description:
-    "Tanzania's premium hire-purchase platform for PCs. Pay a deposit via M-Pesa, Tigo Pesa, Airtel Money, or card — walk out with your machine today.",
-};
+type LayoutParams = Promise<{ locale: string }>;
 
-export default function RootLayout({
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: LayoutParams;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!hasLocale(locale)) return {};
+  const dict = await getDictionary(locale);
+  return {
+    title: {
+      default: dict.meta.siteTitle,
+      template: dict.meta.titleTemplate,
+    },
+    description: dict.meta.siteDescription,
+  };
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: LayoutParams;
 }>) {
+  const { locale } = await params;
+  if (!hasLocale(locale)) notFound();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
