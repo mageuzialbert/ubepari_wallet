@@ -7,9 +7,13 @@ import { useRef } from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { useDictionary, useLocale } from "@/i18n/provider";
 
 export function LandingHero() {
   const ref = useRef<HTMLElement>(null);
+  const dict = useDictionary();
+  const locale = useLocale();
+  const t = dict.hero;
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -33,7 +37,7 @@ export function LandingHero() {
           className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3 py-1 text-[11px] font-medium tracking-wide text-muted-foreground backdrop-blur"
         >
           <Sparkles className="h-3 w-3" strokeWidth={2.5} />
-          New — Own your dream PC in 3 taps
+          {t.badge}
         </motion.div>
 
         <motion.h1
@@ -42,10 +46,10 @@ export function LandingHero() {
           transition={{ delay: 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.03em] text-foreground sm:text-6xl md:text-7xl"
         >
-          Own it today.
+          {t.headingLine1}
           <br />
           <span className="bg-gradient-to-br from-foreground to-foreground/40 bg-clip-text text-transparent">
-            Pay in parts.
+            {t.headingLine2}
           </span>
         </motion.h1>
 
@@ -55,9 +59,7 @@ export function LandingHero() {
           transition={{ delay: 0.25, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-2xl text-balance text-lg text-muted-foreground sm:text-xl"
         >
-          The premium way to buy a PC in Tanzania. Choose your machine, pay a
-          deposit, and walk out with it today — everything else lives in your
-          Ubepari Wallet.
+          {t.subheading}
         </motion.p>
 
         <motion.div
@@ -67,8 +69,8 @@ export function LandingHero() {
           className="mt-8 flex flex-col items-center gap-3 sm:flex-row"
         >
           <Button asChild size="lg" className="rounded-full px-6 text-[14px]">
-            <Link href="/store">
-              Browse PCs
+            <Link href={`/${locale}/store`}>
+              {t.ctaPrimary}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -78,7 +80,7 @@ export function LandingHero() {
             variant="ghost"
             className="rounded-full px-6 text-[14px]"
           >
-            <Link href="/recommend">Ask the AI Advisor →</Link>
+            <Link href={`/${locale}/recommend`}>{t.ctaSecondary}</Link>
           </Button>
         </motion.div>
 
@@ -89,7 +91,7 @@ export function LandingHero() {
           <div className="relative aspect-[16/9] overflow-hidden rounded-t-3xl border border-border/60 bg-gradient-to-b from-muted/40 to-background shadow-2xl shadow-black/20">
             <Image
               src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=2000&q=90"
-              alt="Ubepari PC hero"
+              alt={t.featuredProduct}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 1024px"
@@ -99,16 +101,16 @@ export function LandingHero() {
             <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-4 text-left">
               <div>
                 <p className="text-[11px] uppercase tracking-[0.18em] text-white/70">
-                  Featured
+                  {t.featuredLabel}
                 </p>
                 <p className="mt-1 text-2xl font-semibold text-white">
-                  MacBook Pro 14″ M4
+                  {t.featuredProduct}
                 </p>
               </div>
               <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-2 text-right backdrop-blur-md">
-                <p className="text-[11px] text-white/70">From</p>
+                <p className="text-[11px] text-white/70">{t.priceFromLabel}</p>
                 <p className="text-lg font-semibold text-white">
-                  TZS 450,000 / mo
+                  {t.priceDisplay}
                 </p>
               </div>
             </div>

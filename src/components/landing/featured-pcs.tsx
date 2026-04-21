@@ -7,8 +7,12 @@ import { motion } from "motion/react";
 import { getFeaturedProducts } from "@/lib/products";
 import { formatTzs } from "@/lib/currency";
 import { computeCreditPlan } from "@/lib/credit";
+import { useDictionary, useLocale } from "@/i18n/provider";
 
 export function FeaturedPcs() {
+  const dict = useDictionary();
+  const locale = useLocale();
+  const t = dict.featured;
   const products = getFeaturedProducts();
 
   return (
@@ -16,23 +20,27 @@ export function FeaturedPcs() {
       <div className="flex items-end justify-between">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            Handpicked
+            {t.eyebrow}
           </p>
           <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-            The lineup, this season.
+            {t.heading}
           </h2>
         </div>
         <Link
-          href="/store"
+          href={`/${locale}/store`}
           className="hidden text-[13px] text-muted-foreground transition-colors hover:text-foreground sm:inline"
         >
-          Shop all →
+          {t.shopAll}
         </Link>
       </div>
 
       <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
         {products.map((product, i) => {
           const plan = computeCreditPlan(product.priceTzs, 12);
+          const monthlyLabel = t.monthlyPrefix.replace(
+            "{amount}",
+            formatTzs(plan.monthly, locale),
+          );
           return (
             <motion.div
               key={product.slug}
@@ -42,7 +50,7 @@ export function FeaturedPcs() {
               transition={{ duration: 0.6, delay: i * 0.08 }}
             >
               <Link
-                href={`/store/${product.slug}`}
+                href={`/${locale}/store/${product.slug}`}
                 className="group relative block overflow-hidden rounded-3xl border border-border/60 bg-card transition-all hover:border-border hover:shadow-xl hover:shadow-black/10"
               >
                 <div
@@ -63,7 +71,7 @@ export function FeaturedPcs() {
                       {product.brand}
                     </span>
                     <span className="rounded-full bg-foreground/90 px-2.5 py-1 text-background">
-                      New
+                      {t.newBadge}
                     </span>
                   </div>
                 </div>
@@ -77,10 +85,10 @@ export function FeaturedPcs() {
                   </p>
                   <div className="mt-4 flex items-baseline justify-between">
                     <span className="text-[15px] font-medium">
-                      {formatTzs(product.priceTzs)}
+                      {formatTzs(product.priceTzs, locale)}
                     </span>
                     <span className="text-[12px] text-muted-foreground">
-                      or {formatTzs(plan.monthly)} / mo
+                      {monthlyLabel}
                     </span>
                   </div>
                 </div>

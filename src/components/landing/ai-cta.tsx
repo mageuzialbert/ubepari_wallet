@@ -5,8 +5,13 @@ import { motion } from "motion/react";
 import { ArrowRight, Wand2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { useDictionary, useLocale } from "@/i18n/provider";
 
 export function AiCta() {
+  const dict = useDictionary();
+  const locale = useLocale();
+  const t = dict.aiCta;
+
   return (
     <section className="mx-auto mt-32 max-w-6xl px-4 sm:px-6">
       <motion.div
@@ -29,16 +34,15 @@ export function AiCta() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-background/15 bg-background/10 px-3 py-1 text-[11px] font-medium backdrop-blur">
               <Wand2 className="h-3 w-3" strokeWidth={2.5} />
-              AI Advisor
+              {t.badge}
             </div>
             <h2 className="mt-5 text-3xl font-semibold tracking-tight sm:text-4xl">
-              Tell it your story.
+              {t.headingLine1}
               <br />
-              Get your PC.
+              {t.headingLine2}
             </h2>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed opacity-80">
-              "I'm a graphic designer who edits 4K video and occasionally plays
-              Valorant with friends. Budget's around 4M." That's all it needs.
+              {t.body}
             </p>
             <Button
               asChild
@@ -46,8 +50,8 @@ export function AiCta() {
               variant="secondary"
               className="mt-7 rounded-full px-6"
             >
-              <Link href="/recommend">
-                Start a conversation
+              <Link href={`/${locale}/recommend`}>
+                {t.cta}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -63,31 +67,31 @@ export function AiCta() {
 }
 
 function ChatMock() {
+  const t = useDictionary().aiCta.chat;
   return (
     <div className="rounded-2xl border border-background/15 bg-background/10 p-5 backdrop-blur-md">
       <div className="flex items-start gap-3">
         <div className="h-7 w-7 shrink-0 rounded-full bg-background/20" />
         <div className="flex-1 rounded-2xl rounded-tl-md bg-background/15 px-4 py-3 text-[14px]">
-          I design book covers in Photoshop and want to start freelancing video
-          edits. Budget around 3.5M.
+          {t.userMessage}
         </div>
       </div>
       <div className="mt-4 flex items-start gap-3">
         <div className="h-7 w-7 shrink-0 rounded-full bg-background text-foreground text-[11px] font-semibold flex items-center justify-center">
-          AI
+          {t.aiLabel}
         </div>
         <div className="flex-1 space-y-3">
           <div className="rounded-2xl rounded-tl-md bg-background px-4 py-3 text-[14px] text-foreground">
-            For your use case I'd go with the{" "}
-            <strong>Dell XPS 15 OLED</strong>. 3.5K OLED is a gift for
-            retouching, and the RTX 4060 handles Premiere timelines smoothly.
+            {t.aiPrefix}
+            <strong>{t.aiProductName}</strong>
+            {t.aiSuffix}
           </div>
           <div className="flex gap-2 text-[12px] opacity-80">
             <span className="rounded-full bg-background/20 px-2 py-0.5">
-              4.8M TZS
+              {t.price}
             </span>
             <span className="rounded-full bg-background/20 px-2 py-0.5">
-              TZS 380K/mo · 12 mo
+              {t.plan}
             </span>
           </div>
         </div>

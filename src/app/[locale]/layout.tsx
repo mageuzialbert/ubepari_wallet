@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { hasLocale, locales } from "@/i18n/config";
+import { DictionaryProvider } from "@/i18n/provider";
 import { getDictionary } from "./dictionaries";
 
 const geistSans = Geist({
@@ -51,6 +52,7 @@ export default async function RootLayout({
 }>) {
   const { locale } = await params;
   if (!hasLocale(locale)) notFound();
+  const dict = await getDictionary(locale);
 
   return (
     <html
@@ -65,9 +67,11 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
+          <DictionaryProvider dict={dict} locale={locale}>
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter dict={dict.footer} locale={locale} />
+          </DictionaryProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,9 +1,11 @@
-export type NavItem = { href: string; label: string };
+export type NavKey = "store" | "aiTips" | "wallet" | "orders" | "support";
+
+export type NavItem = { href: string; key: NavKey };
 
 export const PRIMARY_NAV: NavItem[] = [
-  { href: "/store", label: "Store" },
-  { href: "/recommend", label: "AI Advisor" },
-  { href: "/wallet", label: "Wallet" },
-  { href: "/orders", label: "Orders" },
-  { href: "/support", label: "Support" },
+  { href: "/store", key: "store" },
+  { href: "/recommend", key: "aiTips" },
+  { href: "/wallet", key: "wallet" },
+  { href: "/orders", key: "orders" },
+  { href: "/support", key: "support" },
 ];

@@ -1,77 +1,88 @@
 import Link from "next/link";
 
-const FOOTER_GROUPS = [
+import type { Dictionary } from "@/i18n/types";
+import type { Locale } from "@/i18n/config";
+
+type FooterDict = Dictionary["footer"];
+
+type FooterLink = { href: string; labelKey: string; external?: boolean };
+type FooterGroup = { titleKey: keyof FooterDict; links: FooterLink[] };
+
+const GROUPS: FooterGroup[] = [
   {
-    title: "Shop",
+    titleKey: "shop",
     links: [
-      { href: "/store", label: "All PCs" },
-      { href: "/store?usage=Gaming", label: "Gaming" },
-      { href: "/store?usage=Design", label: "Design & Creators" },
-      { href: "/store?usage=Student", label: "Students" },
+      { href: "/store", labelKey: "allPcs" },
+      { href: "/store?usage=Gaming", labelKey: "gaming" },
+      { href: "/store?usage=Design", labelKey: "design" },
+      { href: "/store?usage=Student", labelKey: "students" },
     ],
   },
   {
-    title: "Wallet",
+    titleKey: "wallet",
     links: [
-      { href: "/wallet", label: "My Wallet" },
-      { href: "/wallet/top-up", label: "Top up" },
-      { href: "/orders", label: "Orders & Schedule" },
-      { href: "/kyc", label: "KYC & Verification" },
+      { href: "/wallet", labelKey: "myWallet" },
+      { href: "/wallet/top-up", labelKey: "topUp" },
+      { href: "/orders", labelKey: "orders" },
+      { href: "/kyc", labelKey: "kyc" },
     ],
   },
   {
-    title: "Company",
+    titleKey: "company",
     links: [
-      { href: "/about", label: "About Ubepari" },
-      { href: "/support", label: "Support" },
-      { href: "/referrals", label: "Referral Program" },
-      { href: "https://wa.me/255000000000", label: "WhatsApp" },
+      { href: "/about", labelKey: "about" },
+      { href: "/support", labelKey: "support" },
+      { href: "/referrals", labelKey: "referrals" },
+      { href: "https://wa.me/255000000000", labelKey: "whatsapp", external: true },
     ],
   },
   {
-    title: "Legal",
+    titleKey: "legal",
     links: [
-      { href: "/legal/terms", label: "Terms of Service" },
-      { href: "/legal/hire-purchase", label: "Hire-Purchase Agreement" },
-      { href: "/legal/privacy", label: "Privacy Policy" },
+      { href: "/legal/terms", labelKey: "terms" },
+      { href: "/legal/hire-purchase", labelKey: "hirePurchase" },
+      { href: "/legal/privacy", labelKey: "privacy" },
     ],
   },
 ];
 
-export function SiteFooter() {
+export function SiteFooter({ dict, locale }: { dict: FooterDict; locale: Locale }) {
+  const year = new Date().getFullYear();
+  const copyright = dict.copyright.replace("{year}", String(year));
+  const localize = (href: string, external?: boolean) =>
+    external ? href : `/${locale}${href}`;
+
   return (
     <footer className="mt-24 border-t border-border/60 bg-background">
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {FOOTER_GROUPS.map((group) => (
-            <div key={group.title}>
-              <h4 className="text-[11px] font-semibold tracking-wider text-foreground uppercase">
-                {group.title}
-              </h4>
-              <ul className="mt-3 space-y-2 text-[13px] text-muted-foreground">
-                {group.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="transition-colors hover:text-foreground"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {GROUPS.map((group) => {
+            const groupDict = dict[group.titleKey] as Record<string, string>;
+            return (
+              <div key={group.titleKey}>
+                <h4 className="text-[11px] font-semibold tracking-wider text-foreground uppercase">
+                  {groupDict.title}
+                </h4>
+                <ul className="mt-3 space-y-2 text-[13px] text-muted-foreground">
+                  {group.links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={localize(link.href, link.external)}
+                        className="transition-colors hover:text-foreground"
+                      >
+                        {groupDict[link.labelKey]}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
 
         <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-6 text-[12px] text-muted-foreground md:flex-row md:items-center">
-          <p>
-            © {new Date().getFullYear()} Ubepari PC. Built in Dar es Salaam.
-          </p>
-          <p>
-            Credit facility operated by Ubepari PC. Hire-purchase regulated
-            under Tanzanian consumer-finance law.
-          </p>
+          <p>{copyright}</p>
+          <p>{dict.legalNote}</p>
         </div>
       </div>
     </footer>

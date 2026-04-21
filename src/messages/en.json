@@ -3,5 +3,123 @@
     "siteTitle": "Ubepari Wallet — Own your dream PC. Pay in parts.",
     "titleTemplate": "%s · Ubepari Wallet",
     "siteDescription": "Tanzania's premium hire-purchase platform for PCs. Pay a deposit via M-Pesa, Tigo Pesa, Airtel Money, or card — walk out with your machine today."
+  },
+  "header": {
+    "signIn": "Sign in",
+    "getStarted": "Get started",
+    "openMenu": "Open menu",
+    "logoLabel": "Ubepari Wallet"
+  },
+  "nav": {
+    "store": "Store",
+    "aiTips": "AI Tech Tips",
+    "wallet": "Wallet",
+    "orders": "Orders",
+    "support": "Support"
+  },
+  "footer": {
+    "shop": {
+      "title": "Shop",
+      "allPcs": "All PCs",
+      "gaming": "Gaming",
+      "design": "Design & Creators",
+      "students": "Students"
+    },
+    "wallet": {
+      "title": "Wallet",
+      "myWallet": "My Wallet",
+      "topUp": "Top up",
+      "orders": "Orders & Schedule",
+      "kyc": "KYC & Verification"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About Ubepari",
+      "support": "Support",
+      "referrals": "Referral Program",
+      "whatsapp": "WhatsApp"
+    },
+    "legal": {
+      "title": "Legal",
+      "terms": "Terms of Service",
+      "hirePurchase": "Hire-Purchase Agreement",
+      "privacy": "Privacy Policy"
+    },
+    "copyright": "© {year} Ubepari PC. Built in Dar es Salaam.",
+    "legalNote": "Credit facility operated by Ubepari PC. Hire-purchase regulated under Tanzanian consumer-finance law."
+  },
+  "hero": {
+    "badge": "New — Own your dream PC in 3 taps",
+    "headingLine1": "Own it today.",
+    "headingLine2": "Pay in parts.",
+    "subheading": "The premium way to buy a PC in Tanzania. Choose your machine, pay a deposit, and walk out with it today — everything else lives in your Ubepari Wallet.",
+    "ctaPrimary": "Browse PCs",
+    "ctaSecondary": "Ask AI Tech Tips →",
+    "featuredLabel": "Featured",
+    "featuredProduct": "MacBook Pro 14″ M4",
+    "priceFromLabel": "From",
+    "priceDisplay": "TZS 450,000 / mo"
+  },
+  "featured": {
+    "eyebrow": "Handpicked",
+    "heading": "The lineup, this season.",
+    "shopAll": "Shop all →",
+    "newBadge": "New",
+    "monthlyPrefix": "or {amount} / mo"
+  },
+  "howItWorks": {
+    "eyebrow": "How it works",
+    "heading": "Three taps. That's it.",
+    "body": "We designed Ubepari so the distance between wanting a PC and owning it is as short as possible — without making you read a contract you'll never read.",
+    "steps": [
+      {
+        "title": "Verify once.",
+        "body": "Upload your NIDA or passport. Our KYC team approves you — usually within a few hours — and you get your credit limit."
+      },
+      {
+        "title": "Pick your PC.",
+        "body": "Browse the store or tell our AI Tech Tips what you need. Slide to see monthly plans over 3, 6, 9, or 12 months."
+      },
+      {
+        "title": "Pay and own it.",
+        "body": "20% deposit via M-Pesa, Tigo Pesa, Airtel Money, or card. Walk out with the PC. Pay the rest from your Wallet."
+      }
+    ]
+  },
+  "aiCta": {
+    "badge": "AI Tech Tips",
+    "headingLine1": "Tell it your story.",
+    "headingLine2": "Get your PC.",
+    "body": "\"I'm a graphic designer who edits 4K video and occasionally plays Valorant with friends. Budget's around 4M.\" That's all it needs.",
+    "cta": "Start a conversation",
+    "chat": {
+      "userMessage": "I design book covers in Photoshop and want to start freelancing video edits. Budget around 3.5M.",
+      "aiPrefix": "For your use case I'd go with the ",
+      "aiProductName": "Dell XPS 15 OLED",
+      "aiSuffix": ". 3.5K OLED is a gift for retouching, and the RTX 4060 handles Premiere timelines smoothly.",
+      "price": "4.8M TZS",
+      "plan": "TZS 380K/mo · 12 mo",
+      "aiLabel": "AI"
+    }
+  },
+  "trustStrip": {
+    "items": [
+      {
+        "title": "NIDA-verified",
+        "body": "Every customer is verified through Tanzania's National ID system."
+      },
+      {
+        "title": "Encrypted payments",
+        "body": "M-Pesa, Tigo Pesa, Airtel Money, and card — all via Evmark's certified gateway."
+      },
+      {
+        "title": "Same-day pickup",
+        "body": "Pay your deposit and collect your PC from our Dar showroom today."
+      },
+      {
+        "title": "WhatsApp support",
+        "body": "A real person on the other end. Your order ID is pre-filled."
+      }
+    ]
   }
 }

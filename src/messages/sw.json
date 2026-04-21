@@ -3,5 +3,123 @@
     "siteTitle": "Ubepari Wallet — Miliki PC yako ya ndoto. Lipa kidogo kidogo.",
     "titleTemplate": "%s · Ubepari Wallet",
     "siteDescription": "Jukwaa kuu la Tanzania la kununua PC kwa malipo ya awamu. Lipa malipo ya awali kwa M-Pesa, Tigo Pesa, Airtel Money, au kadi — ondoka na kifaa chako leo hii."
+  },
+  "header": {
+    "signIn": "Ingia",
+    "getStarted": "Anza sasa",
+    "openMenu": "Fungua menyu",
+    "logoLabel": "Ubepari Wallet"
+  },
+  "nav": {
+    "store": "Duka",
+    "aiTips": "AI Tech Tips",
+    "wallet": "Wallet",
+    "orders": "Oda",
+    "support": "Msaada"
+  },
+  "footer": {
+    "shop": {
+      "title": "Duka",
+      "allPcs": "PC zote",
+      "gaming": "Gaming",
+      "design": "Wabunifu",
+      "students": "Wanafunzi"
+    },
+    "wallet": {
+      "title": "Wallet",
+      "myWallet": "Wallet yangu",
+      "topUp": "Ongeza pesa",
+      "orders": "Oda na Ratiba",
+      "kyc": "KYC na Uthibitisho"
+    },
+    "company": {
+      "title": "Kuhusu sisi",
+      "about": "Kuhusu Ubepari",
+      "support": "Msaada",
+      "referrals": "Mpango wa Ushirikiano",
+      "whatsapp": "WhatsApp"
+    },
+    "legal": {
+      "title": "Sheria",
+      "terms": "Masharti ya Huduma",
+      "hirePurchase": "Mkataba wa Lipa Kidogo Kidogo",
+      "privacy": "Sera ya Faragha"
+    },
+    "copyright": "© {year} Ubepari PC. Imejengwa Dar es Salaam.",
+    "legalNote": "Huduma za mikopo zinaendeshwa na Ubepari PC. Ununuzi wa awamu unasimamiwa chini ya sheria za fedha za walaji za Tanzania."
+  },
+  "hero": {
+    "badge": "Mpya — Miliki PC unayoitamani kwa mibofyo 3",
+    "headingLine1": "Itumie leo.",
+    "headingLine2": "Lipa kidogo kidogo.",
+    "subheading": "Njia bora zaidi ya kununua PC Tanzania. Chagua kifaa chako, lipa malipo ya awali, na ondoka nacho leo — zinazobaki zote zinakaa katika Ubepari Wallet yako.",
+    "ctaPrimary": "Tazama PC",
+    "ctaSecondary": "Uliza AI Tech Tips →",
+    "featuredLabel": "Iliyoangaziwa",
+    "featuredProduct": "MacBook Pro 14″ M4",
+    "priceFromLabel": "Kuanzia",
+    "priceDisplay": "TZS 450,000 / mwezi"
+  },
+  "featured": {
+    "eyebrow": "Tuliyochagua",
+    "heading": "Hii ndio orodha ya msimu huu.",
+    "shopAll": "Tazama zote →",
+    "newBadge": "Mpya",
+    "monthlyPrefix": "au {amount} / mwezi"
+  },
+  "howItWorks": {
+    "eyebrow": "Jinsi inavyofanya kazi",
+    "heading": "Mibofyo mitatu. Basi.",
+    "body": "Tumebuni Ubepari ili umbali kati ya kutaka PC na kuimiliki uwe mfupi iwezekanavyo — bila kulazimika kusoma mkataba ambao hutasoma hata siku moja.",
+    "steps": [
+      {
+        "title": "Jithibitishe mara moja.",
+        "body": "Pakia NIDA au pasipoti yako. Timu yetu ya KYC inakuidhinisha — mara nyingi ndani ya masaa machache — na unapata kiwango chako cha mkopo."
+      },
+      {
+        "title": "Chagua PC yako.",
+        "body": "Tazama duka au mwambie AI Tech Tips unachokihitaji. Telezesha kuona mipango ya kila mwezi ya miezi 3, 6, 9, au 12."
+      },
+      {
+        "title": "Lipa na uimiliki.",
+        "body": "Malipo ya awali 20% kupitia M-Pesa, Tigo Pesa, Airtel Money, au kadi. Ondoka na PC. Lipa zinazobaki kutoka Wallet yako."
+      }
+    ]
+  },
+  "aiCta": {
+    "badge": "AI Tech Tips",
+    "headingLine1": "Eleza hadithi yako.",
+    "headingLine2": "Pata PC yako.",
+    "body": "\"Mimi ni mbunifu wa graphic anayehariri video za 4K na mara kwa mara ninacheza Valorant na marafiki. Bajeti ni karibu 4M.\" Hicho tu ndio kinachohitajika.",
+    "cta": "Anza mazungumzo",
+    "chat": {
+      "userMessage": "Mimi hubuni jalada za vitabu katika Photoshop na ninataka kuanza kufanya kazi ya kuhariri video kama freelance. Bajeti yangu ni karibu 3.5M.",
+      "aiPrefix": "Kwa mahitaji yako ningependekeza ",
+      "aiProductName": "Dell XPS 15 OLED",
+      "aiSuffix": ". 3.5K OLED ni zawadi kwa retouching, na RTX 4060 inashughulikia timeline za Premiere kwa urahisi.",
+      "price": "4.8M TZS",
+      "plan": "TZS 380K/mwezi · miezi 12",
+      "aiLabel": "AI"
+    }
+  },
+  "trustStrip": {
+    "items": [
+      {
+        "title": "Imethibitishwa na NIDA",
+        "body": "Kila mteja anathibitishwa kupitia mfumo wa Kitambulisho cha Taifa cha Tanzania."
+      },
+      {
+        "title": "Malipo salama",
+        "body": "M-Pesa, Tigo Pesa, Airtel Money, na kadi — zote kupitia lango lililoidhinishwa la Evmark."
+      },
+      {
+        "title": "Chukua leo hii",
+        "body": "Lipa malipo yako ya awali na uchukue PC yako kutoka showroom yetu ya Dar leo."
+      },
+      {
+        "title": "Msaada wa WhatsApp",
+        "body": "Mtu halisi upande mwingine. ID ya oda yako imejazwa tayari."
+      }
+    ]
   }
 }

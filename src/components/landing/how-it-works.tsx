@@ -3,50 +3,34 @@
 import { motion } from "motion/react";
 import { FileCheck2, ShoppingBag, Smartphone } from "lucide-react";
 
-const STEPS = [
-  {
-    icon: FileCheck2,
-    n: "01",
-    title: "Verify once.",
-    body: "Upload your NIDA or passport. Our KYC team approves you — usually within a few hours — and you get your credit limit.",
-  },
-  {
-    icon: ShoppingBag,
-    n: "02",
-    title: "Pick your PC.",
-    body: "Browse the store or tell our AI Advisor what you need. Slide to see monthly plans over 3, 6, 9, or 12 months.",
-  },
-  {
-    icon: Smartphone,
-    n: "03",
-    title: "Pay and own it.",
-    body: "20% deposit via M-Pesa, Tigo Pesa, Airtel Money, or card. Walk out with the PC. Pay the rest from your Wallet.",
-  },
-];
+import { useDictionary } from "@/i18n/provider";
+
+const STEP_ICONS = [FileCheck2, ShoppingBag, Smartphone] as const;
 
 export function HowItWorks() {
+  const t = useDictionary().howItWorks;
+
   return (
     <section className="mx-auto mt-32 max-w-6xl px-4 sm:px-6">
       <div className="max-w-2xl">
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-          How it works
+          {t.eyebrow}
         </p>
         <h2 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-          Three taps. That's it.
+          {t.heading}
         </h2>
         <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-          We designed Ubepari so the distance between wanting a PC and owning
-          it is as short as possible — without making you read a contract
-          you'll never read.
+          {t.body}
         </p>
       </div>
 
       <div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-border/60 bg-border/60 md:grid-cols-3">
-        {STEPS.map((step, i) => {
-          const Icon = step.icon;
+        {t.steps.map((step, i) => {
+          const Icon = STEP_ICONS[i];
+          const n = String(i + 1).padStart(2, "0");
           return (
             <motion.div
-              key={step.n}
+              key={n}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -58,7 +42,7 @@ export function HowItWorks() {
                   <Icon className="h-5 w-5" strokeWidth={1.8} />
                 </div>
                 <span className="text-[11px] font-medium tracking-[0.18em] text-muted-foreground">
-                  {step.n}
+                  {n}
                 </span>
               </div>
               <div>
