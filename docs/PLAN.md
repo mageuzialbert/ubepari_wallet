@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-04-21
 **Launch target:** ~2026-04-25
-**Current stage:** Going live. Phases 0–5 done: UI, copy, Supabase foundation, auth, KYC, Evmark deposit + callback, wallet top-up + installment payments, real data reads. **Phase 6 (Production polish — real AI, SEO, rate limits) is next.**
+**Current stage:** Going live. Phases 0–6 done: UI, copy, Supabase, auth, KYC, Evmark deposit/topup/installment with real data reads, OpenAI recommendations, SEO, rate limits + observability. **Phase 7 (Vercel deploy + smoke tests + security checklist) is next.**
 
 ---
 
@@ -29,6 +29,9 @@ Bilingual EN/SW wallet + hire-purchase UI, Next.js 16 App Router, dark Apple-ish
 | `882f3b7` | KYC status-aware page + specific error mapping |
 | `4eca43a` | Evmark deposit + callback + reserve dialog (Phase 5 round A) |
 | `bd40730` | Wallet topup + installment payments, real data reads (Phase 5 round B) |
+| `fe37389` | Real OpenAI-backed recommendations (Phase 6) |
+| `c81a05b` | SEO — hreflang, sitemap, robots, OG (Phase 6) |
+| `d0c6ac6` | Rate limits, pending-push guard, structured events (Phase 6) |
 
 ---
 
