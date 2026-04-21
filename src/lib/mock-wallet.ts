@@ -1,6 +1,14 @@
+export type TransactionKind = "topup" | "payment" | "deposit" | "refund";
+export type Provider = "M-Pesa" | "Tigo Pesa" | "Airtel Money" | "Card" | "Wallet";
+
 export type WalletSnapshot = {
   user: { name: string; creditLimitTzs: number; creditPoints: number };
-  balance: { totalOwedTzs: number; totalPaidTzs: number; nextDueTzs: number; nextDueDate: string };
+  balance: {
+    totalOwedTzs: number;
+    totalPaidTzs: number;
+    nextDueTzs: number;
+    nextDueDate: string;
+  };
   activeOrders: {
     id: string;
     productName: string;
@@ -14,11 +22,11 @@ export type WalletSnapshot = {
   }[];
   recentTransactions: {
     id: string;
-    kind: "topup" | "payment" | "deposit" | "refund";
+    kind: TransactionKind;
     amountTzs: number;
-    provider: "M-Pesa" | "Tigo Pesa" | "Airtel Money" | "Card" | "Wallet";
+    provider: Provider;
     at: string;
-    note: string;
+    orderId?: string;
   }[];
 };
 
@@ -55,7 +63,7 @@ export const MOCK_WALLET: WalletSnapshot = {
       amountTzs: 450_000,
       provider: "M-Pesa",
       at: "2026-04-05",
-      note: "Installment · UBE-00412",
+      orderId: "UBE-00412",
     },
     {
       id: "TX-10934",
@@ -63,7 +71,6 @@ export const MOCK_WALLET: WalletSnapshot = {
       amountTzs: 200_000,
       provider: "Airtel Money",
       at: "2026-03-28",
-      note: "Wallet top-up",
     },
     {
       id: "TX-10902",
@@ -71,7 +78,7 @@ export const MOCK_WALLET: WalletSnapshot = {
       amountTzs: 450_000,
       provider: "Tigo Pesa",
       at: "2026-03-05",
-      note: "Installment · UBE-00412",
+      orderId: "UBE-00412",
     },
     {
       id: "TX-10820",
@@ -79,7 +86,7 @@ export const MOCK_WALLET: WalletSnapshot = {
       amountTzs: 1_080_000,
       provider: "Card",
       at: "2025-11-06",
-      note: "Deposit · UBE-00412",
+      orderId: "UBE-00412",
     },
   ],
 };

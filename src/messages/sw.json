@@ -102,6 +102,63 @@
       "aiLabel": "AI"
     }
   },
+  "wallet": {
+    "metaTitle": "Wallet yangu",
+    "eyebrow": "Ubepari Wallet",
+    "greeting": "Hujambo, {name}.",
+    "pointsSuffix": "pointi",
+    "limitPrefix": "· kikomo {amount}",
+    "totalRemaining": "Kiasi kinachobaki",
+    "paidSoFar": "Kimelipwa",
+    "ownershipProgress": "Umilikaji",
+    "topUp": "Ongeza pesa",
+    "viewSchedule": "Tazama ratiba →",
+    "nextDue": "Malipo yanayofuata",
+    "nextDueBy": "ifikapo {date}",
+    "quickActions": "Vitendo vya haraka",
+    "payThisMonth": "Lipa mwezi huu ({amount})",
+    "shopAnother": "Nunua PC nyingine",
+    "activeOrders": "Oda hai",
+    "monthly": "Kwa mwezi",
+    "monthsPaidOf": "Miezi {paid} kati ya {total} imelipwa",
+    "recentActivity": "Shughuli za hivi karibuni",
+    "activityNotes": {
+      "payment": "Awamu · {orderId}",
+      "topup": "Kuongeza pesa katika Wallet",
+      "deposit": "Malipo ya awali · {orderId}",
+      "refund": "Marejesho · {orderId}"
+    }
+  },
+  "orders": {
+    "metaTitle": "Oda zangu",
+    "eyebrow": "Oda",
+    "heading": "Awamu zako.",
+    "hirePurchaseLabel": "lipa kidogo kidogo",
+    "principal": "Mkuu {amount}",
+    "paidOf": "Kimelipwa {paid} kati ya {total}",
+    "monthly": "Kwa mwezi {amount}",
+    "progressHint": "{pct}% ya umilikaji kamili · miezi {months} iliyobaki",
+    "scheduleLabel": "Ratiba ya malipo",
+    "browseStorePrefix": "Unatafuta kifaa kingine? ",
+    "browseStoreLink": "Tembelea duka →"
+  },
+  "topup": {
+    "title": "Ongeza pesa katika Wallet yako",
+    "description": "Ongeza pesa kulipa awamu, kuhifadhi PC, au kuendelea mbele ya ratiba yako.",
+    "amountLabel": "Kiasi",
+    "mobileMoneyLabel": "Nambari ya mobile money",
+    "mobileMoneyHint": "Utapokea ombi la USSD la {provider} kuidhinisha malipo.",
+    "cardNumberLabel": "Nambari ya kadi",
+    "expiryLabel": "Muda wa mwisho",
+    "cvcLabel": "CVC",
+    "cardPayButton": "Lipa {amount}",
+    "mnoRequestButton": "Omba {amount}",
+    "pendingTitle": "Inasubiri uthibitisho wa {provider}",
+    "pendingBody": "Angalia simu yako na idhinisha ombi la USSD.",
+    "doneTitle": "{amount} imeongezwa katika Wallet yako",
+    "doneReference": "Kumbukumbu: TX-{ref}",
+    "doneButton": "Sawa"
+  },
   "store": {
     "metaTitle": "Duka — PC zote tulizonazo",
     "metaDescription": "Tazama orodha kamili ya PC za gaming, ultrabooks, na towers za Ubepari. Chuja kwa matumizi, chapa, na malipo ya mwezi.",

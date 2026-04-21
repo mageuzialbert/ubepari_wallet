@@ -102,6 +102,63 @@
       "aiLabel": "AI"
     }
   },
+  "wallet": {
+    "metaTitle": "My Wallet",
+    "eyebrow": "Ubepari Wallet",
+    "greeting": "Hi, {name}.",
+    "pointsSuffix": "points",
+    "limitPrefix": "· limit {amount}",
+    "totalRemaining": "Total remaining",
+    "paidSoFar": "Paid so far",
+    "ownershipProgress": "Ownership progress",
+    "topUp": "Top up",
+    "viewSchedule": "View schedule →",
+    "nextDue": "Next due",
+    "nextDueBy": "by {date}",
+    "quickActions": "Quick actions",
+    "payThisMonth": "Pay this month ({amount})",
+    "shopAnother": "Shop another PC",
+    "activeOrders": "Active orders",
+    "monthly": "Monthly",
+    "monthsPaidOf": "{paid} of {total} months paid",
+    "recentActivity": "Recent activity",
+    "activityNotes": {
+      "payment": "Installment · {orderId}",
+      "topup": "Wallet top-up",
+      "deposit": "Deposit · {orderId}",
+      "refund": "Refund · {orderId}"
+    }
+  },
+  "orders": {
+    "metaTitle": "My Orders",
+    "eyebrow": "Orders",
+    "heading": "Your installments.",
+    "hirePurchaseLabel": "hire-purchase",
+    "principal": "Principal {amount}",
+    "paidOf": "Paid {paid} of {total}",
+    "monthly": "Monthly {amount}",
+    "progressHint": "{pct}% to full ownership · {months} months remaining",
+    "scheduleLabel": "Repayment schedule",
+    "browseStorePrefix": "Looking for another machine? ",
+    "browseStoreLink": "Browse the store →"
+  },
+  "topup": {
+    "title": "Top up your Wallet",
+    "description": "Add funds to pay installments, reserve a PC, or keep ahead of your schedule.",
+    "amountLabel": "Amount",
+    "mobileMoneyLabel": "Mobile money number",
+    "mobileMoneyHint": "You'll get a {provider} USSD prompt to authorize the transfer.",
+    "cardNumberLabel": "Card number",
+    "expiryLabel": "Expiry",
+    "cvcLabel": "CVC",
+    "cardPayButton": "Pay {amount}",
+    "mnoRequestButton": "Request {amount}",
+    "pendingTitle": "Awaiting {provider} confirmation",
+    "pendingBody": "Check your phone and approve the USSD prompt.",
+    "doneTitle": "{amount} added to your Wallet",
+    "doneReference": "Reference: TX-{ref}",
+    "doneButton": "Done"
+  },
   "store": {
     "metaTitle": "Store — Every PC we stock",
     "metaDescription": "Browse Ubepari's full lineup of gaming PCs, ultrabooks, and custom towers. Filter by use case, brand, and monthly payment.",
