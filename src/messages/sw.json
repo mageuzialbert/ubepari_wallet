@@ -323,6 +323,26 @@
     "alreadyHave": "Una akaunti tayari?",
     "signInLink": "Ingia"
   },
+  "otp": {
+    "heading": "Angalia simu yako",
+    "sentTo": "Tumetuma msimbo wa tarakimu 6 kwa {phone}.",
+    "codeLabel": "Msimbo wa uthibitisho",
+    "codePlaceholder": "123456",
+    "verifyButton": "Thibitisha uendelee",
+    "resendButton": "Tuma tena",
+    "resendIn": "Tuma tena baada ya sekunde {seconds}",
+    "changeNumber": "Badilisha nambari",
+    "smsText": "Ubepari: {code} ni msimbo wako. Unaisha baada ya dakika 5.",
+    "errors": {
+      "invalidPhone": "Tafadhali ingiza nambari ya simu ya Tanzania (mfano 255712345678).",
+      "tooManyRequests": "Maombi mengi mno. Subiri dakika moja.",
+      "expired": "Msimbo umeisha muda. Omba mpya.",
+      "wrong": "Msimbo haujaendana.",
+      "tooManyAttempts": "Umejaribu mara nyingi. Omba msimbo mpya.",
+      "smsFailed": "Hatukuweza kutuma SMS. Jaribu tena.",
+      "unknown": "Kuna tatizo. Jaribu tena."
+    }
+  },
   "kyc": {
     "metaTitle": "KYC na Uthibitisho",
     "eyebrow": "Uthibitisho",
@@ -346,7 +366,9 @@
       "Timu yetu inalinganisha taarifa zako za NIDA na daftari la taifa.",
       "Tunafanya ukaguzi mdogo wa mkopo — hauathiri alama yako.",
       "Unapata kiwango chako cha mkopo kwa SMS na barua pepe, mara nyingi ndani ya masaa 4."
-    ]
+    ],
+    "submitted": "Umewasilisha. Tutakujulisha ndani ya masaa machache.",
+    "errorGeneric": "Kuna tatizo. Jaribu tena."
   },
   "trustStrip": {
     "items": [

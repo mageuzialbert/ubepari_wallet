@@ -1,0 +1,203 @@
+// Minimal hand-rolled types to unblock the admin + server clients.
+// Replace with `supabase gen types typescript --project-id zlvcpaiyjshsjglqicvy`
+// once the CLI is linked.
+
+export type KycStatus = "none" | "pending" | "approved" | "rejected";
+export type OrderStatus = "pending" | "active" | "completed" | "cancelled";
+export type PaymentKind = "deposit" | "installment" | "topup" | "refund";
+export type PaymentProvider = "mpesa" | "tigopesa" | "airtelmoney" | "card";
+export type PaymentStatus = "pending" | "success" | "failed";
+export type WalletEntryKind = "credit" | "debit";
+
+type ProfilesRow = {
+  id: string;
+  phone: string;
+  first_name: string | null;
+  last_name: string | null;
+  email: string | null;
+  credit_limit_tzs: number;
+  credit_points: number;
+  kyc_status: KycStatus;
+  is_admin: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+type KycSubmissionsRow = {
+  id: string;
+  user_id: string;
+  nida_number: string;
+  legal_first_name: string;
+  legal_last_name: string;
+  id_doc_path: string;
+  workplace: string | null;
+  status: KycStatus;
+  submitted_at: string;
+  reviewed_at: string | null;
+  reviewed_by: string | null;
+  review_notes: string | null;
+};
+
+type OrdersRow = {
+  id: string;
+  user_id: string;
+  product_slug: string;
+  plan_months: number;
+  cash_price_tzs: number;
+  deposit_tzs: number;
+  financed_tzs: number;
+  service_fee_tzs: number;
+  total_tzs: number;
+  monthly_tzs: number;
+  status: OrderStatus;
+  reference: string;
+  created_at: string;
+  activated_at: string | null;
+  completed_at: string | null;
+};
+
+type OrderInstallmentsRow = {
+  id: string;
+  order_id: string;
+  sequence: number;
+  due_date: string;
+  amount_tzs: number;
+  paid_at: string | null;
+  payment_id: string | null;
+};
+
+type PaymentsRow = {
+  id: string;
+  user_id: string;
+  order_id: string | null;
+  kind: PaymentKind;
+  amount_tzs: number;
+  provider: PaymentProvider;
+  evmark_ref: string | null;
+  evmark_reference_id: string | null;
+  status: PaymentStatus;
+  raw_callback: Record<string, unknown> | null;
+  created_at: string;
+  settled_at: string | null;
+};
+
+type WalletEntriesRow = {
+  id: string;
+  user_id: string;
+  kind: WalletEntryKind;
+  amount_tzs: number;
+  payment_id: string | null;
+  note_key: string;
+  note_params: Record<string, unknown>;
+  created_at: string;
+};
+
+type OtpChallengesRow = {
+  id: string;
+  phone: string;
+  code_hash: string;
+  expires_at: string;
+  consumed_at: string | null;
+  attempts: number;
+  created_at: string;
+};
+
+export type Database = {
+  public: {
+    Tables: {
+      profiles: {
+        Row: ProfilesRow;
+        Insert: Pick<ProfilesRow, "id" | "phone"> &
+          Partial<Omit<ProfilesRow, "id" | "phone" | "created_at" | "updated_at">>;
+        Update: Partial<Omit<ProfilesRow, "id" | "created_at">>;
+        Relationships: [];
+      };
+      kyc_submissions: {
+        Row: KycSubmissionsRow;
+        Insert: Omit<
+          KycSubmissionsRow,
+          "id" | "submitted_at" | "reviewed_at" | "reviewed_by" | "review_notes" | "status"
+        > & {
+          id?: string;
+          status?: KycStatus;
+          reviewed_at?: string | null;
+          reviewed_by?: string | null;
+          review_notes?: string | null;
+        };
+        Update: Partial<KycSubmissionsRow>;
+        Relationships: [];
+      };
+      orders: {
+        Row: OrdersRow;
+        Insert: Omit<
+          OrdersRow,
+          "id" | "created_at" | "activated_at" | "completed_at" | "status"
+        > & {
+          id?: string;
+          status?: OrderStatus;
+          activated_at?: string | null;
+          completed_at?: string | null;
+        };
+        Update: Partial<OrdersRow>;
+        Relationships: [];
+      };
+      order_installments: {
+        Row: OrderInstallmentsRow;
+        Insert: Omit<OrderInstallmentsRow, "id" | "paid_at" | "payment_id"> & {
+          id?: string;
+          paid_at?: string | null;
+          payment_id?: string | null;
+        };
+        Update: Partial<OrderInstallmentsRow>;
+        Relationships: [];
+      };
+      payments: {
+        Row: PaymentsRow;
+        Insert: Omit<
+          PaymentsRow,
+          "id" | "created_at" | "settled_at" | "status" | "evmark_ref" | "evmark_reference_id" | "raw_callback" | "order_id"
+        > & {
+          id?: string;
+          order_id?: string | null;
+          status?: PaymentStatus;
+          evmark_ref?: string | null;
+          evmark_reference_id?: string | null;
+          raw_callback?: Record<string, unknown> | null;
+          settled_at?: string | null;
+        };
+        Update: Partial<PaymentsRow>;
+        Relationships: [];
+      };
+      wallet_entries: {
+        Row: WalletEntriesRow;
+        Insert: Omit<WalletEntriesRow, "id" | "created_at" | "note_params" | "payment_id"> & {
+          id?: string;
+          payment_id?: string | null;
+          note_params?: Record<string, unknown>;
+        };
+        Update: Partial<WalletEntriesRow>;
+        Relationships: [];
+      };
+      otp_challenges: {
+        Row: OtpChallengesRow;
+        Insert: Pick<OtpChallengesRow, "phone" | "code_hash" | "expires_at"> & {
+          id?: string;
+          consumed_at?: string | null;
+          attempts?: number;
+        };
+        Update: Partial<OtpChallengesRow>;
+        Relationships: [];
+      };
+    };
+    Views: Record<string, never>;
+    Functions: Record<string, never>;
+    Enums: {
+      kyc_status: KycStatus;
+      order_status: OrderStatus;
+      payment_kind: PaymentKind;
+      payment_provider: PaymentProvider;
+      payment_status: PaymentStatus;
+      wallet_entry_kind: WalletEntryKind;
+    };
+  };
+};

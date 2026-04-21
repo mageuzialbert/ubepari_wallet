@@ -323,6 +323,26 @@
     "alreadyHave": "Already have an account?",
     "signInLink": "Sign in"
   },
+  "otp": {
+    "heading": "Check your phone",
+    "sentTo": "We sent a 6-digit code to {phone}.",
+    "codeLabel": "Verification code",
+    "codePlaceholder": "123456",
+    "verifyButton": "Verify & continue",
+    "resendButton": "Resend code",
+    "resendIn": "Resend in {seconds}s",
+    "changeNumber": "Change number",
+    "smsText": "Ubepari: {code} is your code. Expires in 5 min.",
+    "errors": {
+      "invalidPhone": "Please enter a Tanzanian phone number (e.g. 255712345678).",
+      "tooManyRequests": "Too many requests. Wait a minute.",
+      "expired": "That code expired. Request a new one.",
+      "wrong": "That code doesn't match.",
+      "tooManyAttempts": "Too many wrong tries. Request a new code.",
+      "smsFailed": "We couldn't send the SMS. Try again.",
+      "unknown": "Something went wrong. Try again."
+    }
+  },
   "kyc": {
     "metaTitle": "KYC & Verification",
     "eyebrow": "Verification",
@@ -346,7 +366,9 @@
       "Our team matches your NIDA details to the national registry.",
       "We run a soft credit check — no impact on your score.",
       "You get your credit limit by SMS and email, usually within 4 hours."
-    ]
+    ],
+    "submitted": "Submitted. We'll let you know within a few hours.",
+    "errorGeneric": "Something went wrong. Try again."
   },
   "trustStrip": {
     "items": [
