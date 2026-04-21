@@ -45,7 +45,7 @@
       "hirePurchase": "Mkataba wa Lipa Kidogo Kidogo",
       "privacy": "Sera ya Faragha"
     },
-    "copyright": "© {year} Ubepari PC. Imejengwa Dar es Salaam.",
+    "copyright": "© {year} Ubepari PC. Imejengwa hapa Dar es Salaam.",
     "legalNote": "Huduma za mikopo zinaendeshwa na Ubepari PC. Ununuzi wa awamu unasimamiwa chini ya sheria za fedha za walaji za Tanzania."
   },
   "support": {
@@ -55,7 +55,7 @@
     "channels": {
       "whatsapp": {
         "title": "WhatsApp",
-        "description": "Njia ya haraka. ID ya oda yako imejazwa tayari.",
+        "description": "Njia ya haraka zaidi. ID ya oda yako imejazwa tayari.",
         "cta": "Tutumie ujumbe"
       },
       "call": {
@@ -72,16 +72,16 @@
     "faqsHeading": "Maswali ya mara kwa mara",
     "faqs": [
       {
-        "q": "Lipa kidogo kidogo inafanyaje kazi?",
-        "a": "Unalipa 20% leo na unamiliki PC papo hapo. Sehemu iliyobaki inagawanywa miezi 3, 6, 9, au 12 — malipo yanapitia Ubepari Wallet yako kupitia mobile money au kadi."
+        "q": "Mpango wa Lipa kidogo kidogo unafanyaje kazi?",
+        "a": "Unalipa 20% leo na unamiliki PC papo hapo. Salio linagawanywa kwa miezi 3, 6, 9, au 12 — malipo yanafanyika kupitia Ubepari Wallet yako kwa mobile money au kadi."
       },
       {
-        "q": "Nini kitatokea nikipitisha malipo?",
-        "a": "Ada ya 2% inatumika baada ya siku 7. PC yako kamwe haichukuliwi bila taarifa ya maandishi na muda wa kusamehe wa siku 30."
+        "q": "Nini kitatokea nikikosa kulipa?",
+        "a": "Ada ya 2% hutozwa baada ya siku 7. PC yako kamwe haichukuliwi bila taarifa ya maandishi na kipindi cha neema cha siku 30."
       },
       {
-        "q": "Ninaweza kulipa iliyobaki mapema?",
-        "a": "Ndiyo, na hakuna ada kwa kufanya hivyo. Kulipa mapema kunaweza pia kufungua zawadi za pointi za mkopo."
+        "q": "Ninaweza kulipa salio mapema?",
+        "a": "Ndiyo, bila ada yoyote. Kulipa mapema kunaweza pia kukufungulia zawadi za pointi za mkopo."
       },
       {
         "q": "Ni huduma zipi za malipo zinazofanya kazi na Ubepari?",
@@ -93,16 +93,16 @@
     "metaTitle": "AI Tech Tips",
     "badge": "AI Tech Tips · beta",
     "heading": "Tuambie wewe ni nani.",
-    "subheading": "Utafanya nini na PC hii? Bajeti yako? Chapa unayopenda au usiyopenda? Andika chochote — asili zaidi, mlinganisho bora zaidi.",
+    "subheading": "Utafanya nini na PC hii? Bajeti yako? Chapa unayopenda au usiyopenda? Andika chochote — kadiri unavyoandika kiasili, ndivyo mlinganisho unakuwa bora.",
     "placeholder": "mfano: Mimi ni mbunifu wa graphic anayehariri video za 4K wikendi…",
     "submitHint": "⌘/Ctrl + Enter kutuma",
     "submit": "Tafuta PC yangu",
-    "examplesLabel": "Au jaribu mmoja wa hawa",
+    "examplesLabel": "Au jaribu moja kati ya hizi",
     "examples": [
       "Mimi ni mbunifu wa graphic anayehariri video za 4K wikendi. Bajeti 4M.",
-      "Mwanafunzi wa chuo kikuu anayesoma sayansi ya komputa. Naihitaji kwa coding na gaming nyepesi. Chini ya 2.5M.",
-      "Ninaendesha kampuni ndogo ya uhasibu — laptop 3 kwa wafanyakazi. Kiwango cha ofisi, bajeti 6M jumla.",
-      "Mchezaji makini wa Valorant na CS2. Nataka 165Hz na RTX 4060 chini."
+      "Mwanafunzi wa chuo kikuu anayesoma sayansi ya kompyuta. Naihitaji kwa coding na gaming nyepesi. Chini ya 2.5M.",
+      "Ninaendesha kampuni ndogo ya uhasibu — laptop tatu kwa wafanyakazi. Kiwango cha ofisi, bajeti 6M jumla.",
+      "Mchezaji wa kiwango cha juu wa Valorant na CS2. Nataka 165Hz na angalau RTX 4060."
     ],
     "yourMatch": "Mlinganisho wako",
     "matchResult": "Kulingana na hadithi yako, ninapendekeza {product} — 3.5K OLED ni zawadi kwa kazi za retouching, na RTX 4060 inashughulikia timeline za 4K bila shida. Inaendana na bajeti yako kwa TZS 380K/mwezi kwa miezi 12.",
@@ -111,10 +111,10 @@
     "disclaimer": "Mshauri kamili wa AI wa mazungumzo utatolewa katika toleo linalofuata. Prototype inaonyesha pendekezo tuli hapa."
   },
   "hero": {
-    "badge": "Mpya — Miliki PC unayoitamani kwa mibofyo 3",
-    "headingLine1": "Itumie leo.",
+    "badge": "Mpya — Miliki PC ya ndoto yako kwa mibofyo 3",
+    "headingLine1": "Miliki leo.",
     "headingLine2": "Lipa kidogo kidogo.",
-    "subheading": "Njia bora zaidi ya kununua PC Tanzania. Chagua kifaa chako, lipa malipo ya awali, na ondoka nacho leo — zinazobaki zote zinakaa katika Ubepari Wallet yako.",
+    "subheading": "Njia bora zaidi ya kununua PC nchini Tanzania. Chagua kifaa chako, lipa malipo ya awali, na ondoka nacho leo — mabaki yote yanasimamiwa kupitia Ubepari Wallet yako.",
     "ctaPrimary": "Tazama PC",
     "ctaSecondary": "Uliza AI Tech Tips →",
     "featuredLabel": "Iliyoangaziwa",
@@ -132,7 +132,7 @@
   "howItWorks": {
     "eyebrow": "Jinsi inavyofanya kazi",
     "heading": "Mibofyo mitatu. Basi.",
-    "body": "Tumebuni Ubepari ili umbali kati ya kutaka PC na kuimiliki uwe mfupi iwezekanavyo — bila kulazimika kusoma mkataba ambao hutasoma hata siku moja.",
+    "body": "Tumebuni Ubepari ili umbali kati ya kutaka PC na kuimiliki uwe mfupi iwezekanavyo — bila kukulazimisha kusoma mkataba ambao hutausoma kamwe.",
     "steps": [
       {
         "title": "Jithibitishe mara moja.",
@@ -140,11 +140,11 @@
       },
       {
         "title": "Chagua PC yako.",
-        "body": "Tazama duka au mwambie AI Tech Tips unachokihitaji. Telezesha kuona mipango ya kila mwezi ya miezi 3, 6, 9, au 12."
+        "body": "Pitia duka au iambie AI Tech Tips unachohitaji. Sogeza kuona mipango ya kila mwezi ya miezi 3, 6, 9, au 12."
       },
       {
         "title": "Lipa na uimiliki.",
-        "body": "Malipo ya awali 20% kupitia M-Pesa, Tigo Pesa, Airtel Money, au kadi. Ondoka na PC. Lipa zinazobaki kutoka Wallet yako."
+        "body": "Malipo ya awali 20% kupitia M-Pesa, Tigo Pesa, Airtel Money, au kadi. Ondoka na PC. Lipa mabaki kutoka Wallet yako."
       }
     ]
   },
@@ -155,7 +155,7 @@
     "body": "\"Mimi ni mbunifu wa graphic anayehariri video za 4K na mara kwa mara ninacheza Valorant na marafiki. Bajeti ni karibu 4M.\" Hicho tu ndio kinachohitajika.",
     "cta": "Anza mazungumzo",
     "chat": {
-      "userMessage": "Mimi hubuni jalada za vitabu katika Photoshop na ninataka kuanza kufanya kazi ya kuhariri video kama freelance. Bajeti yangu ni karibu 3.5M.",
+      "userMessage": "Mimi hubuni majalada ya vitabu katika Photoshop na ninataka kuanza kufanya kazi ya uhariri wa video kama freelancer. Bajeti yangu ni karibu 3.5M.",
       "aiPrefix": "Kwa mahitaji yako ningependekeza ",
       "aiProductName": "Dell XPS 15 OLED",
       "aiSuffix": ". 3.5K OLED ni zawadi kwa retouching, na RTX 4060 inashughulikia timeline za Premiere kwa urahisi.",
@@ -170,8 +170,8 @@
     "greeting": "Hujambo, {name}.",
     "pointsSuffix": "pointi",
     "limitPrefix": "· kikomo {amount}",
-    "totalRemaining": "Kiasi kinachobaki",
-    "paidSoFar": "Kimelipwa",
+    "totalRemaining": "Kiasi kilichobaki",
+    "paidSoFar": "Kimelipwa hadi sasa",
     "ownershipProgress": "Umilikaji",
     "topUp": "Ongeza pesa",
     "viewSchedule": "Tazama ratiba →",
@@ -186,7 +186,7 @@
     "recentActivity": "Shughuli za hivi karibuni",
     "activityNotes": {
       "payment": "Awamu · {orderId}",
-      "topup": "Kuongeza pesa katika Wallet",
+      "topup": "Kuongeza pesa kwenye Wallet",
       "deposit": "Malipo ya awali · {orderId}",
       "refund": "Marejesho · {orderId}"
     }
@@ -196,20 +196,20 @@
     "eyebrow": "Oda",
     "heading": "Awamu zako.",
     "hirePurchaseLabel": "lipa kidogo kidogo",
-    "principal": "Mkuu {amount}",
+    "principal": "Kiasi kikuu {amount}",
     "paidOf": "Kimelipwa {paid} kati ya {total}",
     "monthly": "Kwa mwezi {amount}",
-    "progressHint": "{pct}% ya umilikaji kamili · miezi {months} iliyobaki",
+    "progressHint": "{pct}% kuelekea umilikaji kamili · miezi {months} iliyobaki",
     "scheduleLabel": "Ratiba ya malipo",
     "browseStorePrefix": "Unatafuta kifaa kingine? ",
     "browseStoreLink": "Tembelea duka →"
   },
   "topup": {
-    "title": "Ongeza pesa katika Wallet yako",
+    "title": "Ongeza pesa kwenye Wallet yako",
     "description": "Ongeza pesa kulipa awamu, kuhifadhi PC, au kuendelea mbele ya ratiba yako.",
     "amountLabel": "Kiasi",
     "mobileMoneyLabel": "Nambari ya mobile money",
-    "mobileMoneyHint": "Utapokea ombi la USSD la {provider} kuidhinisha malipo.",
+    "mobileMoneyHint": "{provider} itatuma ombi la USSD kwako uidhinishe malipo.",
     "cardNumberLabel": "Nambari ya kadi",
     "expiryLabel": "Muda wa mwisho",
     "cvcLabel": "CVC",
@@ -217,7 +217,7 @@
     "mnoRequestButton": "Omba {amount}",
     "pendingTitle": "Inasubiri uthibitisho wa {provider}",
     "pendingBody": "Angalia simu yako na idhinisha ombi la USSD.",
-    "doneTitle": "{amount} imeongezwa katika Wallet yako",
+    "doneTitle": "{amount} imeongezwa kwenye Wallet yako",
     "doneReference": "Kumbukumbu: TX-{ref}",
     "doneButton": "Sawa"
   },
@@ -227,14 +227,14 @@
     "eyebrow": "Duka",
     "heading": "PC zote tulizonazo.",
     "resultsSingular": "Mtindo {count} unapatikana sasa hivi. Kila kifaa kinatolewa siku hiyo hiyo kutoka showroom yetu ya Dar.",
-    "resultsPlural": "Mitindo {count} inapatikana sasa hivi. Vyote vinatolewa siku hiyo hiyo kutoka showroom yetu ya Dar.",
+    "resultsPlural": "Mitindo {count} inapatikana sasa hivi. Vifaa vyote vinatolewa siku hiyo hiyo kutoka showroom yetu ya Dar.",
     "emptyTitle": "Hakuna PC inayolingana na vichujio hivyo",
     "emptyBody": "Jaribu kuondoa kichujio kimoja au viwili."
   },
   "product": {
     "backLink": "PC zote",
     "altView": "{name} mtazamo mwingine",
-    "cashPriceLabel": "bei ya mkupuo · {stock} zinapatikana",
+    "cashPriceLabel": "bei ya mkupuo · {stock} dukani",
     "perks": {
       "pickup": {
         "title": "Chukua leo hii",
@@ -245,7 +245,7 @@
         "body": "Imejumuishwa kwa kila kifaa kipya."
       }
     },
-    "specsHeading": "Kila vipimo, vimewekwa wazi.",
+    "specsHeading": "Kila kipimo, kimewekwa wazi.",
     "specs": {
       "processor": "Kichakataji",
       "generation": "Kizazi",
@@ -290,13 +290,13 @@
       "total": "Jumla ya kulipa"
     },
     "reserveButton": "Hifadhi kwa malipo ya awali — {amount}",
-    "savePlan": "Hifadhi mpango katika Wallet yangu",
-    "disclaimer": "Idhini ya mwisho inategemea KYC na ukaguzi wa mkopo. Kulipa mapema ni bure; malipo yaliyochelewa yanaweza kupata ada ya ucheleweshaji ya 2%."
+    "savePlan": "Hifadhi mpango kwenye Wallet yangu",
+    "disclaimer": "Idhini ya mwisho inategemea KYC na ukaguzi wa mkopo. Kulipa mapema ni bure; malipo yaliyochelewa yanaweza kutozwa ada ya 2% ya ucheleweshaji."
   },
   "signin": {
     "metaTitle": "Ingia",
     "heading": "Ingia",
-    "welcome": "Karibu tena Ubepari Wallet.",
+    "welcome": "Karibu tena kwenye Ubepari Wallet.",
     "phoneLabel": "Nambari ya simu",
     "phonePlaceholder": "255 7XX XXX XXX",
     "sendOtp": "Tuma OTP",
@@ -319,7 +319,7 @@
     "tosTerms": "Masharti",
     "tosAnd": " na ",
     "tosHirePurchase": "Mkataba wa Lipa Kidogo Kidogo",
-    "tosSuffix": " zetu.",
+    "tosSuffix": ".",
     "alreadyHave": "Una akaunti tayari?",
     "signInLink": "Ingia"
   },
@@ -339,7 +339,7 @@
     "uploadChoose": "Chagua faili",
     "workplaceLabel": "Mahali pa kazi / kibali (si lazima)",
     "workplacePlaceholder": "Jina la mwajiri au biashara",
-    "workplaceHint": "Kinatusaidia kukupa kiwango kikubwa cha mkopo.",
+    "workplaceHint": "Hutusaidia kukupa kiwango kikubwa cha mkopo.",
     "submit": "Wasilisha kwa ukaguzi",
     "whatHappensNext": "Nini kitatokea baadaye",
     "steps": [

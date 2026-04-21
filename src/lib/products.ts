@@ -46,7 +46,7 @@ const RAW_PRODUCTS: RawProduct[] = [
     },
     description: {
       en: "A staggering leap in performance for creators, developers, and students. The M4 chip delivers studio-grade power in a silent, fanless design.",
-      sw: "Hatua kubwa ya utendaji kwa wabunifu, watengenezaji, na wanafunzi. Chip ya M4 inatoa nguvu za studio katika muundo wa utulivu, bila feni.",
+      sw: "Hatua kubwa ya utendaji kwa wabunifu, watayarishaji, na wanafunzi. Chip ya M4 inatoa nguvu ya kiwango cha studio katika muundo wa kimya, usio na feni.",
     },
     priceTzs: 5_400_000,
     images: [
@@ -106,11 +106,11 @@ const RAW_PRODUCTS: RawProduct[] = [
     brand: "Dell",
     tagline: {
       en: "A portable workstation that disappears into your work.",
-      sw: "Kituo cha kazi kinachoweza kubebwa ambacho hupotea ndani ya kazi yako.",
+      sw: "Kituo cha kazi kinachobebeka, kinachoyeyuka kwenye kazi yako.",
     },
     description: {
       en: "InfinityEdge 3.5K OLED, Intel Core Ultra, and build quality that matches the work you'll produce on it.",
-      sw: "InfinityEdge 3.5K OLED, Intel Core Ultra, na ubora wa kifaa unaolingana na kazi utakayotengeneza juu yake.",
+      sw: "InfinityEdge 3.5K OLED, Intel Core Ultra, na ubora wa ujenzi unaolingana na kazi utakayotengeneza kwake.",
     },
     priceTzs: 4_800_000,
     images: [
@@ -142,7 +142,7 @@ const RAW_PRODUCTS: RawProduct[] = [
     },
     description: {
       en: "Carbon-fiber chassis, military-grade durability, and a keyboard that doesn't quit — for people who ship work.",
-      sw: "Muundo wa carbon-fiber, uimara wa kiwango cha kijeshi, na kibodi isiyoacha kufanya kazi — kwa watu wanaowasilisha kazi.",
+      sw: "Kiunzi cha carbon-fiber, uimara wa kiwango cha kijeshi, na kibodi isiyochoka — kwa watu wanaowasilisha kazi.",
     },
     priceTzs: 3_900_000,
     images: [
@@ -202,7 +202,7 @@ const RAW_PRODUCTS: RawProduct[] = [
     },
     description: {
       en: "Intel Core Ultra with built-in NPU, OLED display, under 1.3 kg — a student's workhorse that lasts all semester.",
-      sw: "Intel Core Ultra yenye NPU iliyojengwa ndani, skrini ya OLED, chini ya kilo 1.3 — mshirika wa mwanafunzi unaodumu muhula mzima.",
+      sw: "Intel Core Ultra yenye NPU iliyojengwa ndani, skrini ya OLED, chini ya kilo 1.3 — kifaa cha mwanafunzi kinachodumu muhula mzima.",
     },
     priceTzs: 2_400_000,
     images: [
@@ -286,12 +286,12 @@ const RAW_PRODUCTS: RawProduct[] = [
     slug: "custom-ryzen-rtx4080-tower",
     name: {
       en: "Custom Ryzen RTX 4080 Tower",
-      sw: "Mnara wa Ryzen RTX 4080 wa Desturi",
+      sw: "Mnara Maalum wa Ryzen RTX 4080",
     },
     brand: "Custom",
     tagline: {
       en: "Desktop-grade power, hand-assembled in Dar.",
-      sw: "Nguvu za kiwango cha desktop, zilizotengenezwa kwa mikono Dar.",
+      sw: "Nguvu za kiwango cha desktop, zilizotengenezwa kwa mikono hapa Dar.",
     },
     description: {
       en: "Ubepari-built desktop with Ryzen 9, RTX 4080, 64GB DDR5, and whisper-quiet cooling. For studios that need more than a laptop.",
@@ -321,7 +321,7 @@ const RAW_PRODUCTS: RawProduct[] = [
     brand: "Apple",
     tagline: {
       en: "Unbelievably thin. Unbelievably fast.",
-      sw: "Nyembamba isiyoaminika. Haraka isiyoaminika.",
+      sw: "Nyembamba ya kushangaza. Kasi ya kushangaza.",
     },
     description: {
       en: "Silent, fanless M3 design with all-day battery. The laptop that made 'good enough for most people' actually true.",
@@ -351,11 +351,11 @@ const RAW_PRODUCTS: RawProduct[] = [
     brand: "Lenovo",
     tagline: {
       en: "Serious gaming, serious value.",
-      sw: "Gaming halisi, thamani halisi.",
+      sw: "Gaming ya dhati, thamani ya dhati.",
     },
     description: {
       en: "The gaming laptop that earns its keep. RTX 4060, 165Hz IPS, Legion Coldfront cooling. No compromises where it counts.",
-      sw: "Laptop ya gaming inayostahili nafasi yake. RTX 4060, 165Hz IPS, upoaji wa Legion Coldfront. Hakuna mapatanishi pale yanapohitajika.",
+      sw: "Laptop ya gaming inayostahili nafasi yake. RTX 4060, 165Hz IPS, upoaji wa Legion Coldfront. Hakuna maelewano pale panapohitajika.",
     },
     priceTzs: 3_300_000,
     images: [
@@ -385,7 +385,7 @@ const RAW_PRODUCTS: RawProduct[] = [
     },
     description: {
       en: "A reliable 14-inch laptop for small-business owners and office workers. Snappy storage, long warranty, TZS-friendly price.",
-      sw: "Laptop ya kuaminika ya inchi 14 kwa wamiliki wa biashara ndogo na wafanyakazi wa ofisi. Hifadhi ya haraka, dhamana ndefu, bei rafiki kwa TZS.",
+      sw: "Laptop ya kuaminika ya inchi 14 kwa wamiliki wa biashara ndogo na wafanyakazi wa ofisi. Hifadhi ya haraka, dhamana ndefu, bei rafiki kwa mfuko wako.",
     },
     priceTzs: 1_950_000,
     images: [
