@@ -102,6 +102,61 @@
       "aiLabel": "AI"
     }
   },
+  "signin": {
+    "metaTitle": "Sign in",
+    "heading": "Sign in",
+    "welcome": "Welcome back to Ubepari Wallet.",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "255 7XX XXX XXX",
+    "sendOtp": "Send OTP",
+    "otpHint": "We'll text a 6-digit code to your phone.",
+    "newHere": "New here?",
+    "createAccountLink": "Create an account"
+  },
+  "signup": {
+    "metaTitle": "Create account",
+    "heading": "Create your account",
+    "subtitle": "It takes 60 seconds. You'll verify your ID later, when you checkout.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "255 7XX XXX XXX",
+    "emailLabel": "Email (optional)",
+    "emailPlaceholder": "you@gmail.com",
+    "submit": "Create account",
+    "tosPrefix": "By continuing you agree to our ",
+    "tosTerms": "Terms",
+    "tosAnd": " and ",
+    "tosHirePurchase": "Hire-Purchase Agreement",
+    "tosSuffix": ".",
+    "alreadyHave": "Already have an account?",
+    "signInLink": "Sign in"
+  },
+  "kyc": {
+    "metaTitle": "KYC & Verification",
+    "eyebrow": "Verification",
+    "heading": "Verify once. Shop forever.",
+    "body": "Upload one valid ID and we'll assign you a credit limit, usually within a few hours. Ubepari's KYC team reviews every submission.",
+    "nidaLabel": "NIDA number",
+    "nidaPlaceholder": "20000000-00000-00000-00",
+    "nidaHint": "20 digits. Find it on the front of your NIDA card.",
+    "legalFirstName": "Legal first name",
+    "legalLastName": "Legal last name",
+    "uploadLabel": "Upload ID document",
+    "uploadDrop": "Drop NIDA / Passport here",
+    "uploadFormats": "JPG or PDF · max 5 MB",
+    "uploadChoose": "Choose file",
+    "workplaceLabel": "Workplace / permit (optional)",
+    "workplacePlaceholder": "Employer or business name",
+    "workplaceHint": "Helps us approve a higher credit limit.",
+    "submit": "Submit for review",
+    "whatHappensNext": "What happens next",
+    "steps": [
+      "Our team matches your NIDA details to the national registry.",
+      "We run a soft credit check — no impact on your score.",
+      "You get your credit limit by SMS and email, usually within 4 hours."
+    ]
+  },
   "trustStrip": {
     "items": [
       {

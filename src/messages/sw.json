@@ -102,6 +102,61 @@
       "aiLabel": "AI"
     }
   },
+  "signin": {
+    "metaTitle": "Ingia",
+    "heading": "Ingia",
+    "welcome": "Karibu tena Ubepari Wallet.",
+    "phoneLabel": "Nambari ya simu",
+    "phonePlaceholder": "255 7XX XXX XXX",
+    "sendOtp": "Tuma OTP",
+    "otpHint": "Tutatuma msimbo wa tarakimu 6 kwenye simu yako.",
+    "newHere": "Ni mara yako ya kwanza?",
+    "createAccountLink": "Fungua akaunti"
+  },
+  "signup": {
+    "metaTitle": "Fungua akaunti",
+    "heading": "Fungua akaunti yako",
+    "subtitle": "Inachukua sekunde 60. Utathibitisha kitambulisho chako baadaye, wakati wa kulipia.",
+    "firstName": "Jina la kwanza",
+    "lastName": "Jina la mwisho",
+    "phoneLabel": "Nambari ya simu",
+    "phonePlaceholder": "255 7XX XXX XXX",
+    "emailLabel": "Barua pepe (si lazima)",
+    "emailPlaceholder": "wewe@gmail.com",
+    "submit": "Fungua akaunti",
+    "tosPrefix": "Kwa kuendelea unakubali ",
+    "tosTerms": "Masharti",
+    "tosAnd": " na ",
+    "tosHirePurchase": "Mkataba wa Lipa Kidogo Kidogo",
+    "tosSuffix": " zetu.",
+    "alreadyHave": "Una akaunti tayari?",
+    "signInLink": "Ingia"
+  },
+  "kyc": {
+    "metaTitle": "KYC na Uthibitisho",
+    "eyebrow": "Uthibitisho",
+    "heading": "Thibitisha mara moja. Nunua milele.",
+    "body": "Pakia kitambulisho kimoja halali na tutakupa kiwango chako cha mkopo, mara nyingi ndani ya masaa machache. Timu ya KYC ya Ubepari hukagua kila ombi.",
+    "nidaLabel": "Nambari ya NIDA",
+    "nidaPlaceholder": "20000000-00000-00000-00",
+    "nidaHint": "Tarakimu 20. Utaipata mbele ya kadi yako ya NIDA.",
+    "legalFirstName": "Jina la kwanza la kisheria",
+    "legalLastName": "Jina la mwisho la kisheria",
+    "uploadLabel": "Pakia kitambulisho",
+    "uploadDrop": "Tuma NIDA / Pasipoti hapa",
+    "uploadFormats": "JPG au PDF · kikomo 5 MB",
+    "uploadChoose": "Chagua faili",
+    "workplaceLabel": "Mahali pa kazi / kibali (si lazima)",
+    "workplacePlaceholder": "Jina la mwajiri au biashara",
+    "workplaceHint": "Kinatusaidia kukupa kiwango kikubwa cha mkopo.",
+    "submit": "Wasilisha kwa ukaguzi",
+    "whatHappensNext": "Nini kitatokea baadaye",
+    "steps": [
+      "Timu yetu inalinganisha taarifa zako za NIDA na daftari la taifa.",
+      "Tunafanya ukaguzi mdogo wa mkopo — hauathiri alama yako.",
+      "Unapata kiwango chako cha mkopo kwa SMS na barua pepe, mara nyingi ndani ya masaa 4."
+    ]
+  },
   "trustStrip": {
     "items": [
       {
