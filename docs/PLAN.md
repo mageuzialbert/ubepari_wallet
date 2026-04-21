@@ -2,7 +2,7 @@
 
 **Last updated:** 2026-04-21
 **Launch target:** ~2026-04-25
-**Current stage:** Going live. UI + bilingual copy done. **Phase 4 (Supabase foundation) is next.**
+**Current stage:** Going live. UI + bilingual copy done, Supabase foundation + auth adapter + KYC wired. **Phase 5 (Payments) is next.**
 
 ---
 
@@ -24,6 +24,8 @@ Bilingual EN/SW wallet + hire-purchase UI, Next.js 16 App Router, dark Apple-ish
 | `a1fe755` | Support, AI Tech Tips, localized product catalog |
 | `76c3acb` | Swahili copy review — grammar, class agreement, natural phrasing |
 | `42892f9` | Supabase foundation — deps, schema + RLS migration, client helpers |
+| `29e1c91` | Auth adapter — SMS OTP + custom Supabase JWT session |
+| `f644ee8` | KYC submit — upload to Storage, insert row, flip profile status |
 
 ---
 
@@ -76,7 +78,7 @@ SMS OTP via `messaging-service.co.tz`; on verify the server creates the `auth.us
 
 - **Default locale:** `en`. **URL shape:** `/en/*`, `/sw/*` (path segment).
 - **i18n library:** none — Next 16 native dictionary pattern.
-- **Supabase:** live. Project ref `zlvcpaiyjshsjglqicvy` (postgres + Storage + Auth). RLS on every data table. (Confirm region in dashboard — Frankfurt/eu-central-1 preferred for TZ latency; update here if it's elsewhere.)
+- **Supabase:** live. Project ref `zlvcpaiyjshsjglqicvy`, region **West EU (Ireland, eu-west-1)**. Postgres + Storage + Auth, RLS on every data table. Built-in phone and email providers are disabled — we own the SMS OTP → custom JWT flow.
 - **Auth:** phone+OTP via `messaging-service.co.tz` → custom JWT signed with `SUPABASE_JWT_SECRET` → Supabase session cookie. Not Supabase's built-in phone auth (which would force a Twilio swap).
 - **Product catalog:** stays static in `lib/products.ts` for launch. Migrate to a `products` table post-launch when the admin/inventory surface lands.
 - **KYC review:** manual via Supabase dashboard at launch. In-app admin queue is post-launch.
