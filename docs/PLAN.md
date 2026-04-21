@@ -23,6 +23,7 @@ Bilingual EN/SW wallet + hire-purchase UI, Next.js 16 App Router, dark Apple-ish
 | `de759a5` | Wallet, orders, top-up dialog translated |
 | `a1fe755` | Support, AI Tech Tips, localized product catalog |
 | `76c3acb` | Swahili copy review — grammar, class agreement, natural phrasing |
+| `42892f9` | Supabase foundation — deps, schema + RLS migration, client helpers |
 
 ---
 
@@ -75,13 +76,13 @@ SMS OTP via `messaging-service.co.tz`; on verify the server creates the `auth.us
 
 - **Default locale:** `en`. **URL shape:** `/en/*`, `/sw/*` (path segment).
 - **i18n library:** none — Next 16 native dictionary pattern.
-- **Supabase:** live in **Frankfurt (eu-central-1)** for TZ latency. Postgres + Storage + Auth. RLS on every data table.
+- **Supabase:** live. Project ref `zlvcpaiyjshsjglqicvy` (postgres + Storage + Auth). RLS on every data table. (Confirm region in dashboard — Frankfurt/eu-central-1 preferred for TZ latency; update here if it's elsewhere.)
 - **Auth:** phone+OTP via `messaging-service.co.tz` → custom JWT signed with `SUPABASE_JWT_SECRET` → Supabase session cookie. Not Supabase's built-in phone auth (which would force a Twilio swap).
 - **Product catalog:** stays static in `lib/products.ts` for launch. Migrate to a `products` table post-launch when the admin/inventory surface lands.
 - **KYC review:** manual via Supabase dashboard at launch. In-app admin queue is post-launch.
 - **Evmark:** live, account `user='ipab'`, `api_source='iPAB'` (iPAB International's shared account, deliberate).
 - **AI Tech Tips:** real OpenAI (`gpt-4o-mini`), behind `askLlm()` adapter so Claude swap is one-file later.
-- **Deploy:** Vercel. Production domain + Evmark callbacks pointed at it — no ngrok in prod.
+- **Deploy:** Vercel. Production domain **`ubeparipc.tech`**. Evmark callbacks point at `https://ubeparipc.tech/api/payments/{mno,card}/callback` in prod — no ngrok.
 - **Google Maps:** deferred; key stays in env for when the showroom map ships.
 - **Glossary (both locales unless noted):**
   - **Wallet** — keep English
@@ -112,17 +113,16 @@ SMS OTP via `messaging-service.co.tz`; on verify the server creates the `auth.us
 
 ### Scope
 
-1. **Project + envs.** Create the Supabase project in Frankfurt (if not already done). Fill `.env.local` with `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_JWT_SECRET`.
-2. **Schema migration.** Create `supabase/migrations/0001_init.sql` with every table in the data architecture above, indexes, and RLS policies. Apply via Supabase CLI (`supabase db push`).
-3. **Storage bucket.** Create `kyc-documents` private bucket with the three RLS policies above. Include as a SQL migration, not dashboard-only.
-4. **Client helpers.** `src/lib/supabase/server.ts` (server components / route handlers, reads cookies), `src/lib/supabase/browser.ts` (client components), `src/lib/supabase/admin.ts` (service-role, server-only).
-5. **Auth adapter.**
+1. **Project + envs.** ✅ Done. Project `zlvcpaiyjshsjglqicvy`. `.env.local` populated with URL, anon key, service-role key, and JWT secret.
+2. **Schema migration.** ✅ Written at `supabase/migrations/0001_init.sql` (every table, enums, indexes, RLS, and the storage bucket + policies in a single transaction). **Apply via Supabase SQL editor** — paste the file contents and run; or `supabase db push` if the CLI is linked.
+3. **Client helpers.** ✅ Written: `src/lib/supabase/server.ts` (server components / route handlers, reads cookies via `@supabase/ssr`), `src/lib/supabase/browser.ts` (client components, singleton), `src/lib/supabase/admin.ts` (service-role, `server-only`).
+4. **Auth adapter.**
    - `src/lib/sms.ts` — `sendOtp(phone, code)` wrapping `messaging-service.co.tz`.
    - `POST /api/auth/otp/send` — rate-limit by phone+IP, hash+store code in `otp_challenges`, send SMS.
    - `POST /api/auth/otp/verify` — bcrypt-check the code, mark consumed, upsert profile, sign custom JWT (`iss=supabase`, `aud=authenticated`, `sub=user.id`, `role=authenticated`, `exp=1h` access / 1w refresh), return as httpOnly cookies the Supabase SSR client reads.
    - Client: `useSession()` hook backed by `supabase.auth.getUser()`.
-6. **Signup/signin pages wired.** Real OTP round trip. Success routes to `/wallet`.
-7. **KYC submit wired.** `POST /api/kyc/submit` — upload doc to Storage under `{user_id}/id.{ext}`, insert `kyc_submissions` row with `status='pending'`, set `profiles.kyc_status='pending'`. UI shows "under review" after submit.
+5. **Signup/signin pages wired.** Real OTP round trip. Success routes to `/wallet`.
+6. **KYC submit wired.** `POST /api/kyc/submit` — upload doc to Storage under `{user_id}/id.{ext}`, insert `kyc_submissions` row with `status='pending'`, set `profiles.kyc_status='pending'`. UI shows "under review" after submit.
 
 ### Deliverable
 - Migrations applied, RLS green (can't select someone else's profile as anon or as another auth user).
