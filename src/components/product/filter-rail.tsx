@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 
 import type { UsageTag } from "@/lib/products";
+import { useDictionary, useLocale } from "@/i18n/provider";
 
 const USAGES: UsageTag[] = [
   "Gaming",
@@ -17,26 +18,29 @@ const USAGES: UsageTag[] = [
 const BRANDS = ["Apple", "Dell", "HP", "Lenovo", "ASUS", "MSI", "Acer", "Custom"];
 
 const PRICE_BUCKETS = [
-  { label: "Under 2M", value: "0-2000000" },
-  { label: "2M – 4M", value: "2000000-4000000" },
-  { label: "4M – 6M", value: "4000000-6000000" },
-  { label: "6M+", value: "6000000-99999999" },
-];
+  "0-2000000",
+  "2000000-4000000",
+  "4000000-6000000",
+  "6000000-99999999",
+] as const;
 
 export function FilterRail() {
   const router = useRouter();
   const params = useSearchParams();
+  const locale = useLocale();
+  const t = useDictionary().filters;
+  const storePath = `/${locale}/store`;
 
   const updateParam = useCallback(
     (key: string, value: string | null) => {
       const next = new URLSearchParams(params.toString());
       if (value === null || next.get(key) === value) next.delete(key);
       else next.set(key, value);
-      router.replace(`/store${next.size ? `?${next.toString()}` : ""}`, {
+      router.replace(`${storePath}${next.size ? `?${next.toString()}` : ""}`, {
         scroll: false,
       });
     },
-    [params, router],
+    [params, router, storePath],
   );
 
   const active = {
@@ -51,14 +55,14 @@ export function FilterRail() {
     <aside className="sticky top-20 flex flex-col gap-8 text-[13px]">
       {hasAny && (
         <button
-          onClick={() => router.replace("/store", { scroll: false })}
+          onClick={() => router.replace(storePath, { scroll: false })}
           className="self-start text-[12px] text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
         >
-          Clear all filters
+          {t.clearAll}
         </button>
       )}
 
-      <FilterGroup label="Usage">
+      <FilterGroup label={t.usageLabel}>
         {USAGES.map((u) => (
           <FilterPill
             key={u}
@@ -69,7 +73,7 @@ export function FilterRail() {
         ))}
       </FilterGroup>
 
-      <FilterGroup label="Brand">
+      <FilterGroup label={t.brandLabel}>
         {BRANDS.map((b) => (
           <FilterPill
             key={b}
@@ -80,13 +84,13 @@ export function FilterRail() {
         ))}
       </FilterGroup>
 
-      <FilterGroup label="Monthly plan">
-        {PRICE_BUCKETS.map((p) => (
+      <FilterGroup label={t.monthlyLabel}>
+        {PRICE_BUCKETS.map((value) => (
           <FilterPill
-            key={p.value}
-            label={p.label}
-            active={active.price === p.value}
-            onClick={() => updateParam("price", p.value)}
+            key={value}
+            label={t.priceLabels[value]}
+            active={active.price === value}
+            onClick={() => updateParam("price", value)}
           />
         ))}
       </FilterGroup>

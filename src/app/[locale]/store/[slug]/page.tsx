@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -8,18 +9,22 @@ import { ProductCard } from "@/components/product/product-card";
 import { Badge } from "@/components/ui/badge";
 import { formatTzs } from "@/lib/currency";
 import { getProduct, PRODUCTS } from "@/lib/products";
+import { hasLocale, locales } from "@/i18n/config";
+import { getDictionary } from "../../dictionaries";
 
-type ProductPageParams = Promise<{ slug: string }>;
+type ProductPageParams = Promise<{ locale: string; slug: string }>;
 
 export async function generateStaticParams() {
-  return PRODUCTS.map((p) => ({ slug: p.slug }));
+  return locales.flatMap((locale) =>
+    PRODUCTS.map((p) => ({ locale, slug: p.slug })),
+  );
 }
 
 export async function generateMetadata({
   params,
 }: {
   params: ProductPageParams;
-}) {
+}): Promise<Metadata> {
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) return {};
@@ -34,23 +39,29 @@ export default async function ProductDetailPage({
 }: {
   params: ProductPageParams;
 }) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  if (!hasLocale(locale)) notFound();
   const product = getProduct(slug);
   if (!product) notFound();
+  const dict = await getDictionary(locale);
+  const t = dict.product;
 
   const related = PRODUCTS.filter(
     (p) =>
       p.slug !== product.slug &&
-      p.usageTags.some((t) => product.usageTags.includes(t)),
+      p.usageTags.some((tag) => product.usageTags.includes(tag)),
   ).slice(0, 3);
+
+  const cashLine = t.cashPriceLabel.replace("{stock}", String(product.stock));
+  const altAlt = t.altView.replace("{name}", product.name);
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-8 pb-16 sm:px-6">
       <Link
-        href="/store"
+        href={`/${locale}/store`}
         className="inline-flex items-center gap-1 text-[13px] text-muted-foreground transition-colors hover:text-foreground"
       >
-        <ChevronLeft className="h-4 w-4" /> All PCs
+        <ChevronLeft className="h-4 w-4" /> {t.backLink}
       </Link>
 
       <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-[1.1fr_1fr]">
@@ -74,7 +85,7 @@ export default async function ProductDetailPage({
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-border/60 bg-muted/40">
               <Image
                 src={product.images[1]}
-                alt={`${product.name} alt view`}
+                alt={altAlt}
                 fill
                 sizes="(max-width: 768px) 100vw, 55vw"
                 className="object-cover"
@@ -106,10 +117,10 @@ export default async function ProductDetailPage({
 
           <div className="flex items-baseline gap-3 border-y border-border/60 py-5">
             <span className="text-3xl font-semibold tracking-tight">
-              {formatTzs(product.priceTzs)}
+              {formatTzs(product.priceTzs, locale)}
             </span>
             <span className="text-[13px] text-muted-foreground">
-              cash price · {product.stock} in stock
+              {cashLine}
             </span>
           </div>
 
@@ -118,13 +129,13 @@ export default async function ProductDetailPage({
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <Perk
               icon={<Truck className="h-4 w-4" />}
-              title="Same-day pickup"
-              body="Collect from our Dar showroom."
+              title={t.perks.pickup.title}
+              body={t.perks.pickup.body}
             />
             <Perk
               icon={<ShieldCheck className="h-4 w-4" />}
-              title="12-month warranty"
-              body="Included on every new machine."
+              title={t.perks.warranty.title}
+              body={t.perks.warranty.body}
             />
           </div>
         </div>
@@ -132,21 +143,21 @@ export default async function ProductDetailPage({
 
       <section className="mt-20">
         <h2 className="text-2xl font-semibold tracking-tight">
-          Every spec, on the record.
+          {t.specsHeading}
         </h2>
         <p className="mt-2 max-w-xl text-sm text-muted-foreground">
           {product.description}
         </p>
 
         <dl className="mt-8 grid grid-cols-1 overflow-hidden rounded-3xl border border-border/60 sm:grid-cols-2">
-          <Spec label="Processor" value={product.specs.cpu} />
-          <Spec label="Generation" value={product.specs.cpuGeneration} />
-          <Spec label="Memory" value={product.specs.ram} />
-          <Spec label="Storage" value={product.specs.storage} />
-          <Spec label="Graphics" value={product.specs.gpu} />
-          <Spec label="Display" value={product.specs.display} />
-          <Spec label="Operating system" value={product.specs.os} />
-          <Spec label="Weight" value={product.specs.weight} />
+          <Spec label={t.specs.processor} value={product.specs.cpu} />
+          <Spec label={t.specs.generation} value={product.specs.cpuGeneration} />
+          <Spec label={t.specs.memory} value={product.specs.ram} />
+          <Spec label={t.specs.storage} value={product.specs.storage} />
+          <Spec label={t.specs.graphics} value={product.specs.gpu} />
+          <Spec label={t.specs.display} value={product.specs.display} />
+          <Spec label={t.specs.os} value={product.specs.os} />
+          <Spec label={t.specs.weight} value={product.specs.weight} />
         </dl>
       </section>
 
@@ -154,13 +165,13 @@ export default async function ProductDetailPage({
         <section className="mt-20">
           <div className="flex items-end justify-between">
             <h2 className="text-2xl font-semibold tracking-tight">
-              You might also like
+              {t.relatedHeading}
             </h2>
             <Link
-              href="/store"
+              href={`/${locale}/store`}
               className="text-[13px] text-muted-foreground hover:text-foreground"
             >
-              Browse all →
+              {t.browseAll}
             </Link>
           </div>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

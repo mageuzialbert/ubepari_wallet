@@ -102,6 +102,78 @@
       "aiLabel": "AI"
     }
   },
+  "store": {
+    "metaTitle": "Duka — PC zote tulizonazo",
+    "metaDescription": "Tazama orodha kamili ya PC za gaming, ultrabooks, na towers za Ubepari. Chuja kwa matumizi, chapa, na malipo ya mwezi.",
+    "eyebrow": "Duka",
+    "heading": "PC zote tulizonazo.",
+    "resultsSingular": "Mtindo {count} unapatikana sasa hivi. Kila kifaa kinatolewa siku hiyo hiyo kutoka showroom yetu ya Dar.",
+    "resultsPlural": "Mitindo {count} inapatikana sasa hivi. Vyote vinatolewa siku hiyo hiyo kutoka showroom yetu ya Dar.",
+    "emptyTitle": "Hakuna PC inayolingana na vichujio hivyo",
+    "emptyBody": "Jaribu kuondoa kichujio kimoja au viwili."
+  },
+  "product": {
+    "backLink": "PC zote",
+    "altView": "{name} mtazamo mwingine",
+    "cashPriceLabel": "bei ya mkupuo · {stock} zinapatikana",
+    "perks": {
+      "pickup": {
+        "title": "Chukua leo hii",
+        "body": "Chukua kutoka showroom yetu ya Dar."
+      },
+      "warranty": {
+        "title": "Dhamana ya miezi 12",
+        "body": "Imejumuishwa kwa kila kifaa kipya."
+      }
+    },
+    "specsHeading": "Kila vipimo, vimewekwa wazi.",
+    "specs": {
+      "processor": "Kichakataji",
+      "generation": "Kizazi",
+      "memory": "Kumbukumbu",
+      "storage": "Hifadhi",
+      "graphics": "Grafiki",
+      "display": "Skrini",
+      "os": "Mfumo wa uendeshaji",
+      "weight": "Uzito"
+    },
+    "relatedHeading": "Unaweza pia kupenda",
+    "browseAll": "Tazama zote →"
+  },
+  "productCard": {
+    "lowStock": "Hifadhi ndogo",
+    "perMonthSuffix": "/mwezi"
+  },
+  "filters": {
+    "clearAll": "Futa vichujio vyote",
+    "usageLabel": "Matumizi",
+    "brandLabel": "Chapa",
+    "monthlyLabel": "Mpango wa mwezi",
+    "priceLabels": {
+      "0-2000000": "Chini ya 2M",
+      "2000000-4000000": "2M – 4M",
+      "4000000-6000000": "4M – 6M",
+      "6000000-99999999": "6M+"
+    }
+  },
+  "credit": {
+    "planLabel": "Mpango wa Lipa kidogo kidogo",
+    "perMonthSuffix": "/ mwezi",
+    "chooseDuration": "Chagua muda",
+    "monthsSuffix": "miezi",
+    "termSuffix": "mo",
+    "rows": {
+      "cashPrice": "Bei ya mkupuo",
+      "deposit": "Malipo ya awali (20%)",
+      "financed": "Kiasi cha mkopo",
+      "serviceFee": "Ada ya huduma",
+      "free": "Bure",
+      "total": "Jumla ya kulipa"
+    },
+    "reserveButton": "Hifadhi kwa malipo ya awali — {amount}",
+    "savePlan": "Hifadhi mpango katika Wallet yangu",
+    "disclaimer": "Idhini ya mwisho inategemea KYC na ukaguzi wa mkopo. Kulipa mapema ni bure; malipo yaliyochelewa yanaweza kupata ada ya ucheleweshaji ya 2%."
+  },
   "signin": {
     "metaTitle": "Ingia",
     "heading": "Ingia",

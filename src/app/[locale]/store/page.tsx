@@ -1,26 +1,45 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { ProductCard } from "@/components/product/product-card";
 import { FilterRail } from "@/components/product/filter-rail";
 import { PRODUCTS, type Brand, type UsageTag } from "@/lib/products";
+import { hasLocale } from "@/i18n/config";
+import { getDictionary } from "../dictionaries";
 
-export const metadata = {
-  title: "Store — Every PC we stock",
-  description:
-    "Browse Ubepari's full lineup of gaming PCs, ultrabooks, and custom towers. Filter by use case, brand, and monthly payment.",
-};
-
+type StorePageParams = Promise<{ locale: string }>;
 type StoreSearchParams = Promise<{
   usage?: string;
   brand?: string;
   price?: string;
 }>;
 
+export async function generateMetadata({
+  params,
+}: {
+  params: StorePageParams;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!hasLocale(locale)) return {};
+  const dict = await getDictionary(locale);
+  return {
+    title: dict.store.metaTitle,
+    description: dict.store.metaDescription,
+  };
+}
+
 export default async function StorePage({
+  params,
   searchParams,
 }: {
+  params: StorePageParams;
   searchParams: StoreSearchParams;
 }) {
+  const { locale } = await params;
+  if (!hasLocale(locale)) return null;
+  const dict = await getDictionary(locale);
+  const t = dict.store;
+
   const { usage, brand, price } = await searchParams;
 
   let filtered = PRODUCTS;
@@ -41,20 +60,21 @@ export default async function StorePage({
     );
   }
 
+  const results = (filtered.length === 1 ? t.resultsSingular : t.resultsPlural)
+    .replace("{count}", String(filtered.length));
+
   return (
     <div className="mx-auto max-w-6xl px-4 pt-12 pb-16 sm:px-6 sm:pt-16">
       <header className="flex items-end justify-between">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            Store
+            {t.eyebrow}
           </p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">
-            Every PC we stock.
+            {t.heading}
           </h1>
           <p className="mt-3 max-w-xl text-[15px] text-muted-foreground">
-            {filtered.length} {filtered.length === 1 ? "model" : "models"}{" "}
-            available right now. Every machine ships same-day from our Dar
-            showroom.
+            {results}
           </p>
         </div>
       </header>
@@ -67,10 +87,8 @@ export default async function StorePage({
         {filtered.length === 0 ? (
           <div className="flex min-h-[400px] items-center justify-center rounded-3xl border border-dashed border-border/60 text-center">
             <div>
-              <p className="text-lg font-semibold">No PCs match those filters</p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Try clearing a filter or two.
-              </p>
+              <p className="text-lg font-semibold">{t.emptyTitle}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{t.emptyBody}</p>
             </div>
           </div>
         ) : (

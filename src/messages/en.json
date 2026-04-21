@@ -102,6 +102,78 @@
       "aiLabel": "AI"
     }
   },
+  "store": {
+    "metaTitle": "Store — Every PC we stock",
+    "metaDescription": "Browse Ubepari's full lineup of gaming PCs, ultrabooks, and custom towers. Filter by use case, brand, and monthly payment.",
+    "eyebrow": "Store",
+    "heading": "Every PC we stock.",
+    "resultsSingular": "{count} model available right now. Every machine ships same-day from our Dar showroom.",
+    "resultsPlural": "{count} models available right now. Every machine ships same-day from our Dar showroom.",
+    "emptyTitle": "No PCs match those filters",
+    "emptyBody": "Try clearing a filter or two."
+  },
+  "product": {
+    "backLink": "All PCs",
+    "altView": "{name} alt view",
+    "cashPriceLabel": "cash price · {stock} in stock",
+    "perks": {
+      "pickup": {
+        "title": "Same-day pickup",
+        "body": "Collect from our Dar showroom."
+      },
+      "warranty": {
+        "title": "12-month warranty",
+        "body": "Included on every new machine."
+      }
+    },
+    "specsHeading": "Every spec, on the record.",
+    "specs": {
+      "processor": "Processor",
+      "generation": "Generation",
+      "memory": "Memory",
+      "storage": "Storage",
+      "graphics": "Graphics",
+      "display": "Display",
+      "os": "Operating system",
+      "weight": "Weight"
+    },
+    "relatedHeading": "You might also like",
+    "browseAll": "Browse all →"
+  },
+  "productCard": {
+    "lowStock": "Low stock",
+    "perMonthSuffix": "/mo"
+  },
+  "filters": {
+    "clearAll": "Clear all filters",
+    "usageLabel": "Usage",
+    "brandLabel": "Brand",
+    "monthlyLabel": "Monthly plan",
+    "priceLabels": {
+      "0-2000000": "Under 2M",
+      "2000000-4000000": "2M – 4M",
+      "4000000-6000000": "4M – 6M",
+      "6000000-99999999": "6M+"
+    }
+  },
+  "credit": {
+    "planLabel": "Hire-purchase plan",
+    "perMonthSuffix": "/ month",
+    "chooseDuration": "Choose duration",
+    "monthsSuffix": "months",
+    "termSuffix": "mo",
+    "rows": {
+      "cashPrice": "Cash price",
+      "deposit": "Deposit today (20%)",
+      "financed": "Financed amount",
+      "serviceFee": "Service fee",
+      "free": "Free",
+      "total": "Total to pay"
+    },
+    "reserveButton": "Reserve with deposit — {amount}",
+    "savePlan": "Save plan to my Wallet",
+    "disclaimer": "Final approval depends on KYC & credit check. Early repayment is free; missed payments may incur a 2% late fee."
+  },
   "signin": {
     "metaTitle": "Sign in",
     "heading": "Sign in",
