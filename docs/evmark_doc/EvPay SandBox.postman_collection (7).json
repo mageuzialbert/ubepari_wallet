@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "feb42cc2-d1a6-4926-8658-b3f958d85b27",
+		"name": "EvPay SandBox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8586464"
+	},
+	"item": [
+		{
+			"name": "Collection-MNO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"api_source\": \"BOLT\",\n    \"api_to\": \"Mpesa\",\n    \"amount\": 700000,\n    \"product\": \"BOLT\",\n    \"callback\": \"https://webhook.site/2455fb31-461f-4630-8816-1a10b59cd6ef\",\n    \"hash\": \"36d528589471fcaf1294951d628244fb\",\n    \"user\": \"webhost\",\n    \"mobileNo\": \"255755250046\",\n    \"reference\": \"436442345\",\n    \"callbackStatus\": \"USSDCallbackCancel\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vodaapi.evmak.com/evpay-sandbox/collection/",
+					"protocol": "https",
+					"host": [
+						"vodaapi",
+						"evmak",
+						"com"
+					],
+					"path": [
+						"evpay-sandbox",
+						"collection",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payout-MNO",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": \"wordpress\",\n    \"hash\": \"ce977d39faa0c8b9ede5427a6e3d8833\",\n    \"amount\": \"5000\",\n    \"reference\": \"46564674\",\n    \"method\": \"PayOut\",\n    \"methodNumber\": \"255713809050\",\n    \"network\": \"TigoPesa\",\n    \"notifyurl\": \"https://webhook.site/f05cdf11-1406-4b8d-8428-2bbaae5a2323\",\n    \"callbackStatus\": \"Success\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://test-dash.evmak.com/sandbox/payout/",
+					"protocol": "http",
+					"host": [
+						"test-dash",
+						"evmak",
+						"com"
+					],
+					"path": [
+						"sandbox",
+						"payout",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GenerateControlNo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"amount\": \"100000\",\n        \"currency\": \"TZS\",\n        \"apiUser\": \"scalefi\",\n        \"referenceNo\": 50,\n        \"product\": \"Loan\",\n        \"payerDetails\": \"Ino Moses\",\n        \"phoneNo\": \"255755250046\",\n        \"hash\": \"704160157ca0ec6e32d9836d7e8d9040\",\n        \"transactionDetails\": \"Loan Repayment\",\n        \"paymentType\": \"full\",\n        \"controlNumber\": \"20177574\",\n        \"callbackUrl\": \"https://webhook.site/2455fb31-461f-4630-8816-1a10b59cd6ef\"\n    }\n]\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vodaapi.evmak.com/control-number-api/test/create/",
+					"protocol": "https",
+					"host": [
+						"vodaapi",
+						"evmak",
+						"com"
+					],
+					"path": [
+						"control-number-api",
+						"test",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VerifyControlNo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"controlNumber\": \"20191979\",\n    \"apiUser\": \"webhost\",\n    \"hash\": \"0f1fdcfd0a8172028a27089762f056ea\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		}
+	]
+}
