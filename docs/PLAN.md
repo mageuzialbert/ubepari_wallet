@@ -398,6 +398,10 @@ Source: codebase scan 2026-04-21. Estimated **400–500 unique strings**.
 
 ---
 
+## Known issues (tracked, not blocking prototype)
+
+- **`next-themes` script-tag warning under React 19.** `next-themes@0.4.6` (latest) injects a no-flash theme-detection script via `dangerouslySetInnerHTML`. React 19 logs `"Encountered a script tag while rendering React component"` in the console. The script executes correctly at SSR time and the theme toggle works; the warning is cosmetic. Revisit when next-themes ships a React 19-compatible release or switch providers post-prototype.
+
 ## Post-prototype backlog (after Apr 25)
 
 Not in scope for the prototype deadline. Written down so nothing is lost.

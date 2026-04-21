@@ -13,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { LocaleToggle } from "@/components/locale-toggle";
 import { PRIMARY_NAV } from "@/lib/nav";
 
 export function SiteHeader() {
@@ -58,6 +59,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="ml-auto flex items-center gap-1 md:ml-0">
+          <LocaleToggle />
           <ThemeToggle />
           <Button
             asChild
