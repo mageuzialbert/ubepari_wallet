@@ -108,7 +108,11 @@
     "matchResult": "Based on your story, I recommend the {product} — the 3.5K OLED is a gift for retouching work, and the RTX 4060 handles 4K timelines without choking. Fits your budget at TZS 380K/month over 12 months.",
     "matchProduct": "Dell XPS 15 OLED",
     "seeSpec": "See full spec",
-    "disclaimer": "Full conversational AI advisor ships with the next release. Prototype shows a static recommendation here."
+    "disclaimer": "Recommendations are AI-generated from your request and our live catalog. Double-check the specs on the product page before reserving.",
+    "thinking": "Thinking…",
+    "errorTooShort": "Tell me a bit more — a sentence or two about what you'll do with the PC.",
+    "errorGeneric": "We couldn't generate a recommendation right now. Try again in a moment.",
+    "priceFrom": "From"
   },
   "hero": {
     "badge": "New — Own your dream PC in 3 taps",

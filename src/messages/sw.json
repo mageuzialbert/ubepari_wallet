@@ -108,7 +108,11 @@
     "matchResult": "Kulingana na hadithi yako, ninapendekeza {product} — 3.5K OLED ni zawadi kwa kazi za retouching, na RTX 4060 inashughulikia timeline za 4K bila shida. Inaendana na bajeti yako kwa TZS 380K/mwezi kwa miezi 12.",
     "matchProduct": "Dell XPS 15 OLED",
     "seeSpec": "Tazama vipimo kamili",
-    "disclaimer": "Mshauri kamili wa AI wa mazungumzo utatolewa katika toleo linalofuata. Prototype inaonyesha pendekezo tuli hapa."
+    "disclaimer": "Mapendekezo yanatolewa na AI kutokana na ombi lako na orodha yetu ya sasa. Angalia vipimo kwenye ukurasa wa bidhaa kabla ya kuhifadhi.",
+    "thinking": "Inafikiria…",
+    "errorTooShort": "Nieleze zaidi kidogo — sentensi moja au mbili kuhusu utakavyotumia PC.",
+    "errorGeneric": "Hatukuweza kutoa pendekezo sasa hivi. Jaribu tena baada ya muda mfupi.",
+    "priceFrom": "Kuanzia"
   },
   "hero": {
     "badge": "Mpya — Miliki PC ya ndoto yako kwa mibofyo 3",

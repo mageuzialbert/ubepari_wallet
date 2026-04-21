@@ -3,16 +3,56 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowRight, Sparkles, Wand2 } from "lucide-react";
+import { ArrowRight, Loader2, Sparkles, Wand2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { formatTzs } from "@/lib/currency";
 import { useDictionary, useLocale } from "@/i18n/provider";
+
+type Recommendation = {
+  productSlug: string;
+  productName: string;
+  priceTzs: number;
+  rationale: string;
+};
 
 export default function RecommendPage() {
   const [input, setInput] = React.useState("");
-  const [submitted, setSubmitted] = React.useState(false);
+  const [recommendation, setRecommendation] = React.useState<Recommendation | null>(null);
+  const [error, setError] = React.useState<"too_short" | "generic" | null>(null);
+  const [pending, startTransition] = React.useTransition();
+
   const locale = useLocale();
   const t = useDictionary().recommend;
+
+  async function submit() {
+    setError(null);
+    setRecommendation(null);
+    if (input.trim().length < 10) {
+      setError("too_short");
+      return;
+    }
+    let res: Response;
+    try {
+      res = await fetch("/api/recommend", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ prompt: input.trim() }),
+      });
+    } catch {
+      setError("generic");
+      return;
+    }
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok || !body.productSlug) {
+      if (body && body.detail) console.error("[recommend]", body);
+      setError(body.error === "too_short" ? "too_short" : "generic");
+      return;
+    }
+    setRecommendation(body as Recommendation);
+  }
+
+  const submitDisabled = input.trim().length < 10 || pending;
 
   return (
     <div className="mx-auto max-w-3xl px-4 pt-14 pb-16 sm:px-6 sm:pt-20">
@@ -24,15 +64,13 @@ export default function RecommendPage() {
         <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">
           {t.heading}
         </h1>
-        <p className="mt-4 max-w-xl text-[16px] text-muted-foreground">
-          {t.subheading}
-        </p>
+        <p className="mt-4 max-w-xl text-[16px] text-muted-foreground">{t.subheading}</p>
       </div>
 
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setSubmitted(true);
+          startTransition(submit);
         }}
         className="mt-10"
       >
@@ -40,26 +78,65 @@ export default function RecommendPage() {
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault();
+                startTransition(submit);
+              }
+            }}
             placeholder={t.placeholder}
             rows={4}
             className="w-full resize-none bg-transparent p-4 text-[15px] outline-none placeholder:text-muted-foreground"
           />
           <div className="flex items-center justify-between gap-2 border-t border-border/60 p-2">
-            <p className="px-2 text-[11px] text-muted-foreground">
-              {t.submitHint}
-            </p>
-            <Button
-              type="submit"
-              disabled={input.trim().length < 10}
-              className="rounded-full"
-            >
-              {t.submit} <ArrowRight className="h-4 w-4" />
+            <p className="px-2 text-[11px] text-muted-foreground">{t.submitHint}</p>
+            <Button type="submit" disabled={submitDisabled} className="rounded-full">
+              {pending ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" /> {t.thinking}
+                </>
+              ) : (
+                <>
+                  {t.submit} <ArrowRight className="h-4 w-4" />
+                </>
+              )}
             </Button>
           </div>
         </div>
+        {error && (
+          <p className="mt-3 text-center text-[13px] text-destructive">
+            {error === "too_short" ? t.errorTooShort : t.errorGeneric}
+          </p>
+        )}
       </form>
 
-      {!submitted ? (
+      {recommendation ? (
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="mt-8 space-y-4"
+        >
+          <div className="rounded-3xl border border-border/60 bg-card p-6">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              {t.yourMatch}
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight">
+              {recommendation.productName}
+            </h2>
+            <p className="mt-1 text-[13px] text-muted-foreground">
+              {t.priceFrom} {formatTzs(recommendation.priceTzs, locale)}
+            </p>
+            <p className="mt-4 text-[15px] leading-relaxed">{recommendation.rationale}</p>
+            <Button asChild className="mt-5 rounded-full">
+              <Link href={`/${locale}/store/${recommendation.productSlug}`}>
+                {t.seeSpec} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+          <p className="text-[12px] text-muted-foreground">{t.disclaimer}</p>
+        </motion.div>
+      ) : (
         <div className="mt-8">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             {t.examplesLabel}
@@ -77,37 +154,6 @@ export default function RecommendPage() {
             ))}
           </div>
         </div>
-      ) : (
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mt-8 space-y-4"
-        >
-          <div className="rounded-3xl border border-border/60 bg-card p-6">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              {t.yourMatch}
-            </p>
-            <p className="mt-3 text-[15px] leading-relaxed">
-              {(() => {
-                const parts = t.matchResult.split("{product}");
-                return (
-                  <>
-                    {parts[0]}
-                    <strong>{t.matchProduct}</strong>
-                    {parts[1]}
-                  </>
-                );
-              })()}
-            </p>
-            <Button asChild className="mt-5 rounded-full">
-              <Link href={`/${locale}/store/dell-xps-15-oled`}>
-                {t.seeSpec} <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-          <p className="text-[12px] text-muted-foreground">{t.disclaimer}</p>
-        </motion.div>
       )}
     </div>
   );
