@@ -102,6 +102,37 @@ type OtpChallengesRow = {
   created_at: string;
 };
 
+type ProductsRow = {
+  id: string;
+  slug: string;
+  brand: string;
+  name_en: string;
+  name_sw: string;
+  tagline_en: string;
+  tagline_sw: string;
+  description_en: string;
+  description_sw: string;
+  cash_price_tzs: number;
+  specs: Record<string, unknown>;
+  usage_tags: string[];
+  stock: number;
+  featured: boolean;
+  color_accent: string | null;
+  active: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+type ProductImagesRow = {
+  id: string;
+  product_id: string;
+  path: string;
+  position: number;
+  alt_en: string | null;
+  alt_sw: string | null;
+  created_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -186,6 +217,34 @@ export type Database = {
           attempts?: number;
         };
         Update: Partial<OtpChallengesRow>;
+        Relationships: [];
+      };
+      products: {
+        Row: ProductsRow;
+        Insert: Omit<
+          ProductsRow,
+          "id" | "created_at" | "updated_at" | "active" | "featured" | "stock" | "color_accent" | "specs" | "usage_tags"
+        > & {
+          id?: string;
+          active?: boolean;
+          featured?: boolean;
+          stock?: number;
+          color_accent?: string | null;
+          specs?: Record<string, unknown>;
+          usage_tags?: string[];
+        };
+        Update: Partial<ProductsRow>;
+        Relationships: [];
+      };
+      product_images: {
+        Row: ProductImagesRow;
+        Insert: Omit<ProductImagesRow, "id" | "created_at" | "position" | "alt_en" | "alt_sw"> & {
+          id?: string;
+          position?: number;
+          alt_en?: string | null;
+          alt_sw?: string | null;
+        };
+        Update: Partial<ProductImagesRow>;
         Relationships: [];
       };
     };
