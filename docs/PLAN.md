@@ -1,7 +1,7 @@
 # Ubepari Wallet — Production Plan
 
 **Last updated:** 2026-04-22
-**Status:** Customer account surface (Phase 7), legal pages (Phase 15.1), and DB-backed product catalog (Phase 8) all landed. Next up: the admin foundation (Phase 9) so staff can review KYC and edit products in-app instead of via the Supabase dashboard.
+**Status:** Customer account surface (Phase 7), legal pages (Phase 15.1), DB-backed product catalog (Phase 8), and the admin foundation (Phase 9: role gate, shell, dashboard, audit log) all landed. Next up: the KYC review queue (Phase 10) — replaces approve-via-Supabase-dashboard with an in-app flow.
 
 ---
 
@@ -27,6 +27,11 @@ Bilingual EN/SW hire-purchase wallet on Next.js 16 App Router. Supabase (auth + 
 
 | SHA | What |
 |---|---|
+| `b2e8c90` | Admin role gate + shell + dashboard |
+| `cfff223` | admin_audit_log table + logAdmin helper |
+| `ac4b3e7` | Products catalog → Supabase (server-only async loaders) |
+| `107207f` | Seed products script (one-shot) |
+| `ea76ef5` | products + product_images tables + bucket |
 | `6465055` | About page |
 | `5f718f1` | Legal pages (terms, privacy, hire-purchase agreement) |
 | `ef91476` | Account profile + order detail + payment history |
@@ -196,7 +201,7 @@ Prerequisite for admin product CRUD. Migrate the static TS catalog into DB table
 
 ---
 
-## Phase 9 — Admin foundation
+## Phase 9 — Admin foundation  ✅ done
 
 Shell, role gate, dashboard landing. No business logic yet — just the plumbing everything else sits on.
 
@@ -399,5 +404,5 @@ Live values in `.env.local` (gitignored). Placeholders in `.env.local.example`. 
 1. Read `CLAUDE.md`, `AGENTS.md`, and this file.
 2. Read `MEMORY.md` for the user's working preferences + project context.
 3. Confirm `.env.local` has Supabase + SMS + Evmark + OpenAI filled.
-4. **Begin Phase 9 (admin foundation).** Start with `requireAdmin()` + the `/admin` layout — every later admin surface sits on this plumbing.
+4. **Begin Phase 10 (KYC review queue).** Build on the admin shell in `src/app/[locale]/admin/` — new routes `/admin/kyc` and `/admin/kyc/[id]`, approve/reject routes under `/api/admin/kyc/`, and SMS notifications on both outcomes.
 5. Update the snapshot commit trail with each SHA as phases land. Update the "Status" line at the top when a phase closes.
