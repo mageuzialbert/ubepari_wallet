@@ -1174,6 +1174,133 @@
         "notesRequired": "Sababu inahitajika unapokataa.",
         "error": "Kuna tatizo. Tafadhali jaribu tena."
       }
+    },
+    "products": {
+      "metaTitle": "Bidhaa",
+      "eyebrow": "Msimamizi",
+      "heading": "Bidhaa",
+      "body": "Dhibiti orodha ya bidhaa inayoonekana kwenye duka. Mabadiliko yanaanza kufanya kazi mara tu unapohifadhi.",
+      "tabs": {
+        "active": "Zinazotumika",
+        "inactive": "Zilizohifadhiwa",
+        "all": "Zote"
+      },
+      "list": {
+        "searchPlaceholder": "Tafuta kwa jina, slug au chapa",
+        "allBrands": "Chapa zote",
+        "new": "Bidhaa mpya",
+        "empty": "Hakuna bidhaa inayolingana na vichujio hivi.",
+        "columns": {
+          "name": "Bidhaa",
+          "brand": "Chapa",
+          "price": "Bei ya taslimu",
+          "stock": "Hifadhi",
+          "status": "Hali"
+        },
+        "status": {
+          "active": "Hai",
+          "inactive": "Imehifadhiwa"
+        },
+        "stockOut": "Imeisha",
+        "featuredBadge": "Imesisitizwa"
+      },
+      "actions": {
+        "save": "Hifadhi",
+        "cancel": "Ghairi",
+        "create": "Unda bidhaa",
+        "delete": "Hifadhi bidhaa",
+        "backToList": "← Rudi kwenye bidhaa"
+      },
+      "form": {
+        "sectionIdentity": "Utambulisho",
+        "sectionCopy": "Maandishi",
+        "sectionCommerce": "Biashara",
+        "sectionSpecs": "Vipimo",
+        "sectionTags": "Lebo za matumizi",
+        "sectionImages": "Picha",
+        "slugLabel": "Slug",
+        "slugHint": "Kitambulishi salama cha URL. Herufi ndogo, nambari na mistari pekee.",
+        "slugLocked": "Slug imefungwa kwa sababu tayari kuna oda inayoitumia.",
+        "brandLabel": "Chapa",
+        "nameEn": "Jina (Kiingereza)",
+        "nameSw": "Jina (Kiswahili)",
+        "taglineEn": "Kauli mbiu (Kiingereza)",
+        "taglineSw": "Kauli mbiu (Kiswahili)",
+        "descriptionEn": "Maelezo (Kiingereza)",
+        "descriptionSw": "Maelezo (Kiswahili)",
+        "priceLabel": "Bei ya taslimu (TZS)",
+        "priceHint": "Nambari kamili ya TZS. Tunahesabu mpango wa mkopo kutokana na nambari hii.",
+        "stockLabel": "Hifadhi",
+        "stockHint": "Inapungua moja kwa moja mara tu amana inapokamilika.",
+        "featuredLabel": "Onyesha ukurasa wa mbele",
+        "activeLabel": "Inaonekana dukani",
+        "colorLabel": "Rangi ya msisitizo",
+        "colorHint": "Rangi ya hex inayotumika nyuma ya picha ya bidhaa.",
+        "specs": {
+          "cpu": "CPU",
+          "cpuGeneration": "Kizazi cha CPU",
+          "ram": "RAM",
+          "storage": "Hifadhi",
+          "gpu": "GPU",
+          "display": "Skrini",
+          "os": "Mfumo wa uendeshaji",
+          "weight": "Uzito"
+        },
+        "tagsHint": "Chagua kila matumizi ambayo kompyuta hii inaifanyia vizuri.",
+        "usageTags": {
+          "Gaming": "Michezo",
+          "Design": "Ubunifu",
+          "Coding": "Uandishi wa code",
+          "Office": "Ofisi",
+          "Student": "Mwanafunzi",
+          "Creator": "Muumbaji"
+        },
+        "validation": {
+          "required": "Inahitajika",
+          "length": "Urefu si sahihi",
+          "format": "Muundo si sahihi",
+          "range": "Nje ya kiwango",
+          "enum": "Chagua kati ya thamani zinazokubalika"
+        }
+      },
+      "images": {
+        "heading": "Picha",
+        "hint": "Hadi picha {max}. JPEG, PNG au WebP, kiwango cha juu 4 MB kila moja. Buruta vigae kupanga upya.",
+        "upload": "Pakia picha",
+        "uploading": "Inapakia…",
+        "delete": "Ondoa",
+        "confirmDelete": "Ondoa picha hii?",
+        "altEn": "Maelezo mbadala (Kiingereza)",
+        "altSw": "Maelezo mbadala (Kiswahili)",
+        "save": "Hifadhi maelezo",
+        "empty": "Hakuna picha bado. Pakia moja kuanza.",
+        "toast": {
+          "uploaded": "Picha imepakiwa.",
+          "removed": "Picha imeondolewa.",
+          "reordered": "Mpangilio umehifadhiwa.",
+          "altSaved": "Maelezo mbadala yamehifadhiwa.",
+          "tooBig": "Faili ni kubwa sana (kiwango cha juu 4 MB).",
+          "badType": "Ni picha za JPEG, PNG au WebP tu zinazokubaliwa.",
+          "limit": "Umefikia kikomo cha picha {max}.",
+          "error": "Kuna tatizo. Tafadhali jaribu tena."
+        }
+      },
+      "delete": {
+        "confirmTitle": "Hifadhi bidhaa hii?",
+        "confirmBody": "Itatoweka dukani mara moja. Unaweza kuirudisha baadaye kutoka kichupo cha Zilizohifadhiwa.",
+        "submit": "Hifadhi bidhaa"
+      },
+      "toast": {
+        "created": "Bidhaa imeundwa.",
+        "updated": "Imehifadhiwa.",
+        "deleted": "Bidhaa imehifadhiwa.",
+        "slugInUse": "Slug hiyo tayari inatumika.",
+        "slugLocked": "Huwezi kubadilisha slug — oda zinaitumia.",
+        "validation": "Angalia sehemu zilizoangaziwa.",
+        "notFound": "Bidhaa haikupatikana.",
+        "unauthenticated": "Ingia tena ili kuendelea.",
+        "error": "Kuna tatizo. Tafadhali jaribu tena."
+      }
     }
   }
 }

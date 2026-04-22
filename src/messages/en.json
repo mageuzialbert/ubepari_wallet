@@ -1174,6 +1174,133 @@
         "notesRequired": "A reason is required when rejecting.",
         "error": "Something went wrong. Please try again."
       }
+    },
+    "products": {
+      "metaTitle": "Products",
+      "eyebrow": "Admin",
+      "heading": "Products",
+      "body": "Manage the catalog staff sees in the store. Edits go live the moment you save.",
+      "tabs": {
+        "active": "Active",
+        "inactive": "Archived",
+        "all": "All"
+      },
+      "list": {
+        "searchPlaceholder": "Search by name, slug, or brand",
+        "allBrands": "All brands",
+        "new": "New product",
+        "empty": "No products match these filters.",
+        "columns": {
+          "name": "Product",
+          "brand": "Brand",
+          "price": "Cash price",
+          "stock": "Stock",
+          "status": "Status"
+        },
+        "status": {
+          "active": "Active",
+          "inactive": "Archived"
+        },
+        "stockOut": "Out of stock",
+        "featuredBadge": "Featured"
+      },
+      "actions": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "create": "Create product",
+        "delete": "Archive product",
+        "backToList": "← Back to products"
+      },
+      "form": {
+        "sectionIdentity": "Identity",
+        "sectionCopy": "Copy",
+        "sectionCommerce": "Commerce",
+        "sectionSpecs": "Specifications",
+        "sectionTags": "Usage tags",
+        "sectionImages": "Images",
+        "slugLabel": "Slug",
+        "slugHint": "URL-safe identifier. Lowercase letters, numbers and dashes only.",
+        "slugLocked": "Slug is locked because at least one order already references this product.",
+        "brandLabel": "Brand",
+        "nameEn": "Name (English)",
+        "nameSw": "Name (Swahili)",
+        "taglineEn": "Tagline (English)",
+        "taglineSw": "Tagline (Swahili)",
+        "descriptionEn": "Description (English)",
+        "descriptionSw": "Description (Swahili)",
+        "priceLabel": "Cash price (TZS)",
+        "priceHint": "Integer TZS. We compute the credit plan from this number.",
+        "stockLabel": "Stock",
+        "stockHint": "Decremented automatically when a deposit settles.",
+        "featuredLabel": "Featured on landing",
+        "activeLabel": "Visible in store",
+        "colorLabel": "Accent color",
+        "colorHint": "Hex code used behind product art on the detail page.",
+        "specs": {
+          "cpu": "CPU",
+          "cpuGeneration": "CPU generation",
+          "ram": "RAM",
+          "storage": "Storage",
+          "gpu": "GPU",
+          "display": "Display",
+          "os": "Operating system",
+          "weight": "Weight"
+        },
+        "tagsHint": "Pick every use case this machine handles well.",
+        "usageTags": {
+          "Gaming": "Gaming",
+          "Design": "Design",
+          "Coding": "Coding",
+          "Office": "Office",
+          "Student": "Student",
+          "Creator": "Creator"
+        },
+        "validation": {
+          "required": "Required",
+          "length": "Length out of range",
+          "format": "Bad format",
+          "range": "Out of allowed range",
+          "enum": "Pick one of the allowed values"
+        }
+      },
+      "images": {
+        "heading": "Images",
+        "hint": "Up to {max} images. JPEG, PNG or WebP, 4 MB max each. Drag tiles to reorder.",
+        "upload": "Upload image",
+        "uploading": "Uploading…",
+        "delete": "Remove",
+        "confirmDelete": "Remove this image?",
+        "altEn": "Alt text (English)",
+        "altSw": "Alt text (Swahili)",
+        "save": "Save alt",
+        "empty": "No images yet. Upload one to start.",
+        "toast": {
+          "uploaded": "Image uploaded.",
+          "removed": "Image removed.",
+          "reordered": "Order saved.",
+          "altSaved": "Alt text saved.",
+          "tooBig": "File too large (max 4 MB).",
+          "badType": "Only JPEG, PNG or WebP images are accepted.",
+          "limit": "You've reached the maximum of {max} images.",
+          "error": "Something went wrong. Please try again."
+        }
+      },
+      "delete": {
+        "confirmTitle": "Archive this product?",
+        "confirmBody": "It disappears from the store immediately. You can reactivate it later from the Archived tab.",
+        "submit": "Archive product"
+      },
+      "toast": {
+        "created": "Product created.",
+        "updated": "Saved.",
+        "deleted": "Product archived.",
+        "slugInUse": "That slug is already taken.",
+        "slugLocked": "You can't change the slug — orders reference it.",
+        "validation": "Check the highlighted fields.",
+        "notFound": "Product not found.",
+        "unauthenticated": "Sign in again to continue.",
+        "error": "Something went wrong. Please try again."
+      }
     }
   }
 }
