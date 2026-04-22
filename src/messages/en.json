@@ -8,7 +8,16 @@
     "signIn": "Sign in",
     "getStarted": "Get started",
     "openMenu": "Open menu",
-    "logoLabel": "Ubepari Wallet"
+    "logoLabel": "Ubepari Wallet",
+    "account": "Account",
+    "accountMenu": {
+      "signedInAs": "Signed in as",
+      "profile": "Profile",
+      "orders": "My orders",
+      "wallet": "My wallet",
+      "kyc": "Identity (KYC)",
+      "signOut": "Sign out"
+    }
   },
   "nav": {
     "store": "Store",

@@ -8,7 +8,16 @@
     "signIn": "Ingia",
     "getStarted": "Anza sasa",
     "openMenu": "Fungua menyu",
-    "logoLabel": "Ubepari Wallet"
+    "logoLabel": "Ubepari Wallet",
+    "account": "Akaunti",
+    "accountMenu": {
+      "signedInAs": "Umeingia kama",
+      "profile": "Wasifu",
+      "orders": "Oda zangu",
+      "wallet": "Wallet yangu",
+      "kyc": "Uthibitisho (KYC)",
+      "signOut": "Toka"
+    }
   },
   "nav": {
     "store": "Duka",
