@@ -8,16 +8,15 @@ import { CreditCalculator } from "@/components/product/credit-calculator";
 import { ProductCard } from "@/components/product/product-card";
 import { Badge } from "@/components/ui/badge";
 import { formatTzs } from "@/lib/currency";
-import { getProduct, getProducts, PRODUCT_SLUGS } from "@/lib/products";
+import { getProduct, getProducts, getProductSlugs } from "@/lib/products";
 import { hasLocale, locales } from "@/i18n/config";
 import { getDictionary } from "../../dictionaries";
 
 type ProductPageParams = Promise<{ locale: string; slug: string }>;
 
 export async function generateStaticParams() {
-  return locales.flatMap((locale) =>
-    PRODUCT_SLUGS.map((slug) => ({ locale, slug })),
-  );
+  const slugs = await getProductSlugs();
+  return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 }
 
 export async function generateMetadata({
@@ -27,7 +26,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   if (!hasLocale(locale)) return {};
-  const product = getProduct(slug, locale);
+  const product = await getProduct(slug, locale);
   if (!product) return {};
   return {
     title: product.name,
@@ -42,12 +41,13 @@ export default async function ProductDetailPage({
 }) {
   const { locale, slug } = await params;
   if (!hasLocale(locale)) notFound();
-  const product = getProduct(slug, locale);
+  const product = await getProduct(slug, locale);
   if (!product) notFound();
   const dict = await getDictionary(locale);
   const t = dict.product;
 
-  const related = getProducts(locale)
+  const allProducts = await getProducts(locale);
+  const related = allProducts
     .filter(
       (p) =>
         p.slug !== product.slug &&

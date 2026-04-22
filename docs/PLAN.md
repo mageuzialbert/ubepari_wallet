@@ -1,7 +1,7 @@
 # Ubepari Wallet — Production Plan
 
 **Last updated:** 2026-04-22
-**Status:** Customer shop flow is complete end-to-end (auth, KYC, orders, Evmark pushes, OpenAI advisor, SEO, reliability). We now build out the rest of the real product: customer account pages, an admin + staff surface, product CMS, legal/compliance, and a proper production deploy. No more prototype framing — we are shipping a fully functional hire-purchase wallet.
+**Status:** Customer account surface (Phase 7), legal pages (Phase 15.1), and DB-backed product catalog (Phase 8) all landed. Next up: the admin foundation (Phase 9) so staff can review KYC and edit products in-app instead of via the Supabase dashboard.
 
 ---
 
@@ -13,17 +13,24 @@ Bilingual EN/SW hire-purchase wallet on Next.js 16 App Router. Supabase (auth + 
 
 - `/signup`, `/signin` — SMS OTP → custom JWT Supabase session
 - `/kyc` — submit NIDA + ID doc upload, status-aware view
-- `/store`, `/store/[slug]` — browse + reserve with deposit push
+- `/store`, `/store/[slug]` — browse + reserve with deposit push (DB-backed catalog)
 - `/wallet` — balance + topup + pay installment + activity feed
-- `/orders` — list of user's orders (list only, no detail page yet)
+- `/orders`, `/orders/[id]` — list + full detail with installment schedule + payment history
+- `/account`, `/account/edit`, `/account/payments` — profile view, edit, filtered payment history
 - `/recommend` — OpenAI `gpt-4o-mini` product advisor
 - `/support` — static support page
-- `/api/auth/signout` exists; sign-out button wiring TBD in header menu audit
+- `/about` — mission, principles, stats, locations
+- `/legal/terms`, `/legal/privacy`, `/legal/hire-purchase-agreement` — bilingual legal pages
+- Header dropdown: avatar + Profile/Orders/Wallet/Sign out for signed-in users
 
 **Commit trail on `master`** (most recent first)
 
 | SHA | What |
 |---|---|
+| `6465055` | About page |
+| `5f718f1` | Legal pages (terms, privacy, hire-purchase agreement) |
+| `ef91476` | Account profile + order detail + payment history |
+| `168a1bd` | Header signed-in menu + sign-out wiring |
 | `d0c6ac6` | Rate limits, pending-push guard, structured events |
 | `c81a05b` | SEO — hreflang, sitemap, robots, OG |
 | `fe37389` | OpenAI-backed `/recommend` |
@@ -51,7 +58,7 @@ Bilingual EN/SW hire-purchase wallet on Next.js 16 App Router. Supabase (auth + 
 - **Interpolation:** chained `.replace("{token}", value)`. No ICU lib.
 - **Currency:** `formatTzs(amount, locale)` in `src/lib/currency.ts`, TZS only.
 - **Dates:** `formatDate(date, locale, options)` in `src/lib/datetime.ts`.
-- **Products (today, static):** `lib/products.ts` — `RawProduct` has `{en,sw}` for name/tagline/description; consumers call `getProducts(locale)` / `getProduct(slug, locale)` / `getFeaturedProducts(locale)`. **Will migrate to DB in Phase 8.**
+- **Products:** DB-backed via `products` + `product_images` tables. `lib/products.ts` is `server-only` and exposes async `getProducts(locale)`, `getProduct(slug, locale)`, `getFeaturedProducts(locale)`, `getProductsBySlugs(slugs, locale)`, `getProductSlugs()`. Reads via the anon client (`supabaseAnon()`); bilingual columns (`name_en`/`name_sw`, etc.) resolved in the loader. Images resolve to Supabase Storage public URLs.
 
 ---
 
@@ -68,19 +75,19 @@ Supabase postgres + Storage + Auth. RLS on every table; every write goes through
 - **`payments`** — user_id, order_id?, kind (deposit|installment|topup|refund), amount, provider (mpesa|tigopesa|airtelmoney|card), evmark_ref, evmark_reference_id, status, raw_callback, settled_at.
 - **`wallet_entries`** — kind (credit|debit), amount, payment_id, note_key, note_params jsonb. Balance = Σcredits − Σdebits.
 - **`otp_challenges`** — phone, bcrypt code_hash, expires_at, attempts. Service-role only.
+- **`products`** — slug (unique), brand, cash_price_tzs, specs jsonb, usage_tags text[], stock int, featured bool, color_accent text, active bool, created_at, updated_at. Bilingual columns: `name_en`, `name_sw`, `tagline_en`, `tagline_sw`, `description_en`, `description_sw`. RLS: `anon`/`authenticated` can select where `active=true`; writes service-role only.
+- **`product_images`** — product_id, path (Storage key), position int, alt_en, alt_sw. RLS: select when parent product active; writes service-role only.
 
-### Tables to add (Phase 8+)
+### Tables to add (Phase 9+)
 
-- **`products`** — slug (unique), brand, cash_price_tzs, specs jsonb, usage_tags text[], stock int, featured bool, color_accent text, active bool, created_at, updated_at. Bilingual columns: `name_en`, `name_sw`, `tagline_en`, `tagline_sw`, `description_en`, `description_sw`.
-- **`product_images`** — product_id, path (Storage), position int, alt_en, alt_sw.
 - **`admin_audit_log`** — actor_id, action (kyc.approve, kyc.reject, order.cancel, payment.refund, product.update, credit_limit.change, etc.), target_table, target_id, diff jsonb, created_at. Append-only, service-role only.
 
 ### Storage
 
-- **`kyc-documents`** (existing, private) — `{user_id}/id.{ext}`.
-- **`product-images`** (to add, public read) — `{product_id}/{position}.{ext}`. Service-role write only; exposed read-only via public URLs.
+- **`kyc-documents`** (private) — `{user_id}/id.{ext}`.
+- **`product-images`** (public read) — `{product_id}/{position}.{ext}`. Service-role write only; reads via CDN public URLs.
 
-Migration lives at `supabase/migrations/0001_init.sql`. New migrations will be numbered sequentially (`0002_products.sql`, `0003_admin_audit.sql`, etc.). Re-apply via Supabase SQL editor.
+Migrations live at `supabase/migrations/`. Applied: `0001_init.sql` (baseline), `0002_products.sql` (catalog + bucket). New migrations will be numbered sequentially (`0003_admin_audit.sql`, etc.). Re-apply via Supabase SQL editor.
 
 ### Auth adapter
 
@@ -150,7 +157,7 @@ Each phase has a **commit boundary** — the set of commits that land together w
 
 ---
 
-## Phase 7 — Customer account surface
+## Phase 7 — Customer account surface  ✅ done
 
 Fill the visible gaps on the authenticated user side. Small phase, high polish.
 
@@ -169,7 +176,7 @@ Fill the visible gaps on the authenticated user side. Small phase, high polish.
 
 ---
 
-## Phase 8 — Product catalog → Supabase
+## Phase 8 — Product catalog → Supabase  ✅ done
 
 Prerequisite for admin product CRUD. Migrate the static TS catalog into DB tables without breaking existing order references (they join by slug, which survives).
 
@@ -392,5 +399,5 @@ Live values in `.env.local` (gitignored). Placeholders in `.env.local.example`. 
 1. Read `CLAUDE.md`, `AGENTS.md`, and this file.
 2. Read `MEMORY.md` for the user's working preferences + project context.
 3. Confirm `.env.local` has Supabase + SMS + Evmark + OpenAI filled.
-4. **Begin Phase 7 (customer account surface).** Start with the header auth menu audit — it's the fastest win and unblocks every other account page by giving them navigation.
-5. Update the snapshot commit trail with each SHA as phases land. Update the "Current stage" line at the top when a phase closes.
+4. **Begin Phase 9 (admin foundation).** Start with `requireAdmin()` + the `/admin` layout — every later admin surface sits on this plumbing.
+5. Update the snapshot commit trail with each SHA as phases land. Update the "Status" line at the top when a phase closes.

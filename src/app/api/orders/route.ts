@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "invalid_phone" }, { status: 400 });
   }
 
-  const product = getProduct(productSlug, defaultLocale);
+  const product = await getProduct(productSlug, defaultLocale);
   if (!product) {
     return NextResponse.json({ error: "product_not_found" }, { status: 404 });
   }

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { locales } from "@/i18n/config";
-import { PRODUCT_SLUGS } from "@/lib/products";
+import { getProductSlugs } from "@/lib/products";
 
 const PUBLIC_PATHS = [
   "",
@@ -12,7 +12,7 @@ const PUBLIC_PATHS = [
   "/signup",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ubeparipc.tech";
   const now = new Date();
 
@@ -30,7 +30,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  for (const slug of PRODUCT_SLUGS) {
+  const slugs = await getProductSlugs();
+  for (const slug of slugs) {
     entries.push({
       url: `${base}/${locales[0]}/store/${slug}`,
       lastModified: now,

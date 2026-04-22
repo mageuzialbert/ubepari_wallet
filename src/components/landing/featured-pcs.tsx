@@ -4,16 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "motion/react";
 
-import { getFeaturedProducts } from "@/lib/products";
+import type { Product } from "@/lib/products";
 import { formatTzs } from "@/lib/currency";
 import { computeCreditPlan } from "@/lib/credit";
 import { useDictionary, useLocale } from "@/i18n/provider";
 
-export function FeaturedPcs() {
+export function FeaturedPcs({ products }: { products: Product[] }) {
   const dict = useDictionary();
   const locale = useLocale();
   const t = dict.featured;
-  const products = getFeaturedProducts(locale);
 
   return (
     <section className="mx-auto mt-24 max-w-6xl px-4 sm:px-6">

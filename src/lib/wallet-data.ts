@@ -2,7 +2,7 @@ import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Database } from "@/lib/supabase/types";
-import { getProduct } from "@/lib/products";
+import { getProduct, getProductsBySlugs } from "@/lib/products";
 import type { Locale } from "@/i18n/config";
 
 type Client = SupabaseClient<Database>;
@@ -103,30 +103,33 @@ export async function getWalletSnapshot(
     0,
   );
 
-  const activeOrders = orders
-    .filter((o) => o.status === "active")
-    .map((order) => {
-      const orderInstallments = installments
-        .filter((i) => i.order_id === order.id)
-        .sort((a, b) => a.sequence - b.sequence);
-      const paid = orderInstallments.filter((i) => i.paid_at !== null);
-      const nextDue = orderInstallments.find((i) => i.paid_at === null);
-      const paidTzs = paid.reduce((acc, i) => acc + i.amount_tzs, 0);
-      const product = getProduct(order.product_slug, locale);
-      return {
-        id: order.id,
-        reference: order.reference,
-        productSlug: order.product_slug,
-        productName: product?.name ?? order.product_slug,
-        productImage: product?.images[0] ?? "",
-        principalTzs: order.cash_price_tzs,
-        paidTzs,
-        termMonths: order.plan_months,
-        monthsPaid: paid.length,
-        monthlyTzs: order.monthly_tzs,
-        nextDueDate: nextDue?.due_date ?? null,
-      };
-    });
+  const activeOrderRows = orders.filter((o) => o.status === "active");
+  const productMap = await getProductsBySlugs(
+    activeOrderRows.map((o) => o.product_slug),
+    locale,
+  );
+  const activeOrders = activeOrderRows.map((order) => {
+    const orderInstallments = installments
+      .filter((i) => i.order_id === order.id)
+      .sort((a, b) => a.sequence - b.sequence);
+    const paid = orderInstallments.filter((i) => i.paid_at !== null);
+    const nextDue = orderInstallments.find((i) => i.paid_at === null);
+    const paidTzs = paid.reduce((acc, i) => acc + i.amount_tzs, 0);
+    const product = productMap.get(order.product_slug);
+    return {
+      id: order.id,
+      reference: order.reference,
+      productSlug: order.product_slug,
+      productName: product?.name ?? order.product_slug,
+      productImage: product?.images[0] ?? "",
+      principalTzs: order.cash_price_tzs,
+      paidTzs,
+      termMonths: order.plan_months,
+      monthsPaid: paid.length,
+      monthlyTzs: order.monthly_tzs,
+      nextDueDate: nextDue?.due_date ?? null,
+    };
+  });
 
   const allUnpaid = installments
     .filter((i) => i.paid_at === null)
@@ -239,7 +242,7 @@ export async function getOrderDetail(
       .order("created_at", { ascending: false }),
   ]);
 
-  const product = getProduct(order.product_slug, locale);
+  const product = await getProduct(order.product_slug, locale);
 
   return {
     id: order.id,
@@ -331,13 +334,18 @@ export async function getOrdersSnapshot(
     );
   const installmentRows = installments ?? [];
 
+  const productMap = await getProductsBySlugs(
+    orderRows.map((o) => o.product_slug),
+    locale,
+  );
+
   return {
     orders: orderRows.map((order) => {
       const mine = installmentRows
         .filter((i) => i.order_id === order.id)
         .sort((a, b) => a.sequence - b.sequence);
       const paid = mine.filter((i) => i.paid_at !== null);
-      const product = getProduct(order.product_slug, locale);
+      const product = productMap.get(order.product_slug);
       return {
         id: order.id,
         reference: order.reference,
@@ -425,9 +433,12 @@ export async function getPaymentsHistory(
     ordersById = new Map((orders ?? []).map((o) => [o.id, o]));
   }
 
+  const slugs = Array.from(ordersById.values()).map((o) => o.product_slug);
+  const productMap = await getProductsBySlugs(slugs, locale);
+
   return rows.map((p) => {
     const order = p.order_id ? ordersById.get(p.order_id) : null;
-    const product = order ? getProduct(order.product_slug, locale) : null;
+    const product = order ? productMap.get(order.product_slug) : null;
     return {
       id: p.id,
       kind: p.kind,

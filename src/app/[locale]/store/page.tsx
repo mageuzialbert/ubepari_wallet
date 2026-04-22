@@ -42,7 +42,7 @@ export default async function StorePage({
 
   const { usage, brand, price } = await searchParams;
 
-  let filtered = getProducts(locale);
+  let filtered = await getProducts(locale);
   if (usage) {
     filtered = filtered.filter((p) =>
       p.usageTags.includes(usage as UsageTag),

@@ -4,8 +4,9 @@ import { askLlm } from "@/lib/llm";
 import { getProducts } from "@/lib/products";
 import { defaultLocale, hasLocale } from "@/i18n/config";
 
-function buildCatalogPrompt(locale: "en" | "sw") {
-  return getProducts(locale).map((p) => ({
+async function buildCatalogPrompt(locale: "en" | "sw") {
+  const products = await getProducts(locale);
+  return products.map((p) => ({
     slug: p.slug,
     name: p.name,
     brand: p.brand,
@@ -50,7 +51,7 @@ export async function POST(req: NextRequest) {
   const cookie = req.cookies.get("NEXT_LOCALE")?.value;
   const locale = cookie && hasLocale(cookie) ? cookie : defaultLocale;
 
-  const catalog = buildCatalogPrompt(locale);
+  const catalog = await buildCatalogPrompt(locale);
   const system = `${locale === "sw" ? SYSTEM_SW : SYSTEM_EN}\n\nCatalog:\n${JSON.stringify(catalog, null, 0)}`;
 
   const result = await askLlm({ system, user: prompt, jsonOutput: true, maxTokens: 500 });
