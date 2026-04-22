@@ -460,5 +460,397 @@
         "body": "A real person on the other end. Your order ID is pre-filled."
       }
     ]
+  },
+  "legal": {
+    "eyebrow": "Legal",
+    "lastUpdated": "Last updated {date} · version {version}",
+    "lastUpdatedDate": "1 April 2026",
+    "toc": "Contents",
+    "controllingVersion": "The English version is the controlling version of this document. The Swahili translation is provided for convenience; if the two diverge, the English text prevails.",
+    "backToHome": "← Back to home",
+    "relatedHeading": "Related documents",
+    "relatedLinks": {
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "hirePurchase": "Hire-Purchase Agreement"
+    },
+    "contactBlock": {
+      "title": "Questions about this document?",
+      "body": "Reach a real person. For formal complaints, please write to the email below and include your phone number and order reference (if any).",
+      "emailLabel": "Email",
+      "emailValue": "support@ubeparipc.com",
+      "phoneLabel": "Phone",
+      "phoneValue": "+255 683 491 481",
+      "whatsappLabel": "WhatsApp",
+      "whatsappHref": "https://wa.me/255683491481",
+      "whatsappValue": "wa.me/255683491481",
+      "hqLabel": "Head office",
+      "hqValue": "Magomeni Usalama, Dar es Salaam, Tanzania",
+      "shopLabel": "Showroom",
+      "shopValue": "Magomeni Mapipa, Dar es Salaam, Tanzania"
+    },
+    "terms": {
+      "metaTitle": "Terms of Service",
+      "metaDescription": "The rules that govern your use of Ubepari Wallet — who we are, who can sign up, how payments and hire-purchase work, and your rights under Tanzanian law.",
+      "heading": "Terms of Service",
+      "intro": "These Terms are a legal agreement between you and Ubepari PC Co LTD. They govern your use of Ubepari Wallet — the website, the account, the hire-purchase plans, and every payment that runs through our platform. Please read them. By creating an account or reserving a PC, you confirm that you have read and accepted them.",
+      "sections": {
+        "about": {
+          "title": "1. Who we are",
+          "body": [
+            "Ubepari PC Co LTD (\"Ubepari\", \"we\", \"us\", \"our\") is a private limited company incorporated in the United Republic of Tanzania. Our head office is at Magomeni Usalama, Dar es Salaam; our showroom is at Magomeni Mapipa, Dar es Salaam.",
+            "Ubepari Wallet is the online platform through which Ubepari sells personal computers and finances their purchase on installment plans. The Wallet is operated by Ubepari directly; payment processing is handled by a licensed payment aggregator on our behalf (see section 8)."
+          ]
+        },
+        "eligibility": {
+          "title": "2. Who can use the service",
+          "body": [
+            "To create an account and buy from Ubepari Wallet you must:",
+            "• be at least 18 years old;\n• hold a valid Tanzanian National Identification Number (NIDA) or a valid passport recognised in Tanzania;\n• be resident in Tanzania and provide a Tanzanian mobile number (255XXXXXXXXX);\n• have the legal capacity to enter into a binding contract.",
+            "We may refuse to create an account, or close an existing one, where we reasonably believe these requirements are not met or where we are required to do so by law."
+          ]
+        },
+        "account": {
+          "title": "3. Your account",
+          "body": [
+            "Your account is tied to your phone number. We verify it by sending a one-time password (OTP) over SMS. You are responsible for keeping your phone and SIM card secure. Anyone with access to the OTP sent to your phone can sign in to your account — if you lose your phone, contact us immediately.",
+            "The information you give us at sign-up and during KYC (name, date of birth, NIDA, address, ID document) must be accurate and current. If your details change, you must update them. We rely on this information to operate the service and to meet our obligations under Tanzanian law.",
+            "One person, one account. Do not share, sell, or transfer your account. Using a false identity or someone else's identity is a criminal offence under the Electronic Transactions Act 2015."
+          ]
+        },
+        "kyc": {
+          "title": "4. Identity verification (KYC)",
+          "body": [
+            "Before you can reserve a PC or take out a hire-purchase plan you must complete Know-Your-Customer verification. You upload a clear copy of your NIDA card or passport, confirm your legal names, and may optionally add your workplace.",
+            "Our team reviews each submission manually. Most reviews clear within a few hours during business days. We may ask for additional documents or decline verification without giving reasons, as permitted by law.",
+            "Once you are verified, you are assigned a credit limit. Your credit limit is a commercial decision by Ubepari and can be changed at any time based on your payment history, our risk appetite, and regulatory guidance."
+          ]
+        },
+        "wallet": {
+          "title": "5. Ubepari Wallet",
+          "body": [
+            "Your Ubepari Wallet is a running ledger of the money you have paid in, the money we have debited for deposits and installments, and any refunds. It is not a bank account. Ubepari Wallet does not pay interest and does not provide payment services to third parties.",
+            "You can top up your Wallet via mobile money or card at any time. Top-ups are non-refundable in cash, but the balance can be applied to any current or future Ubepari purchase or installment.",
+            "If your account is closed, any positive Wallet balance will be refunded to the original payment method, less any amounts you owe us, within 30 business days."
+          ]
+        },
+        "purchases": {
+          "title": "6. Buying a PC",
+          "body": [
+            "When you reserve a PC, you are making an offer to buy it on the plan you selected. The sale is concluded when we confirm the order, the deposit has been received, and we have delivered or made the PC available for pickup at our showroom.",
+            "Prices are shown in Tanzanian Shillings (TZS) and include Value Added Tax where applicable. We try to keep catalog prices accurate but may correct obvious errors; if a price on your order differs materially from the price at the time you placed it because of a correction, we will contact you before charging the deposit.",
+            "Stock is limited. If a model goes out of stock between reservation and fulfilment, we will contact you with options: a similar model, wait for restock, or full refund of the deposit."
+          ]
+        },
+        "hirePurchaseRef": {
+          "title": "7. Hire-purchase plans",
+          "body": [
+            "If you choose a hire-purchase plan (3, 6, 9, or 12 months), the separate Hire-Purchase Agreement applies in addition to these Terms. That agreement is the contract of sale-by-installments and sets out the details of ownership, installments, default, and repossession in line with the Hire-Purchase Act, 1966.",
+            "By tapping the reserve button on a hire-purchase plan, you accept both these Terms and the Hire-Purchase Agreement for that specific order. Each order produces its own separate agreement."
+          ]
+        },
+        "payments": {
+          "title": "8. Payments and providers",
+          "body": [
+            "We accept M-Pesa, Tigo Pesa, Airtel Money and Visa / Mastercard cards. All payments are routed through a licensed aggregator (Evmark, operating under the iPAB International merchant arrangement) that holds the required licences with the Bank of Tanzania and the card networks. You authorise each payment explicitly, either by confirming the USSD prompt on your phone or by submitting your card details.",
+            "Payments are in TZS. If your card is issued in a different currency, your bank applies its own exchange rate and fees — check with them.",
+            "We never see or store your mobile-money PIN, and we do not store full card numbers on our servers. Card data is handled by the aggregator in line with PCI-DSS requirements."
+          ]
+        },
+        "fees": {
+          "title": "9. Fees and charges",
+          "body": [
+            "Cash purchases carry no service fee. Hire-purchase plans carry a service fee based on the term you choose: 0% for 3 months, 5% for 6 months, 8% for 9 months, and 12% for 12 months. The fee is calculated on the financed amount (the cash price less your 20% deposit) and is shown in full before you commit. Monthly installments are rounded up to the nearest 1,000 TZS.",
+            "We charge a late fee of 2% of the missed installment for each period that begins 7 days or more after the due date. Early payoff is free — you can clear your balance at any time without penalty.",
+            "We do not charge to top up your Wallet. Your mobile-money provider or card issuer may apply their own transaction fees — check with them."
+          ]
+        },
+        "warranty": {
+          "title": "10. Warranty, returns and defective goods",
+          "body": [
+            "Every new PC comes with the manufacturer's 12-month limited warranty. We pass this warranty through to you in full; we do not limit it. Warranty covers manufacturing defects, not accidental damage, liquid damage, or wear-and-tear.",
+            "If a PC arrives dead-on-arrival or develops a defect within 7 days of delivery, we will replace or repair it at no cost to you. After 7 days, we honour the manufacturer's warranty process and help you coordinate it.",
+            "These rights are in addition to any rights you may have under Tanzanian consumer-protection law. Nothing in these Terms limits those rights."
+          ]
+        },
+        "acceptableUse": {
+          "title": "11. Acceptable use",
+          "body": [
+            "You agree not to:",
+            "• use the service for any unlawful purpose, including money laundering, fraud, or financing illegal activity;\n• impersonate another person or misrepresent your identity;\n• attempt to bypass security, scrape the site with automation we have not authorised, or interfere with other users;\n• re-sell or commercially exploit the service without our written consent.",
+            "Breach of this section may result in immediate suspension or closure of your account, reporting to the police, and legal action for damages."
+          ]
+        },
+        "ip": {
+          "title": "12. Intellectual property",
+          "body": [
+            "The Ubepari name, logo, and the content and code of Ubepari Wallet are owned by Ubepari PC Co LTD or our licensors. You may view and use them only as part of using the service. You may not copy, modify, or publish them without our written permission.",
+            "Product photos, specifications, and brand names belong to their respective manufacturers and are used under licence or fair dealing."
+          ]
+        },
+        "availability": {
+          "title": "13. Service availability",
+          "body": [
+            "We do our best to keep Ubepari Wallet available around the clock, but we cannot guarantee uninterrupted service. We may need to take the service offline for maintenance, upgrades, or emergency fixes. Where possible, we will post advance notice on the site.",
+            "The service is provided \"as is\" and \"as available\". We disclaim all implied warranties to the maximum extent permitted by law, except as expressly stated in these Terms."
+          ]
+        },
+        "liability": {
+          "title": "14. Limitation of liability",
+          "body": [
+            "To the maximum extent permitted by law, our total liability to you for any claim arising out of or related to these Terms or your use of Ubepari Wallet is limited to the greater of (a) the total amount you have paid us in the 12 months before the claim, or (b) TZS 100,000.",
+            "We are not liable for indirect, incidental, special, consequential, or punitive damages, including loss of profit, revenue, data, or goodwill.",
+            "Nothing in this section limits liability for fraud, gross negligence, death or personal injury caused by our negligence, or any other liability that cannot be limited under Tanzanian law."
+          ]
+        },
+        "termination": {
+          "title": "15. Suspension and closure",
+          "body": [
+            "You can close your account at any time by writing to support@ubeparipc.com. Closure does not release you from obligations on any active hire-purchase plan.",
+            "We can suspend or close your account if we reasonably believe you are in breach of these Terms, have provided false information, are using the service for unlawful purposes, or if we are required to by law or regulator order. Where practicable we will give you notice and a chance to fix the issue first."
+          ]
+        },
+        "changes": {
+          "title": "16. Changes to these Terms",
+          "body": [
+            "We may change these Terms from time to time — for example, to reflect new products, new laws, or changes in how we operate. If the change is material, we will notify you by SMS, email, or in-app message at least 14 days before it takes effect. For non-material changes (typos, clarifications) we may update the document without individual notice.",
+            "The version and \"last updated\" date at the top of this page always reflect the current version. Continuing to use Ubepari Wallet after a change takes effect means you accept the new version. If you do not accept, stop using the service and close your account."
+          ]
+        },
+        "law": {
+          "title": "17. Governing law and disputes",
+          "body": [
+            "These Terms are governed by the laws of the United Republic of Tanzania, including the Electronic Transactions Act, 2015 and, where relevant, the Hire-Purchase Act, 1966 and the Personal Data Protection Act, 2022.",
+            "We prefer to resolve disputes directly — please write to us first. If that fails, the courts of Tanzania, sitting in Dar es Salaam, have exclusive jurisdiction. Nothing prevents you from filing a complaint with a competent regulator (for example, the Fair Competition Commission for consumer issues or the Personal Data Protection Commission for data issues)."
+          ]
+        },
+        "contact": {
+          "title": "18. Contact us",
+          "body": [
+            "If you have questions about these Terms, write to support@ubeparipc.com, call +255 683 491 481, or visit our showroom at Magomeni Mapipa, Dar es Salaam."
+          ]
+        }
+      }
+    },
+    "privacy": {
+      "metaTitle": "Privacy Policy",
+      "metaDescription": "How Ubepari collects, uses and protects your personal data — including your NIDA, phone number, KYC documents, and payment records — under the Tanzanian Personal Data Protection Act, 2022.",
+      "heading": "Privacy Policy",
+      "intro": "This policy explains what personal information Ubepari PC Co LTD collects when you use Ubepari Wallet, why we collect it, who we share it with, how long we keep it, and what rights you have over it. We have written it in plain language. If anything is unclear, email support@ubeparipc.com and we will help.",
+      "sections": {
+        "controller": {
+          "title": "1. Data controller",
+          "body": [
+            "The data controller is Ubepari PC Co LTD, a company incorporated in Tanzania, with its head office at Magomeni Usalama, Dar es Salaam. This means we decide what personal data to collect and how it is used, and we are accountable to you and to the Personal Data Protection Commission for how we handle it.",
+            "For privacy questions, write to support@ubeparipc.com with \"Privacy\" in the subject line. We aim to respond within 7 days."
+          ]
+        },
+        "whatWeCollect": {
+          "title": "2. What we collect",
+          "body": [
+            "From you directly when you sign up, verify, or transact:",
+            "• your mobile number in the format 255XXXXXXXXX;\n• your first and last name;\n• your email address (optional);\n• your NIDA number or passport details during KYC;\n• a photo or scan of your ID document;\n• your employer or business name (optional, during KYC);\n• details of the products you reserve and the plan you choose;\n• the phone number you use to authorise each mobile-money payment.",
+            "Automatically when you use the service:",
+            "• basic device information (browser, operating system, approximate IP-based location) for security and fraud prevention;\n• the dates, amounts, status and provider of each payment;\n• messages you send to our AI Tech Tips assistant.",
+            "From our payment aggregator (Evmark / iPAB):",
+            "• a transaction reference, provider reference, and the status (success / failure) of each payment authorised against your phone number."
+          ]
+        },
+        "whyWeCollect": {
+          "title": "3. Why we collect it and legal basis",
+          "body": [
+            "We collect your data only for the purposes listed below, and each is backed by a legal basis under the Personal Data Protection Act, 2022.",
+            "• Operating the service (performance of contract): creating your account, processing payments, fulfilling orders, managing hire-purchase plans.\n• KYC and credit decisions (legal obligation and legitimate interest): verifying your identity, assessing credit, preventing fraud and money laundering.\n• Customer support (performance of contract): answering questions, processing complaints, handling warranty.\n• Fraud and security (legitimate interest): logging, detecting suspicious activity, protecting other users and the business.\n• AI recommendations (performance of contract, with your explicit action): when you use AI Tech Tips, we send your question and our product catalog to our AI provider (see section 4). We do not send your name, phone number, NIDA, or any other identifier.\n• Service improvement (legitimate interest): aggregated, de-identified analysis of how people use the service. We do not use this to profile individuals.\n• Legal compliance (legal obligation): meeting our obligations under tax, financial-services, data-protection, and consumer-protection law."
+          ]
+        },
+        "processors": {
+          "title": "4. Who we share your data with",
+          "body": [
+            "We do not sell your data. We share it only with the processors below, each under a written agreement that limits what they may do with it:",
+            "• Evmark Tanzania Ltd, operating under the iPAB International merchant arrangement — for all mobile-money and card payment processing. They receive your phone number, the amount, and a reference code.\n• Messaging-service.co.tz — our SMS gateway. They receive your phone number and the message text (OTP codes, order confirmations).\n• Supabase, Inc. — our database and file-storage provider. Your account, KYC documents, and transaction records are stored on Supabase infrastructure in the EU-West (Ireland) region.\n• OpenAI, Inc. — our AI provider for the AI Tech Tips feature. They receive the text of your question and our product catalog; they do not receive your personal identifiers. Inputs to the OpenAI API are not used to train their models under their standard commercial terms.\n• Vercel, Inc. — our hosting and CDN provider. They see request metadata (IP, user-agent, URL) used to deliver pages and defend against abuse.",
+            "We will share your data with law enforcement, regulators, or courts if we are legally required to, and with our professional advisers (lawyers, auditors) where necessary and under duty of confidence."
+          ]
+        },
+        "crossBorder": {
+          "title": "5. Cross-border data transfers",
+          "body": [
+            "Some of our processors are outside Tanzania. Supabase stores your account and KYC data in the European Union (Ireland), OpenAI processes AI requests in the United States, and Vercel operates a global CDN. All transfers are made under contractual terms that require those processors to protect your data at a level equivalent to Tanzanian standards under the Personal Data Protection Act, 2022.",
+            "If you object to international transfer of your personal data, you should not use Ubepari Wallet and we cannot provide the service to you. Please write to support@ubeparipc.com if you wish to object and close your account."
+          ]
+        },
+        "retention": {
+          "title": "6. How long we keep your data",
+          "body": [
+            "We keep your data only as long as we need it.",
+            "• Account and contact details: while your account is open, plus 7 years after closure (to meet tax and financial-records law).\n• KYC documents (ID photos and NIDA): while your account is open, plus 7 years after closure, unless a specific law requires a shorter period.\n• Payment records: 10 years, in line with financial-records legislation.\n• OTP codes: deleted within 10 minutes of issue; phone + code-hash rows expire automatically.\n• AI Tech Tips messages: 90 days for support and quality review, then deleted.\n• Server logs (IP, user-agent): 90 days, then aggregated or deleted."
+          ]
+        },
+        "security": {
+          "title": "7. How we protect your data",
+          "body": [
+            "Your data is encrypted in transit (TLS) and at rest on our providers' infrastructure. KYC documents live in a private storage bucket that only service-role operations on our server can read. Access to your account is protected by phone + OTP; we do not use static passwords. Our database enforces row-level security so that one user cannot read another user's rows even if our application layer has a bug.",
+            "We train our team on data handling. We limit access to personal data to the staff who need it for their role. We log access to sensitive data.",
+            "No system is perfectly secure. If we ever suffer a personal-data breach that is likely to result in risk to your rights, we will notify you and the Personal Data Protection Commission within the timelines set by the Personal Data Protection Act, 2022."
+          ]
+        },
+        "yourRights": {
+          "title": "8. Your rights",
+          "body": [
+            "Under the Personal Data Protection Act, 2022 you have the right to:",
+            "• Access — ask for a copy of the personal data we hold about you.\n• Rectification — ask us to correct inaccurate or incomplete data.\n• Erasure — ask us to delete your data, subject to retention periods we are legally required to keep.\n• Objection — object to processing based on legitimate interest.\n• Restriction — ask us to stop processing your data temporarily while a query is resolved.\n• Portability — receive your data in a machine-readable format.\n• Withdraw consent — for any processing that was based on your consent.\n• Complain — lodge a complaint with the Personal Data Protection Commission of Tanzania.",
+            "To exercise any of these rights, write to support@ubeparipc.com from the email or phone number on your account. We respond within 30 days and may ask for proof of identity before acting."
+          ]
+        },
+        "cookies": {
+          "title": "9. Cookies and local storage",
+          "body": [
+            "We use one essential cookie — ubepari-session — to keep you signed in. It is set after you verify an OTP and is removed when you sign out. It is marked HttpOnly and Secure and cannot be read by scripts in the browser.",
+            "We also use local storage for your theme preference (light / dark) and your language choice (English / Swahili). These do not identify you.",
+            "We do not use advertising cookies or third-party analytics cookies by default. If this ever changes, we will update this policy and ask for your consent where required."
+          ]
+        },
+        "children": {
+          "title": "10. Children",
+          "body": [
+            "Ubepari Wallet is not directed at people under 18. We do not knowingly collect data from anyone under 18. If you believe a child has given us data, write to support@ubeparipc.com and we will delete it."
+          ]
+        },
+        "changes": {
+          "title": "11. Changes to this policy",
+          "body": [
+            "We may update this policy. If the update materially affects how we use your data, we will notify you by SMS, email, or in-app message at least 14 days before it takes effect. The version and \"last updated\" date at the top of this page always reflect the current version."
+          ]
+        },
+        "contact": {
+          "title": "12. Contact",
+          "body": [
+            "Write to support@ubeparipc.com, call +255 683 491 481, or visit our head office at Magomeni Usalama, Dar es Salaam. Mark privacy queries clearly so they reach the right team."
+          ]
+        }
+      }
+    },
+    "hirePurchase": {
+      "metaTitle": "Hire-Purchase Agreement",
+      "metaDescription": "The contract between Ubepari and you when you buy a PC on an installment plan — deposit, ownership, installments, late fees, default and repossession under the Hire-Purchase Act, 1966.",
+      "heading": "Hire-Purchase Agreement",
+      "intro": "This is the contract you enter into when you reserve a PC on a hire-purchase plan. It is made under the Hire-Purchase Act, 1966 and the laws of Tanzania. It should be read together with our Terms of Service and Privacy Policy. Each order you place on a plan creates a separate agreement; the specific price, deposit, term, service fee, and monthly installment are shown to you on the reservation screen and confirmed in your Wallet.",
+      "sections": {
+        "parties": {
+          "title": "1. Parties",
+          "body": [
+            "This agreement is between Ubepari PC Co LTD, a company incorporated in Tanzania with its head office at Magomeni Usalama, Dar es Salaam (\"Ubepari\", \"we\", the \"Owner\"), and you, the customer whose KYC details are on file (the \"Hirer\")."
+          ]
+        },
+        "definitions": {
+          "title": "2. Definitions",
+          "body": [
+            "\"Goods\" — the specific PC you have reserved, identified by model, serial number and order reference.\n\"Cash Price\" — the one-off price of the Goods if paid in full today, in TZS.\n\"Deposit\" — 20% of the Cash Price, paid at the time of reservation.\n\"Financed Amount\" — the Cash Price less the Deposit.\n\"Service Fee\" — a term-based fee on the Financed Amount: 0% for 3 months, 5% for 6 months, 8% for 9 months, 12% for 12 months.\n\"Total Hire Price\" — the Deposit plus the Financed Amount plus the Service Fee.\n\"Monthly Installment\" — the Financed Amount plus the Service Fee, divided by the number of months in the term, rounded up to the nearest 1,000 TZS.\n\"Wallet\" — your Ubepari Wallet account.\n\"Default\" — has the meaning given in section 11."
+          ]
+        },
+        "structure": {
+          "title": "3. Structure of the plan",
+          "body": [
+            "You pay the Deposit up front. On receipt of the Deposit we release the Goods to you (delivery or showroom pickup). You then pay the Monthly Installment once a month for the chosen term until the Total Hire Price is paid in full.",
+            "The exact numbers for your order — Cash Price, Deposit, Financed Amount, Service Fee, Monthly Installment, Total Hire Price, and due dates — are calculated live from the method published in our code repository (see src/lib/credit.ts) and shown on the reservation screen before you confirm. They are also recorded against your order in your Wallet."
+          ]
+        },
+        "terms": {
+          "title": "4. Available terms",
+          "body": [
+            "You may choose from the following terms at reservation:",
+            "• 3 months — 0% service fee\n• 6 months — 5% service fee\n• 9 months — 8% service fee\n• 12 months — 12% service fee",
+            "The Service Fee is applied to the Financed Amount (not the Cash Price). Monthly Installments are always rounded up to the nearest 1,000 TZS. A worked example is available on the product page."
+          ]
+        },
+        "deposit": {
+          "title": "5. Deposit",
+          "body": [
+            "The Deposit is paid at reservation via M-Pesa, Tigo Pesa, Airtel Money, or card, routed through our payment aggregator (Evmark / iPAB). The order is only confirmed once the Deposit has been settled on our side.",
+            "If you cancel before pickup or delivery, the Deposit is fully refundable within 14 days, to the original payment method."
+          ]
+        },
+        "delivery": {
+          "title": "6. Delivery and pickup",
+          "body": [
+            "Same-day pickup is available at our showroom in Magomeni Mapipa, Dar es Salaam. Delivery elsewhere in Dar es Salaam and upcountry is available by arrangement; a delivery charge may apply and will be quoted and agreed before dispatch.",
+            "You must present a valid ID (NIDA or passport) matching your KYC details at pickup. Risk in the Goods passes to you on delivery; ownership does not (see section 7)."
+          ]
+        },
+        "ownership": {
+          "title": "7. Ownership and risk",
+          "body": [
+            "Ubepari remains the legal owner of the Goods until the Total Hire Price has been paid in full, in line with the Hire-Purchase Act, 1966. Full ownership transfers to you automatically on payment of your last installment, without any further action by either party.",
+            "Risk of loss or damage passes to you on delivery. From that point you are responsible for protecting the Goods — for example, from theft, accidental damage, and liquid damage. You are strongly encouraged to arrange insurance. You must not sell, pledge, lease, or export the Goods before you own them."
+          ]
+        },
+        "installments": {
+          "title": "8. Installments",
+          "body": [
+            "Monthly Installments are due on the same day of the month as your delivery day (or, if that day does not exist in a given month, the last day of that month). Your repayment schedule is shown in the Orders section of your Wallet and you can pay ahead of schedule at any time.",
+            "You can pay installments manually from the Wallet, or top up the Wallet and let it apply automatically on the due date. We will send an SMS reminder 3 days before each due date."
+          ]
+        },
+        "lateFee": {
+          "title": "9. Late fees",
+          "body": [
+            "If a Monthly Installment is not paid by the due date, a late fee of 2% of the missed installment is charged once the installment is 7 or more days overdue. The late fee applies per overdue installment, not per day."
+          ]
+        },
+        "earlyPayoff": {
+          "title": "10. Early payoff",
+          "body": [
+            "You may clear the outstanding balance at any time, in part or in full. There is no early-payoff penalty. If you pay the Total Hire Price in full before the end of the term, the Service Fee is already baked into the Total Hire Price and is not rebated — but you save on any future late-fee risk and own the Goods outright immediately."
+          ]
+        },
+        "default": {
+          "title": "11. Default",
+          "body": [
+            "You are in default if any of the following happens:",
+            "• a Monthly Installment remains unpaid 30 days after its due date;\n• you provide materially false information during KYC;\n• you sell, pledge, lease, or export the Goods before ownership has transferred;\n• an insolvency procedure is opened against you.",
+            "Default gives us the rights in section 12, but only after we have sent you a written default notice (SMS, email, or letter) giving you 30 days to bring your account up to date."
+          ]
+        },
+        "repossession": {
+          "title": "12. Repossession and sale",
+          "body": [
+            "If you do not cure the default within the 30-day notice period, we may repossess the Goods. Repossession is carried out in line with the Hire-Purchase Act, 1966 — in particular, no repossession without written notice, and you have the right to cure your default at any time up to repossession.",
+            "If we repossess and sell the Goods, we will credit the net sale proceeds (sale price less reasonable costs of repossession and sale) against the outstanding Total Hire Price and the amount of any Service Fee attributable to the unexpired portion of the term. Any surplus is paid to you; any shortfall remains owed by you.",
+            "At any stage you retain the right to pay off the outstanding balance in full and keep the Goods."
+          ]
+        },
+        "warranty": {
+          "title": "13. Warranty",
+          "body": [
+            "The 12-month manufacturer warranty on the Goods is not affected by this agreement. Ubepari will help you coordinate warranty service throughout the term and after.",
+            "If the Goods are defective and must be replaced, the replacement Goods become subject to this same agreement as if delivered on the replacement date — installments continue on the original schedule."
+          ]
+        },
+        "customerDuties": {
+          "title": "14. Your duties",
+          "body": [
+            "While you do not yet own the Goods, you agree to:",
+            "• take reasonable care of the Goods;\n• keep them at your normal place of residence or business in Tanzania, and tell us if that address changes;\n• not modify the Goods in a way that materially reduces their value;\n• tell us promptly if the Goods are lost, stolen, or seriously damaged;\n• keep your KYC details current;\n• keep at least one working payment method on file."
+          ]
+        },
+        "amendments": {
+          "title": "15. Amendments",
+          "body": [
+            "This agreement cannot be changed verbally. Any amendment must be in writing and signed or electronically accepted by both parties."
+          ]
+        },
+        "law": {
+          "title": "16. Governing law",
+          "body": [
+            "This agreement is governed by the laws of the United Republic of Tanzania, in particular the Hire-Purchase Act, 1966 and the Electronic Transactions Act, 2015. The courts of Tanzania, sitting in Dar es Salaam, have exclusive jurisdiction over any dispute arising under it."
+          ]
+        },
+        "contact": {
+          "title": "17. Contact",
+          "body": [
+            "For anything concerning your hire-purchase plan — a missed installment, a change of address, a loss or theft report, an early-payoff request — write to support@ubeparipc.com, call +255 683 491 481, or visit the showroom at Magomeni Mapipa, Dar es Salaam."
+          ]
+        }
+      }
+    }
   }
 }
