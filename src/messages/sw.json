@@ -1056,5 +1056,43 @@
         }
       }
     }
+  },
+  "admin": {
+    "shell": {
+      "eyebrow": "Umeingia kama"
+    },
+    "nav": {
+      "dashboard": "Dashibodi",
+      "kyc": "Mapitio ya KYC",
+      "products": "Bidhaa",
+      "users": "Watumiaji",
+      "orders": "Oda",
+      "payments": "Malipo",
+      "reports": "Ripoti",
+      "comingSoon": "Inakuja"
+    },
+    "dashboard": {
+      "metaTitle": "Msimamizi",
+      "eyebrow": "Msimamizi",
+      "heading": "Dashibodi",
+      "body": "Mwonekano wa kila siku wa oda, mapato, foleni za mapitio, na hifadhi. Nambari zinatoka moja kwa moja kwenye hifadhidata — hakuna kuhifadhi, hakuna kukadiria.",
+      "sections": {
+        "orders": "Oda",
+        "revenue": "Mapato (malipo yaliyokamilika)",
+        "lowStock": "Hifadhi ndogo"
+      },
+      "labels": {
+        "today": "Leo",
+        "sevenDays": "Siku 7 zilizopita",
+        "thirtyDays": "Siku 30 zilizopita",
+        "active": "Hai",
+        "pendingKyc": "KYC inasubiri",
+        "overdue": "Awamu zilizochelewa",
+        "stock": "{n} zimebaki",
+        "view": "Angalia"
+      },
+      "revenueNote": "Inajumuisha amana, awamu, na kuongeza salio zilizokamilika. Marejesho na malipo yanayosubiri hayajumuishwi.",
+      "lowStockEmpty": "Kila bidhaa hai ina angalau vipande 3 kwenye hifadhi."
+    }
   }
 }

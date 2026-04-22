@@ -1056,5 +1056,43 @@
         }
       }
     }
+  },
+  "admin": {
+    "shell": {
+      "eyebrow": "Signed in as"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "kyc": "KYC review",
+      "products": "Products",
+      "users": "Users",
+      "orders": "Orders",
+      "payments": "Payments",
+      "reports": "Reports",
+      "comingSoon": "Soon"
+    },
+    "dashboard": {
+      "metaTitle": "Admin",
+      "eyebrow": "Admin",
+      "heading": "Dashboard",
+      "body": "A daily read on orders, revenue, review queues, and inventory. Numbers come straight from the database — no caching, no estimation.",
+      "sections": {
+        "orders": "Orders",
+        "revenue": "Revenue (settled payments)",
+        "lowStock": "Low stock"
+      },
+      "labels": {
+        "today": "Today",
+        "sevenDays": "Last 7 days",
+        "thirtyDays": "Last 30 days",
+        "active": "Active",
+        "pendingKyc": "Pending KYC",
+        "overdue": "Overdue installments",
+        "stock": "{n} left",
+        "view": "View"
+      },
+      "revenueNote": "Includes successful deposits, installments, and top-ups. Refunds and pending payments are excluded.",
+      "lowStockEmpty": "Every active product has at least 3 units in stock."
+    }
   }
 }
