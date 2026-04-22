@@ -133,6 +133,16 @@ type ProductImagesRow = {
   created_at: string;
 };
 
+type AdminAuditLogRow = {
+  id: string;
+  actor_id: string;
+  action: string;
+  target_table: string | null;
+  target_id: string | null;
+  diff: Record<string, unknown>;
+  created_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -245,6 +255,17 @@ export type Database = {
           alt_sw?: string | null;
         };
         Update: Partial<ProductImagesRow>;
+        Relationships: [];
+      };
+      admin_audit_log: {
+        Row: AdminAuditLogRow;
+        Insert: Pick<AdminAuditLogRow, "actor_id" | "action"> & {
+          id?: string;
+          target_table?: string | null;
+          target_id?: string | null;
+          diff?: Record<string, unknown>;
+        };
+        Update: Partial<AdminAuditLogRow>;
         Relationships: [];
       };
     };
