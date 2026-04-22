@@ -1,7 +1,7 @@
 # Ubepari Wallet — Production Plan
 
 **Last updated:** 2026-04-22
-**Status:** Customer account surface (Phase 7), legal pages (Phase 15.1), DB-backed product catalog (Phase 8), admin foundation (Phase 9), KYC review queue (Phase 10), product management (Phase 11), admin users + credit limits (Phase 12), and admin orders + payments ops (Phase 13: `/admin/orders` list + detail with manual-activate, cancel pending, and editable installment schedule; `/admin/payments` cross-user list with gated reconcile replacing `/api/dev/simulate-callback` in prod; v1 wallet-credit refund dialog surfaced from order detail + payments list; the Evmark callback success path and admin actions now share `settlePaymentSuccess()` so the three code paths can't drift) are all done. Next up: admin reports (Phase 14).
+**Status:** Customer account surface (Phase 7), legal pages (Phase 15.1), DB-backed product catalog (Phase 8), admin foundation (Phase 9), KYC review queue (Phase 10), product management (Phase 11), admin users + credit limits (Phase 12), admin orders + payments ops (Phase 13), and admin reports (Phase 14: `/admin/reports/{revenue,receivables,inventory,kyc}` with preset range tabs, recharts stacked-bar charts on revenue + KYC, aged buckets on receivables, low-stock flags on inventory, CSV export on all four via `src/lib/export/csv.ts` + `/api/admin/reports/*/export`) are all done. Next up: legal, compliance, account lifecycle (Phase 15).
 
 ---
 
@@ -27,6 +27,8 @@ Bilingual EN/SW hire-purchase wallet on Next.js 16 App Router. Supabase (auth + 
 
 | SHA | What |
 |---|---|
+| `ada994c` | Admin reports CSV export — streaming-free helpers + gated GET routes on all four reports |
+| `fd25a40` | Admin reports — revenue/receivables/inventory/KYC pages with recharts, range tabs, aged buckets |
 | `31ff4cb` | Admin orders + payments ops — list/detail, manual-activate, cancel, schedule editor, reconcile (replaces dev callback in prod), refunds (wallet credit) |
 | `b748073` | Extract `settlePaymentSuccess` — callback + admin actions share one settle path |
 | `39d72cd` | Admin role grant/revoke (root-gated via ROOT_ADMIN_PHONE) |
@@ -303,7 +305,7 @@ Operational tools — what staff need when something goes wrong.
 
 ---
 
-## Phase 14 — Admin: Reports
+## Phase 14 — Admin: Reports  ✅ done
 
 Enough for the business to run without SQL access.
 
@@ -311,11 +313,13 @@ Enough for the business to run without SQL access.
 2. **`/admin/reports/receivables`** — outstanding balance per active order = Σ(unpaid installments). Total outstanding, aged buckets (0–30, 31–60, 61–90, 90+ days overdue). CSV export.
 3. **`/admin/reports/inventory`** — stock by product, low-stock flag.
 4. **`/admin/reports/kyc`** — throughput: submissions per week, approval rate, median time-to-review.
-5. **CSV export** helper in `src/lib/export/csv.ts` — streams, no client-side libraries.
+5. **CSV export** helper in `src/lib/export/csv.ts` — UTF-8 with BOM for Excel, `text/csv` response, no client-side libraries.
+
+Shipped: preset range tabs (today / 7d / 30d / 90d / ytd) via URL query `?range=`, driven by `src/lib/reports-range.ts`. All four reports reuse `requireAdminPage` / `requireAdminApi`. Charts use **recharts** 3.x stacked bars (revenue by kind, KYC by state). Receivables is a snapshot (no range) with oldest-overdue-days bucketing per order. Inventory low-stock threshold held at 3 units to match the dashboard. Sidebar `reports` flipped from disabled → enabled.
 
 ### Commit boundary
-- `feat(admin): revenue + receivables + inventory + kyc reports`
-- `feat(admin): csv export`
+- `fd25a40` `feat(admin): revenue + receivables + inventory + kyc reports`
+- `ada994c` `feat(admin): csv export`
 
 ---
 
@@ -412,5 +416,5 @@ Live values in `.env.local` (gitignored). Placeholders in `.env.local.example`. 
 1. Read `CLAUDE.md`, `AGENTS.md`, and this file.
 2. Read `MEMORY.md` for the user's working preferences + project context.
 3. Confirm `.env.local` has Supabase + SMS + Evmark + OpenAI filled.
-4. **Begin Phase 14 (Reports).** Build `/admin/reports/revenue` (daily/weekly/monthly bar chart of successful payment amounts split by kind + provider, CSV export), `/admin/reports/receivables` (outstanding balance per active order = Σunpaid installments, total + aged buckets 0–30 / 31–60 / 61–90 / 90+ days, CSV), `/admin/reports/inventory` (stock by product, low-stock flag), `/admin/reports/kyc` (submissions/week, approval rate, median time-to-review). Add `src/lib/export/csv.ts` that streams — no client-side libraries. Reuse `requireAdminPage`/`requireAdminApi`; no new admin audit actions needed (read-only surface). Flip the sidebar `reports` entry from disabled → enabled and add an `admin.reports` namespace to `src/messages/{en,sw}.json`.
+4. **Begin Phase 15 (Legal, compliance, account lifecycle).** Draft/ship `/legal/terms`, `/legal/privacy`, `/legal/hire-purchase-agreement` if not already complete (note: Phase 15.1 legal pages did land earlier — verify they're versioned with a `terms_version` string). Add a signup consent checkbox at `/signup` referencing the three legal pages and persist `profiles.terms_version_accepted` + `terms_accepted_at` via a new migration. Build `/account/delete` (OTP-confirmed soft delete: anonymize profile, wipe KYC storage doc, keep orders/payments for retention) and `/account/export` (ZIP of user's JSON: profile, orders, installments, payments, wallet entries, KYC without binaries). Add a minimal cookie/consent banner (disclosure, not tracking consent — we only use session + theme). Wire SMS/email confirmation on account deletion.
 5. Update the snapshot commit trail with each SHA as phases land. Update the "Status" line at the top when a phase closes.
