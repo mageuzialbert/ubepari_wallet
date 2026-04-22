@@ -1412,6 +1412,222 @@
         "unauthenticated": "Ingia tena ili kuendelea.",
         "error": "Kuna tatizo. Tafadhali jaribu tena."
       }
+    },
+    "orders": {
+      "metaTitle": "Oda",
+      "eyebrow": "Msimamizi",
+      "heading": "Oda",
+      "body": "Oda zote za Lipa kidogo kidogo. Rejesha simu ya malipo iliyopotea, ghairi oda zilizokwama, na hariri tarehe za malipo ya awamu pale mteja anapohitaji mpango mpya.",
+      "list": {
+        "searchPlaceholder": "Tafuta kwa rejeleo, simu, jina au bidhaa",
+        "empty": "Hakuna oda inayolingana na vichungi hivi.",
+        "applyFilters": "Tumia",
+        "filters": {
+          "statusLabel": "Hali",
+          "fromLabel": "Kuanzia",
+          "toLabel": "Hadi"
+        },
+        "tabs": {
+          "all": "Zote",
+          "pending": "Zinasubiri",
+          "active": "Hai",
+          "completed": "Zimekamilika",
+          "cancelled": "Zilighairiwa"
+        },
+        "columns": {
+          "reference": "Rejeleo",
+          "user": "Mteja",
+          "product": "Bidhaa",
+          "total": "Jumla",
+          "status": "Hali",
+          "created": "Iliundwa",
+          "monthly": "Kwa mwezi"
+        },
+        "termLabel": "Miezi {n}"
+      },
+      "detail": {
+        "back": "← Rudi kwa oda",
+        "sectionCustomer": "Mteja",
+        "sectionBreakdown": "Mchanganuo wa bei",
+        "sectionInstallments": "Awamu",
+        "sectionPayments": "Malipo",
+        "sectionActions": "Vitendo",
+        "labels": {
+          "reference": "Rejeleo",
+          "createdAt": "Iliundwa",
+          "activatedAt": "Ilianzishwa",
+          "completedAt": "Ilikamilika",
+          "notSet": "—",
+          "cashPrice": "Bei ya fedha taslimu",
+          "deposit": "Amana",
+          "financed": "Deni",
+          "serviceFee": "Ada ya huduma",
+          "total": "Jumla",
+          "monthly": "Kwa mwezi",
+          "plan": "Mpango"
+        },
+        "statusLabels": {
+          "pending": "Inasubiri amana",
+          "active": "Hai",
+          "completed": "Imekamilika",
+          "cancelled": "Imeghairiwa"
+        },
+        "paymentStatus": {
+          "pending": "Inasubiri",
+          "success": "Imefanikiwa",
+          "failed": "Imeshindwa"
+        },
+        "paymentKind": {
+          "deposit": "Amana",
+          "installment": "Awamu",
+          "topup": "Kuongeza salio",
+          "refund": "Marejesho"
+        },
+        "installmentsEmpty": "Hakuna awamu kwenye oda hii.",
+        "paymentsEmpty": "Hakuna malipo bado kwenye oda hii.",
+        "installmentsHeaders": {
+          "sequence": "Na.",
+          "dueDate": "Inaiva",
+          "amount": "Kiasi",
+          "state": "Hali"
+        },
+        "installmentBadges": {
+          "paid": "Imelipwa",
+          "unpaid": "Haijalipwa",
+          "overdue": "Imechelewa"
+        },
+        "scheduleEditor": {
+          "title": "Hariri tarehe za awamu",
+          "hint": "Badilisha tarehe za awamu ambazo hazijalipwa. Mabadiliko yanahifadhiwa kwenye kumbukumbu.",
+          "reasonLabel": "Sababu",
+          "reasonPlaceholder": "Kwa nini mpango unabadilika?",
+          "reasonHint": "Herufi 1–500. Inahifadhiwa kwenye kumbukumbu.",
+          "submit": "Hifadhi mpango",
+          "saving": "Inahifadhi…",
+          "noChanges": "Hakuna mabadiliko bado. Badilisha tarehe hapo juu ili kuhifadhi.",
+          "disabledNote": "Mpango unaweza kubadilishwa tu kwenye oda hai."
+        },
+        "manualActivate": {
+          "title": "Wezesha kwa mkono",
+          "body": "Tumia hii tu pale malipo ya amana ya Evmark yalipofanikiwa lakini simu haikufika. Hufanya njia ile ile ya kusuluhisha kama simu.",
+          "reasonLabel": "Sababu",
+          "reasonPlaceholder": "Kwa nini unawezesha kwa mkono?",
+          "reasonHint": "Herufi 1–500. Inahifadhiwa kwenye kumbukumbu.",
+          "submit": "Wezesha oda",
+          "saving": "Inawezesha…",
+          "noDepositNote": "Hakuna malipo ya amana yaliyosubiri. Mwombe mteja aweke nafasi tena."
+        },
+        "cancelOrder": {
+          "title": "Ghairi oda",
+          "body": "Hubadilisha hali kuwa Imeghairiwa. Inapatikana tu wakati oda bado inasubiri amana.",
+          "reasonLabel": "Sababu",
+          "reasonPlaceholder": "Kwa nini unaghairi?",
+          "reasonHint": "Herufi 1–500. Inahifadhiwa kwenye kumbukumbu.",
+          "submit": "Ghairi oda",
+          "saving": "Inaghairiwa…"
+        },
+        "refundAction": "Toa marejesho"
+      },
+      "toast": {
+        "activated": "Oda imewezeshwa.",
+        "cancelled": "Oda imeghairiwa.",
+        "scheduleUpdated": "Mpango umesasishwa.",
+        "refundIssued": "Marejesho yamewekwa kwenye wallet.",
+        "validation": "Angalia sehemu zilizoangaziwa.",
+        "reasonRequired": "Sababu inahitajika.",
+        "wrongStatus": "Oda hii haiwezi tena kufanyiwa kitendo hicho.",
+        "noPendingDeposit": "Hakuna amana inayosubiri kusuluhishwa.",
+        "settleFailed": "Usuluhishi umeshindikana. Angalia kumbukumbu.",
+        "notFound": "Oda haikupatikana.",
+        "forbidden": "Huna ruhusa ya kufanya hivyo.",
+        "unauthenticated": "Ingia tena ili kuendelea.",
+        "error": "Kuna tatizo. Tafadhali jaribu tena."
+      }
+    },
+    "payments": {
+      "metaTitle": "Malipo",
+      "eyebrow": "Msimamizi",
+      "heading": "Malipo",
+      "body": "Malipo yote yaliyorekodiwa — amana, awamu, kuongeza salio, na marejesho. Suluhisha malipo yaliyokwama na toa marejesho ya wallet.",
+      "list": {
+        "searchPlaceholder": "Tafuta kwa rejeleo, simu, jina au oda",
+        "empty": "Hakuna malipo yanayolingana na vichungi hivi.",
+        "applyFilters": "Tumia",
+        "filters": {
+          "statusLabel": "Hali",
+          "kindLabel": "Aina",
+          "providerLabel": "Mtoa huduma",
+          "fromLabel": "Kuanzia",
+          "toLabel": "Hadi",
+          "all": "Zote"
+        },
+        "columns": {
+          "reference": "Rejeleo",
+          "user": "Mteja",
+          "order": "Oda",
+          "kind": "Aina",
+          "amount": "Kiasi",
+          "provider": "Mtoa huduma",
+          "status": "Hali",
+          "created": "Iliundwa"
+        },
+        "noOrder": "—",
+        "reconcileAction": "Suluhisha",
+        "refundAction": "Marejesho"
+      },
+      "statusLabels": {
+        "pending": "Inasubiri",
+        "success": "Imefanikiwa",
+        "failed": "Imeshindwa"
+      },
+      "kindLabels": {
+        "deposit": "Amana",
+        "installment": "Awamu",
+        "topup": "Kuongeza salio",
+        "refund": "Marejesho"
+      },
+      "providerLabels": {
+        "mpesa": "M-Pesa",
+        "tigopesa": "Tigo Pesa",
+        "airtelmoney": "Airtel Money",
+        "card": "Kadi"
+      },
+      "reconcile": {
+        "title": "Suluhisha malipo",
+        "body": "Tumia pale Evmark ilipothibitisha muamala lakini simu haikufika kwetu. Hutumia njia ile ile ya kusuluhisha kama simu halisi.",
+        "reasonLabel": "Sababu",
+        "reasonPlaceholder": "Kwa nini unasuluhisha?",
+        "reasonHint": "Herufi 1–500. Inahifadhiwa kwenye kumbukumbu.",
+        "submit": "Suluhisha",
+        "saving": "Inasuluhisha…",
+        "confirmBody": "Hii itaweka malipo kuwa yamefanikiwa, iwezeshe oda au iweke awamu kuwa imelipwa, na kuandika maingizo ya wallet."
+      },
+      "toast": {
+        "reconciled": "Malipo yamesuluhishwa.",
+        "refundIssued": "Marejesho yamewekwa kwenye wallet.",
+        "validation": "Angalia sehemu zilizoangaziwa.",
+        "reasonRequired": "Sababu inahitajika.",
+        "wrongStatus": "Malipo haya hayasubiri tena.",
+        "wrongKind": "Marejesho hayawezi kurejeshwa tena.",
+        "amountOutOfRange": "Kiasi cha marejesho hakiwezi kuzidi malipo ya asili.",
+        "settleFailed": "Usuluhishi umeshindikana. Angalia kumbukumbu.",
+        "notFound": "Malipo hayakupatikana.",
+        "forbidden": "Huna ruhusa ya kufanya hivyo.",
+        "unauthenticated": "Ingia tena ili kuendelea.",
+        "error": "Kuna tatizo. Tafadhali jaribu tena."
+      }
+    },
+    "refund": {
+      "title": "Toa marejesho",
+      "body": "Kredo ya wallet huwekwa kwa mteja. Fedha hazirudi MNO moja kwa moja — hiyo itakuja v2.",
+      "amountLabel": "Kiasi (TZS)",
+      "amountHint": "Hadi {max} — malipo kamili ya asili.",
+      "reasonLabel": "Sababu",
+      "reasonPlaceholder": "Kwa nini unatoa marejesho?",
+      "reasonHint": "Herufi 1–500. Inahifadhiwa kwenye kumbukumbu.",
+      "submit": "Toa marejesho",
+      "saving": "Inatoa…",
+      "cancel": "Ghairi"
     }
   }
 }

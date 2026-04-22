@@ -38,8 +38,8 @@ const ITEMS: Item[] = [
   { key: "kyc", href: "/kyc", icon: ShieldCheck, enabled: true },
   { key: "products", href: "/products", icon: Package, enabled: true },
   { key: "users", href: "/users", icon: Users, enabled: true },
-  { key: "orders", href: "/orders", icon: ShoppingBag, enabled: false },
-  { key: "payments", href: "/payments", icon: Banknote, enabled: false },
+  { key: "orders", href: "/orders", icon: ShoppingBag, enabled: true },
+  { key: "payments", href: "/payments", icon: Banknote, enabled: true },
   { key: "reports", href: "/reports", icon: BarChart3, enabled: false },
 ];
 

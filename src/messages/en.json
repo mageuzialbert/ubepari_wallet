@@ -1412,6 +1412,222 @@
         "unauthenticated": "Sign in again to continue.",
         "error": "Something went wrong. Please try again."
       }
+    },
+    "orders": {
+      "metaTitle": "Orders",
+      "eyebrow": "Admin",
+      "heading": "Orders",
+      "body": "Every hire-purchase order across the business. Recover lost callbacks, cancel stuck pending orders, and edit installment due dates when a customer needs a payment plan change.",
+      "list": {
+        "searchPlaceholder": "Search by reference, phone, name, or product",
+        "empty": "No orders match these filters.",
+        "applyFilters": "Apply",
+        "filters": {
+          "statusLabel": "Status",
+          "fromLabel": "From",
+          "toLabel": "To"
+        },
+        "tabs": {
+          "all": "All",
+          "pending": "Pending",
+          "active": "Active",
+          "completed": "Completed",
+          "cancelled": "Cancelled"
+        },
+        "columns": {
+          "reference": "Reference",
+          "user": "Customer",
+          "product": "Product",
+          "total": "Total",
+          "status": "Status",
+          "created": "Created",
+          "monthly": "Monthly"
+        },
+        "termLabel": "{n} mo"
+      },
+      "detail": {
+        "back": "← Back to orders",
+        "sectionCustomer": "Customer",
+        "sectionBreakdown": "Price breakdown",
+        "sectionInstallments": "Installments",
+        "sectionPayments": "Payments",
+        "sectionActions": "Actions",
+        "labels": {
+          "reference": "Reference",
+          "createdAt": "Created",
+          "activatedAt": "Activated",
+          "completedAt": "Completed",
+          "notSet": "—",
+          "cashPrice": "Cash price",
+          "deposit": "Deposit",
+          "financed": "Financed",
+          "serviceFee": "Service fee",
+          "total": "Total",
+          "monthly": "Monthly",
+          "plan": "Plan"
+        },
+        "statusLabels": {
+          "pending": "Pending deposit",
+          "active": "Active",
+          "completed": "Completed",
+          "cancelled": "Cancelled"
+        },
+        "paymentStatus": {
+          "pending": "Pending",
+          "success": "Success",
+          "failed": "Failed"
+        },
+        "paymentKind": {
+          "deposit": "Deposit",
+          "installment": "Installment",
+          "topup": "Top-up",
+          "refund": "Refund"
+        },
+        "installmentsEmpty": "No installments on this order.",
+        "paymentsEmpty": "No payments on this order yet.",
+        "installmentsHeaders": {
+          "sequence": "No.",
+          "dueDate": "Due",
+          "amount": "Amount",
+          "state": "State"
+        },
+        "installmentBadges": {
+          "paid": "Paid",
+          "unpaid": "Unpaid",
+          "overdue": "Overdue"
+        },
+        "scheduleEditor": {
+          "title": "Edit installment due dates",
+          "hint": "Change due dates on unpaid installments. Changes are recorded in the audit log.",
+          "reasonLabel": "Reason",
+          "reasonPlaceholder": "Why is the schedule changing?",
+          "reasonHint": "1–500 characters. Saved in the audit log.",
+          "submit": "Save schedule",
+          "saving": "Saving…",
+          "noChanges": "No changes yet. Adjust a due date above to enable save.",
+          "disabledNote": "Schedules can only be edited on active orders."
+        },
+        "manualActivate": {
+          "title": "Manual activate",
+          "body": "Use this only when the Evmark deposit push settled in reality but the callback never reached us. This calls the same settle path the callback would.",
+          "reasonLabel": "Reason",
+          "reasonPlaceholder": "Why are you activating this manually?",
+          "reasonHint": "1–500 characters. Saved in the audit log.",
+          "submit": "Activate order",
+          "saving": "Activating…",
+          "noDepositNote": "No pending deposit payment is on file. Ask the customer to reserve again."
+        },
+        "cancelOrder": {
+          "title": "Cancel order",
+          "body": "Flips status to Cancelled. Only available while the order is still pending a deposit.",
+          "reasonLabel": "Reason",
+          "reasonPlaceholder": "Why are you cancelling?",
+          "reasonHint": "1–500 characters. Saved in the audit log.",
+          "submit": "Cancel order",
+          "saving": "Cancelling…"
+        },
+        "refundAction": "Issue refund"
+      },
+      "toast": {
+        "activated": "Order activated.",
+        "cancelled": "Order cancelled.",
+        "scheduleUpdated": "Schedule updated.",
+        "refundIssued": "Refund credited to wallet.",
+        "validation": "Check the highlighted fields.",
+        "reasonRequired": "A reason is required.",
+        "wrongStatus": "This order is no longer eligible for that action.",
+        "noPendingDeposit": "No pending deposit to settle.",
+        "settleFailed": "Settlement failed. Check the logs.",
+        "notFound": "Order not found.",
+        "forbidden": "You don't have permission to do that.",
+        "unauthenticated": "Sign in again to continue.",
+        "error": "Something went wrong. Please try again."
+      }
+    },
+    "payments": {
+      "metaTitle": "Payments",
+      "eyebrow": "Admin",
+      "heading": "Payments",
+      "body": "Every payment on file — deposits, installments, top-ups, and refunds. Reconcile stuck pending rows and issue wallet-credit refunds.",
+      "list": {
+        "searchPlaceholder": "Search by reference, phone, name, or order",
+        "empty": "No payments match these filters.",
+        "applyFilters": "Apply",
+        "filters": {
+          "statusLabel": "Status",
+          "kindLabel": "Kind",
+          "providerLabel": "Provider",
+          "fromLabel": "From",
+          "toLabel": "To",
+          "all": "All"
+        },
+        "columns": {
+          "reference": "Reference",
+          "user": "Customer",
+          "order": "Order",
+          "kind": "Kind",
+          "amount": "Amount",
+          "provider": "Provider",
+          "status": "Status",
+          "created": "Created"
+        },
+        "noOrder": "—",
+        "reconcileAction": "Reconcile",
+        "refundAction": "Refund"
+      },
+      "statusLabels": {
+        "pending": "Pending",
+        "success": "Success",
+        "failed": "Failed"
+      },
+      "kindLabels": {
+        "deposit": "Deposit",
+        "installment": "Installment",
+        "topup": "Top-up",
+        "refund": "Refund"
+      },
+      "providerLabels": {
+        "mpesa": "M-Pesa",
+        "tigopesa": "Tigo Pesa",
+        "airtelmoney": "Airtel Money",
+        "card": "Card"
+      },
+      "reconcile": {
+        "title": "Reconcile payment",
+        "body": "Use when Evmark confirmed the transaction but the callback never reached us. Runs the same settle path as the live callback.",
+        "reasonLabel": "Reason",
+        "reasonPlaceholder": "Why are you reconciling this?",
+        "reasonHint": "1–500 characters. Saved in the audit log.",
+        "submit": "Reconcile",
+        "saving": "Reconciling…",
+        "confirmBody": "This will mark the payment as success, activate the order or mark the installment paid, and write wallet entries."
+      },
+      "toast": {
+        "reconciled": "Payment reconciled.",
+        "refundIssued": "Refund credited to wallet.",
+        "validation": "Check the highlighted fields.",
+        "reasonRequired": "A reason is required.",
+        "wrongStatus": "This payment is no longer pending.",
+        "wrongKind": "Refunds can't be refunded.",
+        "amountOutOfRange": "Refund amount can't exceed the original payment.",
+        "settleFailed": "Settlement failed. Check the logs.",
+        "notFound": "Payment not found.",
+        "forbidden": "You don't have permission to do that.",
+        "unauthenticated": "Sign in again to continue.",
+        "error": "Something went wrong. Please try again."
+      }
+    },
+    "refund": {
+      "title": "Issue refund",
+      "body": "A wallet credit is posted to the customer. No money moves back to the MNO automatically — that lands in v2.",
+      "amountLabel": "Amount (TZS)",
+      "amountHint": "Up to {max} — the full original payment.",
+      "reasonLabel": "Reason",
+      "reasonPlaceholder": "Why are you issuing this refund?",
+      "reasonHint": "1–500 characters. Saved in the audit log.",
+      "submit": "Issue refund",
+      "saving": "Issuing…",
+      "cancel": "Cancel"
     }
   }
 }
