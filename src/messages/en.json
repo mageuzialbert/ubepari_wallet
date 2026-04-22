@@ -176,6 +176,75 @@
       }
     ]
   },
+  "about": {
+    "metaTitle": "About Ubepari",
+    "metaDescription": "Ubepari PC builds honest hire-purchase for Tanzania — 20% down, no hidden fees, and the PC you actually chose. Made in Dar es Salaam.",
+    "eyebrow": "About",
+    "heading": "Good computers, on terms that make sense.",
+    "intro": "Ubepari PC started with a simple observation: a good PC costs more than most Tanzanians can pay on any one day, even when they can comfortably pay for it over a year. Banks won't finance a laptop. Shops want the full amount upfront. So we built the missing piece — Lipa kidogo kidogo, a hire-purchase plan you can actually read and trust.",
+    "mission": {
+      "eyebrow": "What we do",
+      "body": "We sell personal computers and finance them ourselves, in Tanzanian Shillings, to people living in Tanzania. 20% deposit, the rest spread over 3, 6, 9, or 12 months. No guarantor. No collateral beyond the PC. No tricks buried in small print."
+    },
+    "story": {
+      "heading": "Why we exist",
+      "paragraphs": [
+        "In Dar es Salaam, a student who could earn with a design laptop often can't buy one. A small accounting firm that needs three office PCs is quoted a single up-front figure that kills the project. A freelance video editor replaces their aging machine with whatever they can afford that week — not what they actually need.",
+        "The gap isn't desire, or even income. The gap is the financing. Ubepari PC exists to close it. Built in Dar, for people in Dar — and, increasingly, the rest of Tanzania."
+      ]
+    },
+    "principles": {
+      "heading": "What we stand for",
+      "items": [
+        {
+          "title": "Honest pricing",
+          "body": "A term-based service fee (0% / 5% / 8% / 12%) and nothing else. No arrangement fee. No insurance line-item. No mystery."
+        },
+        {
+          "title": "The PC you picked",
+          "body": "We don't swap components, clone builds, or push the stock we're stuck with. You reserve it, we deliver it."
+        },
+        {
+          "title": "Swahili and English",
+          "body": "Your plan, your agreement, and your receipts — all available in both languages. Technical terms stay readable."
+        },
+        {
+          "title": "Real humans",
+          "body": "WhatsApp, call, or email. A person answers, not a ticket queue."
+        }
+      ]
+    },
+    "stats": {
+      "heading": "By the numbers",
+      "items": [
+        { "value": "20%", "label": "Deposit to reserve" },
+        { "value": "3–12", "label": "Months to pay" },
+        { "value": "0%", "label": "Service fee on the 3-month plan" },
+        { "value": "TZS", "label": "Everything priced locally" }
+      ]
+    },
+    "locations": {
+      "heading": "Where to find us",
+      "hq": {
+        "label": "Head office",
+        "value": "Magomeni Usalama, Dar es Salaam"
+      },
+      "shop": {
+        "label": "Showroom",
+        "value": "Magomeni Mapipa, Dar es Salaam"
+      },
+      "hours": {
+        "label": "Open",
+        "value": "Monday – Saturday, 9 AM – 6 PM EAT"
+      }
+    },
+    "cta": {
+      "heading": "Ready when you are.",
+      "body": "Browse the catalog, or tell us what you need and we'll match a plan to it.",
+      "shop": "Browse PCs",
+      "talk": "Talk to us"
+    }
+  },
   "recommend": {
     "metaTitle": "AI Tech Tips",
     "badge": "AI Tech Tips · beta",

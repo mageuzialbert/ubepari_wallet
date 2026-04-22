@@ -176,6 +176,75 @@
       }
     ]
   },
+  "about": {
+    "metaTitle": "Kuhusu Ubepari",
+    "metaDescription": "Ubepari PC inajenga Lipa kidogo kidogo kwa uaminifu kwa Tanzania — asilimia 20 kushuka, bila ada za kujificha, na PC uliyochagua mwenyewe. Imetengenezwa Dar es Salaam.",
+    "eyebrow": "Kuhusu",
+    "heading": "Kompyuta nzuri, kwa masharti yanayoeleweka.",
+    "intro": "Ubepari PC ilianzia kwa ukweli mmoja rahisi: PC nzuri ni ghali kuliko wanavyoweza kulipa Watanzania wengi kwa siku moja, hata wakati wanaweza kulipia kwa urahisi ndani ya mwaka. Benki hazifadhili laptop. Maduka yanataka malipo yote mara moja. Kwa hiyo tumeunda kipande kinachokosekana — Lipa kidogo kidogo, mpango unaoweza kusoma na kuuamini kweli.",
+    "mission": {
+      "eyebrow": "Tunalofanya",
+      "body": "Tunauza kompyuta za binafsi na kuzifadhili sisi wenyewe, kwa Shilingi za Kitanzania, kwa watu wanaoishi Tanzania. Asilimia 20 ya awali, salio kugawanywa kwa miezi 3, 6, 9, au 12. Bila mdhamini. Bila dhamana zaidi ya PC yenyewe. Bila hila zilizofichwa kwenye maandishi madogo."
+    },
+    "story": {
+      "heading": "Kwa nini tupo",
+      "paragraphs": [
+        "Dar es Salaam, mwanafunzi ambaye angeweza kupata kipato kwa laptop ya design mara nyingi hawezi kuinunua. Kampuni ndogo ya uhasibu inayohitaji PC tatu za ofisi inanukuriwa kiasi kimoja kikubwa kinachouawa mradi. Mhariri wa video wa kujitegemea anabadilisha mashine yake ya zamani kwa chochote anachoweza kumudu wiki hiyo — sio kile anachohitaji kweli.",
+        "Pengo si hamu, wala kipato. Pengo ni njia ya kufadhili. Ubepari PC ipo ili kuliziba. Imejengwa Dar, kwa ajili ya watu wa Dar — na, taratibu, Tanzania nzima."
+      ]
+    },
+    "principles": {
+      "heading": "Tunachosimamia",
+      "items": [
+        {
+          "title": "Bei ya uwazi",
+          "body": "Ada ya huduma inayotegemea muda (0% / 5% / 8% / 12%) na hakuna kingine. Bila ada ya kupanga. Bila mstari wa bima. Bila mafumbo."
+        },
+        {
+          "title": "PC uliyoichagua",
+          "body": "Hatubadilishi vipengele, hatuigi miundo, wala kukusukumia bidhaa tuliyobaki nayo. Uliyoichagua ndiyo tunayoipeleka."
+        },
+        {
+          "title": "Kiswahili na Kiingereza",
+          "body": "Mpango wako, makubaliano yako, na stakabadhi zako — zote zinapatikana kwa lugha zote mbili. Maneno ya kiufundi yanabaki kueleweka."
+        },
+        {
+          "title": "Watu halisi",
+          "body": "WhatsApp, simu, au barua pepe. Mtu anajibu, si foleni ya tikiti."
+        }
+      ]
+    },
+    "stats": {
+      "heading": "Kwa takwimu",
+      "items": [
+        { "value": "20%", "label": "Amana ya kuhifadhi" },
+        { "value": "3–12", "label": "Miezi ya kulipa" },
+        { "value": "0%", "label": "Ada ya huduma kwa mpango wa miezi 3" },
+        { "value": "TZS", "label": "Kila kitu kwa bei ya ndani" }
+      ]
+    },
+    "locations": {
+      "heading": "Mahali pa kutupata",
+      "hq": {
+        "label": "Ofisi kuu",
+        "value": "Magomeni Usalama, Dar es Salaam"
+      },
+      "shop": {
+        "label": "Duka la maonyesho",
+        "value": "Magomeni Mapipa, Dar es Salaam"
+      },
+      "hours": {
+        "label": "Tumefunguliwa",
+        "value": "Jumatatu – Jumamosi, 9 AM – 6 PM EAT"
+      }
+    },
+    "cta": {
+      "heading": "Tupo tayari ukiwa tayari.",
+      "body": "Vinjari katalogi, au tuambie unahitaji nini na tutalinganisha mpango nalo.",
+      "shop": "Vinjari PC",
+      "talk": "Ongea nasi"
+    }
+  },
   "recommend": {
     "metaTitle": "AI Tech Tips",
     "badge": "AI Tech Tips · beta",
