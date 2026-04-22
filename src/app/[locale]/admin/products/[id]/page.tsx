@@ -6,6 +6,7 @@ import { hasLocale } from "@/i18n/config";
 import { getAdminProduct } from "@/lib/admin/products";
 import { getDictionary } from "../../../dictionaries";
 import { ProductForm, type ProductFormInitial } from "../_components/product-form";
+import { ImageManager } from "../_components/image-manager";
 
 type PageParams = Promise<{ locale: string; id: string }>;
 
@@ -75,6 +76,16 @@ export default async function AdminProductDetailPage({
         </h1>
         <p className="mt-1 font-mono text-[12px] text-muted-foreground">{product.slug}</p>
       </div>
+
+      <ImageManager
+        productId={product.id}
+        initialImages={product.images.map((img) => ({
+          id: img.id,
+          url: img.url,
+          altEn: img.alt_en,
+          altSw: img.alt_sw,
+        }))}
+      />
 
       <ProductForm mode="edit" initial={initial} />
     </div>
