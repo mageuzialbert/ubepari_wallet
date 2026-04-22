@@ -40,7 +40,7 @@ const ITEMS: Item[] = [
   { key: "users", href: "/users", icon: Users, enabled: true },
   { key: "orders", href: "/orders", icon: ShoppingBag, enabled: true },
   { key: "payments", href: "/payments", icon: Banknote, enabled: true },
-  { key: "reports", href: "/reports", icon: BarChart3, enabled: false },
+  { key: "reports", href: "/reports", icon: BarChart3, enabled: true },
 ];
 
 export function AdminSidebar({ nav }: { nav: AdminNavCopy }) {

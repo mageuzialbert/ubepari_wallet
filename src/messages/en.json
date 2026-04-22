@@ -1628,6 +1628,131 @@
       "submit": "Issue refund",
       "saving": "Issuing…",
       "cancel": "Cancel"
+    },
+    "reports": {
+      "metaTitle": "Reports",
+      "eyebrow": "Admin",
+      "heading": "Reports",
+      "nav": {
+        "revenue": "Revenue",
+        "receivables": "Receivables",
+        "inventory": "Inventory",
+        "kyc": "KYC throughput"
+      },
+      "range": {
+        "today": "Today",
+        "7d": "7 days",
+        "30d": "30 days",
+        "90d": "90 days",
+        "ytd": "Year to date"
+      },
+      "export": {
+        "csv": "Export CSV",
+        "empty": "No data in this range yet."
+      },
+      "revenue": {
+        "metaTitle": "Revenue report",
+        "body": "Successful deposits, installments, and top-ups across the business. Refunds and pending payments are excluded.",
+        "kpi": {
+          "total": "Total",
+          "deposit": "Deposits",
+          "installment": "Installments",
+          "topup": "Top-ups"
+        },
+        "chart": {
+          "heading": "Daily revenue",
+          "byProvider": "By provider"
+        },
+        "table": {
+          "heading": "Daily breakdown",
+          "date": "Date",
+          "deposit": "Deposits",
+          "installment": "Installments",
+          "topup": "Top-ups",
+          "total": "Total"
+        }
+      },
+      "receivables": {
+        "metaTitle": "Receivables report",
+        "body": "Outstanding balance across active hire-purchase orders. Aged by the oldest overdue installment on each order.",
+        "kpi": {
+          "total": "Total outstanding",
+          "orders": "Orders",
+          "ordersSublabel": "Active with balance",
+          "overdue": "Overdue orders"
+        },
+        "bucketsHeading": "Aged buckets",
+        "buckets": {
+          "current": "Current",
+          "d0_30": "1–30 days",
+          "d31_60": "31–60 days",
+          "d61_90": "61–90 days",
+          "d90_plus": "90+ days"
+        },
+        "countLabel": "{n} orders",
+        "table": {
+          "heading": "By order",
+          "reference": "Reference",
+          "user": "Customer",
+          "nextDue": "Next due",
+          "overdueDays": "Overdue",
+          "balance": "Balance",
+          "daysSuffix": "{n} days"
+        },
+        "empty": "No outstanding balances right now."
+      },
+      "inventory": {
+        "metaTitle": "Inventory report",
+        "body": "Every active product and its current stock. Low-stock threshold is 3 units.",
+        "kpi": {
+          "products": "Active products",
+          "units": "Units in stock",
+          "lowStock": "Low stock",
+          "value": "Inventory value",
+          "valueSublabel": "Stock × cash price"
+        },
+        "table": {
+          "heading": "Stock by product",
+          "product": "Product",
+          "brand": "Brand",
+          "price": "Cash price",
+          "stock": "Stock",
+          "status": "Status"
+        },
+        "status": {
+          "ok": "In stock",
+          "lowStock": "Low stock",
+          "outOfStock": "Out of stock"
+        },
+        "empty": "No active products in the catalog yet."
+      },
+      "kyc": {
+        "metaTitle": "KYC throughput",
+        "body": "Submission volume, approval rate, and time-to-review for identity checks.",
+        "kpi": {
+          "submissions": "Submissions",
+          "approvalRate": "Approval rate",
+          "approvalRateSub": "{a} approved · {r} rejected",
+          "medianHours": "Median review time",
+          "pending": "Pending",
+          "pendingSub": "All-time open queue"
+        },
+        "hoursValue": "{n} h",
+        "chart": {
+          "heading": "Submissions per week",
+          "approved": "Approved",
+          "rejected": "Rejected",
+          "pending": "Pending"
+        },
+        "table": {
+          "heading": "Weekly breakdown",
+          "week": "Week of",
+          "submitted": "Submitted",
+          "approved": "Approved",
+          "rejected": "Rejected",
+          "pending": "Pending"
+        }
+      }
     }
   }
 }

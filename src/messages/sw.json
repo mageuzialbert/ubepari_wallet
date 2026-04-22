@@ -1628,6 +1628,131 @@
       "submit": "Toa marejesho",
       "saving": "Inatoa…",
       "cancel": "Ghairi"
+    },
+    "reports": {
+      "metaTitle": "Ripoti",
+      "eyebrow": "Msimamizi",
+      "heading": "Ripoti",
+      "nav": {
+        "revenue": "Mapato",
+        "receivables": "Madeni",
+        "inventory": "Bidhaa ghalani",
+        "kyc": "Utendaji wa KYC"
+      },
+      "range": {
+        "today": "Leo",
+        "7d": "Siku 7",
+        "30d": "Siku 30",
+        "90d": "Siku 90",
+        "ytd": "Tangu mwanzo wa mwaka"
+      },
+      "export": {
+        "csv": "Pakua CSV",
+        "empty": "Hakuna data katika kipindi hiki bado."
+      },
+      "revenue": {
+        "metaTitle": "Ripoti ya mapato",
+        "body": "Amana, awamu, na kuongeza salio kwa muamala uliofanikiwa. Marejesho na malipo yanayosubiri hayajumuishwi.",
+        "kpi": {
+          "total": "Jumla",
+          "deposit": "Amana",
+          "installment": "Awamu",
+          "topup": "Kuongeza salio"
+        },
+        "chart": {
+          "heading": "Mapato ya kila siku",
+          "byProvider": "Kwa mtoa huduma"
+        },
+        "table": {
+          "heading": "Muhtasari wa kila siku",
+          "date": "Tarehe",
+          "deposit": "Amana",
+          "installment": "Awamu",
+          "topup": "Kuongeza salio",
+          "total": "Jumla"
+        }
+      },
+      "receivables": {
+        "metaTitle": "Ripoti ya madeni",
+        "body": "Kiasi kinachodaiwa kwenye oda za Lipa kidogo kidogo zinazoendelea. Kimewekwa madaraja kulingana na awamu iliyochelewa zaidi.",
+        "kpi": {
+          "total": "Jumla inayodaiwa",
+          "orders": "Oda",
+          "ordersSublabel": "Zinazoendelea zenye deni",
+          "overdue": "Oda zilizochelewa"
+        },
+        "bucketsHeading": "Madaraja ya umri",
+        "buckets": {
+          "current": "Za sasa",
+          "d0_30": "Siku 1–30",
+          "d31_60": "Siku 31–60",
+          "d61_90": "Siku 61–90",
+          "d90_plus": "Siku 90+"
+        },
+        "countLabel": "Oda {n}",
+        "table": {
+          "heading": "Kwa oda",
+          "reference": "Rejeleo",
+          "user": "Mteja",
+          "nextDue": "Tarehe ya kulipa",
+          "overdueDays": "Imechelewa",
+          "balance": "Deni",
+          "daysSuffix": "Siku {n}"
+        },
+        "empty": "Hakuna madeni yaliyosalia kwa sasa."
+      },
+      "inventory": {
+        "metaTitle": "Ripoti ya bidhaa ghalani",
+        "body": "Bidhaa zote zinazouzwa na kiwango cha sasa cha stoo. Kikomo cha stoo ndogo ni vitengo 3.",
+        "kpi": {
+          "products": "Bidhaa zinazouzwa",
+          "units": "Vitengo ghalani",
+          "lowStock": "Stoo ndogo",
+          "value": "Thamani ya ghala",
+          "valueSublabel": "Stoo × bei ya cash"
+        },
+        "table": {
+          "heading": "Stoo kwa bidhaa",
+          "product": "Bidhaa",
+          "brand": "Chapa",
+          "price": "Bei ya cash",
+          "stock": "Stoo",
+          "status": "Hali"
+        },
+        "status": {
+          "ok": "Ipo ghalani",
+          "lowStock": "Stoo ndogo",
+          "outOfStock": "Imeisha"
+        },
+        "empty": "Hakuna bidhaa zinazouzwa kwenye katalogi bado."
+      },
+      "kyc": {
+        "metaTitle": "Utendaji wa KYC",
+        "body": "Idadi ya maombi, kiwango cha kukubaliwa, na muda wa wastani wa kukagua vitambulisho.",
+        "kpi": {
+          "submissions": "Maombi",
+          "approvalRate": "Kiwango cha kukubaliwa",
+          "approvalRateSub": "Yaliyokubaliwa {a} · Yaliyokataliwa {r}",
+          "medianHours": "Muda wa wastani wa ukaguzi",
+          "pending": "Yanayosubiri",
+          "pendingSub": "Foleni yote ya wazi"
+        },
+        "hoursValue": "Saa {n}",
+        "chart": {
+          "heading": "Maombi kwa wiki",
+          "approved": "Yamekubaliwa",
+          "rejected": "Yamekataliwa",
+          "pending": "Yanayosubiri"
+        },
+        "table": {
+          "heading": "Muhtasari kwa wiki",
+          "week": "Wiki ya",
+          "submitted": "Yaliyowasilishwa",
+          "approved": "Yamekubaliwa",
+          "rejected": "Yamekataliwa",
+          "pending": "Yanayosubiri"
+        }
+      }
     }
   }
 }
