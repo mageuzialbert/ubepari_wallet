@@ -643,7 +643,10 @@
     "alreadyPendingTitle": "Under review",
     "alreadyPendingBody": "We've received your documents. Most reviews clear within a few hours — we'll text and email when you're approved.",
     "alreadyApprovedTitle": "You're verified",
-    "alreadyApprovedBody": "Your KYC is approved. Browse the store and choose your plan."
+    "alreadyApprovedBody": "Your KYC is approved. Browse the store and choose your plan.",
+    "rejectedHeading": "Your previous submission was rejected",
+    "rejectedHint": "Please address the feedback below and resubmit.",
+    "rejectedNoNotes": "No reason was recorded — please contact support if you need help."
   },
   "trustStrip": {
     "items": [
@@ -1093,6 +1096,84 @@
       },
       "revenueNote": "Includes successful deposits, installments, and top-ups. Refunds and pending payments are excluded.",
       "lowStockEmpty": "Every active product has at least 3 units in stock."
+    },
+    "kyc": {
+      "metaTitle": "KYC review",
+      "eyebrow": "Admin",
+      "heading": "KYC review",
+      "body": "Approve or reject identity submissions. An SMS goes to the customer and the action is recorded in the audit log.",
+      "tabs": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "columns": {
+        "submittedAt": "Submitted",
+        "name": "Legal name",
+        "nida": "NIDA",
+        "workplace": "Workplace",
+        "reviewedAt": "Reviewed"
+      },
+      "empty": {
+        "pending": "Nothing waiting for review.",
+        "approved": "No approved submissions yet.",
+        "rejected": "No rejected submissions yet."
+      },
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "limitNotice": "Showing the first {n}. Older rows are hidden.",
+      "detail": {
+        "back": "← Back to queue",
+        "docHeading": "ID document",
+        "docMissing": "Document unavailable. Ask the customer to resubmit.",
+        "openDoc": "Open document",
+        "refresh": "Refresh preview",
+        "sectionIdentity": "Identity",
+        "sectionReview": "Review",
+        "nida": "NIDA",
+        "workplace": "Workplace",
+        "workplaceEmpty": "Not provided",
+        "phone": "Phone",
+        "submittedAt": "Submitted",
+        "reviewedAt": "Reviewed",
+        "reviewedBy": "Reviewer",
+        "notes": "Review notes",
+        "noNotes": "No notes recorded.",
+        "supersededWarning": "A newer submission from this customer exists. Review that one instead.",
+        "viewNewer": "View newest submission"
+      },
+      "actions": {
+        "approve": "Approve",
+        "reject": "Reject",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+      },
+      "approve": {
+        "confirmTitle": "Approve this submission?",
+        "confirmBody": "The customer will be notified by SMS and can place orders immediately.",
+        "submit": "Approve submission"
+      },
+      "reject": {
+        "notesLabel": "Reason for rejection",
+        "notesPlaceholder": "Describe what the customer needs to fix (visible to them in-app).",
+        "notesHint": "Max 500 characters. The customer sees the full reason after signing in.",
+        "confirmTitle": "Reject this submission?",
+        "confirmBody": "The customer will be notified by SMS to open the app and see the reason.",
+        "submit": "Reject submission"
+      },
+      "toast": {
+        "approved": "Approved. SMS sent to the customer.",
+        "rejected": "Rejected. SMS sent to the customer.",
+        "smsFailed": "Action saved, but the SMS failed — notify the customer manually.",
+        "alreadyReviewed": "This submission was already reviewed.",
+        "selfReview": "You can't review your own submission.",
+        "profileSyncFailed": "Profile sync failed — please retry to keep records in sync.",
+        "notesRequired": "A reason is required when rejecting.",
+        "error": "Something went wrong. Please try again."
+      }
     }
   }
 }

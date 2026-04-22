@@ -85,11 +85,16 @@ export default async function AdminDashboardPage({
       </section>
 
       <section className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <Kpi
-          label={t.labels.pendingKyc}
-          value={kpis.pendingKyc.toString()}
-          tone={kpis.pendingKyc > 0 ? "accent" : "muted"}
-        />
+        <Link
+          href={`/${locale}/admin/kyc?status=pending`}
+          className="rounded-3xl outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-foreground/40"
+        >
+          <Kpi
+            label={t.labels.pendingKyc}
+            value={kpis.pendingKyc.toString()}
+            tone={kpis.pendingKyc > 0 ? "accent" : "muted"}
+          />
+        </Link>
         <Kpi
           label={t.labels.overdue}
           value={kpis.overdueInstallments.toString()}

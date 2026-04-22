@@ -1,4 +1,5 @@
 import "server-only";
+import { NextResponse } from "next/server";
 import { redirect } from "next/navigation";
 
 import { getSession } from "@/lib/session";
@@ -31,6 +32,44 @@ export async function getAdminContext(): Promise<AdminContext | null> {
     email: profile.email,
     firstName: profile.first_name,
     lastName: profile.last_name,
+  };
+}
+
+export type AdminApiResult =
+  | { ok: true; ctx: AdminContext }
+  | { ok: false; response: NextResponse };
+
+export async function requireAdminApi(): Promise<AdminApiResult> {
+  const session = await getSession();
+  if (!session) {
+    return {
+      ok: false,
+      response: NextResponse.json({ error: "unauthenticated" }, { status: 401 }),
+    };
+  }
+
+  const { data: profile } = await supabaseAdmin()
+    .from("profiles")
+    .select("id, phone, email, first_name, last_name, is_admin")
+    .eq("id", session.claims.userId)
+    .maybeSingle();
+
+  if (!profile || !profile.is_admin) {
+    return {
+      ok: false,
+      response: NextResponse.json({ error: "forbidden" }, { status: 403 }),
+    };
+  }
+
+  return {
+    ok: true,
+    ctx: {
+      userId: profile.id,
+      phone: profile.phone,
+      email: profile.email,
+      firstName: profile.first_name,
+      lastName: profile.last_name,
+    },
   };
 }
 

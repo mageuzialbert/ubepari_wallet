@@ -35,7 +35,7 @@ type Item = {
 
 const ITEMS: Item[] = [
   { key: "dashboard", href: "", icon: LayoutDashboard, enabled: true },
-  { key: "kyc", href: "/kyc", icon: ShieldCheck, enabled: false },
+  { key: "kyc", href: "/kyc", icon: ShieldCheck, enabled: true },
   { key: "products", href: "/products", icon: Package, enabled: false },
   { key: "users", href: "/users", icon: Users, enabled: false },
   { key: "orders", href: "/orders", icon: ShoppingBag, enabled: false },

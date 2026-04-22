@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { CheckCircle2, Clock, ShieldCheck } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Clock, ShieldCheck } from "lucide-react";
 
 import { hasLocale } from "@/i18n/config";
 import { getSession } from "@/lib/session";
@@ -28,13 +28,27 @@ export default async function KycPage({ params }: { params: PageParams }) {
   const session = await getSession();
   if (!session) redirect(`/${locale}/signin`);
 
-  const { data: profile } = await supabaseAdmin()
+  const admin = supabaseAdmin();
+  const { data: profile } = await admin
     .from("profiles")
     .select("kyc_status")
     .eq("id", session.claims.userId)
     .maybeSingle();
 
   const kycStatus = profile?.kyc_status ?? "none";
+
+  let lastRejectionNotes: string | null = null;
+  if (kycStatus === "rejected") {
+    const { data: lastRejected } = await admin
+      .from("kyc_submissions")
+      .select("review_notes")
+      .eq("user_id", session.claims.userId)
+      .eq("status", "rejected")
+      .order("submitted_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    lastRejectionNotes = lastRejected?.review_notes ?? null;
+  }
 
   const dict = await getDictionary(locale);
   const t = dict.kyc;
@@ -73,7 +87,33 @@ export default async function KycPage({ params }: { params: PageParams }) {
             </p>
           </div>
         ) : (
-          <KycForm />
+          <>
+            {kycStatus === "rejected" ? (
+              <div className="rounded-3xl border border-rose-500/40 bg-rose-500/10 p-6 sm:p-8">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-rose-300" />
+                  <div className="min-w-0">
+                    <h2 className="text-[15px] font-semibold tracking-tight">
+                      {t.rejectedHeading}
+                    </h2>
+                    {lastRejectionNotes ? (
+                      <blockquote className="mt-3 whitespace-pre-wrap rounded-2xl border border-rose-500/30 bg-background/40 p-4 text-[14px]">
+                        {lastRejectionNotes}
+                      </blockquote>
+                    ) : (
+                      <p className="mt-3 text-[13px] text-muted-foreground">
+                        {t.rejectedNoNotes}
+                      </p>
+                    )}
+                    <p className="mt-3 text-[13px] text-muted-foreground">
+                      {t.rejectedHint}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+            <KycForm />
+          </>
         )}
 
         <div className="rounded-3xl border border-border/60 bg-card p-6 sm:p-8">

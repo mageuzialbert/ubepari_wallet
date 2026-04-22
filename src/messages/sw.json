@@ -643,7 +643,10 @@
     "alreadyPendingTitle": "Inakaguliwa",
     "alreadyPendingBody": "Tumepokea nyaraka zako. Ukaguzi wengi hukamilika ndani ya masaa machache — tutakujulisha kwa SMS na barua pepe utakapoidhinishwa.",
     "alreadyApprovedTitle": "Umethibitishwa",
-    "alreadyApprovedBody": "KYC yako imeidhinishwa. Pitia duka na uchague mpango wako."
+    "alreadyApprovedBody": "KYC yako imeidhinishwa. Pitia duka na uchague mpango wako.",
+    "rejectedHeading": "Ombi lako la awali lilikataliwa",
+    "rejectedHint": "Tafadhali rekebisha maoni hapa chini kisha uwasilishe tena.",
+    "rejectedNoNotes": "Hakuna sababu iliyorekodiwa — tafadhali wasiliana na timu ya msaada kama unahitaji msaada."
   },
   "trustStrip": {
     "items": [
@@ -1093,6 +1096,84 @@
       },
       "revenueNote": "Inajumuisha amana, awamu, na kuongeza salio zilizokamilika. Marejesho na malipo yanayosubiri hayajumuishwi.",
       "lowStockEmpty": "Kila bidhaa hai ina angalau vipande 3 kwenye hifadhi."
+    },
+    "kyc": {
+      "metaTitle": "Mapitio ya KYC",
+      "eyebrow": "Msimamizi",
+      "heading": "Mapitio ya KYC",
+      "body": "Idhinisha au kataa mawasilisho ya utambulisho. SMS hutumwa kwa mteja na kitendo kinarekodiwa kwenye kumbukumbu.",
+      "tabs": {
+        "pending": "Inasubiri",
+        "approved": "Imeidhinishwa",
+        "rejected": "Imekataliwa"
+      },
+      "columns": {
+        "submittedAt": "Imewasilishwa",
+        "name": "Jina la kisheria",
+        "nida": "NIDA",
+        "workplace": "Mahali pa kazi",
+        "reviewedAt": "Imekaguliwa"
+      },
+      "empty": {
+        "pending": "Hakuna linalosubiri ukaguzi.",
+        "approved": "Hakuna mawasilisho yaliyoidhinishwa bado.",
+        "rejected": "Hakuna mawasilisho yaliyokataliwa bado."
+      },
+      "status": {
+        "pending": "Inasubiri",
+        "approved": "Imeidhinishwa",
+        "rejected": "Imekataliwa"
+      },
+      "limitNotice": "Inaonyesha {n} za kwanza. Safu za zamani zimefichwa.",
+      "detail": {
+        "back": "← Rudi kwenye foleni",
+        "docHeading": "Kitambulisho",
+        "docMissing": "Kitambulisho hakipatikani. Mwombe mteja awasilishe tena.",
+        "openDoc": "Fungua kitambulisho",
+        "refresh": "Onyesha upya",
+        "sectionIdentity": "Utambulisho",
+        "sectionReview": "Ukaguzi",
+        "nida": "NIDA",
+        "workplace": "Mahali pa kazi",
+        "workplaceEmpty": "Hakijatolewa",
+        "phone": "Simu",
+        "submittedAt": "Imewasilishwa",
+        "reviewedAt": "Imekaguliwa",
+        "reviewedBy": "Mkaguzi",
+        "notes": "Maoni ya ukaguzi",
+        "noNotes": "Hakuna maoni yaliyorekodiwa.",
+        "supersededWarning": "Kuna wasilisho jipya kutoka kwa mteja huyu. Kagua hilo badala yake.",
+        "viewNewer": "Angalia wasilisho jipya zaidi"
+      },
+      "actions": {
+        "approve": "Idhinisha",
+        "reject": "Kataa",
+        "cancel": "Ghairi",
+        "confirm": "Thibitisha"
+      },
+      "approve": {
+        "confirmTitle": "Idhinisha wasilisho hili?",
+        "confirmBody": "Mteja atajulishwa kwa SMS na ataweza kuweka oda mara moja.",
+        "submit": "Idhinisha wasilisho"
+      },
+      "reject": {
+        "notesLabel": "Sababu ya kukataliwa",
+        "notesPlaceholder": "Eleza kile mteja anatakiwa kurekebisha (anaonekana kwake ndani ya programu).",
+        "notesHint": "Kiwango cha juu herufi 500. Mteja huona sababu kamili baada ya kuingia.",
+        "confirmTitle": "Kataa wasilisho hili?",
+        "confirmBody": "Mteja atajulishwa kwa SMS afungue programu kuona sababu.",
+        "submit": "Kataa wasilisho"
+      },
+      "toast": {
+        "approved": "Imeidhinishwa. SMS imetumwa kwa mteja.",
+        "rejected": "Imekataliwa. SMS imetumwa kwa mteja.",
+        "smsFailed": "Kitendo kimehifadhiwa, lakini SMS imeshindwa — mjulishe mteja kwa njia nyingine.",
+        "alreadyReviewed": "Wasilisho hili tayari limekaguliwa.",
+        "selfReview": "Huwezi kukagua wasilisho lako mwenyewe.",
+        "profileSyncFailed": "Usawazishaji wa wasifu umeshindwa — tafadhali jaribu tena.",
+        "notesRequired": "Sababu inahitajika unapokataa.",
+        "error": "Kuna tatizo. Tafadhali jaribu tena."
+      }
     }
   }
 }
