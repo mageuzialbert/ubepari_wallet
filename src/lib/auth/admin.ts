@@ -12,7 +12,14 @@ export type AdminContext = {
   email: string | null;
   firstName: string | null;
   lastName: string | null;
+  isRoot: boolean;
 };
+
+export function isRootAdmin(phone: string | null | undefined): boolean {
+  const root = process.env.ROOT_ADMIN_PHONE?.trim();
+  if (!root) return false;
+  return Boolean(phone) && phone === root;
+}
 
 export async function getAdminContext(): Promise<AdminContext | null> {
   const session = await getSession();
@@ -32,6 +39,7 @@ export async function getAdminContext(): Promise<AdminContext | null> {
     email: profile.email,
     firstName: profile.first_name,
     lastName: profile.last_name,
+    isRoot: isRootAdmin(profile.phone),
   };
 }
 
@@ -69,6 +77,7 @@ export async function requireAdminApi(): Promise<AdminApiResult> {
       email: profile.email,
       firstName: profile.first_name,
       lastName: profile.last_name,
+      isRoot: isRootAdmin(profile.phone),
     },
   };
 }
@@ -95,5 +104,6 @@ export async function requireAdminPage(locale: Locale): Promise<AdminContext> {
     email: profile.email,
     firstName: profile.first_name,
     lastName: profile.last_name,
+    isRoot: isRootAdmin(profile.phone),
   };
 }

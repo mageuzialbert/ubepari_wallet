@@ -92,6 +92,23 @@ export async function getAdminKycSubmission(
   };
 }
 
+export async function listKycForUser(userId: string): Promise<AdminKycListRow[]> {
+  const { data, error } = await supabaseAdmin()
+    .from("kyc_submissions")
+    .select(
+      "id, user_id, legal_first_name, legal_last_name, nida_number, workplace, status, submitted_at, reviewed_at",
+    )
+    .eq("user_id", userId)
+    .order("submitted_at", { ascending: false })
+    .limit(50);
+
+  if (error) {
+    console.error("[admin-kyc] list-for-user failed", { userId, error: error.message });
+    return [];
+  }
+  return data ?? [];
+}
+
 async function loadReviewerName(reviewerId: string): Promise<string | null> {
   const { data } = await supabaseAdmin()
     .from("profiles")

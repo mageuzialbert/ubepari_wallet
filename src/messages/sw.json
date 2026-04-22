@@ -1301,6 +1301,117 @@
         "unauthenticated": "Ingia tena ili kuendelea.",
         "error": "Kuna tatizo. Tafadhali jaribu tena."
       }
+    },
+    "users": {
+      "metaTitle": "Watumiaji",
+      "eyebrow": "Msimamizi",
+      "heading": "Watumiaji",
+      "body": "Kila mtu aliyejisajili Ubepari. Angalia wasifu, rekebisha kikomo cha mkopo, na dhibiti upatikanaji wa usimamizi.",
+      "list": {
+        "searchPlaceholder": "Tafuta kwa simu, jina au barua pepe",
+        "empty": "Hakuna mtumiaji anayelingana na utafutaji huu.",
+        "columns": {
+          "user": "Mtumiaji",
+          "phone": "Simu",
+          "email": "Barua pepe",
+          "kyc": "KYC",
+          "creditLimit": "Kikomo cha mkopo",
+          "orders": "Oda",
+          "joined": "Alijiunga"
+        },
+        "adminBadge": "Msimamizi",
+        "rootBadge": "Mkuu"
+      },
+      "detail": {
+        "back": "← Rudi kwa watumiaji",
+        "sectionProfile": "Wasifu",
+        "sectionWallet": "Wallet",
+        "sectionOrders": "Oda",
+        "sectionPayments": "Malipo",
+        "sectionKyc": "Historia ya KYC",
+        "labels": {
+          "phone": "Simu",
+          "email": "Barua pepe",
+          "name": "Jina",
+          "joined": "Alijiunga",
+          "creditLimit": "Kikomo cha mkopo",
+          "creditPoints": "Pointi za mkopo",
+          "kyc": "Hali ya KYC",
+          "adminRole": "Msimamizi",
+          "noName": "Hakijawekwa",
+          "noEmail": "Hakijawekwa"
+        },
+        "wallet": {
+          "balance": "Salio la wallet",
+          "totalPaid": "Jumla iliyolipwa",
+          "totalOwed": "Jumla inayodaiwa",
+          "nextDue": "Malipo yanayofuata",
+          "nextDueEmpty": "Hakuna malipo yaliyopangwa"
+        },
+        "ordersEmpty": "Mtumiaji huyu hana oda bado.",
+        "paymentsEmpty": "Hakuna malipo kwenye rekodi.",
+        "kycEmpty": "Hakuna mawasilisho ya KYC bado.",
+        "kycLink": "Fungua wasilisho",
+        "kycStatus": {
+          "none": "Hajaanza",
+          "pending": "Inasubiri",
+          "approved": "Imeidhinishwa",
+          "rejected": "Imekataliwa"
+        },
+        "orderStatus": {
+          "pending": "Inasubiri amana",
+          "active": "Hai",
+          "completed": "Imekamilika",
+          "cancelled": "Imeghairiwa"
+        },
+        "paymentStatus": {
+          "pending": "Inasubiri",
+          "success": "Imefanikiwa",
+          "failed": "Imeshindwa"
+        },
+        "paymentKind": {
+          "deposit": "Amana",
+          "installment": "Awamu",
+          "topup": "Kuongeza salio",
+          "refund": "Marejesho"
+        }
+      },
+      "creditLimit": {
+        "title": "Badilisha kikomo cha mkopo",
+        "currentLabel": "Kikomo cha sasa",
+        "newLabel": "Kikomo kipya (TZS)",
+        "reasonLabel": "Sababu",
+        "reasonPlaceholder": "Kwa nini kikomo hiki kinabadilika? (kinarekodiwa kwenye kumbukumbu)",
+        "reasonHint": "Herufi 1–500. Inahifadhiwa kwenye kumbukumbu.",
+        "submit": "Hifadhi kikomo",
+        "saving": "Inahifadhi…"
+      },
+      "adminRole": {
+        "title": "Upatikanaji wa usimamizi",
+        "grantAction": "Toa uongozi",
+        "revokeAction": "Ondoa uongozi",
+        "reasonLabel": "Sababu",
+        "reasonPlaceholder": "Kwa nini upatikanaji unabadilika?",
+        "reasonHint": "Herufi 1–500. Inahifadhiwa kwenye kumbukumbu.",
+        "grantSubmit": "Toa uongozi",
+        "revokeSubmit": "Ondoa uongozi",
+        "rootOnlyNote": "Ni msimamizi mkuu pekee anayeweza kubadilisha upatikanaji wa uongozi.",
+        "rootLocked": "Hili ni akaunti ya msimamizi mkuu. Upatikanaji wake unabadilishwa tu kwa kuhariri ROOT_ADMIN_PHONE.",
+        "selfLocked": "Huwezi kubadilisha upatikanaji wako wa uongozi kutoka hapa."
+      },
+      "toast": {
+        "creditUpdated": "Kikomo cha mkopo kimesasishwa.",
+        "adminGranted": "Upatikanaji wa uongozi umetolewa.",
+        "adminRevoked": "Upatikanaji wa uongozi umeondolewa.",
+        "validation": "Angalia sehemu zilizoangaziwa.",
+        "reasonRequired": "Sababu inahitajika.",
+        "forbidden": "Huna ruhusa ya kufanya hivyo.",
+        "selfForbidden": "Huwezi kubadilisha upatikanaji wako wa uongozi.",
+        "rootForbidden": "Msimamizi mkuu hawezi kushushwa cheo kutoka kwenye UI.",
+        "notFound": "Mtumiaji hakupatikana.",
+        "unauthenticated": "Ingia tena ili kuendelea.",
+        "error": "Kuna tatizo. Tafadhali jaribu tena."
+      }
     }
   }
 }

@@ -1301,6 +1301,117 @@
         "unauthenticated": "Sign in again to continue.",
         "error": "Something went wrong. Please try again."
       }
+    },
+    "users": {
+      "metaTitle": "Users",
+      "eyebrow": "Admin",
+      "heading": "Users",
+      "body": "Everyone signed up on Ubepari. Review profiles, adjust credit, and manage admin access.",
+      "list": {
+        "searchPlaceholder": "Search by phone, name, or email",
+        "empty": "No users match this search.",
+        "columns": {
+          "user": "User",
+          "phone": "Phone",
+          "email": "Email",
+          "kyc": "KYC",
+          "creditLimit": "Credit limit",
+          "orders": "Orders",
+          "joined": "Joined"
+        },
+        "adminBadge": "Admin",
+        "rootBadge": "Root"
+      },
+      "detail": {
+        "back": "← Back to users",
+        "sectionProfile": "Profile",
+        "sectionWallet": "Wallet",
+        "sectionOrders": "Orders",
+        "sectionPayments": "Payments",
+        "sectionKyc": "KYC history",
+        "labels": {
+          "phone": "Phone",
+          "email": "Email",
+          "name": "Name",
+          "joined": "Joined",
+          "creditLimit": "Credit limit",
+          "creditPoints": "Credit points",
+          "kyc": "KYC status",
+          "adminRole": "Admin",
+          "noName": "Not provided",
+          "noEmail": "Not provided"
+        },
+        "wallet": {
+          "balance": "Wallet balance",
+          "totalPaid": "Total paid",
+          "totalOwed": "Total outstanding",
+          "nextDue": "Next payment due",
+          "nextDueEmpty": "No scheduled payment"
+        },
+        "ordersEmpty": "This user has no orders yet.",
+        "paymentsEmpty": "No payments on file.",
+        "kycEmpty": "No KYC submissions yet.",
+        "kycLink": "Open submission",
+        "kycStatus": {
+          "none": "Not started",
+          "pending": "Pending",
+          "approved": "Approved",
+          "rejected": "Rejected"
+        },
+        "orderStatus": {
+          "pending": "Pending deposit",
+          "active": "Active",
+          "completed": "Completed",
+          "cancelled": "Cancelled"
+        },
+        "paymentStatus": {
+          "pending": "Pending",
+          "success": "Success",
+          "failed": "Failed"
+        },
+        "paymentKind": {
+          "deposit": "Deposit",
+          "installment": "Installment",
+          "topup": "Top-up",
+          "refund": "Refund"
+        }
+      },
+      "creditLimit": {
+        "title": "Change credit limit",
+        "currentLabel": "Current limit",
+        "newLabel": "New limit (TZS)",
+        "reasonLabel": "Reason",
+        "reasonPlaceholder": "Why is this limit changing? (recorded in the audit log)",
+        "reasonHint": "1–500 characters. Saved in the audit log.",
+        "submit": "Save limit",
+        "saving": "Saving…"
+      },
+      "adminRole": {
+        "title": "Admin access",
+        "grantAction": "Grant admin",
+        "revokeAction": "Revoke admin",
+        "reasonLabel": "Reason",
+        "reasonPlaceholder": "Why is this access changing?",
+        "reasonHint": "1–500 characters. Saved in the audit log.",
+        "grantSubmit": "Grant admin",
+        "revokeSubmit": "Revoke admin",
+        "rootOnlyNote": "Only the root admin can change admin access.",
+        "rootLocked": "This is the root admin account. Its access can only be changed by editing ROOT_ADMIN_PHONE.",
+        "selfLocked": "You can't change your own admin access from here."
+      },
+      "toast": {
+        "creditUpdated": "Credit limit updated.",
+        "adminGranted": "Admin access granted.",
+        "adminRevoked": "Admin access revoked.",
+        "validation": "Check the highlighted fields.",
+        "reasonRequired": "A reason is required.",
+        "forbidden": "You don't have permission to do that.",
+        "selfForbidden": "You can't change your own admin access.",
+        "rootForbidden": "The root admin can't be demoted from the UI.",
+        "notFound": "User not found.",
+        "unauthenticated": "Sign in again to continue.",
+        "error": "Something went wrong. Please try again."
+      }
     }
   }
 }
