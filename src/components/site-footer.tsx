@@ -40,7 +40,7 @@ const GROUPS: FooterGroup[] = [
     titleKey: "legal",
     links: [
       { href: "/legal/terms", labelKey: "terms" },
-      { href: "/legal/hire-purchase", labelKey: "hirePurchase" },
+      { href: "/legal/hire-purchase-agreement", labelKey: "hirePurchase" },
       { href: "/legal/privacy", labelKey: "privacy" },
     ],
   },

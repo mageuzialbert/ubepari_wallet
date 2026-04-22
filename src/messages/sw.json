@@ -595,5 +595,397 @@
         "body": "Mtu halisi upande mwingine. ID ya oda yako imejazwa tayari."
       }
     ]
+  },
+  "legal": {
+    "eyebrow": "Sheria",
+    "lastUpdated": "Imehuishwa mwisho {date} · toleo la {version}",
+    "lastUpdatedDate": "1 Aprili 2026",
+    "toc": "Yaliyomo",
+    "controllingVersion": "Toleo la Kiingereza ndilo linalotawala kwa hati hii. Tafsiri ya Kiswahili imetolewa kwa urahisi tu; iwapo kuna tofauti kati ya matoleo haya mawili, maandishi ya Kiingereza ndiyo yanayotumika.",
+    "backToHome": "← Rudi nyumbani",
+    "relatedHeading": "Hati zinazohusiana",
+    "relatedLinks": {
+      "terms": "Masharti ya Huduma",
+      "privacy": "Sera ya Faragha",
+      "hirePurchase": "Mkataba wa Lipa Kidogo Kidogo"
+    },
+    "contactBlock": {
+      "title": "Una maswali kuhusu hati hii?",
+      "body": "Wasiliana na mtu halisi. Kwa malalamiko rasmi, tafadhali andika barua pepe ukiambatanisha nambari ya simu yako na kumbukumbu ya oda (kama ipo).",
+      "emailLabel": "Barua pepe",
+      "emailValue": "support@ubeparipc.com",
+      "phoneLabel": "Simu",
+      "phoneValue": "+255 683 491 481",
+      "whatsappLabel": "WhatsApp",
+      "whatsappHref": "https://wa.me/255683491481",
+      "whatsappValue": "wa.me/255683491481",
+      "hqLabel": "Ofisi kuu",
+      "hqValue": "Magomeni Usalama, Dar es Salaam, Tanzania",
+      "shopLabel": "Duka",
+      "shopValue": "Magomeni Mapipa, Dar es Salaam, Tanzania"
+    },
+    "terms": {
+      "metaTitle": "Masharti ya Huduma",
+      "metaDescription": "Kanuni zinazoongoza matumizi yako ya Ubepari Wallet — sisi ni nani, nani anaweza kujisajili, jinsi malipo na Lipa Kidogo Kidogo yanavyofanya kazi, na haki zako chini ya sheria za Tanzania.",
+      "heading": "Masharti ya Huduma",
+      "intro": "Masharti haya ni makubaliano ya kisheria kati yako na Ubepari PC Co LTD. Yanaongoza matumizi yako ya Ubepari Wallet — tovuti, akaunti, mipango ya Lipa Kidogo Kidogo, na kila malipo yanayopita kwenye jukwaa letu. Tafadhali yasome. Kwa kufungua akaunti au kuhifadhi PC, unathibitisha kuwa umesoma na kukubali masharti haya.",
+      "sections": {
+        "about": {
+          "title": "1. Sisi ni nani",
+          "body": [
+            "Ubepari PC Co LTD (\"Ubepari\", \"sisi\", \"letu\") ni kampuni binafsi yenye dhima ya ukomo, iliyosajiliwa katika Jamhuri ya Muungano wa Tanzania. Ofisi yetu kuu ipo Magomeni Usalama, Dar es Salaam; duka letu lipo Magomeni Mapipa, Dar es Salaam.",
+            "Ubepari Wallet ni jukwaa la mtandaoni ambalo Ubepari inauzia kompyuta binafsi na kufadhili ununuzi wao kwa malipo ya awamu. Wallet inaendeshwa moja kwa moja na Ubepari; usindikaji wa malipo unashughulikiwa na mpokezi wa malipo aliyeruhusiwa kwa niaba yetu (angalia kifungu cha 8)."
+          ]
+        },
+        "eligibility": {
+          "title": "2. Nani anaweza kutumia huduma hii",
+          "body": [
+            "Ili kufungua akaunti na kununua kutoka Ubepari Wallet lazima:",
+            "• uwe na umri wa angalau miaka 18;\n• uwe na Nambari halali ya Kitambulisho cha Taifa (NIDA) au pasipoti halali inayotambulika nchini Tanzania;\n• uwe mkazi wa Tanzania na utoe nambari ya simu ya Tanzania (255XXXXXXXXX);\n• uwe na uwezo wa kisheria wa kuingia mkataba unaomfunga.",
+            "Tunaweza kukataa kufungua akaunti, au kufunga iliyopo, pale tunapoamini kwa busara kuwa mahitaji haya hayajatimizwa au pale sheria inapotulazimu kufanya hivyo."
+          ]
+        },
+        "account": {
+          "title": "3. Akaunti yako",
+          "body": [
+            "Akaunti yako imeunganishwa na nambari yako ya simu. Tunaithibitisha kwa kutuma nenosiri la mara moja (OTP) kupitia SMS. Wewe ndiye unayewajibika kutunza simu yako na SIM yako salama. Yeyote aliye na OTP uliyotumiwa anaweza kuingia kwenye akaunti yako — ukipoteza simu yako, wasiliana nasi mara moja.",
+            "Taarifa unazotupa wakati wa kujisajili na wakati wa KYC (jina, tarehe ya kuzaliwa, NIDA, anwani, kitambulisho) lazima ziwe sahihi na za sasa. Kama maelezo yako yatabadilika, lazima uyasahihishe. Tunategemea taarifa hizi kuendesha huduma na kutimiza wajibu wetu chini ya sheria za Tanzania.",
+            "Mtu mmoja, akaunti moja. Usishiriki, usiuze, wala usihamishe akaunti yako. Kutumia utambulisho wa uongo au wa mtu mwingine ni kosa la jinai chini ya Sheria ya Shughuli za Kielektroniki ya 2015 (Electronic Transactions Act, 2015)."
+          ]
+        },
+        "kyc": {
+          "title": "4. Uthibitisho wa utambulisho (KYC)",
+          "body": [
+            "Kabla ya kuhifadhi PC au kuingia mpango wa Lipa Kidogo Kidogo lazima umalize uthibitisho wa KYC. Unapakia nakala halisi ya NIDA au pasipoti yako, unathibitisha majina yako ya kisheria, na unaweza kuongeza mahali pa kazi (si lazima).",
+            "Timu yetu hukagua kila ombi kwa mkono. Ukaguzi mwingi hukamilika ndani ya masaa machache siku za kazi. Tunaweza kukuomba nyaraka za ziada au kukataa uthibitisho bila kutoa sababu, kama sheria inavyoruhusu.",
+            "Baada ya kuthibitishwa, unapewa kiwango cha mkopo. Kiwango chako cha mkopo ni uamuzi wa kibiashara wa Ubepari na unaweza kubadilishwa wakati wowote kulingana na historia yako ya malipo, msimamo wetu wa hatari, na mwongozo wa kisheria."
+          ]
+        },
+        "wallet": {
+          "title": "5. Ubepari Wallet",
+          "body": [
+            "Ubepari Wallet yako ni daftari la pesa ulizolipa, pesa tulizokata kwa ajili ya malipo ya awali na awamu, pamoja na marejesho yoyote. Siyo akaunti ya benki. Ubepari Wallet hailipi riba wala haitoi huduma za malipo kwa wahusika wa tatu.",
+            "Unaweza kuongeza pesa kwenye Wallet yako kupitia mobile money au kadi wakati wowote. Pesa zilizoongezwa hazirudishwi kama fedha taslimu, lakini salio linaweza kutumika kwa ununuzi au awamu yoyote ya sasa au baadaye ya Ubepari.",
+            "Iwapo akaunti yako itafungwa, salio lolote chanya la Wallet litarudishwa kwenye njia ya awali ya malipo, baada ya kutoa kiasi chochote unachotudai, ndani ya siku 30 za kazi."
+          ]
+        },
+        "purchases": {
+          "title": "6. Kununua PC",
+          "body": [
+            "Unapohifadhi PC, unatoa ofa ya kuinunua kwa mpango uliouchagua. Mauzo yanakamilika tunapothibitisha oda, malipo ya awali yamepokelewa, na tumepokezea au tumefanya PC ipatikane kwa kuchukuliwa dukani.",
+            "Bei zinaonyeshwa kwa Shilingi za Tanzania (TZS) na zinajumuisha Kodi ya Ongezeko la Thamani (VAT) pale inapohitajika. Tunajitahidi kudumisha bei sahihi za bidhaa, lakini tunaweza kusahihisha makosa ya wazi; iwapo bei ya oda yako itatofautiana kwa kiasi kikubwa na bei ya wakati ulipoitoa kutokana na marekebisho, tutawasiliana nawe kabla ya kukata malipo ya awali.",
+            "Hifadhi ni ndogo. Kama mtindo utaisha kati ya kuhifadhi na kukamilika kwa oda, tutawasiliana nawe kwa chaguzi: mtindo unaofanana, kusubiri ugavi mpya, au marejesho kamili ya malipo ya awali."
+          ]
+        },
+        "hirePurchaseRef": {
+          "title": "7. Mipango ya Lipa Kidogo Kidogo",
+          "body": [
+            "Iwapo utachagua mpango wa Lipa Kidogo Kidogo (miezi 3, 6, 9 au 12), Mkataba tofauti wa Lipa Kidogo Kidogo unatumika pamoja na Masharti haya. Mkataba huo ni mkataba wa mauzo kwa awamu na unaeleza maelezo ya umiliki, awamu, kutotimiza, na kurudishwa kwa kifaa kulingana na Sheria ya Ununuzi kwa Awamu ya 1966 (Hire-Purchase Act, 1966).",
+            "Kwa kubofya kitufe cha kuhifadhi kwenye mpango wa Lipa Kidogo Kidogo, unakubali Masharti haya na pia Mkataba wa Lipa Kidogo Kidogo wa oda hiyo mahususi. Kila oda inazalisha mkataba wake tofauti."
+          ]
+        },
+        "payments": {
+          "title": "8. Malipo na watoa huduma",
+          "body": [
+            "Tunakubali M-Pesa, Tigo Pesa, Airtel Money, na kadi za Visa / Mastercard. Malipo yote yanapita kupitia mpokezi aliyeruhusiwa (Evmark, inayofanya kazi chini ya mpangilio wa mfanyabiashara wa iPAB International) ambaye ana leseni zinazohitajika kutoka Benki Kuu ya Tanzania na mitandao ya kadi. Unaidhinisha kila malipo wazi wazi, ama kwa kuthibitisha ombi la USSD kwenye simu yako au kwa kutuma maelezo ya kadi yako.",
+            "Malipo ni kwa TZS. Iwapo kadi yako imetolewa kwa sarafu tofauti, benki yako inaweka kiwango chake cha ubadilishaji na ada — wasiliana nao.",
+            "Kamwe hatuoni wala hatuhifadhi PIN yako ya mobile money, na hatuhifadhi nambari kamili za kadi kwenye seva zetu. Data ya kadi hushughulikiwa na mpokezi kulingana na viwango vya PCI-DSS."
+          ]
+        },
+        "fees": {
+          "title": "9. Ada na malipo",
+          "body": [
+            "Ununuzi wa mkupuo hauna ada ya huduma. Mipango ya Lipa Kidogo Kidogo ina ada ya huduma kulingana na muda uliouchagua: 0% kwa miezi 3, 5% kwa miezi 6, 8% kwa miezi 9, na 12% kwa miezi 12. Ada inakokotolewa juu ya kiasi cha mkopo (bei ya mkupuo ikiondoa malipo ya awali ya 20%) na inaonyeshwa kwa ukamilifu kabla ya kuthibitisha. Awamu za kila mwezi zinaongezwa hadi elfu 1,000 TZS za karibu zaidi.",
+            "Tunatoza ada ya kuchelewa ya 2% ya awamu iliyokosekana kwa kila kipindi kinachoanza siku 7 au zaidi baada ya tarehe ya malipo. Kulipa mapema ni bure — unaweza kumaliza salio lako wakati wowote bila adhabu.",
+            "Hatutozi kuongeza pesa kwenye Wallet yako. Mtoa huduma wako wa mobile money au mtoaji wa kadi anaweza kuweka ada zake za muamala — wasiliana nao."
+          ]
+        },
+        "warranty": {
+          "title": "10. Dhamana, marejesho, na bidhaa zenye kasoro",
+          "body": [
+            "Kila PC mpya inakuja na dhamana ya mtengenezaji ya miezi 12. Tunakupatia dhamana hii kwa ukamilifu; hatuipunguzi. Dhamana inafunika kasoro za utengenezaji, siyo uharibifu wa ajali, uharibifu wa maji, au uchakavu wa kawaida.",
+            "Iwapo PC itawasili ikiwa haifanyi kazi au itaonyesha kasoro ndani ya siku 7 za ufikishaji, tutaibadilisha au kuirekebisha bila gharama yoyote kwako. Baada ya siku 7, tunaheshimu mchakato wa dhamana wa mtengenezaji na kukusaidia kuuratibu.",
+            "Haki hizi ni nyongeza kwa haki zozote ulizonazo chini ya sheria za ulinzi wa walaji za Tanzania. Hakuna kifungu cha Masharti haya kinachozuia haki hizo."
+          ]
+        },
+        "acceptableUse": {
+          "title": "11. Matumizi yanayokubalika",
+          "body": [
+            "Unakubali usiyatumie:",
+            "• huduma kwa lengo lolote kinyume na sheria, ikiwa ni pamoja na utakatishaji wa fedha, udanganyifu, au kufadhili shughuli haramu;\n• kujifanya mtu mwingine au kutoa taarifa za uongo kuhusu utambulisho wako;\n• kujaribu kupita mifumo ya usalama, kukusanya data za tovuti kwa programu otomatiki bila idhini yetu, au kuingilia watumiaji wengine;\n• kuiuza tena au kutumia huduma kibiashara bila idhini yetu ya maandishi.",
+            "Uvunjaji wa kifungu hiki unaweza kusababisha kusimamishwa au kufungwa mara moja kwa akaunti yako, kuripotiwa kwa polisi, na hatua za kisheria za kudai fidia."
+          ]
+        },
+        "ip": {
+          "title": "12. Haki miliki",
+          "body": [
+            "Jina la Ubepari, nembo, pamoja na maudhui na msimbo wa Ubepari Wallet vinamilikiwa na Ubepari PC Co LTD au watoaji leseni wetu. Unaweza kuviona na kuvitumia tu kama sehemu ya kutumia huduma. Huwezi kuvinakili, kuvibadilisha, au kuvichapisha bila idhini yetu ya maandishi.",
+            "Picha za bidhaa, vipimo, na majina ya chapa ni mali ya watengenezaji wao, na hutumika chini ya leseni au haki ya matumizi halali."
+          ]
+        },
+        "availability": {
+          "title": "13. Upatikanaji wa huduma",
+          "body": [
+            "Tunajitahidi kuweka Ubepari Wallet ikipatikana muda wote, lakini hatuwezi kuhakikisha huduma isiyokatika. Tunaweza kuhitaji kuiondoa huduma kwa ukarabati, uboreshaji, au marekebisho ya dharura. Pale inapowezekana, tutatoa taarifa mapema kwenye tovuti.",
+            "Huduma inatolewa \"kama ilivyo\" na \"kwa upatikanaji\". Tunakataa dhamana zote zilizopatikana kwa kiwango cha juu kinachoruhusiwa na sheria, isipokuwa kama imeelezwa wazi katika Masharti haya."
+          ]
+        },
+        "liability": {
+          "title": "14. Mipaka ya dhima",
+          "body": [
+            "Kwa kiwango cha juu kinachoruhusiwa na sheria, dhima yetu jumla kwako kwa dai lolote linalotokana na au linalohusiana na Masharti haya au matumizi yako ya Ubepari Wallet ni ya kiwango kikubwa zaidi kati ya (a) jumla ya kiasi ulichotulipa katika miezi 12 kabla ya dai, au (b) TZS 100,000.",
+            "Hatuna dhima kwa hasara za upande mmoja, zisizokuwa za moja kwa moja, maalum, za baadaye, au za adhabu, ikiwa ni pamoja na kupoteza faida, mapato, data, au sifa.",
+            "Hakuna kifungu cha sehemu hii kinachozuia dhima ya udanganyifu, uzembe wa hali ya juu, kifo au jeraha la mtu kilichosababishwa na uzembe wetu, au dhima nyingine yoyote isiyoweza kupunguzwa chini ya sheria za Tanzania."
+          ]
+        },
+        "termination": {
+          "title": "15. Kusimamisha na kufunga",
+          "body": [
+            "Unaweza kufunga akaunti yako wakati wowote kwa kutuandikia support@ubeparipc.com. Kufunga hakukuondolei wajibu wako kwenye mpango wowote wa Lipa Kidogo Kidogo uliopo hai.",
+            "Tunaweza kusimamisha au kufunga akaunti yako endapo tunaamini kwa busara kuwa umekiuka Masharti haya, umetoa taarifa za uongo, unatumia huduma kwa madhumuni haramu, au sheria au amri ya mdhibiti zinatulazimu. Pale inapowezekana, tutakupa taarifa na nafasi ya kurekebisha tatizo kwanza."
+          ]
+        },
+        "changes": {
+          "title": "16. Mabadiliko ya Masharti haya",
+          "body": [
+            "Tunaweza kubadilisha Masharti haya mara kwa mara — kwa mfano, kuakisi bidhaa mpya, sheria mpya, au mabadiliko katika jinsi tunavyofanya kazi. Iwapo mabadiliko ni makubwa, tutakujulisha kwa SMS, barua pepe, au ujumbe wa ndani ya programu angalau siku 14 kabla hayajaanza kutumika. Kwa mabadiliko yasiyo makubwa (makosa ya uchapishaji, ufafanuzi), tunaweza kuboresha hati bila taarifa maalum.",
+            "Toleo na tarehe ya \"Imehuishwa mwisho\" juu ya ukurasa huu zinaonyesha toleo la sasa kila wakati. Kuendelea kutumia Ubepari Wallet baada ya mabadiliko kuanza kutumika kunamaanisha unakubali toleo jipya. Iwapo hukubali, acha kutumia huduma na funga akaunti yako."
+          ]
+        },
+        "law": {
+          "title": "17. Sheria zinazotumika na mabishano",
+          "body": [
+            "Masharti haya yanaongozwa na sheria za Jamhuri ya Muungano wa Tanzania, ikiwa ni pamoja na Sheria ya Shughuli za Kielektroniki ya 2015 (Electronic Transactions Act, 2015) na, pale inapohitajika, Sheria ya Ununuzi kwa Awamu ya 1966 (Hire-Purchase Act, 1966) na Sheria ya Ulinzi wa Data Binafsi ya 2022 (Personal Data Protection Act, 2022).",
+            "Tunapendelea kutatua mabishano moja kwa moja — tafadhali tuandikie kwanza. Endapo haitafaulu, mahakama za Tanzania, zilizoketi Dar es Salaam, zina mamlaka ya pekee. Hakuna kinachokuzuia kufungua malalamiko kwa mdhibiti wa ushindani wa haki (Fair Competition Commission) kwa masuala ya walaji au Tume ya Ulinzi wa Data Binafsi (Personal Data Protection Commission) kwa masuala ya data."
+          ]
+        },
+        "contact": {
+          "title": "18. Wasiliana nasi",
+          "body": [
+            "Kama una maswali kuhusu Masharti haya, andika kwa support@ubeparipc.com, piga simu +255 683 491 481, au tembelea duka letu Magomeni Mapipa, Dar es Salaam."
+          ]
+        }
+      }
+    },
+    "privacy": {
+      "metaTitle": "Sera ya Faragha",
+      "metaDescription": "Jinsi Ubepari inavyokusanya, kutumia, na kulinda data yako binafsi — ikiwa ni pamoja na NIDA, nambari ya simu, nyaraka za KYC, na rekodi za malipo — chini ya Sheria ya Ulinzi wa Data Binafsi ya Tanzania ya 2022.",
+      "heading": "Sera ya Faragha",
+      "intro": "Sera hii inaeleza taarifa gani binafsi Ubepari PC Co LTD inakusanya unapotumia Ubepari Wallet, kwa nini tunazikusanya, tunashiriki na nani, tunazihifadhi kwa muda gani, na haki gani unazonazo juu yake. Tumeiandika kwa lugha rahisi. Kama kuna chochote kisichoeleweka, tuma barua pepe kwa support@ubeparipc.com na tutakusaidia.",
+      "sections": {
+        "controller": {
+          "title": "1. Msimamizi wa data",
+          "body": [
+            "Msimamizi wa data ni Ubepari PC Co LTD, kampuni iliyosajiliwa nchini Tanzania, yenye ofisi yake kuu Magomeni Usalama, Dar es Salaam. Hii inamaanisha kuwa sisi tunaamua data gani binafsi inakusanywa na jinsi inavyotumika, na tuna wajibu kwako na kwa Tume ya Ulinzi wa Data Binafsi kuhusu jinsi tunavyoishughulikia.",
+            "Kwa maswali ya faragha, andika kwa support@ubeparipc.com ukiweka \"Privacy\" katika mada. Tunalenga kujibu ndani ya siku 7."
+          ]
+        },
+        "whatWeCollect": {
+          "title": "2. Tunakusanya nini",
+          "body": [
+            "Kutoka kwako moja kwa moja wakati wa kusajili, kuthibitisha, au kufanya muamala:",
+            "• nambari yako ya simu katika muundo wa 255XXXXXXXXX;\n• jina lako la kwanza na la mwisho;\n• anwani yako ya barua pepe (si lazima);\n• nambari yako ya NIDA au maelezo ya pasipoti wakati wa KYC;\n• picha au skani ya kitambulisho chako;\n• jina la mwajiri au biashara yako (si lazima, wakati wa KYC);\n• maelezo ya bidhaa unazohifadhi na mpango unaochagua;\n• nambari ya simu unayotumia kuidhinisha kila malipo ya mobile money.",
+            "Kiotomatiki unapotumia huduma:",
+            "• taarifa za msingi za kifaa (kivinjari, mfumo wa uendeshaji, mahali takriban kulingana na IP) kwa ajili ya usalama na kuzuia udanganyifu;\n• tarehe, kiasi, hali, na mtoa huduma wa kila malipo;\n• ujumbe unaotuma kwa msaidizi wetu wa AI Tech Tips.",
+            "Kutoka kwa mpokezi wetu wa malipo (Evmark / iPAB):",
+            "• kumbukumbu ya muamala, kumbukumbu ya mtoa huduma, na hali (mafanikio / kushindwa) ya kila malipo yaliyoidhinishwa dhidi ya nambari yako ya simu."
+          ]
+        },
+        "whyWeCollect": {
+          "title": "3. Kwa nini tunaikusanya na msingi wa kisheria",
+          "body": [
+            "Tunakusanya data yako tu kwa madhumuni yaliyoorodheshwa hapa chini, na kila moja ina msingi wa kisheria chini ya Sheria ya Ulinzi wa Data Binafsi ya 2022 (Personal Data Protection Act, 2022).",
+            "• Kuendesha huduma (utekelezaji wa mkataba): kufungua akaunti yako, kushughulikia malipo, kukamilisha oda, kusimamia mipango ya Lipa Kidogo Kidogo.\n• KYC na uamuzi wa mkopo (wajibu wa kisheria na maslahi halali): kuthibitisha utambulisho wako, kutathmini mkopo, kuzuia udanganyifu na utakatishaji wa fedha.\n• Msaada wa wateja (utekelezaji wa mkataba): kujibu maswali, kushughulikia malalamiko, kushughulikia dhamana.\n• Udanganyifu na usalama (maslahi halali): kurekodi, kugundua shughuli za kutiliwa shaka, kulinda watumiaji wengine na biashara.\n• Mapendekezo ya AI (utekelezaji wa mkataba, kwa hatua yako ya wazi): unapotumia AI Tech Tips, tunatuma swali lako na orodha yetu ya bidhaa kwa mtoa huduma wetu wa AI (angalia kifungu cha 4). Hatutumi jina lako, nambari ya simu, NIDA, wala kitambulisho kingine chochote.\n• Kuboresha huduma (maslahi halali): uchambuzi uliojumlishwa, usiotambulika, wa jinsi watu wanavyotumia huduma. Hatutumii hii kumuonyesha mtu binafsi.\n• Uzingatiaji wa kisheria (wajibu wa kisheria): kutimiza wajibu wetu chini ya sheria za kodi, huduma za kifedha, ulinzi wa data, na ulinzi wa walaji."
+          ]
+        },
+        "processors": {
+          "title": "4. Tunashiriki data yako na nani",
+          "body": [
+            "Hatuuzi data yako. Tunashiriki tu na washughulikiaji walioorodheshwa hapa chini, kila mmoja chini ya makubaliano ya maandishi yanayozuia wanachoweza kufanya nayo:",
+            "• Evmark Tanzania Ltd, inayofanya kazi chini ya mpangilio wa mfanyabiashara wa iPAB International — kwa usindikaji wote wa malipo ya mobile money na kadi. Wanapokea nambari yako ya simu, kiasi, na kumbukumbu.\n• Messaging-service.co.tz — lango letu la SMS. Wanapokea nambari yako ya simu na maandishi ya ujumbe (misimbo ya OTP, uthibitisho wa oda).\n• Supabase, Inc. — mtoa huduma wetu wa database na hifadhi ya faili. Akaunti yako, nyaraka za KYC, na rekodi za miamala vinahifadhiwa kwenye miundombinu ya Supabase katika eneo la EU-West (Ireland).\n• OpenAI, Inc. — mtoa huduma wetu wa AI kwa kipengele cha AI Tech Tips. Wanapokea maandishi ya swali lako na orodha yetu ya bidhaa; hawapokei vitambulisho vyako binafsi. Chini ya masharti yao ya kawaida ya kibiashara, data za ingizo za API ya OpenAI hazitumiwi kufundisha miundo yao.\n• Vercel, Inc. — mtoa huduma wetu wa hosting na CDN. Wanaona metadata ya ombi (IP, user-agent, URL) inayotumika kutoa kurasa na kulinda dhidi ya unyanyasaji.",
+            "Tutashiriki data yako na vyombo vya sheria, wadhibiti, au mahakama iwapo tumelazimishwa kisheria, na pia na washauri wetu wa kitaalamu (mawakili, wakaguzi) pale inapohitajika na chini ya wajibu wa siri."
+          ]
+        },
+        "crossBorder": {
+          "title": "5. Uhamisho wa data nje ya mipaka",
+          "body": [
+            "Baadhi ya washughulikiaji wetu wapo nje ya Tanzania. Supabase inahifadhi data ya akaunti yako na KYC katika Umoja wa Ulaya (Ireland), OpenAI inashughulikia maombi ya AI nchini Marekani, na Vercel inaendesha CDN duniani kote. Uhamisho wote unafanywa chini ya masharti ya mkataba yanayotaka washughulikiaji hao walinde data yako kwa kiwango sawa na viwango vya Tanzania chini ya Sheria ya Ulinzi wa Data Binafsi ya 2022.",
+            "Iwapo unapinga uhamisho wa kimataifa wa data yako binafsi, huwezi kutumia Ubepari Wallet na hatuwezi kukupa huduma. Tafadhali andika kwa support@ubeparipc.com iwapo unataka kupinga na kufunga akaunti yako."
+          ]
+        },
+        "retention": {
+          "title": "6. Tunahifadhi data yako kwa muda gani",
+          "body": [
+            "Tunahifadhi data yako tu kwa muda tunaohitaji.",
+            "• Akaunti na maelezo ya mawasiliano: wakati akaunti yako ikiwa wazi, pamoja na miaka 7 baada ya kufungwa (kutimiza sheria za kodi na kumbukumbu za kifedha).\n• Nyaraka za KYC (picha za kitambulisho na NIDA): wakati akaunti yako ikiwa wazi, pamoja na miaka 7 baada ya kufungwa, isipokuwa sheria mahususi inataka muda mfupi zaidi.\n• Rekodi za malipo: miaka 10, kulingana na sheria za kumbukumbu za kifedha.\n• Misimbo ya OTP: inafutwa ndani ya dakika 10 baada ya kutolewa; safu za simu + hash ya msimbo huisha kiotomatiki.\n• Ujumbe wa AI Tech Tips: siku 90 kwa ajili ya msaada na ukaguzi wa ubora, kisha unafutwa.\n• Rekodi za seva (IP, user-agent): siku 90, kisha zinajumlishwa au kufutwa."
+          ]
+        },
+        "security": {
+          "title": "7. Jinsi tunavyolinda data yako",
+          "body": [
+            "Data yako imesimbwa wakati wa usafirishaji (TLS) na wakati wa kuhifadhiwa kwenye miundombinu ya watoa huduma wetu. Nyaraka za KYC zinaishi kwenye ndoo ya kuhifadhi binafsi ambayo shughuli za service-role kwenye seva yetu pekee ndizo zinaweza kusoma. Ufikiaji wa akaunti yako unalindwa kwa simu + OTP; hatutumii nenosiri la kawaida. Database yetu inatumia usalama wa safu ili mtumiaji mmoja asiweze kusoma safu za mtumiaji mwingine hata kama kuna hitilafu kwenye programu yetu.",
+            "Tunafundisha timu yetu kuhusu ushughulikaji wa data. Tunapunguza ufikiaji wa data binafsi kwa wafanyakazi wanaoihitaji kwa majukumu yao. Tunarekodi ufikiaji wa data nyeti.",
+            "Hakuna mfumo uliolindwa kikamilifu. Iwapo wakati wowote tukipatwa na uvunjaji wa data binafsi unaoweza kuleta hatari kwa haki zako, tutakujulisha wewe na Tume ya Ulinzi wa Data Binafsi ndani ya muda uliowekwa na Sheria ya Ulinzi wa Data Binafsi ya 2022."
+          ]
+        },
+        "yourRights": {
+          "title": "8. Haki zako",
+          "body": [
+            "Chini ya Sheria ya Ulinzi wa Data Binafsi ya 2022 una haki ya:",
+            "• Kupata taarifa — kuomba nakala ya data binafsi tunayoihifadhi kukuhusu.\n• Kurekebisha — kutuomba kurekebisha data isiyo sahihi au isiyokamilika.\n• Kufutwa — kutuomba kufuta data yako, kulingana na muda wa uhifadhi unaotakiwa kisheria.\n• Kupinga — kupinga usindikaji unaotokana na maslahi halali.\n• Kuzuia — kutuomba tusimamishe usindikaji wa data yako kwa muda wakati swali linashughulikiwa.\n• Kuhamisha — kupokea data yako katika muundo unaosomeka na mashine.\n• Kurejesha idhini — kwa usindikaji wowote uliotegemea idhini yako.\n• Kulalamika — kuwasilisha malalamiko kwa Tume ya Ulinzi wa Data Binafsi ya Tanzania.",
+            "Ili kutumia haki yoyote hii, andika kwa support@ubeparipc.com kutoka kwa barua pepe au nambari ya simu iliyopo kwenye akaunti yako. Tunajibu ndani ya siku 30 na tunaweza kukuomba uthibitisho wa utambulisho kabla ya kutekeleza."
+          ]
+        },
+        "cookies": {
+          "title": "9. Cookies na hifadhi ya ndani",
+          "body": [
+            "Tunatumia cookie moja muhimu — ubepari-session — kukuweka umeingia. Inawekwa baada ya kuthibitisha OTP na inaondolewa unapotoka. Imewekwa alama ya HttpOnly na Secure na haiwezi kusomwa na skripti kwenye kivinjari.",
+            "Pia tunatumia hifadhi ya ndani kwa ajili ya chaguo la rangi (mwanga / giza) na lugha (Kiingereza / Kiswahili). Hizi hazikutambui.",
+            "Hatutumii cookies za matangazo au cookies za uchanganuzi wa wahusika wa tatu kwa chaguomsingi. Iwapo hili litabadilika wakati wowote, tutaboresha sera hii na kuomba idhini yako pale inapohitajika."
+          ]
+        },
+        "children": {
+          "title": "10. Watoto",
+          "body": [
+            "Ubepari Wallet haielekezwi kwa watu walio chini ya miaka 18. Hatukusanyi kwa kujua data kutoka kwa yeyote aliye chini ya miaka 18. Iwapo unaamini mtoto ametupa data, andika kwa support@ubeparipc.com na tutaifuta."
+          ]
+        },
+        "changes": {
+          "title": "11. Mabadiliko ya sera hii",
+          "body": [
+            "Tunaweza kusasisha sera hii. Iwapo sasisho linaathiri kwa kiasi kikubwa jinsi tunavyotumia data yako, tutakujulisha kwa SMS, barua pepe, au ujumbe wa ndani ya programu angalau siku 14 kabla halijaanza kutumika. Toleo na tarehe ya \"Imehuishwa mwisho\" juu ya ukurasa huu zinaonyesha toleo la sasa kila wakati."
+          ]
+        },
+        "contact": {
+          "title": "12. Wasiliana nasi",
+          "body": [
+            "Andika kwa support@ubeparipc.com, piga simu +255 683 491 481, au tembelea ofisi yetu kuu Magomeni Usalama, Dar es Salaam. Weka alama wazi ya maswali ya faragha ili yafike kwa timu sahihi."
+          ]
+        }
+      }
+    },
+    "hirePurchase": {
+      "metaTitle": "Mkataba wa Lipa Kidogo Kidogo",
+      "metaDescription": "Mkataba kati ya Ubepari na wewe unaponunua PC kwa mpango wa awamu — malipo ya awali, umiliki, awamu, ada za kuchelewa, kutotimiza na kurudishwa chini ya Sheria ya Ununuzi kwa Awamu ya 1966.",
+      "heading": "Mkataba wa Lipa Kidogo Kidogo",
+      "intro": "Huu ni mkataba unaoingia unapohifadhi PC kwa mpango wa Lipa Kidogo Kidogo. Umetengenezwa chini ya Sheria ya Ununuzi kwa Awamu ya 1966 (Hire-Purchase Act, 1966) na sheria za Tanzania. Unapaswa kusomwa pamoja na Masharti yetu ya Huduma na Sera ya Faragha. Kila oda unayoweka kwenye mpango inaunda mkataba tofauti; bei mahususi, malipo ya awali, muda, ada ya huduma, na awamu ya kila mwezi zinaonyeshwa kwako kwenye skrini ya kuhifadhi na kuthibitishwa kwenye Wallet yako.",
+      "sections": {
+        "parties": {
+          "title": "1. Wahusika",
+          "body": [
+            "Mkataba huu ni kati ya Ubepari PC Co LTD, kampuni iliyosajiliwa nchini Tanzania yenye ofisi yake kuu Magomeni Usalama, Dar es Salaam (\"Ubepari\", \"sisi\", \"Mmiliki\"), na wewe, mteja ambaye maelezo yake ya KYC yamehifadhiwa (\"Mkodishaji\")."
+          ]
+        },
+        "definitions": {
+          "title": "2. Ufafanuzi",
+          "body": [
+            "\"Bidhaa\" — PC mahususi uliyohifadhi, inayotambulika kwa mtindo, nambari ya serial, na kumbukumbu ya oda.\n\"Bei ya Mkupuo\" — bei ya mara moja ya Bidhaa ikilipwa kwa ukamilifu leo, kwa TZS.\n\"Malipo ya Awali\" — 20% ya Bei ya Mkupuo, yanayolipwa wakati wa kuhifadhi.\n\"Kiasi cha Mkopo\" — Bei ya Mkupuo ikiondoa Malipo ya Awali.\n\"Ada ya Huduma\" — ada inayotegemea muda juu ya Kiasi cha Mkopo: 0% kwa miezi 3, 5% kwa miezi 6, 8% kwa miezi 9, 12% kwa miezi 12.\n\"Bei Jumla ya Ukodishaji\" — Malipo ya Awali pamoja na Kiasi cha Mkopo pamoja na Ada ya Huduma.\n\"Awamu ya Kila Mwezi\" — Kiasi cha Mkopo pamoja na Ada ya Huduma, kugawanywa kwa idadi ya miezi ya muda, kuongezwa hadi elfu 1,000 TZS ya karibu zaidi.\n\"Wallet\" — akaunti yako ya Ubepari Wallet.\n\"Kutotimiza\" — ina maana iliyotolewa katika kifungu cha 11."
+          ]
+        },
+        "structure": {
+          "title": "3. Muundo wa mpango",
+          "body": [
+            "Unalipa Malipo ya Awali mwanzoni. Baada ya kupokea Malipo ya Awali, tunakupa Bidhaa (utoaji au kuchukua dukani). Kisha unalipa Awamu ya Kila Mwezi mara moja kwa mwezi kwa muda uliochagua hadi Bei Jumla ya Ukodishaji italipwa kwa ukamilifu.",
+            "Nambari mahususi za oda yako — Bei ya Mkupuo, Malipo ya Awali, Kiasi cha Mkopo, Ada ya Huduma, Awamu ya Kila Mwezi, Bei Jumla ya Ukodishaji, na tarehe za malipo — zinakokotolewa papo hapo kwa kutumia njia iliyochapishwa katika kumbukumbu yetu ya msimbo (angalia src/lib/credit.ts) na kuonyeshwa kwenye skrini ya kuhifadhi kabla ya kuthibitisha. Pia zimerekodiwa dhidi ya oda yako kwenye Wallet yako."
+          ]
+        },
+        "terms": {
+          "title": "4. Muda unaopatikana",
+          "body": [
+            "Unaweza kuchagua kutoka muda ufuatao wakati wa kuhifadhi:",
+            "• miezi 3 — ada ya huduma 0%\n• miezi 6 — ada ya huduma 5%\n• miezi 9 — ada ya huduma 8%\n• miezi 12 — ada ya huduma 12%",
+            "Ada ya Huduma inatumika kwenye Kiasi cha Mkopo (siyo Bei ya Mkupuo). Awamu za Kila Mwezi huongezwa hadi elfu 1,000 TZS ya karibu zaidi daima. Mfano uliokokotolewa unapatikana kwenye ukurasa wa bidhaa."
+          ]
+        },
+        "deposit": {
+          "title": "5. Malipo ya awali",
+          "body": [
+            "Malipo ya Awali yanalipwa wakati wa kuhifadhi kupitia M-Pesa, Tigo Pesa, Airtel Money, au kadi, kupitia mpokezi wetu wa malipo (Evmark / iPAB). Oda inathibitishwa tu baada ya Malipo ya Awali kukamilika upande wetu.",
+            "Iwapo utaghairi kabla ya kuchukua au utoaji, Malipo ya Awali yanarudishwa kwa ukamilifu ndani ya siku 14, kwa njia ya awali ya malipo."
+          ]
+        },
+        "delivery": {
+          "title": "6. Utoaji na kuchukua",
+          "body": [
+            "Kuchukua siku hiyo hiyo kunapatikana dukani kwetu Magomeni Mapipa, Dar es Salaam. Utoaji mahali pengine ndani ya Dar es Salaam na mikoa unapatikana kwa mapatano; ada ya utoaji inaweza kutumika na itatolewa taarifa na kukubaliwa kabla ya kuanza safari.",
+            "Lazima uonyeshe kitambulisho halali (NIDA au pasipoti) kinacholingana na maelezo yako ya KYC wakati wa kuchukua. Hatari kwenye Bidhaa inahamishiwa kwako wakati wa utoaji; umiliki haufikiwi (angalia kifungu cha 7)."
+          ]
+        },
+        "ownership": {
+          "title": "7. Umiliki na hatari",
+          "body": [
+            "Ubepari inabaki kuwa mmiliki wa kisheria wa Bidhaa hadi Bei Jumla ya Ukodishaji italipwa kwa ukamilifu, kulingana na Sheria ya Ununuzi kwa Awamu ya 1966 (Hire-Purchase Act, 1966). Umiliki kamili unahamishwa kwako kiotomatiki baada ya kulipa awamu yako ya mwisho, bila hatua yoyote zaidi kutoka kwa upande wowote.",
+            "Hatari ya kupoteza au uharibifu inahamishiwa kwako wakati wa utoaji. Kuanzia wakati huo unawajibika kulinda Bidhaa — kwa mfano, dhidi ya wizi, uharibifu wa ajali, na uharibifu wa maji. Unashauriwa kwa nguvu kupanga bima. Huwezi kuuza, kuweka rehani, kukodisha, au kusafirisha Bidhaa nje kabla ya kuimiliki."
+          ]
+        },
+        "installments": {
+          "title": "8. Awamu",
+          "body": [
+            "Awamu za Kila Mwezi zinafanyika siku ile ile ya mwezi kama siku ya utoaji wako (au, iwapo siku hiyo haipo kwenye mwezi fulani, siku ya mwisho ya mwezi huo). Ratiba yako ya malipo imeonyeshwa kwenye sehemu ya Oda ya Wallet yako na unaweza kulipa kabla ya ratiba wakati wowote.",
+            "Unaweza kulipa awamu kwa mkono kutoka kwa Wallet, au kuongeza pesa kwenye Wallet na kuiacha itumie kiotomatiki siku ya malipo. Tutatuma ukumbusho wa SMS siku 3 kabla ya kila tarehe ya malipo."
+          ]
+        },
+        "lateFee": {
+          "title": "9. Ada za kuchelewa",
+          "body": [
+            "Iwapo Awamu ya Kila Mwezi haitalipwa kabla ya tarehe ya malipo, ada ya kuchelewa ya 2% ya awamu iliyokosekana inatozwa mara tu awamu inapokuwa imechelewa kwa siku 7 au zaidi. Ada ya kuchelewa inatumika kwa kila awamu iliyochelewa, siyo kwa kila siku."
+          ]
+        },
+        "earlyPayoff": {
+          "title": "10. Kulipa mapema",
+          "body": [
+            "Unaweza kumaliza salio linalobaki wakati wowote, kwa sehemu au kamili. Hakuna adhabu ya kulipa mapema. Iwapo utalipa Bei Jumla ya Ukodishaji kwa ukamilifu kabla ya mwisho wa muda, Ada ya Huduma tayari imejumuishwa katika Bei Jumla ya Ukodishaji na hairudishwi — lakini unaokoka kwa hatari yoyote ya baadaye ya ada za kuchelewa na kuimiliki Bidhaa mara moja."
+          ]
+        },
+        "default": {
+          "title": "11. Kutotimiza",
+          "body": [
+            "Uko katika hali ya kutotimiza iwapo mojawapo ya yafuatayo yatatokea:",
+            "• Awamu ya Kila Mwezi inabaki bila kulipwa siku 30 baada ya tarehe yake ya malipo;\n• umetoa taarifa za uongo kwa kiasi kikubwa wakati wa KYC;\n• umeuza, umeweka rehani, umekodisha, au umesafirisha Bidhaa nje kabla ya umiliki kuhamishwa;\n• mchakato wa kufilisika umefunguliwa dhidi yako.",
+            "Kutotimiza kunatupa haki zilizoorodheshwa katika kifungu cha 12, lakini tu baada ya kukutumia notisi ya maandishi ya kutotimiza (SMS, barua pepe, au barua) ikikupa siku 30 kuleta akaunti yako hadi sasa."
+          ]
+        },
+        "repossession": {
+          "title": "12. Kurudishwa na kuuzwa",
+          "body": [
+            "Iwapo hutaponya kutotimiza ndani ya kipindi cha notisi cha siku 30, tunaweza kurudisha Bidhaa. Kurudishwa kunafanyika kulingana na Sheria ya Ununuzi kwa Awamu ya 1966 — hususan, hakuna kurudishwa bila notisi ya maandishi, na una haki ya kuponya kutotimiza kwako wakati wowote hadi kurudishwa.",
+            "Iwapo tutarudisha na kuuza Bidhaa, tutaweka mapato halisi ya uuzaji (bei ya uuzaji ikiondoa gharama zinazofaa za kurudishwa na kuuzwa) dhidi ya Bei Jumla ya Ukodishaji iliyobaki na kiasi cha Ada ya Huduma inayoendana na sehemu ya muda ambayo haijamalizika. Ziada yoyote inalipwa kwako; upungufu wowote unabaki unadaiwa na wewe.",
+            "Katika hatua yoyote, unabaki na haki ya kulipa salio linalobaki kwa ukamilifu na kubaki na Bidhaa."
+          ]
+        },
+        "warranty": {
+          "title": "13. Dhamana",
+          "body": [
+            "Dhamana ya mtengenezaji ya miezi 12 kwenye Bidhaa haiathiriwi na mkataba huu. Ubepari itakusaidia kuratibu huduma ya dhamana katika muda wote wa mpango na baadaye.",
+            "Iwapo Bidhaa ina kasoro na lazima ibadilishwe, Bidhaa mbadala inakuwa chini ya mkataba huu huu kana kwamba imetolewa siku ya kubadilishwa — awamu zinaendelea kwenye ratiba ya awali."
+          ]
+        },
+        "customerDuties": {
+          "title": "14. Wajibu wako",
+          "body": [
+            "Wakati bado hujamiliki Bidhaa, unakubali kuwa:",
+            "• kutunza Bidhaa kwa uangalifu wa busara;\n• kuzihifadhi kwenye mahali pako pa kawaida pa makazi au biashara nchini Tanzania, na kutujulisha iwapo anwani hiyo inabadilika;\n• kutobadilisha Bidhaa kwa njia inayopunguza thamani yake kwa kiasi kikubwa;\n• kutujulisha haraka iwapo Bidhaa imepotea, imeibiwa, au imeharibika vibaya;\n• kuweka maelezo yako ya KYC ya sasa;\n• kuweka angalau njia moja ya malipo inayofanya kazi kwenye faili."
+          ]
+        },
+        "amendments": {
+          "title": "15. Marekebisho",
+          "body": [
+            "Mkataba huu hauwezi kubadilishwa kwa maneno. Marekebisho yoyote lazima yawe ya maandishi na yatiwe sahihi au kukubaliwa kielektroniki na pande zote mbili."
+          ]
+        },
+        "law": {
+          "title": "16. Sheria zinazotumika",
+          "body": [
+            "Mkataba huu unaongozwa na sheria za Jamhuri ya Muungano wa Tanzania, hususan Sheria ya Ununuzi kwa Awamu ya 1966 (Hire-Purchase Act, 1966) na Sheria ya Shughuli za Kielektroniki ya 2015 (Electronic Transactions Act, 2015). Mahakama za Tanzania, zilizoketi Dar es Salaam, zina mamlaka ya pekee juu ya mgogoro wowote unaotokea chini yake."
+          ]
+        },
+        "contact": {
+          "title": "17. Wasiliana nasi",
+          "body": [
+            "Kwa chochote kinachohusu mpango wako wa Lipa Kidogo Kidogo — awamu iliyokosekana, mabadiliko ya anwani, ripoti ya kupoteza au wizi, ombi la kulipa mapema — andika kwa support@ubeparipc.com, piga simu +255 683 491 481, au tembelea duka Magomeni Mapipa, Dar es Salaam."
+          ]
+        }
+      }
+    }
   }
 }
