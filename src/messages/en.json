@@ -26,6 +26,84 @@
     "orders": "Orders",
     "support": "Support"
   },
+  "account": {
+    "metaTitle": "Account",
+    "eyebrow": "Your account",
+    "heading": "Account",
+    "subheading": "Your Ubepari identity and the trust you've built with us.",
+    "editCta": "Edit details",
+    "viewAllPayments": "View all payments",
+    "payments": {
+      "metaTitle": "Payment history",
+      "back": "Back to account",
+      "eyebrow": "Payment history",
+      "heading": "Everything you've paid.",
+      "subheading": "Deposits, installments, top-ups and refunds across your account.",
+      "filterAll": "All",
+      "filterDeposits": "Deposits",
+      "filterInstallments": "Installments",
+      "filterTopups": "Top-ups",
+      "filterRefunds": "Refunds",
+      "empty": "No payments yet.",
+      "emptyFiltered": "No payments match this filter.",
+      "linkedOrder": "For order",
+      "topupRow": "Wallet top-up",
+      "refundRow": "Refund",
+      "openOrder": "Open order"
+    },
+    "identity": {
+      "title": "Identity",
+      "nameLabel": "Name",
+      "namePlaceholder": "Not set yet",
+      "phoneLabel": "Phone",
+      "phoneHint": "Your phone is your sign-in. It can't be changed from here.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Not set yet",
+      "memberSinceLabel": "Member since"
+    },
+    "kyc": {
+      "title": "Identity verification",
+      "statusApproved": "Approved",
+      "statusPending": "Under review",
+      "statusRejected": "Rejected",
+      "statusNone": "Not started",
+      "descApproved": "You're verified. All hire-purchase features are unlocked.",
+      "descPending": "We're reviewing your documents. This usually takes a business day.",
+      "descRejected": "Your last submission needs attention. Resubmit when you're ready.",
+      "descNone": "Complete KYC to reserve PCs on hire-purchase.",
+      "ctaStart": "Start KYC",
+      "ctaView": "View status",
+      "ctaResubmit": "Resubmit"
+    },
+    "credit": {
+      "title": "Credit",
+      "limitLabel": "Credit limit",
+      "limitHint": "The maximum you can finance on hire-purchase.",
+      "pointsLabel": "Credit points",
+      "pointsHint": "Earn points with every on-time installment. Points unlock higher limits."
+    },
+    "edit": {
+      "metaTitle": "Edit account",
+      "back": "Back to account",
+      "eyebrow": "Edit account",
+      "heading": "Your details",
+      "subheading": "Update your name and email. Phone changes aren't supported yet.",
+      "firstNameLabel": "First name",
+      "lastNameLabel": "Last name",
+      "emailLabel": "Email",
+      "emailHint": "Optional. Used for receipts and order updates.",
+      "phoneLabel": "Phone",
+      "phoneHint": "Linked to your account. Contact support to change it.",
+      "save": "Save changes",
+      "cancel": "Cancel",
+      "success": "Saved",
+      "errors": {
+        "invalid_email": "That doesn't look like a valid email.",
+        "name_too_long": "Names must be under 60 characters.",
+        "unknown": "Something went wrong. Try again in a moment."
+      }
+    }
+  },
   "footer": {
     "shop": {
       "title": "Shop",
@@ -228,7 +306,55 @@
     "statusPending": "Awaiting deposit",
     "statusActive": "Active",
     "statusCompleted": "Completed",
-    "statusCancelled": "Cancelled"
+    "statusCancelled": "Cancelled",
+    "viewDetails": "View details",
+    "detail": {
+      "metaTitle": "Order details",
+      "back": "Back to orders",
+      "notFoundTitle": "Order not found",
+      "notFoundBody": "This order doesn't exist or doesn't belong to your account.",
+      "referenceLabel": "Reference",
+      "placedOn": "Placed on {date}",
+      "activatedOn": "Activated on {date}",
+      "completedOn": "Completed on {date}",
+      "planLabel": "{months}-month plan",
+      "breakdown": {
+        "title": "Cost breakdown",
+        "cashPrice": "Cash price",
+        "deposit": "Deposit (20%)",
+        "financed": "Financed",
+        "serviceFee": "Service fee",
+        "total": "Total (cash + fee)",
+        "monthly": "Monthly installment"
+      },
+      "schedule": {
+        "title": "Repayment schedule",
+        "headerInstallment": "Installment",
+        "headerDue": "Due",
+        "headerAmount": "Amount",
+        "headerStatus": "Status",
+        "paidOn": "Paid {date}",
+        "unpaid": "Unpaid",
+        "overdue": "Overdue",
+        "next": "Next up"
+      },
+      "history": {
+        "title": "Payment history",
+        "empty": "No payments recorded for this order yet.",
+        "kindDeposit": "Deposit",
+        "kindInstallment": "Installment",
+        "kindRefund": "Refund",
+        "statusPending": "Pending",
+        "statusSuccess": "Success",
+        "statusFailed": "Failed",
+        "providerMpesa": "M-Pesa",
+        "providerTigopesa": "Tigo Pesa",
+        "providerAirtelmoney": "Airtel Money",
+        "providerCard": "Card",
+        "refLabel": "Ref"
+      },
+      "payNext": "Pay next installment"
+    }
   },
   "topup": {
     "title": "Top up your Wallet",

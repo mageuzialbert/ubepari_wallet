@@ -26,6 +26,84 @@
     "orders": "Oda",
     "support": "Msaada"
   },
+  "account": {
+    "metaTitle": "Akaunti",
+    "eyebrow": "Akaunti yako",
+    "heading": "Akaunti",
+    "subheading": "Utambulisho wako wa Ubepari na imani uliyoijenga nasi.",
+    "editCta": "Hariri taarifa",
+    "viewAllPayments": "Angalia malipo yote",
+    "payments": {
+      "metaTitle": "Historia ya malipo",
+      "back": "Rudi kwenye akaunti",
+      "eyebrow": "Historia ya malipo",
+      "heading": "Kila ulichokilipa.",
+      "subheading": "Malipo ya awali, awamu, top-up na marejesho katika akaunti yako.",
+      "filterAll": "Yote",
+      "filterDeposits": "Malipo ya awali",
+      "filterInstallments": "Awamu",
+      "filterTopups": "Top-up",
+      "filterRefunds": "Marejesho",
+      "empty": "Hakuna malipo bado.",
+      "emptyFiltered": "Hakuna malipo yanayokidhi kichujio hiki.",
+      "linkedOrder": "Kwa oda",
+      "topupRow": "Top-up ya Wallet",
+      "refundRow": "Marejesho",
+      "openOrder": "Fungua oda"
+    },
+    "identity": {
+      "title": "Utambulisho",
+      "nameLabel": "Jina",
+      "namePlaceholder": "Bado halijawekwa",
+      "phoneLabel": "Simu",
+      "phoneHint": "Simu yako ndiyo uingiaji wako. Haiwezi kubadilishwa hapa.",
+      "emailLabel": "Barua pepe",
+      "emailPlaceholder": "Bado haijawekwa",
+      "memberSinceLabel": "Mwanachama tangu"
+    },
+    "kyc": {
+      "title": "Uthibitisho wa utambulisho",
+      "statusApproved": "Imethibitishwa",
+      "statusPending": "Inachunguzwa",
+      "statusRejected": "Imekataliwa",
+      "statusNone": "Haijaanza",
+      "descApproved": "Umethibitishwa. Huduma zote za lipa kidogo kidogo zimefunguliwa.",
+      "descPending": "Tunachunguza hati zako. Kawaida huchukua siku moja ya kazi.",
+      "descRejected": "Uwasilishaji wako wa mwisho unahitaji marekebisho. Wasilisha tena ukiwa tayari.",
+      "descNone": "Kamilisha KYC ili uweze kuhifadhi PC kwa malipo ya awamu.",
+      "ctaStart": "Anza KYC",
+      "ctaView": "Angalia hali",
+      "ctaResubmit": "Wasilisha tena"
+    },
+    "credit": {
+      "title": "Mkopo",
+      "limitLabel": "Kiwango cha mkopo",
+      "limitHint": "Kiasi cha juu unachoweza kulipa kidogo kidogo.",
+      "pointsLabel": "Pointi za mkopo",
+      "pointsHint": "Pata pointi kwa kila malipo ya awamu kwa wakati. Pointi hufungua viwango vya juu."
+    },
+    "edit": {
+      "metaTitle": "Hariri akaunti",
+      "back": "Rudi kwenye akaunti",
+      "eyebrow": "Hariri akaunti",
+      "heading": "Taarifa zako",
+      "subheading": "Sasisha jina na barua pepe. Kubadilisha simu hakuungwi mkono bado.",
+      "firstNameLabel": "Jina la kwanza",
+      "lastNameLabel": "Jina la ukoo",
+      "emailLabel": "Barua pepe",
+      "emailHint": "Si lazima. Inatumika kwa risiti na taarifa za oda.",
+      "phoneLabel": "Simu",
+      "phoneHint": "Imeunganishwa na akaunti yako. Wasiliana na msaada kubadilisha.",
+      "save": "Hifadhi mabadiliko",
+      "cancel": "Ghairi",
+      "success": "Imehifadhiwa",
+      "errors": {
+        "invalid_email": "Hiyo haionekani kuwa barua pepe sahihi.",
+        "name_too_long": "Majina lazima yawe chini ya herufi 60.",
+        "unknown": "Kuna tatizo limetokea. Jaribu tena baada ya muda mfupi."
+      }
+    }
+  },
   "footer": {
     "shop": {
       "title": "Duka",
@@ -228,7 +306,55 @@
     "statusPending": "Inasubiri malipo ya awali",
     "statusActive": "Hai",
     "statusCompleted": "Imekamilika",
-    "statusCancelled": "Imeghairiwa"
+    "statusCancelled": "Imeghairiwa",
+    "viewDetails": "Angalia maelezo",
+    "detail": {
+      "metaTitle": "Maelezo ya oda",
+      "back": "Rudi kwenye oda",
+      "notFoundTitle": "Oda haipatikani",
+      "notFoundBody": "Oda hii haipo au si ya akaunti yako.",
+      "referenceLabel": "Namba",
+      "placedOn": "Iliwekwa tarehe {date}",
+      "activatedOn": "Ilianzishwa tarehe {date}",
+      "completedOn": "Ilikamilika tarehe {date}",
+      "planLabel": "Mpango wa miezi {months}",
+      "breakdown": {
+        "title": "Mchanganuo wa gharama",
+        "cashPrice": "Bei ya cash",
+        "deposit": "Malipo ya awali (20%)",
+        "financed": "Iliyofadhiliwa",
+        "serviceFee": "Ada ya huduma",
+        "total": "Jumla (cash + ada)",
+        "monthly": "Awamu ya mwezi"
+      },
+      "schedule": {
+        "title": "Ratiba ya malipo",
+        "headerInstallment": "Awamu",
+        "headerDue": "Tarehe",
+        "headerAmount": "Kiasi",
+        "headerStatus": "Hali",
+        "paidOn": "Ililipwa {date}",
+        "unpaid": "Haijalipwa",
+        "overdue": "Imepitiliza muda",
+        "next": "Inayofuata"
+      },
+      "history": {
+        "title": "Historia ya malipo",
+        "empty": "Hakuna malipo yaliyorekodiwa kwa oda hii bado.",
+        "kindDeposit": "Malipo ya awali",
+        "kindInstallment": "Awamu",
+        "kindRefund": "Marejesho",
+        "statusPending": "Inasubiri",
+        "statusSuccess": "Imefanikiwa",
+        "statusFailed": "Imeshindwa",
+        "providerMpesa": "M-Pesa",
+        "providerTigopesa": "Tigo Pesa",
+        "providerAirtelmoney": "Airtel Money",
+        "providerCard": "Kadi",
+        "refLabel": "Namba"
+      },
+      "payNext": "Lipa awamu inayofuata"
+    }
   },
   "topup": {
     "title": "Ongeza pesa kwenye Wallet yako",

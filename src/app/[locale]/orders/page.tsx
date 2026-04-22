@@ -127,8 +127,8 @@ export default async function OrdersPage({ params }: { params: PageParams }) {
                           .replace("{months}", String(o.termMonths - o.monthsPaid))}
                       </p>
                     </div>
-                    {o.status === "active" && nextUnpaid && (
-                      <div className="mt-4">
+                    <div className="mt-4 flex flex-wrap items-center gap-2">
+                      {o.status === "active" && nextUnpaid && (
                         <PayInstallmentDialog
                           installmentId={nextUnpaid.id}
                           amountTzs={nextUnpaid.amountTzs}
@@ -138,8 +138,18 @@ export default async function OrdersPage({ params }: { params: PageParams }) {
                             </Button>
                           }
                         />
-                      </div>
-                    )}
+                      )}
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full"
+                      >
+                        <Link href={`/${locale}/orders/${o.id}`}>
+                          {t.viewDetails}
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
 
