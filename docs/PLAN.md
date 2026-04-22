@@ -1,7 +1,7 @@
 # Ubepari Wallet — Production Plan
 
 **Last updated:** 2026-04-22
-**Status:** Customer account surface (Phase 7), legal pages (Phase 15.1), DB-backed product catalog (Phase 8), admin foundation (Phase 9), KYC review queue (Phase 10), product management (Phase 11), and admin users + credit limits (Phase 12: search users, view wallet/orders/payments/KYC history per user, edit credit limit with a required reason, root-only grant/revoke of admin role gated by `ROOT_ADMIN_PHONE` env) are all done. Next up: admin orders + payments ops (Phase 13).
+**Status:** Customer account surface (Phase 7), legal pages (Phase 15.1), DB-backed product catalog (Phase 8), admin foundation (Phase 9), KYC review queue (Phase 10), product management (Phase 11), admin users + credit limits (Phase 12), and admin orders + payments ops (Phase 13: `/admin/orders` list + detail with manual-activate, cancel pending, and editable installment schedule; `/admin/payments` cross-user list with gated reconcile replacing `/api/dev/simulate-callback` in prod; v1 wallet-credit refund dialog surfaced from order detail + payments list; the Evmark callback success path and admin actions now share `settlePaymentSuccess()` so the three code paths can't drift) are all done. Next up: admin reports (Phase 14).
 
 ---
 
@@ -27,6 +27,8 @@ Bilingual EN/SW hire-purchase wallet on Next.js 16 App Router. Supabase (auth + 
 
 | SHA | What |
 |---|---|
+| `31ff4cb` | Admin orders + payments ops — list/detail, manual-activate, cancel, schedule editor, reconcile (replaces dev callback in prod), refunds (wallet credit) |
+| `b748073` | Extract `settlePaymentSuccess` — callback + admin actions share one settle path |
 | `39d72cd` | Admin role grant/revoke (root-gated via ROOT_ADMIN_PHONE) |
 | `55a7ba6` | Admin users list + detail + credit limit change with reason |
 | `3617ea1` | Decrement product stock when deposit callback settles |
@@ -277,7 +279,7 @@ Full CRUD, including image upload. This is what makes the catalog live-editable.
 
 ---
 
-## Phase 13 — Admin: Orders + payments ops
+## Phase 13 — Admin: Orders + payments ops  ✅ done
 
 Operational tools — what staff need when something goes wrong.
 
@@ -410,5 +412,5 @@ Live values in `.env.local` (gitignored). Placeholders in `.env.local.example`. 
 1. Read `CLAUDE.md`, `AGENTS.md`, and this file.
 2. Read `MEMORY.md` for the user's working preferences + project context.
 3. Confirm `.env.local` has Supabase + SMS + Evmark + OpenAI filled.
-4. **Begin Phase 13 (Orders + payments ops).** Build `/admin/orders` (filter by status/user/date, columns: reference, user, product, total, status, created_at), `/admin/orders/[id]` (full detail, installment schedule with paid/unpaid/overdue, payment history, actions: manual-activate if a callback was lost, cancel+refund if pending, edit installment due dates), `/admin/payments` (filter by status/kind/provider/date), gated reconciliation via `POST /api/admin/payments/[id]/reconcile` replacing `/api/dev/simulate-callback` in prod, and refund flow (insert a `payments` row with `kind='refund'`, `status='success'` + matching `wallet_entries` credit + audit log with reason). Reuse `requireAdminApi`/`requireAdminPage` and `logAdmin` with the reserved `order.cancel` / `order.activate` / `order.adjust_schedule` / `payment.reconcile` / `payment.refund` actions from `src/lib/audit.ts`. The refund policy is frozen at v1 — wallet credit only; Evmark refund-API lands in v2.
+4. **Begin Phase 14 (Reports).** Build `/admin/reports/revenue` (daily/weekly/monthly bar chart of successful payment amounts split by kind + provider, CSV export), `/admin/reports/receivables` (outstanding balance per active order = Σunpaid installments, total + aged buckets 0–30 / 31–60 / 61–90 / 90+ days, CSV), `/admin/reports/inventory` (stock by product, low-stock flag), `/admin/reports/kyc` (submissions/week, approval rate, median time-to-review). Add `src/lib/export/csv.ts` that streams — no client-side libraries. Reuse `requireAdminPage`/`requireAdminApi`; no new admin audit actions needed (read-only surface). Flip the sidebar `reports` entry from disabled → enabled and add an `admin.reports` namespace to `src/messages/{en,sw}.json`.
 5. Update the snapshot commit trail with each SHA as phases land. Update the "Status" line at the top when a phase closes.
