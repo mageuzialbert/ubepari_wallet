@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { isValidCallbackHash, parseCallback, type CallbackBody } from "@/lib/evmark";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { logEvent } from "@/lib/events";
-import { decrementStockForOrder } from "@/lib/inventory";
+import { settlePaymentSuccess } from "@/lib/payments";
 
 function ackSuccess() {
   return NextResponse.json({ Status: "Success" });
@@ -38,7 +38,6 @@ export async function POST(req: NextRequest) {
   if (error) return ackRejected(`lookup_error: ${error.message}`);
   if (!payment) return ackRejected(`no_payment_for_ref: ${parsed.reference}`);
 
-  // Idempotency: already-settled callbacks just get acked.
   if (payment.status === "success" || payment.status === "failed") {
     return ackSuccess();
   }
@@ -67,89 +66,13 @@ export async function POST(req: NextRequest) {
     return ackSuccess();
   }
 
-  // Success path.
-  const settledAt = new Date().toISOString();
-  const { error: payUpdErr } = await admin
-    .from("payments")
-    .update({
-      status: "success",
-      evmark_ref: parsed.transId ?? undefined,
-      raw_callback: raw as unknown as Record<string, unknown>,
-      settled_at: settledAt,
-    })
-    .eq("id", payment.id);
-  if (payUpdErr) return ackRejected(`payment_update_error: ${payUpdErr.message}`);
-
-  if (payment.kind === "deposit" && payment.order_id) {
-    const { data: orderRow } = await admin
-      .from("orders")
-      .update({ status: "active", activated_at: settledAt })
-      .eq("id", payment.order_id)
-      .select("reference")
-      .maybeSingle();
-    const orderRef = orderRow?.reference ?? payment.order_id;
-
-    await decrementStockForOrder(payment.order_id);
-
-    await admin.from("wallet_entries").insert({
-      user_id: payment.user_id,
-      kind: "credit",
-      amount_tzs: payment.amount_tzs,
-      payment_id: payment.id,
-      note_key: "deposit",
-      note_params: { orderId: orderRef },
-    });
-    await admin.from("wallet_entries").insert({
-      user_id: payment.user_id,
-      kind: "debit",
-      amount_tzs: payment.amount_tzs,
-      payment_id: payment.id,
-      note_key: "deposit",
-      note_params: { orderId: orderRef },
-    });
-  } else if (payment.kind === "topup") {
-    await admin.from("wallet_entries").insert({
-      user_id: payment.user_id,
-      kind: "credit",
-      amount_tzs: payment.amount_tzs,
-      payment_id: payment.id,
-      note_key: "topup",
-      note_params: {},
-    });
-  } else if (payment.kind === "installment" && payment.order_id) {
-    const { data: orderRow } = await admin
-      .from("orders")
-      .select("reference")
-      .eq("id", payment.order_id)
-      .maybeSingle();
-    const orderRef = orderRow?.reference ?? payment.order_id;
-
-    await admin
-      .from("order_installments")
-      .update({ paid_at: settledAt, payment_id: payment.id })
-      .eq("order_id", payment.order_id)
-      .is("paid_at", null)
-      .order("sequence", { ascending: true })
-      .limit(1);
-
-    await admin.from("wallet_entries").insert({
-      user_id: payment.user_id,
-      kind: "debit",
-      amount_tzs: payment.amount_tzs,
-      payment_id: payment.id,
-      note_key: "payment",
-      note_params: { orderId: orderRef },
-    });
-  }
-
-  logEvent("payment.settled", {
+  const result = await settlePaymentSuccess({
     paymentId: payment.id,
-    kind: payment.kind,
-    orderId: payment.order_id,
-    amount: payment.amount_tzs,
-    status: "success",
-    transId: parsed.transId,
-    reference: parsed.reference,
+    source: "callback",
+    evmarkRef: parsed.transId ?? null,
+    rawCallback: raw as unknown as Record<string, unknown>,
   });
+
+  if (!result.ok) return ackRejected(result.error);
   return ackSuccess();
 }
