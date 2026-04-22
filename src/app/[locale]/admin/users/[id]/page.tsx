@@ -9,6 +9,7 @@ import { formatDate } from "@/lib/datetime";
 import { formatTzs } from "@/lib/currency";
 import { getDictionary } from "../../../dictionaries";
 import { CreditLimitForm } from "../_components/credit-limit-form";
+import { AdminRoleForm } from "../_components/admin-role-form";
 
 type PageParams = Promise<{ locale: string; id: string }>;
 
@@ -268,9 +269,20 @@ export default async function AdminUserDetailPage({
             locale={locale}
             currentLimitTzs={user.credit_limit_tzs}
           />
-          {!isSelf && !user.is_root && ctx.isRoot ? (
+          {ctx.isRoot && !isSelf && !user.is_root ? (
+            <AdminRoleForm userId={user.id} locale={locale} isAdmin={user.is_admin} />
+          ) : null}
+          {!ctx.isRoot ? (
             <div className="rounded-3xl border border-border/60 bg-card p-6 text-[12px] text-muted-foreground">
               {t.adminRole.rootOnlyNote}
+            </div>
+          ) : isSelf ? (
+            <div className="rounded-3xl border border-border/60 bg-card p-6 text-[12px] text-muted-foreground">
+              {t.adminRole.selfLocked}
+            </div>
+          ) : user.is_root ? (
+            <div className="rounded-3xl border border-border/60 bg-card p-6 text-[12px] text-muted-foreground">
+              {t.adminRole.rootLocked}
             </div>
           ) : null}
         </aside>
