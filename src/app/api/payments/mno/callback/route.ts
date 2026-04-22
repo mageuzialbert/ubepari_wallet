@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { isValidCallbackHash, parseCallback, type CallbackBody } from "@/lib/evmark";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { logEvent } from "@/lib/events";
+import { decrementStockForOrder } from "@/lib/inventory";
 
 function ackSuccess() {
   return NextResponse.json({ Status: "Success" });
@@ -87,6 +88,8 @@ export async function POST(req: NextRequest) {
       .select("reference")
       .maybeSingle();
     const orderRef = orderRow?.reference ?? payment.order_id;
+
+    await decrementStockForOrder(payment.order_id);
 
     await admin.from("wallet_entries").insert({
       user_id: payment.user_id,
