@@ -24,7 +24,7 @@ const MAX_REASON = 500;
 
 export type AdminUserRow = {
   id: string;
-  phone: string;
+  phone: string | null;
   first_name: string | null;
   last_name: string | null;
   email: string | null;
@@ -38,7 +38,7 @@ export type AdminUserRow = {
 
 export type AdminUserDetail = {
   id: string;
-  phone: string;
+  phone: string | null;
   first_name: string | null;
   last_name: string | null;
   email: string | null;

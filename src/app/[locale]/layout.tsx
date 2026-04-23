@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import "./globals.css";
@@ -6,6 +6,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { CookieDisclosure } from "@/components/cookie-disclosure";
+import { InstallPrompt } from "@/components/pwa/install-prompt";
 import { hasLocale, locales } from "@/i18n/config";
 import { DictionaryProvider } from "@/i18n/provider";
 import { getDictionary } from "./dictionaries";
@@ -25,6 +27,16 @@ type LayoutParams = Promise<{ locale: string }>;
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#1A2FB8" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export async function generateMetadata({
   params,
@@ -63,6 +75,17 @@ export async function generateMetadata({
       title: dict.meta.siteTitle,
       description: dict.meta.siteDescription,
     },
+    manifest: "/manifest.webmanifest",
+    icons: {
+      icon: "/icon.png",
+      apple: "/apple-icon.png",
+      shortcut: "/favicon.ico",
+    },
+    appleWebApp: {
+      capable: true,
+      title: "Ubepari",
+      statusBarStyle: "black-translucent",
+    },
   };
 }
 
@@ -94,6 +117,8 @@ export default async function RootLayout({
             <SiteHeader />
             <main className="flex-1">{children}</main>
             <SiteFooter dict={dict.footer} locale={locale} />
+            <CookieDisclosure />
+            <InstallPrompt />
           </DictionaryProvider>
         </ThemeProvider>
       </body>

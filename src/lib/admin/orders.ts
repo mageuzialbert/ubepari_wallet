@@ -181,7 +181,7 @@ export async function listAdminOrders(
       if (!profile) return true;
       const name = [profile.first_name, profile.last_name].filter(Boolean).join(" ").toLowerCase();
       const matchesUser =
-        profile.phone.includes(qLower) ||
+        (profile.phone?.includes(qLower) ?? false) ||
         name.includes(qLower) ||
         o.reference.toLowerCase().includes(qLower) ||
         o.product_slug.toLowerCase().includes(qLower);

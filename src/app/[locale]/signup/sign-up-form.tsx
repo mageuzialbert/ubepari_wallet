@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useDictionary, useLocale } from "@/i18n/provider";
+import { LEGAL_VERSION } from "@/lib/legal";
 
 type OtpError =
   | "invalid_phone"
@@ -16,6 +17,7 @@ type OtpError =
   | "wrong"
   | "too_many_attempts"
   | "sms_failed"
+  | "consent_required"
   | "unknown";
 
 export function SignUpForm() {
@@ -28,6 +30,7 @@ export function SignUpForm() {
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [sentPhone, setSentPhone] = useState("");
   const [code, setCode] = useState("");
   const [error, setError] = useState<OtpError | null>(null);
@@ -51,7 +54,9 @@ export function SignUpForm() {
                 ? otp.errors.tooManyAttempts
                 : e === "sms_failed"
                   ? otp.errors.smsFailed
-                  : otp.errors.unknown;
+                  : e === "consent_required"
+                    ? t.consentRequired
+                    : otp.errors.unknown;
 
   async function sendOtp() {
     setError(null);
@@ -80,6 +85,8 @@ export function SignUpForm() {
         firstName: firstName.trim() || undefined,
         lastName: lastName.trim() || undefined,
         email: email.trim() || undefined,
+        flow: "signup",
+        acceptedTermsVersion: LEGAL_VERSION,
       }),
     });
     const body = await res.json().catch(() => ({}));
@@ -184,31 +191,47 @@ export function SignUpForm() {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
+      <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-border/60 bg-background/40 p-4 text-[12px] leading-relaxed text-muted-foreground transition-colors hover:border-border">
+        <input
+          type="checkbox"
+          className="mt-0.5 h-4 w-4 shrink-0 rounded border-border/80 accent-foreground"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+        />
+        <span>
+          {t.consentPrefix}
+          <Link href={`/${locale}/legal/terms`} className="text-foreground underline underline-offset-2">
+            {t.consentTerms}
+          </Link>
+          {t.consentComma}
+          <Link href={`/${locale}/legal/privacy`} className="text-foreground underline underline-offset-2">
+            {t.consentPrivacy}
+          </Link>
+          {t.consentAnd}
+          <Link
+            href={`/${locale}/legal/hire-purchase-agreement`}
+            className="text-foreground underline underline-offset-2"
+          >
+            {t.consentHirePurchase}
+          </Link>
+          {t.consentSuffix}
+        </span>
+      </label>
       {error && <p className="text-center text-[12px] text-destructive">{errorMsg(error)}</p>}
       <Button
         className="w-full rounded-full"
         size="lg"
         disabled={
-          !firstName.trim() || !lastName.trim() || phone.trim().length < 9 || pending
+          !firstName.trim() ||
+          !lastName.trim() ||
+          phone.trim().length < 9 ||
+          !consent ||
+          pending
         }
         onClick={() => startTransition(sendOtp)}
       >
         {t.submit}
       </Button>
-      <p className="text-center text-[11px] text-muted-foreground">
-        {t.tosPrefix}
-        <Link href={`/${locale}/legal/terms`} className="underline underline-offset-2">
-          {t.tosTerms}
-        </Link>
-        {t.tosAnd}
-        <Link
-          href={`/${locale}/legal/hire-purchase`}
-          className="underline underline-offset-2"
-        >
-          {t.tosHirePurchase}
-        </Link>
-        {t.tosSuffix}
-      </p>
     </div>
   );
 }

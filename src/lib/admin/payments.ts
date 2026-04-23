@@ -152,7 +152,7 @@ export async function listAdminPayments(
       return (
         (p.evmark_ref?.toLowerCase().includes(qLower) ?? false) ||
         (p.evmark_reference_id?.toLowerCase().includes(qLower) ?? false) ||
-        (profile?.phone.includes(qLower) ?? false) ||
+        (profile?.phone?.includes(qLower) ?? false) ||
         name.includes(qLower) ||
         (order?.reference.toLowerCase().includes(qLower) ?? false)
       );

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { CheckCircle2, Clock, Pencil, ShieldAlert, ShieldCheck, ShieldX } from "lucide-react";
+import { CheckCircle2, Clock, Download, Pencil, ShieldAlert, ShieldCheck, ShieldX, Trash2 } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -233,6 +233,50 @@ export default async function AccountPage({ params }: { params: PageParams }) {
               <p className="mt-1 text-[11px] text-muted-foreground">
                 {t.credit.pointsHint}
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-border/60 bg-card p-6 sm:p-8">
+          <div className="flex items-start gap-4">
+            <Download className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground" />
+            <div className="flex-1">
+              <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                {t.dataExport.title}
+              </h2>
+              <p className="mt-2 text-[14px] text-muted-foreground">
+                {t.dataExport.body}
+              </p>
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="mt-4 rounded-full"
+              >
+                <Link href={`/${locale}/account/export`}>{t.dataExport.cta}</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-destructive/30 bg-destructive/5 p-6 sm:p-8">
+          <div className="flex items-start gap-4">
+            <Trash2 className="mt-0.5 h-5 w-5 shrink-0 text-destructive" />
+            <div className="flex-1">
+              <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-destructive">
+                {t.dangerZone.title}
+              </h2>
+              <p className="mt-2 text-[14px] text-muted-foreground">
+                {t.dangerZone.body}
+              </p>
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="mt-4 rounded-full border-destructive/50 text-destructive hover:bg-destructive/10 hover:text-destructive"
+              >
+                <Link href={`/${locale}/account/delete`}>{t.dangerZone.cta}</Link>
+              </Button>
             </div>
           </div>
         </section>

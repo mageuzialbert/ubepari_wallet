@@ -5,6 +5,7 @@ import { verifyChallenge } from "@/lib/otp";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { mintAccessToken, setSessionCookie } from "@/lib/session";
 import { logEvent } from "@/lib/events";
+import { LEGAL_VERSION } from "@/lib/legal";
 
 type VerifyBody = {
   phone?: unknown;
@@ -12,6 +13,8 @@ type VerifyBody = {
   firstName?: unknown;
   lastName?: unknown;
   email?: unknown;
+  flow?: unknown;
+  acceptedTermsVersion?: unknown;
 };
 
 function str(v: unknown): string | null {
@@ -48,16 +51,24 @@ export async function POST(req: NextRequest) {
   const firstName = str(body.firstName);
   const lastName = str(body.lastName);
   const email = str(body.email);
+  const flow = str(body.flow);
+  const acceptedTermsVersion = str(body.acceptedTermsVersion);
 
   const admin = supabaseAdmin();
 
   const { data: existing, error: existingErr } = await admin
     .from("profiles")
-    .select("id, email, first_name, last_name")
+    .select("id, email, first_name, last_name, terms_version_accepted")
     .eq("phone", phone)
     .maybeSingle();
   if (existingErr) {
     return NextResponse.json({ error: "unknown", detail: existingErr.message }, { status: 500 });
+  }
+
+  // Signup flow, or any new-user creation, must carry current-version consent.
+  const isNewUser = !existing;
+  if ((flow === "signup" || isNewUser) && acceptedTermsVersion !== LEGAL_VERSION) {
+    return NextResponse.json({ error: "consent_required" }, { status: 400 });
   }
 
   let userId: string;
@@ -70,10 +81,19 @@ export async function POST(req: NextRequest) {
       first_name?: string;
       last_name?: string;
       email?: string;
+      terms_version_accepted?: string;
+      terms_accepted_at?: string;
     } = {};
     if (firstName && !existing.first_name) updates.first_name = firstName;
     if (lastName && !existing.last_name) updates.last_name = lastName;
     if (email && !existing.email) updates.email = email;
+    if (
+      acceptedTermsVersion === LEGAL_VERSION &&
+      existing.terms_version_accepted !== LEGAL_VERSION
+    ) {
+      updates.terms_version_accepted = LEGAL_VERSION;
+      updates.terms_accepted_at = new Date().toISOString();
+    }
     if (Object.keys(updates).length > 0) {
       await admin.from("profiles").update(updates).eq("id", userId);
     }
@@ -103,6 +123,8 @@ export async function POST(req: NextRequest) {
       first_name: firstName,
       last_name: lastName,
       email,
+      terms_version_accepted: LEGAL_VERSION,
+      terms_accepted_at: new Date().toISOString(),
     });
     if (profileErr) {
       await admin.auth.admin.deleteUser(userId);

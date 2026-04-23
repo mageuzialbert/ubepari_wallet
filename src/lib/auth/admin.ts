@@ -27,11 +27,11 @@ export async function getAdminContext(): Promise<AdminContext | null> {
 
   const { data: profile } = await supabaseAdmin()
     .from("profiles")
-    .select("id, phone, email, first_name, last_name, is_admin")
+    .select("id, phone, email, first_name, last_name, is_admin, deleted_at")
     .eq("id", session.claims.userId)
     .maybeSingle();
 
-  if (!profile || !profile.is_admin) return null;
+  if (!profile || !profile.is_admin || profile.deleted_at || !profile.phone) return null;
 
   return {
     userId: profile.id,
@@ -58,11 +58,11 @@ export async function requireAdminApi(): Promise<AdminApiResult> {
 
   const { data: profile } = await supabaseAdmin()
     .from("profiles")
-    .select("id, phone, email, first_name, last_name, is_admin")
+    .select("id, phone, email, first_name, last_name, is_admin, deleted_at")
     .eq("id", session.claims.userId)
     .maybeSingle();
 
-  if (!profile || !profile.is_admin) {
+  if (!profile || !profile.is_admin || profile.deleted_at || !profile.phone) {
     return {
       ok: false,
       response: NextResponse.json({ error: "forbidden" }, { status: 403 }),
@@ -90,11 +90,11 @@ export async function requireAdminPage(locale: Locale): Promise<AdminContext> {
 
   const { data: profile } = await supabaseAdmin()
     .from("profiles")
-    .select("id, phone, email, first_name, last_name, is_admin")
+    .select("id, phone, email, first_name, last_name, is_admin, deleted_at")
     .eq("id", session.claims.userId)
     .maybeSingle();
 
-  if (!profile || !profile.is_admin) {
+  if (!profile || !profile.is_admin || profile.deleted_at || !profile.phone) {
     redirect(`/${locale}`);
   }
 

@@ -15,6 +15,7 @@ type OtpError =
   | "wrong"
   | "too_many_attempts"
   | "sms_failed"
+  | "consent_required"
   | "unknown";
 
 export function SignInForm() {
@@ -47,7 +48,9 @@ export function SignInForm() {
                 ? otp.errors.tooManyAttempts
                 : e === "sms_failed"
                   ? otp.errors.smsFailed
-                  : otp.errors.unknown;
+                  : e === "consent_required"
+                    ? t.notRegistered
+                    : otp.errors.unknown;
 
   async function sendOtp() {
     setError(null);

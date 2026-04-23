@@ -45,7 +45,9 @@ export default async function AdminUserDetailPage({
   const t = dict.admin.users;
 
   const displayName =
-    [user.first_name, user.last_name].filter(Boolean).join(" ").trim() || user.phone;
+    [user.first_name, user.last_name].filter(Boolean).join(" ").trim() ||
+    user.phone ||
+    "—";
   const joined = formatDate(user.created_at, locale, {
     day: "2-digit",
     month: "short",
@@ -82,7 +84,9 @@ export default async function AdminUserDetailPage({
             </span>
           ) : null}
         </div>
-        <p className="mt-1 font-mono text-[12px] text-muted-foreground">+{user.phone}</p>
+        <p className="mt-1 font-mono text-[12px] text-muted-foreground">
+          {user.phone ? `+${user.phone}` : "—"}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_320px]">
