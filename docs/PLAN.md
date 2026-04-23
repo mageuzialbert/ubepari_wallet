@@ -1,7 +1,7 @@
 # Ubepari Wallet — Production Plan
 
-**Last updated:** 2026-04-22
-**Status:** Customer account surface (Phase 7), legal pages (Phase 15.1), DB-backed product catalog (Phase 8), admin foundation (Phase 9), KYC review queue (Phase 10), product management (Phase 11), admin users + credit limits (Phase 12), admin orders + payments ops (Phase 13), and admin reports (Phase 14: `/admin/reports/{revenue,receivables,inventory,kyc}` with preset range tabs, recharts stacked-bar charts on revenue + KYC, aged buckets on receivables, low-stock flags on inventory, CSV export on all four via `src/lib/export/csv.ts` + `/api/admin/reports/*/export`) are all done. Next up: legal, compliance, account lifecycle (Phase 15).
+**Last updated:** 2026-04-23
+**Status:** Customer account surface (Phase 7), legal pages (Phase 15.1), DB-backed product catalog (Phase 8), admin foundation (Phase 9), KYC review queue (Phase 10), product management (Phase 11), admin users + credit limits (Phase 12), admin orders + payments ops (Phase 13), admin reports (Phase 14), and legal/compliance/account-lifecycle (Phase 15: `LEGAL_VERSION`-aware signup consent persisted on `profiles.terms_version_accepted`/`terms_accepted_at`; OTP-confirmed `/account/delete` soft-deletes — wipes KYC storage, anonymizes profile via `phone=NULL`+scrambled names, deletes the auth user to free the phone, SMS receipt; `/account/export` zero-dep ZIP writer in `src/lib/export/zip.ts` packages profile/orders/installments/payments/wallet_entries/kyc_submissions as JSON; minimal cookie-disclosure banner in `src/components/cookie-disclosure.tsx`) are all done. Next up: observability, scale, hardening (Phase 16).
 
 ---
 
@@ -16,7 +16,7 @@ Bilingual EN/SW hire-purchase wallet on Next.js 16 App Router. Supabase (auth + 
 - `/store`, `/store/[slug]` — browse + reserve with deposit push (DB-backed catalog)
 - `/wallet` — balance + topup + pay installment + activity feed
 - `/orders`, `/orders/[id]` — list + full detail with installment schedule + payment history
-- `/account`, `/account/edit`, `/account/payments` — profile view, edit, filtered payment history
+- `/account`, `/account/edit`, `/account/payments`, `/account/export`, `/account/delete` — profile view, edit, filtered payment history, ZIP data export, OTP-confirmed soft delete
 - `/recommend` — OpenAI `gpt-4o-mini` product advisor
 - `/support` — static support page
 - `/about` — mission, principles, stats, locations
@@ -27,6 +27,10 @@ Bilingual EN/SW hire-purchase wallet on Next.js 16 App Router. Supabase (auth + 
 
 | SHA | What |
 |---|---|
+| `d345d2e` | Brand palette (OKLCH blue/cyan tokens) + PWA manifest/icons + hero CSS-tilt variant with three.js scene as fallback |
+| `2b76415` | Phase 16.5 — streaming AI assistant: migration `0006_ai_assistant.sql`, `askLlmStream()`, 8-tool allowlist, SSE chat route, conversations CRUD, chat UI with cards + history; `/recommend` → `/assistant` redirect + i18n cleanup |
+| `0ee9b07` | Phase 15 — signup terms consent (migration `0004_terms_consent.sql`), OTP-confirmed `/account/delete` (migration `0005_account_deletion.sql`), zero-dep ZIP `/account/export`, cookie disclosure |
+| `a9d967e` | fix(lint): `set-state-in-effect` → `useSyncExternalStore` in theme-toggle + use-session-user; drop unused import |
 | `ada994c` | Admin reports CSV export — streaming-free helpers + gated GET routes on all four reports |
 | `fd25a40` | Admin reports — revenue/receivables/inventory/KYC pages with recharts, range tabs, aged buckets |
 | `31ff4cb` | Admin orders + payments ops — list/detail, manual-activate, cancel, schedule editor, reconcile (replaces dev callback in prod), refunds (wallet credit) |
@@ -323,20 +327,19 @@ Shipped: preset range tabs (today / 7d / 30d / 90d / ytd) via URL query `?range=
 
 ---
 
-## Phase 15 — Legal, compliance, account lifecycle
+## Phase 15 — Legal, compliance, account lifecycle  ✅ done
 
 Real product needs real legal pages and real account lifecycle.
 
-1. **Legal pages** — `/legal/terms`, `/legal/privacy`, `/legal/hire-purchase-agreement`. Bilingual. Draft content with the user (they provide or approve); replace current footer 404s. Versioned — store version string users accepted at signup.
-2. **Signup consent** — checkbox at `/signup` referencing the three legal pages. Store `profiles.terms_version_accepted` and `terms_accepted_at`.
-3. **`/account/delete`** — user-initiated account deletion. Soft delete: anonymize profile (null phone/email, random suffix on names), wipe KYC Storage docs, keep orders/payments for accounting retention (legal requirement). Confirmation OTP to prevent accidental deletion.
-4. **`/account/export`** — data export per request. ZIP of user's JSON: profile, orders, installments, payments, wallet entries, KYC (without doc binary).
-5. **Cookie/consent banner** — minimal (we only use functional cookies — session + theme — so this is disclosure not tracking consent).
+1. **Legal pages**  ✅ — `/legal/{terms,privacy,hire-purchase-agreement}` bilingual; version stamped via `LEGAL_VERSION` in `src/lib/legal.ts`.
+2. **Signup consent**  ✅ — required checkbox at `/signup` references all three pages; `/api/auth/otp/verify` accepts `flow: "signup"` + `acceptedTermsVersion` and server-enforces `LEGAL_VERSION` match on new-user creation; persisted on `profiles.terms_version_accepted` + `terms_accepted_at` via migration `0004_terms_consent.sql`. Signin surfaces `consent_required` for brand-new phones (routes them to `/signup`).
+3. **`/account/delete`**  ✅ — OTP-confirmed soft delete via `/api/account/delete/{send-otp,confirm}`. Flow: `storage.list(userId)` + `remove()` wipes the KYC binary → profile rotated to `phone=NULL, email=NULL, first_name="Deleted", last_name="User-<hex>", deleted_at=now, is_admin=false` → `admin.auth.admin.deleteUser` frees the phone → session cookie cleared → receipt SMS. Migration `0005_account_deletion.sql` dropped the `profiles.id → auth.users.id` CASCADE FK, made `phone` nullable with a `WHERE phone IS NOT NULL` partial unique, loosened the phone check, added `deleted_at` + `id_doc_wiped_at`. Admin gates in `src/lib/auth/admin.ts` now refuse deleted/phoneless profiles so admin callsites keep `phone: string`.
+4. **`/account/export`**  ✅ — `GET /api/account/export` session-gated, returns `application/zip`. Zero-dep ZIP writer at `src/lib/export/zip.ts` (STORE-mode, pure-JS CRC32, verified by round-trip). Bundle: `README.txt`, `profile.json`, `orders.json`, `installments.json`, `payments.json`, `wallet_entries.json`, `kyc_submissions.json` (no binary), and a combined `bundle.json`. UI at `/account/export` uses a plain `<a href download>`.
+5. **Cookie disclosure**  ✅ — `src/components/cookie-disclosure.tsx` wired into the root layout. Uses `useSyncExternalStore` over `localStorage` (key `ubepari-cookies-dismissed`) + a custom `ubepari-cookies-dismissed-change` event for in-tab + cross-tab dismissal. Disclosure-only — we only use functional cookies (session + theme).
 
 ### Commit boundary
-- `feat(legal): terms + privacy + hire-purchase agreement`
-- `feat(account): delete + data export`
 - `feat(signup): terms consent + version tracking`
+- `feat(account): delete + data export + cookie disclosure`
 
 ---
 
@@ -357,6 +360,32 @@ Everything we deferred for prototype but need before growth.
 - `feat(infra): upstash rate limits`
 - `chore(db): generated types`
 - `test(e2e): playwright golden paths + CI`
+
+---
+
+## Phase 16.5 — AI assistant upgrade
+
+Rebuild `/recommend` as a full customer assistant. The one-shot JSON advisor replied with a product even when the user said "hello"; it had no memory, no personalization, no streaming, and no path to answer real customer questions.
+
+1. **Migration `0006_ai_assistant.sql`** — `ai_conversations` + `ai_messages` tables with RLS (users read/write only their own). Hand-rolled types added to `src/lib/supabase/types.ts` (Phase 16 will regenerate).
+2. **Streaming LLM adapter** — `src/lib/llm.ts` gains `askLlmStream()` alongside the existing `askLlm()`. Parses OpenAI SSE chunks, merges streamed tool-call argument deltas, yields a discriminated stream of `token` / `tool_call` / `done` / `error` events.
+3. **Tool registry** — `src/lib/assistant/tools.ts` exposes 8 allowlisted tools: `list_products`, `get_product`, `compute_credit_plan`, `explain_topic` (public); `get_my_wallet`, `get_my_orders`, `get_order_detail`, `get_my_payments` (signed-in). Each wraps an existing helper (`getProducts`, `computeCreditPlan`, `getWalletSnapshot`, etc.). Auth-required tools return `{error:"auth_required"}` for anon, and the model is instructed to translate that into a sign-in prompt.
+4. **Chat route** — `POST /api/assistant/chat` streams SSE (`meta`, `token`, `tool_call`, `tool_result`, `card`, `done`, `error`). Tool loop bounded at depth 3; per-turn budget of 500 tokens at temperature 0.3. Signed-in turns are persisted to `ai_messages`; anon history is passed in the request body (cap 12 messages). Rate-limited: 20 turns/hour per signed-in user, 10/hour + 60/day per IP for anon.
+5. **Conversations CRUD** — `GET /api/assistant/conversations` (list), `POST /api/assistant/conversations` (create), `GET|DELETE /api/assistant/conversations/[id]`. Background title generation on the first turn uses the cheap non-streaming `askLlm` with `response_format: json_object`.
+6. **System prompts** — `src/lib/assistant/prompts.ts` builds one prompt per locale from an identity block, behavior gate ("no product push on greetings, no JSON in prose"), tool policy, auth-aware guardrail, PII rule (the prompt never sees phone/email — only first name, KYC status, active-order count, next-due date), and locale rule.
+7. **Chat UI** — `/[locale]/assistant` with two-column shell (sidebar + chat), mobile sheet for history, `MessageList` with streaming cursor, `Composer` with auto-grow textarea + ⌘/Ctrl+Enter, `SuggestedPrompts` chips (different sets for anon vs. signed-in), and four structured cards rendered from SSE `card` events: `ProductCard`, `OrderCard`, `InstallmentCard`, `PlanCard`. Anon users see a sign-in CTA banner above the composer; history persists to `localStorage` per-locale (cap 12).
+8. **Routing + i18n cleanup** — `/[locale]/recommend` now `permanentRedirect()`s to `/[locale]/assistant`; `next.config.ts` adds a top-level `/recommend` → `/assistant` redirect; sitemap, nav (`src/lib/nav.ts`), hero, and AI-CTA all updated. Stale `recommend.*` strings removed from both locale dictionaries; new `assistant.*` key added (preserving the "AI Tech Tips · beta" brand label per glossary).
+
+### Commit boundary
+- `feat(db): ai_conversations + ai_messages with rls`
+- `feat(llm): streaming + tool-calling adapter`
+- `feat(assistant): chat api + tool allowlist`
+- `feat(assistant): chat ui with streaming, cards, and history`
+- `chore(nav): /recommend → /assistant redirect + i18n cleanup`
+
+### Known follow-ups
+- Markdown rendering in assistant replies (currently `whitespace-pre-wrap`). Add `react-markdown` + `remark-gfm` if/when the model starts returning rich formatting.
+- Rate-limit buckets live in the in-memory store; Phase 16's Upstash migration covers distributed enforcement.
 
 ---
 
@@ -416,5 +445,6 @@ Live values in `.env.local` (gitignored). Placeholders in `.env.local.example`. 
 1. Read `CLAUDE.md`, `AGENTS.md`, and this file.
 2. Read `MEMORY.md` for the user's working preferences + project context.
 3. Confirm `.env.local` has Supabase + SMS + Evmark + OpenAI filled.
-4. **Begin Phase 15 (Legal, compliance, account lifecycle).** Draft/ship `/legal/terms`, `/legal/privacy`, `/legal/hire-purchase-agreement` if not already complete (note: Phase 15.1 legal pages did land earlier — verify they're versioned with a `terms_version` string). Add a signup consent checkbox at `/signup` referencing the three legal pages and persist `profiles.terms_version_accepted` + `terms_accepted_at` via a new migration. Build `/account/delete` (OTP-confirmed soft delete: anonymize profile, wipe KYC storage doc, keep orders/payments for retention) and `/account/export` (ZIP of user's JSON: profile, orders, installments, payments, wallet entries, KYC without binaries). Add a minimal cookie/consent banner (disclosure, not tracking consent — we only use session + theme). Wire SMS/email confirmation on account deletion.
-5. Update the snapshot commit trail with each SHA as phases land. Update the "Status" line at the top when a phase closes.
+4. Migrations `0004_terms_consent.sql` and `0005_account_deletion.sql` should already be applied (Phase 15 depends on both). If a fresh DB, apply them in order via the Supabase SQL editor before anything else.
+5. **Begin Phase 16 (Observability, scale, hardening).** Wire Sentry (server + browser) and pipe `logEvent` lines into it. Replace the in-memory IP rate limit in `src/lib/rate-limit.ts` with Upstash Redis. Run `supabase gen types typescript --project-id zlvcpaiyjshsjglqicvy` and replace the hand-rolled `src/lib/supabase/types.ts`. Stand up Playwright and cover signup → KYC → order → pay in CI. Do a Lighthouse/a11y pass across landing/store/account/admin. Add `scripts/seed-dev.ts` for local dev data.
+6. Update the snapshot commit trail with each SHA as phases land. Update the "Status" line at the top when a phase closes.
