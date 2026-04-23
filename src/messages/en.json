@@ -26,6 +26,12 @@
     "orders": "Orders",
     "support": "Support"
   },
+  "cookies": {
+    "body": "Ubepari only uses functional cookies — your sign-in session and your theme preference. We don't track you, run ad pixels or share anything with third parties.",
+    "privacyLink": "Read our Privacy Notice",
+    "ok": "Got it",
+    "dismiss": "Dismiss"
+  },
   "account": {
     "metaTitle": "Account",
     "eyebrow": "Your account",
@@ -101,6 +107,63 @@
         "invalid_email": "That doesn't look like a valid email.",
         "name_too_long": "Names must be under 60 characters.",
         "unknown": "Something went wrong. Try again in a moment."
+      }
+    },
+    "dataExport": {
+      "title": "Your data",
+      "body": "Download a ZIP archive containing everything we hold for your account — profile, orders, installments, payments, wallet history and KYC metadata.",
+      "cta": "Export my data"
+    },
+    "export": {
+      "metaTitle": "Export data",
+      "back": "Back to account",
+      "eyebrow": "Export data",
+      "heading": "Export your data",
+      "lede": "A snapshot of everything tied to your account, delivered as a ZIP of JSON files.",
+      "contentsTitle": "What's inside",
+      "contents": {
+        "profile": "profile.json — your profile row (name, phone, email, credit limit, KYC status).",
+        "orders": "orders.json — every hire-purchase order you've placed.",
+        "installments": "installments.json — the full schedule for each active order.",
+        "payments": "payments.json — deposits, installments, top-ups and refunds.",
+        "wallet": "wallet_entries.json — credits and debits behind your wallet balance.",
+        "kyc": "kyc_submissions.json — KYC metadata (document binary not included)."
+      },
+      "notExported": "Your uploaded identity document is not included — it lives in secure storage and is removed on account deletion.",
+      "download": "Download ZIP"
+    },
+    "dangerZone": {
+      "title": "Danger zone",
+      "body": "Permanently delete your Ubepari account. Past orders and payments are kept for accounting records, but your personal details and identity documents are removed.",
+      "cta": "Delete my account"
+    },
+    "delete": {
+      "metaTitle": "Delete account",
+      "back": "Back to account",
+      "eyebrow": "Delete account",
+      "heading": "Delete your account",
+      "lede": "This is permanent. Please read carefully before you continue.",
+      "warningTitle": "What happens when you delete:",
+      "warningBullets": {
+        "anonymized": "Your name, phone number and email are removed from your profile.",
+        "kycWiped": "Your KYC documents are deleted from our storage.",
+        "ordersKept": "Past orders, payments and wallet history are retained for legal and accounting records.",
+        "phoneFreed": "Your phone number is released and can be used to sign up again later.",
+        "irreversible": "This action cannot be undone."
+      },
+      "confirmLabel": "Type {word} to confirm",
+      "confirmWord": "DELETE",
+      "sendCode": "Send deletion code by SMS",
+      "codeSent": "We sent a 6-digit code to your phone.",
+      "codeSentHint": "Enter it below to permanently delete your account.",
+      "confirmDeletePermanently": "Delete my account permanently",
+      "cancel": "Cancel",
+      "doneHeading": "Your account has been deleted.",
+      "smsCode": "Ubepari: {code} is your account deletion code. Expires in 5 min. If you didn't request this, ignore and sign out.",
+      "smsReceipt": "Ubepari: Your account has been permanently deleted. Orders are retained for records.",
+      "errors": {
+        "unauthenticated": "Please sign in again.",
+        "notFound": "We couldn't find an active account for this session."
       }
     }
   },
@@ -245,30 +308,52 @@
       "talk": "Talk to us"
     }
   },
-  "recommend": {
+  "assistant": {
     "metaTitle": "AI Tech Tips",
-    "badge": "AI Tech Tips · beta",
-    "heading": "Tell us who you are.",
-    "subheading": "What will you do with this PC? Budget? Any brands you love or hate? Type anything — the more natural, the better the match.",
-    "placeholder": "e.g. I'm a graphic designer who edits 4K video on weekends…",
-    "submitHint": "⌘/Ctrl + Enter to send",
-    "submit": "Find my PC",
-    "examplesLabel": "Or try one of these",
-    "examples": [
-      "I'm a graphic designer who edits 4K video on weekends. Budget 4M.",
-      "University student studying computer science. Need it for coding and light gaming. Under 2.5M.",
-      "I run a small accounting firm — 3 laptops for staff. Office-grade, budget 6M total.",
-      "Serious Valorant and CS2 player. Want 165Hz and RTX 4060 minimum."
+    "brandBadge": "AI Tech Tips · beta",
+    "newChat": "New chat",
+    "historyLabel": "Recent chats",
+    "historyEmpty": "No chats yet.",
+    "composerPlaceholder": "Ask anything about Ubepari…",
+    "sendHint": "⌘/Ctrl + Enter to send",
+    "send": "Send",
+    "emptyHeading": "How can I help?",
+    "emptyHeadingPersonal": "Hi {name}, how can I help?",
+    "emptySubheading": "Ask about products, pricing, your orders, or how lipa kidogo kidogo works.",
+    "suggestedLabel": "Try",
+    "suggestedAnon": [
+      "What's the best laptop for a CS student under 2.5M?",
+      "How does lipa kidogo kidogo work?",
+      "Show me gaming PCs under 4M.",
+      "Explain the 20% deposit."
     ],
-    "yourMatch": "Your match",
-    "matchResult": "Based on your story, I recommend the {product} — the 3.5K OLED is a gift for retouching work, and the RTX 4060 handles 4K timelines without choking. Fits your budget at TZS 380K/month over 12 months.",
-    "matchProduct": "Dell XPS 15 OLED",
-    "seeSpec": "See full spec",
-    "disclaimer": "Recommendations are AI-generated from your request and our live catalog. Double-check the specs on the product page before reserving.",
-    "thinking": "Thinking…",
-    "errorTooShort": "Tell me a bit more — a sentence or two about what you'll do with the PC.",
-    "errorGeneric": "We couldn't generate a recommendation right now. Try again in a moment.",
-    "priceFrom": "From"
+    "suggestedSignedIn": [
+      "When is my next installment due?",
+      "Show me my orders.",
+      "What's my wallet balance?",
+      "Recommend a laptop for creative work under 3.5M."
+    ],
+    "signInCtaForPersonal": "Sign in to ask about your orders, wallet, and installments.",
+    "signInAction": "Sign in",
+    "errorRateLimited": "You've reached the chat limit. Please try again in a little while.",
+    "errorGeneric": "Something went wrong. Try again in a moment.",
+    "cardCtaSeeSpec": "See spec",
+    "cardCtaViewOrder": "View order",
+    "cardNextDueLabel": "Next due",
+    "cardProgress": "{paid} of {total} paid",
+    "cardDeposit": "Deposit",
+    "cardMonthly": "Monthly",
+    "cardTotal": "Total",
+    "cardApr": "Service fee",
+    "cardPaid": "Paid",
+    "cardUnpaid": "Unpaid",
+    "cardStatus": {
+      "pending": "Pending",
+      "active": "Active",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "disclaimer": "AI-generated. Double-check important details before acting."
   },
   "hero": {
     "badge": "New — Own your dream PC in 3 taps",
@@ -568,7 +653,8 @@
     "sendOtp": "Send OTP",
     "otpHint": "We'll text a 6-digit code to your phone.",
     "newHere": "New here?",
-    "createAccountLink": "Create an account"
+    "createAccountLink": "Create an account",
+    "notRegistered": "We don't have an account for this number. Create one at Sign up."
   },
   "signup": {
     "metaTitle": "Create account",
@@ -581,11 +667,14 @@
     "emailLabel": "Email (optional)",
     "emailPlaceholder": "you@gmail.com",
     "submit": "Create account",
-    "tosPrefix": "By continuing you agree to our ",
-    "tosTerms": "Terms",
-    "tosAnd": " and ",
-    "tosHirePurchase": "Hire-Purchase Agreement",
-    "tosSuffix": ".",
+    "consentPrefix": "I agree to Ubepari's ",
+    "consentTerms": "Terms",
+    "consentComma": ", ",
+    "consentPrivacy": "Privacy Notice",
+    "consentAnd": ", and ",
+    "consentHirePurchase": "Hire-Purchase Agreement",
+    "consentSuffix": ".",
+    "consentRequired": "Please accept the Terms, Privacy Notice, and Hire-Purchase Agreement to continue.",
     "alreadyHave": "Already have an account?",
     "signInLink": "Sign in"
   },
@@ -1754,5 +1843,12 @@
         }
       }
     }
+  },
+  "install": {
+    "title": "Install Ubepari Wallet",
+    "subtitle": "Fast, full-screen, one tap from your home screen.",
+    "cta": "Install",
+    "iosHint": "Tap Share, then Add to Home Screen.",
+    "dismiss": "Dismiss"
   }
 }

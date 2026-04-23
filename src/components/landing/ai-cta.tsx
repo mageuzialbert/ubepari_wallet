@@ -50,7 +50,7 @@ export function AiCta() {
               variant="secondary"
               className="mt-7 rounded-full px-6"
             >
-              <Link href={`/${locale}/recommend`}>
+              <Link href={`/${locale}/assistant`}>
                 {t.cta}
                 <ArrowRight className="h-4 w-4" />
               </Link>

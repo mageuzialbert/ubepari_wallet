@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { LogOut, Menu, User, Wallet2 } from "lucide-react";
+import { LogOut, Menu, User } from "lucide-react";
 import * as React from "react";
 
+import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -80,13 +81,10 @@ export function SiteHeader() {
       <div className="mx-auto flex h-14 max-w-6xl items-center gap-6 px-4 sm:px-6">
         <Link
           href={localePrefix}
-          className="flex items-center gap-2 text-[15px] font-semibold tracking-tight"
+          aria-label={dict.header.logoLabel}
+          className="flex items-center"
         >
-          <span className="relative inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-foreground to-foreground/70 text-background">
-            <Wallet2 className="h-3.5 w-3.5" strokeWidth={2.5} />
-          </span>
-          Ubepari
-          <span className="text-muted-foreground">Wallet</span>
+          <Logo variant="lockup" size="sm" />
         </Link>
 
         <nav className="hidden flex-1 items-center justify-center gap-7 text-[13px] text-muted-foreground md:flex">
@@ -190,7 +188,8 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-72 p-6">
               <SheetHeader className="p-0">
                 <SheetTitle className="text-left">
-                  {dict.header.logoLabel}
+                  <Logo variant="lockup" size="md" />
+                  <span className="sr-only">{dict.header.logoLabel}</span>
                 </SheetTitle>
               </SheetHeader>
 

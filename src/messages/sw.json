@@ -26,6 +26,12 @@
     "orders": "Oda",
     "support": "Msaada"
   },
+  "cookies": {
+    "body": "Ubepari hutumia kuki za kiutendaji tu — kikao chako cha kuingia na mandhari unayopendelea. Hatufuatilii, hatuendeshi matangazo wala hatushiriki kitu na wahusika wengine.",
+    "privacyLink": "Soma Taarifa yetu ya Faragha",
+    "ok": "Sawa",
+    "dismiss": "Funga"
+  },
   "account": {
     "metaTitle": "Akaunti",
     "eyebrow": "Akaunti yako",
@@ -101,6 +107,63 @@
         "invalid_email": "Hiyo haionekani kuwa barua pepe sahihi.",
         "name_too_long": "Majina lazima yawe chini ya herufi 60.",
         "unknown": "Kuna tatizo limetokea. Jaribu tena baada ya muda mfupi."
+      }
+    },
+    "dataExport": {
+      "title": "Data yako",
+      "body": "Pakua faili la ZIP lenye kila kitu tunachohifadhi kwenye akaunti yako — profaili, oda, awamu za malipo, malipo, historia ya pochi, na metadata ya KYC.",
+      "cta": "Hamisha data yangu"
+    },
+    "export": {
+      "metaTitle": "Hamisha data",
+      "back": "Rudi kwenye akaunti",
+      "eyebrow": "Hamisha data",
+      "heading": "Hamisha data yako",
+      "lede": "Picha ya kila kitu kilichounganishwa na akaunti yako, ikiletwa kama ZIP ya faili za JSON.",
+      "contentsTitle": "Kilichomo",
+      "contents": {
+        "profile": "profile.json — safu ya profaili yako (jina, simu, barua pepe, kiwango cha mkopo, hali ya KYC).",
+        "orders": "orders.json — kila oda ya lipa kidogo kidogo uliyotoa.",
+        "installments": "installments.json — ratiba kamili kwa kila oda inayoendelea.",
+        "payments": "payments.json — amana, awamu, kujaza pochi, na marejesho.",
+        "wallet": "wallet_entries.json — miamala ya ingizo na toleo inayounda salio la pochi yako.",
+        "kyc": "kyc_submissions.json — metadata ya KYC (hati yenyewe haijumuishwi)."
+      },
+      "notExported": "Hati yako ya utambulisho uliyopakia haijumuishwi — imehifadhiwa kwa usalama na inaondolewa ukifuta akaunti.",
+      "download": "Pakua ZIP"
+    },
+    "dangerZone": {
+      "title": "Eneo la hatari",
+      "body": "Futa akaunti yako ya Ubepari kabisa. Oda na malipo ya zamani yanabaki kwa kumbukumbu za kihasibu, lakini taarifa zako binafsi na hati za utambulisho zinaondolewa.",
+      "cta": "Futa akaunti yangu"
+    },
+    "delete": {
+      "metaTitle": "Futa akaunti",
+      "back": "Rudi kwenye akaunti",
+      "eyebrow": "Futa akaunti",
+      "heading": "Futa akaunti yako",
+      "lede": "Kitendo hiki ni cha kudumu. Tafadhali soma kwa makini kabla ya kuendelea.",
+      "warningTitle": "Kitakachotokea ukifuta:",
+      "warningBullets": {
+        "anonymized": "Jina lako, nambari ya simu, na barua pepe vinaondolewa kwenye profaili yako.",
+        "kycWiped": "Hati zako za KYC zinafutwa kwenye hifadhi yetu.",
+        "ordersKept": "Oda, malipo na historia ya pochi zinabaki kwa kumbukumbu za kisheria na kihasibu.",
+        "phoneFreed": "Nambari yako ya simu inaachiliwa na inaweza kutumika kufungua akaunti nyingine baadaye.",
+        "irreversible": "Kitendo hiki hakiwezi kurudishwa."
+      },
+      "confirmLabel": "Andika {word} kuthibitisha",
+      "confirmWord": "FUTA",
+      "sendCode": "Tuma msimbo wa ufutaji kwa SMS",
+      "codeSent": "Tumetuma msimbo wa tarakimu 6 kwenye simu yako.",
+      "codeSentHint": "Uingize hapa chini kufuta akaunti yako kabisa.",
+      "confirmDeletePermanently": "Futa akaunti yangu kabisa",
+      "cancel": "Ghairi",
+      "doneHeading": "Akaunti yako imefutwa.",
+      "smsCode": "Ubepari: {code} ni msimbo wa kufuta akaunti yako. Unaisha baada ya dakika 5. Usipotuma, puuza na toka.",
+      "smsReceipt": "Ubepari: Akaunti yako imefutwa kabisa. Oda zimebaki kwa kumbukumbu.",
+      "errors": {
+        "unauthenticated": "Tafadhali ingia tena.",
+        "notFound": "Hatukupata akaunti hai kwa kikao hiki."
       }
     }
   },
@@ -245,30 +308,52 @@
       "talk": "Ongea nasi"
     }
   },
-  "recommend": {
+  "assistant": {
     "metaTitle": "AI Tech Tips",
-    "badge": "AI Tech Tips · beta",
-    "heading": "Tuambie wewe ni nani.",
-    "subheading": "Utafanya nini na PC hii? Bajeti yako? Chapa unayopenda au usiyopenda? Andika chochote — kadiri unavyoandika kiasili, ndivyo mlinganisho unakuwa bora.",
-    "placeholder": "mfano: Mimi ni mbunifu wa graphic anayehariri video za 4K wikendi…",
-    "submitHint": "⌘/Ctrl + Enter kutuma",
-    "submit": "Tafuta PC yangu",
-    "examplesLabel": "Au jaribu moja kati ya hizi",
-    "examples": [
-      "Mimi ni mbunifu wa graphic anayehariri video za 4K wikendi. Bajeti 4M.",
-      "Mwanafunzi wa chuo kikuu anayesoma sayansi ya kompyuta. Naihitaji kwa coding na gaming nyepesi. Chini ya 2.5M.",
-      "Ninaendesha kampuni ndogo ya uhasibu — laptop tatu kwa wafanyakazi. Kiwango cha ofisi, bajeti 6M jumla.",
-      "Mchezaji wa kiwango cha juu wa Valorant na CS2. Nataka 165Hz na angalau RTX 4060."
+    "brandBadge": "AI Tech Tips · beta",
+    "newChat": "Mazungumzo mapya",
+    "historyLabel": "Mazungumzo ya hivi karibuni",
+    "historyEmpty": "Bado hakuna mazungumzo.",
+    "composerPlaceholder": "Uliza chochote kuhusu Ubepari…",
+    "sendHint": "⌘/Ctrl + Enter kutuma",
+    "send": "Tuma",
+    "emptyHeading": "Naweza kukusaidiaje?",
+    "emptyHeadingPersonal": "Habari {name}, naweza kukusaidiaje?",
+    "emptySubheading": "Uliza kuhusu bidhaa, bei, oda zako, au namna ya lipa kidogo kidogo.",
+    "suggestedLabel": "Jaribu",
+    "suggestedAnon": [
+      "Laptop gani bora kwa mwanafunzi wa CS chini ya 2.5M?",
+      "Lipa kidogo kidogo inafanyaje kazi?",
+      "Nionyeshe PC za gaming chini ya 4M.",
+      "Eleza amana ya 20%."
     ],
-    "yourMatch": "Mlinganisho wako",
-    "matchResult": "Kulingana na hadithi yako, ninapendekeza {product} — 3.5K OLED ni zawadi kwa kazi za retouching, na RTX 4060 inashughulikia timeline za 4K bila shida. Inaendana na bajeti yako kwa TZS 380K/mwezi kwa miezi 12.",
-    "matchProduct": "Dell XPS 15 OLED",
-    "seeSpec": "Tazama vipimo kamili",
-    "disclaimer": "Mapendekezo yanatolewa na AI kutokana na ombi lako na orodha yetu ya sasa. Angalia vipimo kwenye ukurasa wa bidhaa kabla ya kuhifadhi.",
-    "thinking": "Inafikiria…",
-    "errorTooShort": "Nieleze zaidi kidogo — sentensi moja au mbili kuhusu utakavyotumia PC.",
-    "errorGeneric": "Hatukuweza kutoa pendekezo sasa hivi. Jaribu tena baada ya muda mfupi.",
-    "priceFrom": "Kuanzia"
+    "suggestedSignedIn": [
+      "Awamu yangu inayofuata ni lini?",
+      "Nionyeshe oda zangu.",
+      "Salio la wallet yangu ni lipi?",
+      "Pendekeza laptop ya kazi za ubunifu chini ya 3.5M."
+    ],
+    "signInCtaForPersonal": "Ingia ili kuuliza kuhusu oda, wallet na awamu zako.",
+    "signInAction": "Ingia",
+    "errorRateLimited": "Umefikia kiwango cha mazungumzo. Tafadhali jaribu baadae.",
+    "errorGeneric": "Kuna tatizo. Jaribu tena baada ya muda.",
+    "cardCtaSeeSpec": "Tazama vipimo",
+    "cardCtaViewOrder": "Tazama oda",
+    "cardNextDueLabel": "Lipa ifuatayo",
+    "cardProgress": "{paid} kati ya {total} zimelipwa",
+    "cardDeposit": "Amana",
+    "cardMonthly": "Kwa mwezi",
+    "cardTotal": "Jumla",
+    "cardApr": "Ada ya huduma",
+    "cardPaid": "Imelipwa",
+    "cardUnpaid": "Haijalipwa",
+    "cardStatus": {
+      "pending": "Inasubiri",
+      "active": "Hai",
+      "completed": "Imekamilika",
+      "cancelled": "Imefutwa"
+    },
+    "disclaimer": "Imetengenezwa na AI. Hakikisha taarifa muhimu kabla ya kuchukua hatua."
   },
   "hero": {
     "badge": "Mpya — Miliki PC ya ndoto yako kwa mibofyo 3",
@@ -568,7 +653,8 @@
     "sendOtp": "Tuma OTP",
     "otpHint": "Tutatuma msimbo wa tarakimu 6 kwenye simu yako.",
     "newHere": "Ni mara yako ya kwanza?",
-    "createAccountLink": "Fungua akaunti"
+    "createAccountLink": "Fungua akaunti",
+    "notRegistered": "Hatuna akaunti ya nambari hii. Fungua mpya kupitia Fungua akaunti."
   },
   "signup": {
     "metaTitle": "Fungua akaunti",
@@ -581,11 +667,14 @@
     "emailLabel": "Barua pepe (si lazima)",
     "emailPlaceholder": "wewe@gmail.com",
     "submit": "Fungua akaunti",
-    "tosPrefix": "Kwa kuendelea unakubali ",
-    "tosTerms": "Masharti",
-    "tosAnd": " na ",
-    "tosHirePurchase": "Mkataba wa Lipa Kidogo Kidogo",
-    "tosSuffix": ".",
+    "consentPrefix": "Nakubali ",
+    "consentTerms": "Masharti",
+    "consentComma": ", ",
+    "consentPrivacy": "Taarifa ya Faragha",
+    "consentAnd": ", na ",
+    "consentHirePurchase": "Mkataba wa Lipa Kidogo Kidogo",
+    "consentSuffix": " ya Ubepari.",
+    "consentRequired": "Tafadhali kubali Masharti, Taarifa ya Faragha, na Mkataba wa Lipa Kidogo Kidogo ili uendelee.",
     "alreadyHave": "Una akaunti tayari?",
     "signInLink": "Ingia"
   },
@@ -1754,5 +1843,12 @@
         }
       }
     }
+  },
+  "install": {
+    "title": "Sakinisha Ubepari Wallet",
+    "subtitle": "Haraka, skrini nzima, mbofyo mmoja kutoka skrini yako ya mwanzo.",
+    "cta": "Sakinisha",
+    "iosHint": "Gusa Share, kisha Add to Home Screen.",
+    "dismiss": "Funga"
   }
 }

@@ -11,7 +11,7 @@ export type WalletEntryKind = "credit" | "debit";
 
 type ProfilesRow = {
   id: string;
-  phone: string;
+  phone: string | null;
   first_name: string | null;
   last_name: string | null;
   email: string | null;
@@ -19,6 +19,9 @@ type ProfilesRow = {
   credit_points: number;
   kyc_status: KycStatus;
   is_admin: boolean;
+  terms_version_accepted: string | null;
+  terms_accepted_at: string | null;
+  deleted_at: string | null;
   created_at: string;
   updated_at: string;
 };
@@ -36,6 +39,7 @@ type KycSubmissionsRow = {
   reviewed_at: string | null;
   reviewed_by: string | null;
   review_notes: string | null;
+  id_doc_wiped_at: string | null;
 };
 
 type OrdersRow = {
@@ -143,6 +147,28 @@ type AdminAuditLogRow = {
   created_at: string;
 };
 
+export type AiMessageRole = "user" | "assistant" | "tool" | "system";
+
+type AiConversationsRow = {
+  id: string;
+  user_id: string;
+  locale: "en" | "sw";
+  title: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+type AiMessagesRow = {
+  id: string;
+  conversation_id: string;
+  role: AiMessageRole;
+  content: string;
+  tool_calls: Record<string, unknown>[] | null;
+  tool_call_id: string | null;
+  tool_name: string | null;
+  created_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -157,13 +183,20 @@ export type Database = {
         Row: KycSubmissionsRow;
         Insert: Omit<
           KycSubmissionsRow,
-          "id" | "submitted_at" | "reviewed_at" | "reviewed_by" | "review_notes" | "status"
+          | "id"
+          | "submitted_at"
+          | "reviewed_at"
+          | "reviewed_by"
+          | "review_notes"
+          | "status"
+          | "id_doc_wiped_at"
         > & {
           id?: string;
           status?: KycStatus;
           reviewed_at?: string | null;
           reviewed_by?: string | null;
           review_notes?: string | null;
+          id_doc_wiped_at?: string | null;
         };
         Update: Partial<KycSubmissionsRow>;
         Relationships: [];
@@ -266,6 +299,29 @@ export type Database = {
           diff?: Record<string, unknown>;
         };
         Update: Partial<AdminAuditLogRow>;
+        Relationships: [];
+      };
+      ai_conversations: {
+        Row: AiConversationsRow;
+        Insert: Pick<AiConversationsRow, "user_id" | "locale"> & {
+          id?: string;
+          title?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<AiConversationsRow>;
+        Relationships: [];
+      };
+      ai_messages: {
+        Row: AiMessagesRow;
+        Insert: Pick<AiMessagesRow, "conversation_id" | "role" | "content"> & {
+          id?: string;
+          tool_calls?: Record<string, unknown>[] | null;
+          tool_call_id?: string | null;
+          tool_name?: string | null;
+          created_at?: string;
+        };
+        Update: Partial<AiMessagesRow>;
         Relationships: [];
       };
     };

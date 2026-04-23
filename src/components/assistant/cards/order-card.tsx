@@ -1,0 +1,76 @@
+"use client";
+
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { formatTzs } from "@/lib/currency";
+import { formatDate } from "@/lib/datetime";
+import { useDictionary, useLocale } from "@/i18n/provider";
+import type { CardPayload } from "@/lib/assistant/tools";
+
+type OrderCardProps = Extract<CardPayload, { kind: "order" }>;
+
+export function OrderCard(props: OrderCardProps) {
+  const locale = useLocale();
+  const dict = useDictionary();
+  const t = dict.assistant;
+
+  const progressPct = Math.min(
+    100,
+    Math.round((props.monthsPaid / Math.max(1, props.termMonths)) * 100),
+  );
+  const statusLabel =
+    t.cardStatus[props.status as keyof typeof t.cardStatus] ?? props.status;
+
+  return (
+    <div className="rounded-2xl border border-border/60 bg-card p-4">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+            {props.reference}
+          </p>
+          <h3 className="mt-0.5 truncate text-[15px] font-semibold tracking-tight">
+            {props.productName}
+          </h3>
+        </div>
+        <span className="rounded-full border border-border/60 px-2 py-0.5 text-[10px] uppercase tracking-wider text-muted-foreground">
+          {statusLabel}
+        </span>
+      </div>
+      <div className="mt-3">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted/60">
+          <div
+            className="h-full rounded-full bg-foreground"
+            style={{ width: `${progressPct}%` }}
+          />
+        </div>
+        <p className="mt-1 text-[11px] text-muted-foreground">
+          {t.cardProgress
+            .replace("{paid}", String(props.monthsPaid))
+            .replace("{total}", String(props.termMonths))}
+        </p>
+      </div>
+      <div className="mt-3 flex items-end justify-between gap-2">
+        <div className="text-[12px] text-muted-foreground">
+          {props.nextDueDate ? (
+            <>
+              <span className="uppercase tracking-wider text-[10px]">
+                {t.cardNextDueLabel}
+              </span>
+              <p className="text-[12px] text-foreground">
+                {formatDate(props.nextDueDate, locale)} ·{" "}
+                {formatTzs(props.monthlyTzs, locale)}
+              </p>
+            </>
+          ) : null}
+        </div>
+        <Button asChild size="sm" variant="outline" className="h-7 rounded-full px-3 text-[11px]">
+          <Link href={`/${locale}/orders/${props.id}`}>
+            {t.cardCtaViewOrder} <ArrowRight className="h-3 w-3" />
+          </Link>
+        </Button>
+      </div>
+    </div>
+  );
+}

@@ -6,7 +6,7 @@ import { getProductSlugs } from "@/lib/products";
 const PUBLIC_PATHS = [
   "",
   "/store",
-  "/recommend",
+  "/assistant",
   "/support",
   "/signin",
   "/signup",
