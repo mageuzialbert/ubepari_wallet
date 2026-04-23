@@ -1,7 +1,7 @@
 import "server-only";
 
 import type { Locale } from "@/i18n/config";
-import { supabaseAnon } from "@/lib/supabase/anon";
+import { hasSupabaseEnv, supabaseAnon } from "@/lib/supabase/anon";
 
 export type UsageTag = "Gaming" | "Design" | "Coding" | "Office" | "Student" | "Creator";
 export type Brand = "Apple" | "Dell" | "HP" | "Lenovo" | "ASUS" | "MSI" | "Acer" | "Custom";
@@ -98,6 +98,7 @@ function groupImages(
 }
 
 export async function getProducts(locale: Locale): Promise<Product[]> {
+  if (!hasSupabaseEnv()) return [];
   const client = supabaseAnon();
   const [productsRes, imagesRes] = await Promise.all([
     client
@@ -116,6 +117,7 @@ export async function getProduct(
   slug: string,
   locale: Locale,
 ): Promise<Product | undefined> {
+  if (!hasSupabaseEnv()) return undefined;
   const client = supabaseAnon();
   const { data: row } = await client
     .from("products")
@@ -133,6 +135,7 @@ export async function getProduct(
 }
 
 export async function getFeaturedProducts(locale: Locale): Promise<Product[]> {
+  if (!hasSupabaseEnv()) return [];
   const client = supabaseAnon();
   const { data: rows } = await client
     .from("products")
@@ -159,6 +162,7 @@ export async function getProductsBySlugs(
 ): Promise<Map<string, Product>> {
   const unique = Array.from(new Set(slugs));
   if (unique.length === 0) return new Map();
+  if (!hasSupabaseEnv()) return new Map();
   const client = supabaseAnon();
   const { data: rows } = await client
     .from("products")
@@ -184,6 +188,7 @@ export async function getProductsBySlugs(
 }
 
 export async function getProductSlugs(): Promise<string[]> {
+  if (!hasSupabaseEnv()) return [];
   const client = supabaseAnon();
   const { data } = await client.from("products").select("slug").eq("active", true);
   return (data ?? []).map((r) => r.slug);
