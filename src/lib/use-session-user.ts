@@ -18,14 +18,14 @@ type State = {
   loading: boolean;
 };
 
-type Listener = (state: State) => void;
+type Listener = () => void;
 
 let cache: State = { user: null, loading: true };
 let inflight: Promise<void> | null = null;
 const listeners = new Set<Listener>();
 
 function notify() {
-  for (const listener of listeners) listener(cache);
+  for (const listener of listeners) listener();
 }
 
 async function fetchMe(): Promise<void> {
@@ -45,21 +45,31 @@ async function fetchMe(): Promise<void> {
   return inflight;
 }
 
+function subscribe(onStoreChange: Listener): () => void {
+  listeners.add(onStoreChange);
+  return () => {
+    listeners.delete(onStoreChange);
+  };
+}
+
+const getSnapshot = () => cache;
+const SSR_CACHE: State = { user: null, loading: true };
+const getServerSnapshot = () => SSR_CACHE;
+
 export function useSessionUser(): {
   user: SessionUser | null;
   loading: boolean;
   refresh: () => Promise<void>;
   signOut: () => Promise<void>;
 } {
-  const [state, setState] = React.useState<State>(cache);
+  const state = React.useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
   React.useEffect(() => {
-    listeners.add(setState);
     if (cache.loading && !inflight) void fetchMe();
-    else setState(cache);
-    return () => {
-      listeners.delete(setState);
-    };
   }, []);
 
   const refresh = React.useCallback(async () => {

@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 import {
   ArrowDownLeft,
   ArrowUpRight,
-  Check,
   ChevronLeft,
   Clock,
   XCircle,

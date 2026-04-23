@@ -6,11 +6,17 @@ import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
 
+const subscribeNoop = () => () => {};
+const getMountedClient = () => true;
+const getMountedServer = () => false;
+
 export function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => setMounted(true), []);
+  const mounted = React.useSyncExternalStore(
+    subscribeNoop,
+    getMountedClient,
+    getMountedServer,
+  );
 
   const isDark = mounted ? resolvedTheme === "dark" : true;
 
