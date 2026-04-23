@@ -13,9 +13,14 @@ export default async function HomePage({ params }: { params: HomePageParams }) {
   if (!hasLocale(locale)) return null;
   const featured = await getFeaturedProducts(locale);
 
+  const stackImages = featured
+    .flatMap((p) => p.images)
+    .filter(Boolean)
+    .slice(0, 22);
+
   return (
     <>
-      <LandingHero />
+      <LandingHero stackImages={stackImages} />
       <FeaturedPcs products={featured} />
       <HowItWorks />
       <AiCta />

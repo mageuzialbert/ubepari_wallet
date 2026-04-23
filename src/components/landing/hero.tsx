@@ -7,15 +7,19 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDictionary, useLocale } from "@/i18n/provider";
 import { HeroScene } from "@/components/landing/hero-scene";
-import { HeroProductTilt } from "@/components/landing/hero-product-tilt";
+import { HeroProductStack } from "@/components/landing/hero-product-stack";
 
-const HERO_PRODUCT_IMAGE =
-  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1600&q=90";
+const FALLBACK_IMAGES = [
+  "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=900&q=80",
+  "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=900&q=80",
+  "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=900&q=80",
+];
 
-export function LandingHero() {
+export function LandingHero({ stackImages = [] }: { stackImages?: string[] }) {
   const dict = useDictionary();
   const locale = useLocale();
   const t = dict.hero;
+  const images = stackImages.length > 0 ? stackImages : FALLBACK_IMAGES;
 
   return (
     <section className="relative isolate flex min-h-[88vh] items-center overflow-hidden">
@@ -111,12 +115,12 @@ export function LandingHero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 0.35, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full"
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.35, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          className="relative h-[520px] w-full lg:h-[600px]"
         >
-          <HeroProductTilt src={HERO_PRODUCT_IMAGE} alt={t.featuredProduct} />
+          <HeroProductStack images={images} />
         </motion.div>
       </div>
     </section>
