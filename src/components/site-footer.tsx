@@ -21,9 +21,8 @@ const GROUPS: FooterGroup[] = [
   {
     titleKey: "wallet",
     links: [
-      { href: "/wallet", labelKey: "myWallet" },
-      { href: "/wallet/top-up", labelKey: "topUp" },
-      { href: "/orders", labelKey: "orders" },
+      { href: "/account/goals", labelKey: "myWallet" },
+      { href: "/account/goals", labelKey: "orders" },
       { href: "/kyc", labelKey: "kyc" },
     ],
   },

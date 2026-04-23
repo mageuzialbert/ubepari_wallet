@@ -1,8 +1,10 @@
 import "server-only";
 
 import { logEvent } from "@/lib/events";
+import { newReceiptNumber, sendGoalCompletedSms } from "@/lib/goals";
 import { decrementStockForOrder } from "@/lib/inventory";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import type { GoalsRow } from "@/lib/supabase/types";
 
 const PENDING_WINDOW_SECONDS = 120;
 
@@ -41,7 +43,7 @@ export async function settlePaymentSuccess(params: {
 
   const { data: payment, error } = await admin
     .from("payments")
-    .select("id, user_id, order_id, kind, amount_tzs, status")
+    .select("id, user_id, order_id, goal_id, kind, amount_tzs, status")
     .eq("id", params.paymentId)
     .maybeSingle();
   if (error) return { ok: false, error: `lookup_error: ${error.message}` };
@@ -66,7 +68,68 @@ export async function settlePaymentSuccess(params: {
     return { ok: false, error: `payment_update_error: ${payUpdErr.message}` };
   }
 
-  if (payment.kind === "deposit" && payment.order_id) {
+  if (payment.goal_id && payment.kind === "contribution") {
+    const { data: updatedGoal, error: rpcErr } = await admin.rpc(
+      "increment_goal_contribution",
+      { p_goal_id: payment.goal_id, p_amount: payment.amount_tzs },
+    );
+    if (rpcErr || !updatedGoal) {
+      logEvent("goal.contribution.rpc_failed", {
+        paymentId: payment.id,
+        goalId: payment.goal_id,
+        error: rpcErr?.message ?? "no_goal_returned",
+      });
+    }
+
+    await admin.from("wallet_entries").insert({
+      user_id: payment.user_id,
+      kind: "credit",
+      amount_tzs: payment.amount_tzs,
+      payment_id: payment.id,
+      note_key: "contribution",
+      note_params: {
+        goalId: payment.goal_id,
+        goalReference: (updatedGoal as GoalsRow | null)?.reference ?? null,
+        productSlug: (updatedGoal as GoalsRow | null)?.product_slug ?? null,
+      },
+    });
+
+    const goal = updatedGoal as GoalsRow | null;
+    if (goal && goal.contributed_tzs >= goal.product_price_tzs && goal.status === "active") {
+      const receiptNumber = newReceiptNumber();
+      const { data: completed } = await admin
+        .from("goals")
+        .update({
+          status: "completed",
+          completed_at: settledAt,
+          receipt_number: receiptNumber,
+          receipt_issued_at: settledAt,
+        })
+        .eq("id", goal.id)
+        .eq("status", "active")
+        .select("*")
+        .maybeSingle();
+      const finalGoal = (completed as GoalsRow | null) ?? {
+        ...goal,
+        receipt_number: receiptNumber,
+        status: "completed" as const,
+      };
+      logEvent("goal.completed", {
+        goalId: goal.id,
+        userId: payment.user_id,
+        receiptNumber: finalGoal.receipt_number,
+      });
+      // fire-and-forget SMS so callback latency stays low
+      void sendGoalCompletedSms(finalGoal).catch((err) =>
+        logEvent("goal.completion_sms_failed", {
+          goalId: goal.id,
+          error: err instanceof Error ? err.message : String(err),
+        }),
+      );
+    }
+  } else if (payment.kind === "deposit" && payment.order_id) {
+    // Legacy hire-purchase path. No new rows are being written with kind='deposit'
+    // after the layaway pivot, but old in-flight pushes still settle here.
     const { data: orderRow } = await admin
       .from("orders")
       .update({ status: "active", activated_at: settledAt })
@@ -132,6 +195,7 @@ export async function settlePaymentSuccess(params: {
     paymentId: payment.id,
     kind: payment.kind,
     orderId: payment.order_id,
+    goalId: payment.goal_id,
     amount: payment.amount_tzs,
     status: "success",
     source: params.source,

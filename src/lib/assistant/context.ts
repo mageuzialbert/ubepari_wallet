@@ -5,7 +5,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/types";
 import { supabaseForUser } from "@/lib/supabase/server";
 import { getSession } from "@/lib/session";
-import { getWalletSnapshot } from "@/lib/wallet-data";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import type { Locale } from "@/i18n/config";
 
 export type AssistantUserContext =
@@ -16,8 +16,8 @@ export type AssistantUserContext =
       userId: string;
       firstName: string | null;
       kycStatus: string;
-      activeOrderCount: number;
-      nextDueDate: string | null;
+      activeGoalCount: number;
+      nextReminderDate: string | null;
     };
 
 export type AssistantCallContext = {
@@ -50,11 +50,29 @@ export async function buildAssistantContext(
     };
   }
 
-  const snapshot = await getWalletSnapshot(
-    supabase,
-    session.claims.userId,
-    locale,
-  );
+  const admin = supabaseAdmin();
+  const [{ data: profile }, { data: goals }] = await Promise.all([
+    admin
+      .from("profiles")
+      .select("first_name, kyc_status")
+      .eq("id", session.claims.userId)
+      .maybeSingle(),
+    admin
+      .from("goals")
+      .select("next_reminder_date")
+      .eq("user_id", session.claims.userId)
+      .eq("status", "active")
+      .order("next_reminder_date", { ascending: true })
+      .limit(1),
+  ]);
+
+  const nextReminderDate =
+    goals && goals.length > 0 ? goals[0].next_reminder_date : null;
+  const { count: activeCount } = await admin
+    .from("goals")
+    .select("id", { count: "exact", head: true })
+    .eq("user_id", session.claims.userId)
+    .eq("status", "active");
 
   return {
     locale,
@@ -64,10 +82,10 @@ export async function buildAssistantContext(
       authState: "signed_in",
       locale,
       userId: session.claims.userId,
-      firstName: snapshot?.profile.firstName ?? null,
-      kycStatus: snapshot?.profile.kycStatus ?? "none",
-      activeOrderCount: snapshot?.activeOrders.length ?? 0,
-      nextDueDate: snapshot?.balance.nextDueDate ?? null,
+      firstName: profile?.first_name ?? null,
+      kycStatus: profile?.kyc_status ?? "none",
+      activeGoalCount: activeCount ?? 0,
+      nextReminderDate,
     },
   };
 }

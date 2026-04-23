@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft, ShieldCheck, Truck } from "lucide-react";
 
-import { CreditCalculator } from "@/components/product/credit-calculator";
+import { SaveTowardPanel } from "@/components/product/save-toward-panel";
 import { ProductCard } from "@/components/product/product-card";
 import { Badge } from "@/components/ui/badge";
 import { formatTzs } from "@/lib/currency";
@@ -127,7 +127,11 @@ export default async function ProductDetailPage({
             </span>
           </div>
 
-          <CreditCalculator price={product.priceTzs} productSlug={product.slug} />
+          <SaveTowardPanel
+            price={product.priceTzs}
+            productSlug={product.slug}
+            productName={product.name}
+          />
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <Perk

@@ -200,7 +200,7 @@ export type OrderDetail = {
   }[];
   payments: {
     id: string;
-    kind: "deposit" | "installment" | "topup" | "refund";
+    kind: "deposit" | "installment" | "topup" | "refund" | "contribution";
     provider: "mpesa" | "tigopesa" | "airtelmoney" | "card";
     amountTzs: number;
     status: "pending" | "success" | "failed";
@@ -376,11 +376,12 @@ export type PaymentHistoryFilter =
   | "deposit"
   | "installment"
   | "topup"
-  | "refund";
+  | "refund"
+  | "contribution";
 
 export type PaymentHistoryItem = {
   id: string;
-  kind: "deposit" | "installment" | "topup" | "refund";
+  kind: "deposit" | "installment" | "topup" | "refund" | "contribution";
   provider: "mpesa" | "tigopesa" | "airtelmoney" | "card";
   amountTzs: number;
   status: "pending" | "success" | "failed";

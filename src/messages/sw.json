@@ -1,8 +1,8 @@
 {
   "meta": {
-    "siteTitle": "Ubepari Wallet — Miliki PC yako ya ndoto. Lipa kidogo kidogo.",
+    "siteTitle": "Ubepari Wallet — Weka akiba. Imiliki. Bila deni.",
     "titleTemplate": "%s · Ubepari Wallet",
-    "siteDescription": "Jukwaa kuu la Tanzania la kununua PC kwa malipo ya awamu. Lipa malipo ya awali kwa M-Pesa, Tigo Pesa, Airtel Money, au kadi — ondoka na kifaa chako leo hii."
+    "siteDescription": "Jukwaa la kuweka akiba kwa PC Tanzania. Chagua mashine, weka kiasi chochote muda wowote kupitia M-Pesa, Tigo Pesa, au Airtel Money, na uichukue ukifikia lengo. Bila riba. Bila deni."
   },
   "header": {
     "signIn": "Ingia",
@@ -13,7 +13,7 @@
     "accountMenu": {
       "signedInAs": "Umeingia kama",
       "profile": "Wasifu",
-      "orders": "Oda zangu",
+      "orders": "Akiba yangu",
       "wallet": "Wallet yangu",
       "kyc": "Uthibitisho (KYC)",
       "signOut": "Toka"
@@ -22,8 +22,9 @@
   "nav": {
     "store": "Duka",
     "aiTips": "AI Tech Tips",
-    "wallet": "Wallet",
-    "orders": "Oda",
+    "wallet": "Akiba",
+    "orders": "Malengo",
+    "goals": "Malengo yangu",
     "support": "Msaada"
   },
   "cookies": {
@@ -356,10 +357,10 @@
     "disclaimer": "Imetengenezwa na AI. Hakikisha taarifa muhimu kabla ya kuchukua hatua."
   },
   "hero": {
-    "badge": "Mpya — Miliki PC ya ndoto yako kwa mibofyo 3",
-    "headingLine1": "Miliki leo.",
-    "headingLine2": "Lipa kidogo kidogo.",
-    "subheading": "Njia bora zaidi ya kununua PC nchini Tanzania. Chagua kifaa chako, lipa malipo ya awali, na ondoka nacho leo — mabaki yote yanasimamiwa kupitia Ubepari Wallet yako.",
+    "badge": "Lipa kidogo kidogo — njia ya kisasa",
+    "headingLine1": "Weka akiba. Imiliki.",
+    "headingLine2": "Bila deni. Bila riba.",
+    "subheading": "Chagua PC. Weka akiba kwa kiasi chochote, muda wowote, kupitia M-Pesa, Tigo Pesa, au Airtel Money. Ichukue dukani ukifikia lengo.",
     "ctaPrimary": "Tazama PC",
     "ctaSecondary": "Uliza AI Tech Tips →",
     "featuredLabel": "Iliyoangaziwa",
@@ -376,20 +377,46 @@
   },
   "howItWorks": {
     "eyebrow": "Jinsi inavyofanya kazi",
-    "heading": "Mibofyo mitatu. Basi.",
-    "body": "Tumebuni Ubepari ili umbali kati ya kutaka PC na kuimiliki uwe mfupi iwezekanavyo — bila kukulazimisha kusoma mkataba ambao hutausoma kamwe.",
+    "heading": "Weka akiba. Fikia. Chukua.",
+    "body": "Ubepari ni kwa ajili ya wazo moja: kukuruhusu kuweka akiba kwa PC unayotaka, kwa ratiba yako, bila kuingia katika deni.",
     "steps": [
       {
-        "title": "Jithibitishe mara moja.",
-        "body": "Pakia NIDA au pasipoti yako. Timu yetu ya KYC inakuidhinisha — mara nyingi ndani ya masaa machache — na unapata kiwango chako cha mkopo."
+        "title": "Thibitisha mara moja.",
+        "body": "Pakia NIDA yako. Timu yetu ya KYC inakuidhinisha — mara nyingi ndani ya masaa machache — na unaweza kuanza kuweka akiba."
       },
       {
-        "title": "Chagua PC yako.",
-        "body": "Pitia duka au iambie AI Tech Tips unachohitaji. Sogeza kuona mipango ya kila mwezi ya miezi 3, 6, 9, au 12."
+        "title": "Chagua PC, weka lengo.",
+        "body": "Chagua mashine na muda — miezi 3, 6, 9, au 12 — kama mwongozo wa kuweka akiba kwa mwezi. Bei inalindwa kwa kiasi cha leo."
       },
       {
-        "title": "Lipa na uimiliki.",
-        "body": "Malipo ya awali 20% kupitia M-Pesa, Tigo Pesa, Airtel Money, au kadi. Ondoka na PC. Lipa mabaki kutoka Wallet yako."
+        "title": "Weka akiba. Chukua.",
+        "body": "Weka kiasi chochote, muda wowote, kupitia M-Pesa, Tigo Pesa, au Airtel Money. Tutakukumbusha mara moja kwa mwezi. Ukifikia lengo, pakua risiti yako na chukua PC dukani."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Maswali",
+    "heading": "Kwa ufupi.",
+    "items": [
+      {
+        "q": "Je, hii ni mkopo?",
+        "a": "Hapana. Hakuna riba, hakuna deni, hakuna cha kulipa baadaye. Unaweka akiba kwa PC utakayoichukua ukifikia lengo."
+      },
+      {
+        "q": "Nikitaka kuacha?",
+        "a": "Unaweza kughairi lengo lolote kutoka akaunti yako. Kiasi ulichochangia kitahifadhiwa — wasiliana na msaada (support@ubeparipc.com) tutarejesha kwa mikono."
+      },
+      {
+        "q": "Bidhaa zinaweza kuisha kabla sijamalizia?",
+        "a": "Tunalinda bei ya leo unapounda lengo, lakini stoo ni wa kwanza-kupata wakati wa kuchukua. Mashine ikiisha, timu yetu itakupa mbadala sawa au marejesho kamili."
+      },
+      {
+        "q": "Naweza kuweka akiba kwa PC zaidi ya moja?",
+        "a": "Ndio — hadi malengo amilifu matatu kwa wakati mmoja. Malizia au ghairi moja ili uanze jingine."
+      },
+      {
+        "q": "Naipokeaje PC yangu?",
+        "a": "Ukifikia lengo, pakua risiti yako kutoka ukurasa wa lengo, uilete pamoja na kitambulisho halali dukani letu Magomeni Mapipa, Dar es Salaam."
       }
     ]
   },
@@ -626,23 +653,106 @@
     "needsKyc": "Maliza KYC ili kuhifadhi.",
     "errorGeneric": "Kuna tatizo. Jaribu tena."
   },
-  "credit": {
-    "planLabel": "Mpango wa Lipa kidogo kidogo",
+  "goal": {
+    "planLabel": "Weka akiba kwa PC hii",
     "perMonthSuffix": "/ mwezi",
-    "chooseDuration": "Chagua muda",
+    "chooseDuration": "Chagua muda wa kuweka akiba",
     "monthsSuffix": "miezi",
     "termSuffix": "mo",
     "rows": {
-      "cashPrice": "Bei ya mkupuo",
-      "deposit": "Malipo ya awali (20%)",
-      "financed": "Kiasi cha mkopo",
-      "serviceFee": "Ada ya huduma",
-      "free": "Bure",
-      "total": "Jumla ya kulipa"
+      "price": "Bei lengwa",
+      "monthlyTarget": "Lengo la mwezi",
+      "term": "Muda"
     },
-    "reserveButton": "Hifadhi kwa malipo ya awali — {amount}",
-    "savePlan": "Hifadhi mpango kwenye Wallet yangu",
-    "disclaimer": "Idhini ya mwisho inategemea KYC na ukaguzi wa mkopo. Kulipa mapema ni bure; malipo yaliyochelewa yanaweza kutozwa ada ya 2% ya ucheleweshaji."
+    "startGoalButton": "Anza kuweka akiba",
+    "disclaimer": "Bila riba. Bila deni. Weka akiba kwa kasi yako mwenyewe — tutakukumbusha mara moja kwa mwezi. Fika dukani kuchukua ukifikia lengo.",
+    "needsSignIn": "Ingia ili uanze lengo.",
+    "needsKyc": "Maliza KYC ili uanze lengo.",
+    "kycCta": "Nenda KYC",
+    "signInCta": "Ingia",
+    "tooManyActive": "Una malengo amilifu {max} tayari. Malizia au ghairi moja kwanza."
+  },
+  "startGoal": {
+    "title": "Anza kuweka akiba kwa {product}",
+    "description": "Utalenga kuweka {monthly} kila mwezi kwa miezi {months}. Bila riba, bila haraka — weka kiasi chochote muda wowote, ghairi muda wowote.",
+    "cancelButton": "Ghairi",
+    "confirmButton": "Unda lengo",
+    "successTitle": "Lengo limeundwa",
+    "successBody": "Lengo lako liko hai. Chagua kuweka sasa au muda wowote kutoka ukurasa wa malengo.",
+    "successContributeNow": "Weka kiasi sasa",
+    "successViewGoal": "Tazama lengo langu",
+    "errorGeneric": "Kuna tatizo. Jaribu tena.",
+    "errorTooMany": "Una malengo amilifu {max} tayari.",
+    "errorKyc": "Maliza KYC kwanza.",
+    "errorSignIn": "Ingia kwanza."
+  },
+  "contribute": {
+    "title": "Weka kwenye lengo lako",
+    "description": "Unaweka akiba kwa {product}. Kila kiasi kinasaidia.",
+    "amountLabel": "Kiasi (TZS)",
+    "mobileMoneyLabel": "Nambari ya simu ya pesa",
+    "mobileMoneyHint": "Tutatuma ombi kwenye nambari yako ya {provider}.",
+    "providerLabel": "Lipa kupitia",
+    "providers": {
+      "mpesa": "M-Pesa",
+      "tigopesa": "Tigo Pesa",
+      "airtelmoney": "Airtel Money"
+    },
+    "confirmButton": "Tuma {amount}",
+    "cancelButton": "Ghairi",
+    "pendingTitle": "Angalia simu yako ya {provider}",
+    "pendingBody": "Tumetuma ombi. Lithibitishe ili liongezwe kwenye lengo lako.",
+    "doneTitle": "Umeongeza {amount} kwenye lengo",
+    "doneReference": "Rejea: {ref}",
+    "doneButton": "Sawa",
+    "failedTitle": "Malipo hayakukamilika",
+    "failedBody": "Ombi liligharika au muda ulikwisha. Jaribu tena ukiwa tayari.",
+    "retryButton": "Jaribu tena",
+    "errorGeneric": "Kuna tatizo. Jaribu tena."
+  },
+  "goals": {
+    "metaTitle": "Malengo yangu ya akiba",
+    "eyebrow": "Akiba",
+    "heading": "Malengo yako",
+    "subheading": "Weka akiba kwa PC unayotaka, kwa kasi yako mwenyewe.",
+    "emptyTitle": "Bado hakuna lengo",
+    "emptyBody": "Chagua PC katika duka uanze lengo lako la kwanza.",
+    "browseStore": "Tazama PC",
+    "tabActive": "Amilifu",
+    "tabCompleted": "Yaliyokamilika",
+    "tabCancelled": "Yaliyoghairiwa",
+    "progressPercent": "{percent}% imewekwa",
+    "monthlyTarget": "Lengo la mwezi",
+    "contributed": "Umeweka",
+    "targetPrice": "Bei lengwa",
+    "nextReminder": "Ukumbusho ujao",
+    "contributeCta": "Weka kiasi sasa",
+    "downloadReceipt": "Pakua risiti",
+    "cancelGoal": "Ghairi lengo",
+    "cancelDialogTitle": "Ghairi lengo hili?",
+    "cancelDialogBody": "Kiasi ulichoweka kitahifadhiwa. Wasiliana na msaada kwa marejesho. Haiwezi kutenduliwa.",
+    "cancelReasonLabel": "Sababu (hiari)",
+    "cancelConfirm": "Ndio, ghairi",
+    "cancelKeep": "Endelea kuweka akiba",
+    "detailHeading": "Lengo lako",
+    "referenceLabel": "Rejea",
+    "targetMonthsLabel": "Muda",
+    "contributionsHeading": "Michango",
+    "contributionsEmpty": "Bado hakuna mchango. Weka wa kwanza.",
+    "startedOn": "Ulianza {date}",
+    "completedOn": "Ulikamilika {date}",
+    "cancelledOn": "Liliyoghairiwa {date}",
+    "receiptNumberLabel": "Risiti #",
+    "pickUpAtShowroom": "Chukua Ubepari PC, Magomeni Mapipa, Dar es Salaam — leta risiti yako.",
+    "back": "Rudi kwenye malengo",
+    "statusLabel": {
+      "active": "Amilifu",
+      "completed": "Imekamilika",
+      "cancelled": "Imeghairiwa",
+      "pending": "Inasubiri",
+      "failed": "Imeshindwa",
+      "success": "Imefanikiwa"
+    }
   },
   "signin": {
     "metaTitle": "Ingia",
@@ -654,7 +764,16 @@
     "otpHint": "Tutatuma msimbo wa tarakimu 6 kwenye simu yako.",
     "newHere": "Ni mara yako ya kwanza?",
     "createAccountLink": "Fungua akaunti",
-    "notRegistered": "Hatuna akaunti ya nambari hii. Fungua mpya kupitia Fungua akaunti."
+    "notRegistered": "Hatuna akaunti ya nambari hii. Fungua mpya kupitia Fungua akaunti.",
+    "tabOtp": "OTP",
+    "tabPassword": "Nenosiri",
+    "passwordLabel": "Nenosiri",
+    "passwordPlaceholder": "Ingiza nenosiri lako",
+    "signInWithPassword": "Ingia",
+    "forgotPassword": "Umesahau nenosiri lako?",
+    "passwordInvalid": "Nambari ya simu na nenosiri hazilingani.",
+    "passwordLocked": "Majaribio mengi yameshindwa. Jaribu tena baada ya dakika 15.",
+    "passwordError": "Kuna tatizo. Jaribu tena."
   },
   "signup": {
     "metaTitle": "Fungua akaunti",
@@ -676,7 +795,31 @@
     "consentSuffix": " ya Ubepari.",
     "consentRequired": "Tafadhali kubali Masharti, Taarifa ya Faragha, na Mkataba wa Lipa Kidogo Kidogo ili uendelee.",
     "alreadyHave": "Una akaunti tayari?",
-    "signInLink": "Ingia"
+    "signInLink": "Ingia",
+    "passwordSentTitle": "Nenosiri lako linakuja",
+    "passwordSentBody": "Tumetuma nenosiri lako la awali kupitia SMS. Lihifadhi sehemu salama — unaweza kulitumia, au kuendelea kutumia OTP.",
+    "passwordSentCta": "Endelea KYC"
+  },
+  "passwordReset": {
+    "metaTitle": "Weka upya nenosiri",
+    "heading": "Weka nenosiri jipya",
+    "body": "Ingiza nambari ya simu. Tutatuma msimbo wa tarakimu 6. Kisha chagua nenosiri jipya.",
+    "phoneLabel": "Nambari ya simu",
+    "sendCodeButton": "Tuma msimbo",
+    "codeLabel": "Msimbo wa uthibitisho",
+    "newPasswordLabel": "Nenosiri jipya",
+    "newPasswordHint": "Angalau herufi 8.",
+    "confirmButton": "Weka nenosiri",
+    "backToSignIn": "Rudi ingia",
+    "successTitle": "Nenosiri limebadilishwa",
+    "successBody": "Umeingia sasa.",
+    "continueButton": "Endelea",
+    "errorWrongCode": "Msimbo haujaendana.",
+    "errorExpired": "Msimbo umeisha muda. Omba mpya.",
+    "errorTooMany": "Umejaribu mara nyingi. Omba msimbo mpya.",
+    "errorWeak": "Nenosiri lazima liwe na herufi 8 au zaidi.",
+    "errorNotFound": "Hakuna akaunti ya nambari hiyo.",
+    "errorGeneric": "Kuna tatizo. Jaribu tena."
   },
   "otp": {
     "heading": "Angalia simu yako",
@@ -1159,6 +1302,7 @@
       "products": "Bidhaa",
       "users": "Watumiaji",
       "orders": "Oda",
+      "goals": "Malengo",
       "payments": "Malipo",
       "reports": "Ripoti",
       "comingSoon": "Inakuja"
@@ -1462,7 +1606,8 @@
           "deposit": "Amana",
           "installment": "Awamu",
           "topup": "Kuongeza salio",
-          "refund": "Marejesho"
+          "refund": "Marejesho",
+          "contribution": "Mchango"
         }
       },
       "creditLimit": {
@@ -1570,7 +1715,8 @@
           "deposit": "Amana",
           "installment": "Awamu",
           "topup": "Kuongeza salio",
-          "refund": "Marejesho"
+          "refund": "Marejesho",
+          "contribution": "Mchango"
         },
         "installmentsEmpty": "Hakuna awamu kwenye oda hii.",
         "paymentsEmpty": "Hakuna malipo bado kwenye oda hii.",
@@ -1673,7 +1819,8 @@
         "deposit": "Amana",
         "installment": "Awamu",
         "topup": "Kuongeza salio",
-        "refund": "Marejesho"
+        "refund": "Marejesho",
+        "contribution": "Mchango"
       },
       "providerLabels": {
         "mpesa": "M-Pesa",

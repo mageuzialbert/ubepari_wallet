@@ -3,17 +3,21 @@ import "server-only";
 import type { AssistantCallContext } from "@/lib/assistant/context";
 import type { LlmToolDecl } from "@/lib/llm";
 import {
+  computeMonthlyTarget,
+  GOAL_TERMS,
+  type GoalTerm,
+} from "@/lib/goal";
+import {
+  getGoalDetail,
+  listGoalsForUser,
+} from "@/lib/goals";
+import {
   getProducts,
   getProduct,
+  getProductsBySlugs,
   type Product,
 } from "@/lib/products";
-import {
-  getWalletSnapshot,
-  getOrdersSnapshot,
-  getOrderDetail,
-  getPaymentsHistory,
-} from "@/lib/wallet-data";
-import { computeCreditPlan, CREDIT_TERMS, type CreditTerm } from "@/lib/credit";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 
 export type CardPayload =
   | {
@@ -26,32 +30,28 @@ export type CardPayload =
       image: string | null;
     }
   | {
-      kind: "order";
+      kind: "goal";
       id: string;
       reference: string;
       productName: string;
       status: string;
-      monthsPaid: number;
-      termMonths: number;
-      monthlyTzs: number;
-      nextDueDate: string | null;
+      contributedTzs: number;
+      priceTzs: number;
+      monthlyTargetTzs: number;
+      nextReminderDate: string | null;
     }
   | {
-      kind: "installment";
-      orderId: string;
-      sequence: number;
-      dueDate: string;
-      amountTzs: number;
-      paid: boolean;
-    }
-  | {
-      kind: "plan";
+      kind: "goalPlan";
       priceTzs: number;
       term: number;
-      deposit: number;
-      monthly: number;
-      totalPayable: number;
-      apr: number;
+      monthlyTarget: number;
+    }
+  | {
+      kind: "contribution";
+      goalId: string;
+      amountTzs: number;
+      status: string;
+      createdAt: string;
     };
 
 export type ToolResult = {
@@ -70,7 +70,7 @@ const AUTH_REQUIRED: ToolResult = {
   toModel: {
     error: "auth_required",
     message:
-      "This requires the user to be signed in. Tell them to sign in to see personal information like their orders, wallet balance, or payment history.",
+      "This requires the user to be signed in. Tell them to sign in to see their goals, contributions, or account state.",
   },
 };
 
@@ -216,15 +216,15 @@ const getProductTool: ToolDef = {
   },
 };
 
-const computePlanTool: ToolDef = {
-  name: "compute_credit_plan",
+const computeGoalPlanTool: ToolDef = {
+  name: "compute_goal_plan",
   auth: "public",
   schema: {
     type: "function",
     function: {
-      name: "compute_credit_plan",
+      name: "compute_goal_plan",
       description:
-        "Compute the hire-purchase breakdown (deposit, monthly, total) for a given TZS price and term in months.",
+        "Compute the monthly savings target for a given TZS price and term in months. No interest, no deposit — just price ÷ term rounded up to the nearest 1,000 TZS.",
       parameters: {
         type: "object",
         properties: {
@@ -235,7 +235,7 @@ const computePlanTool: ToolDef = {
           term: {
             type: "integer",
             enum: [3, 6, 9, 12],
-            description: "Term in months.",
+            description: "Term in months (3, 6, 9, or 12).",
           },
         },
         required: ["priceTzs", "term"],
@@ -247,54 +247,48 @@ const computePlanTool: ToolDef = {
     const a = asObject(args);
     const priceTzs = typeof a.priceTzs === "number" ? a.priceTzs : 0;
     const term = typeof a.term === "number" ? a.term : 0;
-    if (priceTzs <= 0 || !CREDIT_TERMS.includes(term as CreditTerm)) {
+    if (priceTzs <= 0 || !GOAL_TERMS.includes(term as GoalTerm)) {
       return { toModel: { error: "invalid_args" } };
     }
-    const plan = computeCreditPlan(priceTzs, term as CreditTerm);
+    const monthlyTarget = computeMonthlyTarget(priceTzs, term as GoalTerm);
     return {
-      toModel: { plan },
+      toModel: {
+        plan: { priceTzs, term, monthlyTarget },
+      },
       cards: [
         {
-          kind: "plan",
-          priceTzs: plan.price,
-          term: plan.term,
-          deposit: plan.deposit,
-          monthly: plan.monthly,
-          totalPayable: plan.totalPayable,
-          apr: plan.apr,
+          kind: "goalPlan",
+          priceTzs,
+          term,
+          monthlyTarget,
         },
       ],
     };
   },
 };
 
-type ExplainTopic =
-  | "hire_purchase"
-  | "kyc"
-  | "deposit"
-  | "refund"
-  | "installment";
+type ExplainTopic = "layaway" | "kyc" | "reminder" | "receipt" | "refund";
 
 const TOPIC_COPY: Record<ExplainTopic, { en: string; sw: string }> = {
-  hire_purchase: {
-    en: "Ubepari hire-purchase (lipa kidogo kidogo): 20% deposit today, balance over 3, 6, 9, or 12 months. Service fee scales by term — 0%/5%/8%/12% respectively. Monthly payment rounded up to the nearest 1,000 TZS.",
-    sw: "Lipa kidogo kidogo cha Ubepari: amana 20% leo, salio kwa miezi 3, 6, 9, au 12. Ada inabadilika kwa kipindi — 0%/5%/8%/12%. Malipo ya mwezi yanapangwa juu hadi shilingi 1,000 za karibu.",
+  layaway: {
+    en: "Ubepari is a layaway service (lipa kidogo kidogo): pick a PC, choose a 3/6/9/12-month guideline, and save toward it any amount any time via M-Pesa, Tigo Pesa, or Airtel Money. No interest, no debt, no deposit required. When your total hits the target price, you download a receipt and pick up the PC at our Magomeni Mapipa showroom.",
+    sw: "Ubepari ni huduma ya lipa kidogo kidogo: chagua PC, chagua mwongozo wa miezi 3/6/9/12, kisha weka akiba kwa kiasi chochote muda wowote kupitia M-Pesa, Tigo Pesa, au Airtel Money. Bila riba, bila deni, bila malipo ya awali. Ukifikia bei lengwa, pakua risiti na uchukue PC dukani Magomeni Mapipa.",
   },
   kyc: {
     en: "KYC requires a valid NIDA number and an ID document photo. Our team reviews approvals within a business day; rejected submissions can be resubmitted with notes from the admin.",
     sw: "KYC inahitaji namba sahihi ya NIDA na picha ya hati ya utambulisho. Timu yetu inakagua ndani ya siku moja ya kazi; iliyokataliwa inaweza kutumwa tena ikiwa na maelezo.",
   },
-  deposit: {
-    en: "The 20% deposit is pushed via mobile money (M-Pesa, Tigo Pesa, Airtel Money) when you reserve a PC. Once the callback settles, your order activates and the installment schedule starts.",
-    sw: "Amana ya 20% inalipwa kupitia simu (M-Pesa, Tigo Pesa, Airtel Money) unapohifadhi PC. Malipo yanapothibitishwa, oda inawasha na ratiba ya awamu inaanza.",
+  reminder: {
+    en: "Once a month, we'll text you a reminder of your monthly savings target. It's a nudge, not a debt — you can contribute more, less, or skip a month.",
+    sw: "Mara moja kwa mwezi, tutakutumia ukumbusho wa lengo lako la mwezi. Si deni — unaweza kuweka zaidi, chini, au kuruka mwezi.",
+  },
+  receipt: {
+    en: "When your goal completes (total saved ≥ product price), you can download a PDF receipt from the goal page. Bring it with a valid ID to our Magomeni Mapipa showroom to collect your PC.",
+    sw: "Lengo lako likikamilika (jumla umeweka ≥ bei), pakua risiti kutoka ukurasa wa lengo. Ilete pamoja na kitambulisho halali dukani Magomeni Mapipa kuchukua PC.",
   },
   refund: {
-    en: "Refunds are issued by admin as a wallet credit. You can use the wallet balance for installments or request a cash-out via support.",
-    sw: "Marejesho yanatolewa na admin kama credit ya wallet. Unaweza kutumia kiasi hicho kwa awamu au kuomba kutoa fedha kupitia msaada.",
-  },
-  installment: {
-    en: "Installments are fixed monthly amounts. You can pay them from your wallet balance or push directly from mobile money on the due date.",
-    sw: "Awamu ni kiasi cha kila mwezi kisichobadilika. Unaweza kulipa kutoka wallet yako au kutuma moja kwa moja kutoka mobile money siku ya malipo.",
+    en: "If you cancel a goal, your contributions are held. Email support@ubeparipc.com and we'll process the refund manually. There's no automatic MNO reversal.",
+    sw: "Ukighairi lengo, kiasi ulichochangia kitahifadhiwa. Tuma barua pepe support@ubeparipc.com tutafanya marejesho kwa mikono. Hakuna urejesho wa kiotomatiki.",
   },
 };
 
@@ -312,7 +306,7 @@ const explainTopicTool: ToolDef = {
         properties: {
           topic: {
             type: "string",
-            enum: ["hire_purchase", "kyc", "deposit", "refund", "installment"],
+            enum: ["layaway", "kyc", "reminder", "receipt", "refund"],
           },
         },
         required: ["topic"],
@@ -335,15 +329,15 @@ const explainTopicTool: ToolDef = {
   },
 };
 
-const getMyWalletTool: ToolDef = {
-  name: "get_my_wallet",
+const getMyGoalsTool: ToolDef = {
+  name: "get_my_goals",
   auth: "required",
   schema: {
     type: "function",
     function: {
-      name: "get_my_wallet",
+      name: "get_my_goals",
       description:
-        "Read the signed-in user's wallet balance, next installment due, active order count, and KYC status. Use this when the user asks about their balance, next installment, or how much they owe.",
+        "List all of the signed-in user's savings goals with progress. Use this when the user asks to see their goals, savings, or how much they've saved.",
       parameters: {
         type: "object",
         properties: {},
@@ -352,127 +346,97 @@ const getMyWalletTool: ToolDef = {
     },
   },
   execute: async (_args, ctx) => {
-    if (!ctx.supabase || !ctx.userId) return AUTH_REQUIRED;
-    const snap = await getWalletSnapshot(ctx.supabase, ctx.userId, ctx.locale);
-    if (!snap) return { toModel: { error: "not_found" } };
-    return {
-      toModel: {
-        firstName: snap.profile.firstName,
-        kycStatus: snap.profile.kycStatus,
-        balanceTzs: snap.balance.balanceTzs,
-        totalOwedTzs: snap.balance.totalOwedTzs,
-        totalPaidTzs: snap.balance.totalPaidTzs,
-        nextDueTzs: snap.balance.nextDueTzs,
-        nextDueDate: snap.balance.nextDueDate,
-        activeOrderCount: snap.activeOrders.length,
-      },
-    };
-  },
-};
-
-const getMyOrdersTool: ToolDef = {
-  name: "get_my_orders",
-  auth: "required",
-  schema: {
-    type: "function",
-    function: {
-      name: "get_my_orders",
-      description:
-        "List all of the signed-in user's orders with progress and next due date. Use this when the user asks to see their orders or PCs.",
-      parameters: {
-        type: "object",
-        properties: {},
-        additionalProperties: false,
-      },
-    },
-  },
-  execute: async (_args, ctx) => {
-    if (!ctx.supabase || !ctx.userId) return AUTH_REQUIRED;
-    const snap = await getOrdersSnapshot(ctx.supabase, ctx.userId, ctx.locale);
-    const summaries = snap.orders.map((o) => ({
-      id: o.id,
-      reference: o.reference,
-      productName: o.productName,
-      status: o.status,
-      monthsPaid: o.monthsPaid,
-      termMonths: o.termMonths,
-      monthlyTzs: o.monthlyTzs,
-      principalTzs: o.principalTzs,
-      paidTzs: o.paidTzs,
-      createdAt: o.createdAt,
+    if (!ctx.userId) return AUTH_REQUIRED;
+    const goals = await listGoalsForUser(ctx.userId);
+    const productMap = await getProductsBySlugs(
+      Array.from(new Set(goals.map((g) => g.product_slug))),
+      ctx.locale,
+    );
+    const summaries = goals.map((g) => ({
+      id: g.id,
+      reference: g.reference,
+      productName: productMap.get(g.product_slug)?.name ?? g.product_slug,
+      status: g.status,
+      priceTzs: g.product_price_tzs,
+      contributedTzs: g.contributed_tzs,
+      monthlyTargetTzs: g.monthly_target_tzs,
+      targetMonths: g.target_months,
+      nextReminderDate: g.next_reminder_date,
+      createdAt: g.created_at,
     }));
-    const cards: CardPayload[] = snap.orders.slice(0, 4).map((o) => ({
-      kind: "order",
-      id: o.id,
-      reference: o.reference,
-      productName: o.productName,
-      status: o.status,
-      monthsPaid: o.monthsPaid,
-      termMonths: o.termMonths,
-      monthlyTzs: o.monthlyTzs,
-      nextDueDate:
-        o.installments.find((i) => i.paidAt === null)?.dueDate ?? null,
+    const cards: CardPayload[] = goals.slice(0, 4).map((g) => ({
+      kind: "goal",
+      id: g.id,
+      reference: g.reference,
+      productName: productMap.get(g.product_slug)?.name ?? g.product_slug,
+      status: g.status,
+      contributedTzs: g.contributed_tzs,
+      priceTzs: g.product_price_tzs,
+      monthlyTargetTzs: g.monthly_target_tzs,
+      nextReminderDate: g.next_reminder_date,
     }));
     return {
-      toModel: { count: summaries.length, orders: summaries },
+      toModel: { count: summaries.length, goals: summaries },
       cards,
     };
   },
 };
 
-const getOrderDetailTool: ToolDef = {
-  name: "get_order_detail",
+const getGoalDetailTool: ToolDef = {
+  name: "get_goal_detail",
   auth: "required",
   schema: {
     type: "function",
     function: {
-      name: "get_order_detail",
+      name: "get_goal_detail",
       description:
-        "Fetch the full installment schedule and payment history for one of the user's orders, by order id.",
+        "Fetch the full contribution history for one of the user's goals, by goal id.",
       parameters: {
         type: "object",
         properties: {
-          orderId: { type: "string" },
+          goalId: { type: "string" },
         },
-        required: ["orderId"],
+        required: ["goalId"],
         additionalProperties: false,
       },
     },
   },
   execute: async (args, ctx) => {
-    if (!ctx.supabase || !ctx.userId) return AUTH_REQUIRED;
+    if (!ctx.userId) return AUTH_REQUIRED;
     const a = asObject(args);
-    const orderId = typeof a.orderId === "string" ? a.orderId : "";
-    if (!orderId) return { toModel: { error: "missing_order_id" } };
-    const detail = await getOrderDetail(
-      ctx.supabase,
-      ctx.userId,
-      orderId,
-      ctx.locale,
-    );
+    const goalId = typeof a.goalId === "string" ? a.goalId : "";
+    if (!goalId) return { toModel: { error: "missing_goal_id" } };
+    const detail = await getGoalDetail(ctx.userId, goalId);
     if (!detail) return { toModel: { error: "not_found" } };
-    const unpaid = detail.installments.filter((i) => i.paidAt === null);
-    const cards: CardPayload[] = unpaid.slice(0, 3).map((i) => ({
-      kind: "installment",
-      orderId: detail.id,
-      sequence: i.sequence,
-      dueDate: i.dueDate,
-      amountTzs: i.amountTzs,
-      paid: false,
-    }));
+    const product = await getProduct(detail.goal.product_slug, ctx.locale);
+    const productName = product?.name ?? detail.goal.product_slug;
     return {
       toModel: {
-        id: detail.id,
-        reference: detail.reference,
-        status: detail.status,
-        productName: detail.product.name,
-        termMonths: detail.termMonths,
-        monthlyTzs: detail.monthlyTzs,
-        totalTzs: detail.totalTzs,
-        depositTzs: detail.depositTzs,
-        installments: detail.installments,
+        id: detail.goal.id,
+        reference: detail.goal.reference,
+        status: detail.goal.status,
+        productName,
+        priceTzs: detail.goal.product_price_tzs,
+        contributedTzs: detail.goal.contributed_tzs,
+        monthlyTargetTzs: detail.goal.monthly_target_tzs,
+        targetMonths: detail.goal.target_months,
+        nextReminderDate: detail.goal.next_reminder_date,
+        receiptNumber: detail.goal.receipt_number,
+        contributions: detail.contributions,
       },
-      cards,
+      cards: [
+        {
+          kind: "goal",
+          id: detail.goal.id,
+          reference: detail.goal.reference,
+          productName,
+          status: detail.goal.status,
+          contributedTzs: detail.goal.contributed_tzs,
+          priceTzs: detail.goal.product_price_tzs,
+          monthlyTargetTzs: detail.goal.monthly_target_tzs,
+          nextReminderDate: detail.goal.next_reminder_date,
+        },
+      ],
     };
   },
 };
@@ -485,14 +449,10 @@ const getMyPaymentsTool: ToolDef = {
     function: {
       name: "get_my_payments",
       description:
-        "Fetch the signed-in user's recent payments (deposits, installments, top-ups, refunds).",
+        "Fetch the signed-in user's recent payments — contributions to savings goals, and any refunds.",
       parameters: {
         type: "object",
         properties: {
-          filter: {
-            type: "string",
-            enum: ["all", "deposit", "installment", "topup", "refund"],
-          },
           limit: { type: "integer", minimum: 1, maximum: 50 },
         },
         additionalProperties: false,
@@ -500,37 +460,38 @@ const getMyPaymentsTool: ToolDef = {
     },
   },
   execute: async (args, ctx) => {
-    if (!ctx.supabase || !ctx.userId) return AUTH_REQUIRED;
+    if (!ctx.userId) return AUTH_REQUIRED;
     const a = asObject(args);
-    const filter = (typeof a.filter === "string" ? a.filter : "all") as
-      | "all"
-      | "deposit"
-      | "installment"
-      | "topup"
-      | "refund";
     const limit =
       typeof a.limit === "number" ? Math.min(50, Math.max(1, a.limit)) : 15;
-    const payments = await getPaymentsHistory(
-      ctx.supabase,
-      ctx.userId,
-      ctx.locale,
-      filter,
-      limit,
-    );
-    return {
-      toModel: { count: payments.length, payments },
-    };
+    const admin = supabaseAdmin();
+    const { data: rows } = await admin
+      .from("payments")
+      .select("id, goal_id, amount_tzs, provider, status, created_at, settled_at, kind")
+      .eq("user_id", ctx.userId)
+      .order("created_at", { ascending: false })
+      .limit(limit);
+    const payments = (rows ?? []).map((r) => ({
+      id: r.id,
+      goalId: r.goal_id,
+      amountTzs: r.amount_tzs,
+      provider: r.provider,
+      status: r.status,
+      kind: r.kind,
+      createdAt: r.created_at,
+      settledAt: r.settled_at,
+    }));
+    return { toModel: { count: payments.length, payments } };
   },
 };
 
 const REGISTRY: ToolDef[] = [
   listProducts,
   getProductTool,
-  computePlanTool,
+  computeGoalPlanTool,
   explainTopicTool,
-  getMyWalletTool,
-  getMyOrdersTool,
-  getOrderDetailTool,
+  getMyGoalsTool,
+  getGoalDetailTool,
   getMyPaymentsTool,
 ];
 

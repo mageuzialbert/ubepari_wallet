@@ -46,7 +46,7 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!hasLocale(locale)) return {};
   const dict = await getDictionary(locale);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ubeparipc.tech";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ubeparipc.co.tz";
   return {
     metadataBase: new URL(siteUrl),
     title: {

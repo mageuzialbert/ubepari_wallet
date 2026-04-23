@@ -5,11 +5,11 @@ import Image from "next/image";
 
 import type { Product } from "@/lib/products";
 import { formatTzs } from "@/lib/currency";
-import { computeCreditPlan } from "@/lib/credit";
+import { computeMonthlyTarget } from "@/lib/goal";
 import { useDictionary, useLocale } from "@/i18n/provider";
 
 export function ProductCard({ product }: { product: Product }) {
-  const plan = computeCreditPlan(product.priceTzs, 12);
+  const monthly = computeMonthlyTarget(product.priceTzs, 12);
   const locale = useLocale();
   const t = useDictionary().productCard;
 
@@ -54,7 +54,7 @@ export function ProductCard({ product }: { product: Product }) {
             {formatTzs(product.priceTzs, locale)}
           </span>
           <span className="text-[12px] text-muted-foreground">
-            {formatTzs(plan.monthly, locale)}{t.perMonthSuffix}
+            {formatTzs(monthly, locale)}{t.perMonthSuffix}
           </span>
         </div>
       </div>

@@ -25,7 +25,7 @@ export function SignUpForm() {
   const locale = useLocale();
   const router = useRouter();
 
-  const [phase, setPhase] = useState<"form" | "code">("form");
+  const [phase, setPhase] = useState<"form" | "code" | "password-sent">("form");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
@@ -94,8 +94,33 @@ export function SignUpForm() {
       setError((body.error as OtpError) ?? "unknown");
       return;
     }
+    if (body.newUser) {
+      setPhase("password-sent");
+      return;
+    }
     router.push(`/${locale}/kyc`);
     router.refresh();
+  }
+
+  if (phase === "password-sent") {
+    return (
+      <div className="mt-8 space-y-4 rounded-3xl border border-border/60 bg-card p-6 text-center">
+        <h2 className="text-2xl font-semibold tracking-tight">
+          {t.passwordSentTitle}
+        </h2>
+        <p className="text-[14px] text-muted-foreground">{t.passwordSentBody}</p>
+        <Button
+          className="w-full rounded-full"
+          size="lg"
+          onClick={() => {
+            router.push(`/${locale}/kyc`);
+            router.refresh();
+          }}
+        >
+          {t.passwordSentCta}
+        </Button>
+      </div>
+    );
   }
 
   if (phase === "code") {

@@ -1,8 +1,8 @@
 {
   "meta": {
-    "siteTitle": "Ubepari Wallet — Own your dream PC. Pay in parts.",
+    "siteTitle": "Ubepari Wallet — Save up. Own it. No debt.",
     "titleTemplate": "%s · Ubepari Wallet",
-    "siteDescription": "Tanzania's premium hire-purchase platform for PCs. Pay a deposit via M-Pesa, Tigo Pesa, Airtel Money, or card — walk out with your machine today."
+    "siteDescription": "Tanzania's layaway platform for PCs. Pick your machine, save toward it any amount any time via M-Pesa, Tigo Pesa, or Airtel Money, and collect it when you hit your target. No interest. No debt."
   },
   "header": {
     "signIn": "Sign in",
@@ -13,7 +13,7 @@
     "accountMenu": {
       "signedInAs": "Signed in as",
       "profile": "Profile",
-      "orders": "My orders",
+      "orders": "My savings",
       "wallet": "My wallet",
       "kyc": "Identity (KYC)",
       "signOut": "Sign out"
@@ -22,8 +22,9 @@
   "nav": {
     "store": "Store",
     "aiTips": "AI Tech Tips",
-    "wallet": "Wallet",
-    "orders": "Orders",
+    "wallet": "Savings",
+    "orders": "Goals",
+    "goals": "My goals",
     "support": "Support"
   },
   "cookies": {
@@ -356,10 +357,10 @@
     "disclaimer": "AI-generated. Double-check important details before acting."
   },
   "hero": {
-    "badge": "New — Own your dream PC in 3 taps",
-    "headingLine1": "Own it today.",
-    "headingLine2": "Pay in parts.",
-    "subheading": "The premium way to buy a PC in Tanzania. Choose your machine, pay a deposit, and walk out with it today — everything else lives in your Ubepari Wallet.",
+    "badge": "Lipa kidogo kidogo — the premium way",
+    "headingLine1": "Save up. Own it.",
+    "headingLine2": "No debt. No interest.",
+    "subheading": "Pick your PC. Save toward it any time, any amount, via M-Pesa, Tigo Pesa, or Airtel Money. Collect it at our showroom when you hit your target.",
     "ctaPrimary": "Browse PCs",
     "ctaSecondary": "Ask AI Tech Tips →",
     "featuredLabel": "Featured",
@@ -376,20 +377,46 @@
   },
   "howItWorks": {
     "eyebrow": "How it works",
-    "heading": "Three taps. That's it.",
-    "body": "We designed Ubepari so the distance between wanting a PC and owning it is as short as possible — without making you read a contract you'll never read.",
+    "heading": "Save. Reach. Collect.",
+    "body": "Ubepari is built around one idea: let you save toward the PC you want, on your own schedule, without getting into debt.",
     "steps": [
       {
         "title": "Verify once.",
-        "body": "Upload your NIDA or passport. Our KYC team approves you — usually within a few hours — and you get your credit limit."
+        "body": "Upload your NIDA. Our KYC team approves you — usually within a few hours — and you can start saving."
       },
       {
-        "title": "Pick your PC.",
-        "body": "Browse the store or tell our AI Tech Tips what you need. Slide to see monthly plans over 3, 6, 9, or 12 months."
+        "title": "Pick a PC, set a target.",
+        "body": "Choose a machine and a term — 3, 6, 9, or 12 months — as a guideline for your monthly savings. The price is locked in at today's amount."
       },
       {
-        "title": "Pay and own it.",
-        "body": "20% deposit via M-Pesa, Tigo Pesa, Airtel Money, or card. Walk out with the PC. Pay the rest from your Wallet."
+        "title": "Save. Collect.",
+        "body": "Top up any amount, any time, via M-Pesa, Tigo Pesa, or Airtel Money. We'll remind you once a month. When you hit your target, download your receipt and pick up your PC at our showroom."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "heading": "The short version.",
+    "items": [
+      {
+        "q": "Is this a loan?",
+        "a": "No. There's no interest, no debt, and nothing to repay. You're saving toward a PC you pick up once you've reached the target."
+      },
+      {
+        "q": "What if I want to stop?",
+        "a": "You can cancel any active goal from your account. Your contributions are held — contact support (support@ubeparipc.com) and we'll process a refund manually."
+      },
+      {
+        "q": "Can stock run out before I finish?",
+        "a": "We lock the price when you create your goal, but stock is first-come at pickup. If the exact model sells out, our team will offer an equivalent or refund your contributions."
+      },
+      {
+        "q": "Can I save for more than one PC?",
+        "a": "Yes — up to three active goals at a time. Complete or cancel one to start another."
+      },
+      {
+        "q": "How do I collect my PC?",
+        "a": "Once you hit the target, download your receipt from your goal page and bring it, with a valid ID, to our showroom at Magomeni Mapipa, Dar es Salaam."
       }
     ]
   },
@@ -626,23 +653,106 @@
     "needsKyc": "Finish KYC to reserve.",
     "errorGeneric": "Something went wrong. Try again."
   },
-  "credit": {
-    "planLabel": "Hire-purchase plan",
+  "goal": {
+    "planLabel": "Save toward this PC",
     "perMonthSuffix": "/ month",
-    "chooseDuration": "Choose duration",
+    "chooseDuration": "Choose your savings term",
     "monthsSuffix": "months",
     "termSuffix": "mo",
     "rows": {
-      "cashPrice": "Cash price",
-      "deposit": "Deposit today (20%)",
-      "financed": "Financed amount",
-      "serviceFee": "Service fee",
-      "free": "Free",
-      "total": "Total to pay"
+      "price": "Target price",
+      "monthlyTarget": "Monthly target",
+      "term": "Term"
     },
-    "reserveButton": "Reserve with deposit — {amount}",
-    "savePlan": "Save plan to my Wallet",
-    "disclaimer": "Final approval depends on KYC & credit check. Early repayment is free; missed payments may incur a 2% late fee."
+    "startGoalButton": "Start saving",
+    "disclaimer": "No interest. No debt. Save at your own pace — we'll remind you once a month. Pick up at our showroom once you hit the target.",
+    "needsSignIn": "Sign in to start a goal.",
+    "needsKyc": "Finish KYC to start a goal.",
+    "kycCta": "Go to KYC",
+    "signInCta": "Sign in",
+    "tooManyActive": "You already have {max} active goals. Complete or cancel one first."
+  },
+  "startGoal": {
+    "title": "Start saving toward {product}",
+    "description": "You'll aim to set aside {monthly} per month for {months} months. No interest, no rush — contribute any amount any time, cancel any time.",
+    "cancelButton": "Cancel",
+    "confirmButton": "Create goal",
+    "successTitle": "Goal created",
+    "successBody": "Your goal is live. Contribute now or any time from your goals page.",
+    "successContributeNow": "Contribute now",
+    "successViewGoal": "View my goal",
+    "errorGeneric": "Something went wrong. Try again.",
+    "errorTooMany": "You already have {max} active goals.",
+    "errorKyc": "Finish KYC first.",
+    "errorSignIn": "Sign in first."
+  },
+  "contribute": {
+    "title": "Contribute to your goal",
+    "description": "You're saving toward {product}. Any amount helps.",
+    "amountLabel": "Amount (TZS)",
+    "mobileMoneyLabel": "Mobile money number",
+    "mobileMoneyHint": "We'll push a prompt to your {provider} number.",
+    "providerLabel": "Pay with",
+    "providers": {
+      "mpesa": "M-Pesa",
+      "tigopesa": "Tigo Pesa",
+      "airtelmoney": "Airtel Money"
+    },
+    "confirmButton": "Push {amount}",
+    "cancelButton": "Cancel",
+    "pendingTitle": "Check your {provider} phone",
+    "pendingBody": "We sent a prompt. Confirm it to add to your goal.",
+    "doneTitle": "Added {amount} to your goal",
+    "doneReference": "Reference: {ref}",
+    "doneButton": "Done",
+    "failedTitle": "Payment didn't go through",
+    "failedBody": "The prompt was cancelled or expired. Try again when you're ready.",
+    "retryButton": "Try again",
+    "errorGeneric": "Something went wrong. Try again."
+  },
+  "goals": {
+    "metaTitle": "My savings goals",
+    "eyebrow": "Savings",
+    "heading": "Your goals",
+    "subheading": "Save toward the PC you want, at your own pace.",
+    "emptyTitle": "No goals yet",
+    "emptyBody": "Pick a PC in the store to start your first goal.",
+    "browseStore": "Browse PCs",
+    "tabActive": "Active",
+    "tabCompleted": "Completed",
+    "tabCancelled": "Cancelled",
+    "progressPercent": "{percent}% saved",
+    "monthlyTarget": "Monthly target",
+    "contributed": "Saved so far",
+    "targetPrice": "Target",
+    "nextReminder": "Next reminder",
+    "contributeCta": "Contribute now",
+    "downloadReceipt": "Download receipt",
+    "cancelGoal": "Cancel goal",
+    "cancelDialogTitle": "Cancel this goal?",
+    "cancelDialogBody": "Your saved contributions will be held. Contact support for a manual refund. This can't be undone.",
+    "cancelReasonLabel": "Reason (optional)",
+    "cancelConfirm": "Yes, cancel",
+    "cancelKeep": "Keep saving",
+    "detailHeading": "Your goal",
+    "referenceLabel": "Reference",
+    "targetMonthsLabel": "Term",
+    "contributionsHeading": "Contributions",
+    "contributionsEmpty": "No contributions yet. Make your first top-up.",
+    "startedOn": "Started {date}",
+    "completedOn": "Completed {date}",
+    "cancelledOn": "Cancelled {date}",
+    "receiptNumberLabel": "Receipt #",
+    "pickUpAtShowroom": "Pick up at Ubepari PC, Magomeni Mapipa, Dar es Salaam — bring your receipt.",
+    "back": "Back to goals",
+    "statusLabel": {
+      "active": "Active",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "pending": "Pending",
+      "failed": "Failed",
+      "success": "Success"
+    }
   },
   "signin": {
     "metaTitle": "Sign in",
@@ -654,7 +764,16 @@
     "otpHint": "We'll text a 6-digit code to your phone.",
     "newHere": "New here?",
     "createAccountLink": "Create an account",
-    "notRegistered": "We don't have an account for this number. Create one at Sign up."
+    "notRegistered": "We don't have an account for this number. Create one at Sign up.",
+    "tabOtp": "OTP",
+    "tabPassword": "Password",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "signInWithPassword": "Sign in",
+    "forgotPassword": "Forgot your password?",
+    "passwordInvalid": "That phone and password don't match.",
+    "passwordLocked": "Too many wrong tries. Try again in 15 minutes.",
+    "passwordError": "Something went wrong. Try again."
   },
   "signup": {
     "metaTitle": "Create account",
@@ -676,7 +795,31 @@
     "consentSuffix": ".",
     "consentRequired": "Please accept the Terms, Privacy Notice, and Hire-Purchase Agreement to continue.",
     "alreadyHave": "Already have an account?",
-    "signInLink": "Sign in"
+    "signInLink": "Sign in",
+    "passwordSentTitle": "Your password is on its way",
+    "passwordSentBody": "We've texted your initial password to your phone. Save it somewhere safe — you can use it to sign in, or keep using OTP.",
+    "passwordSentCta": "Continue to KYC"
+  },
+  "passwordReset": {
+    "metaTitle": "Reset password",
+    "heading": "Set a new password",
+    "body": "Enter your phone number. We'll text you a 6-digit code. Then choose a new password.",
+    "phoneLabel": "Phone number",
+    "sendCodeButton": "Send code",
+    "codeLabel": "Verification code",
+    "newPasswordLabel": "New password",
+    "newPasswordHint": "At least 8 characters.",
+    "confirmButton": "Set password",
+    "backToSignIn": "Back to sign in",
+    "successTitle": "Password updated",
+    "successBody": "You're signed in now.",
+    "continueButton": "Continue",
+    "errorWrongCode": "That code doesn't match.",
+    "errorExpired": "That code expired. Request a new one.",
+    "errorTooMany": "Too many wrong tries. Request a new code.",
+    "errorWeak": "Password must be at least 8 characters.",
+    "errorNotFound": "No account with that number.",
+    "errorGeneric": "Something went wrong. Try again."
   },
   "otp": {
     "heading": "Check your phone",
@@ -1159,6 +1302,7 @@
       "products": "Products",
       "users": "Users",
       "orders": "Orders",
+      "goals": "Goals",
       "payments": "Payments",
       "reports": "Reports",
       "comingSoon": "Soon"
@@ -1462,7 +1606,8 @@
           "deposit": "Deposit",
           "installment": "Installment",
           "topup": "Top-up",
-          "refund": "Refund"
+          "refund": "Refund",
+          "contribution": "Contribution"
         }
       },
       "creditLimit": {
@@ -1570,7 +1715,8 @@
           "deposit": "Deposit",
           "installment": "Installment",
           "topup": "Top-up",
-          "refund": "Refund"
+          "refund": "Refund",
+          "contribution": "Contribution"
         },
         "installmentsEmpty": "No installments on this order.",
         "paymentsEmpty": "No payments on this order yet.",
@@ -1673,7 +1819,8 @@
         "deposit": "Deposit",
         "installment": "Installment",
         "topup": "Top-up",
-        "refund": "Refund"
+        "refund": "Refund",
+        "contribution": "Contribution"
       },
       "providerLabels": {
         "mpesa": "M-Pesa",

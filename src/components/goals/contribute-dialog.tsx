@@ -11,7 +11,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,10 +19,10 @@ import { useDictionary, useLocale } from "@/i18n/provider";
 
 type Provider = "mpesa" | "tigopesa" | "airtelmoney";
 
-const PROVIDERS: { id: Provider; label: string; logo: string }[] = [
-  { id: "mpesa", label: "M-Pesa", logo: "M" },
-  { id: "tigopesa", label: "Tigo Pesa", logo: "T" },
-  { id: "airtelmoney", label: "Airtel Money", logo: "A" },
+const PROVIDERS: { id: Provider; logo: string }[] = [
+  { id: "mpesa", logo: "M" },
+  { id: "tigopesa", logo: "T" },
+  { id: "airtelmoney", logo: "A" },
 ];
 
 const QUICK_AMOUNTS = [50_000, 100_000, 250_000, 500_000];
@@ -34,17 +33,31 @@ type Step =
   | { kind: "done"; reference: string }
   | { kind: "failed" };
 
-export function TopUpDialog({ trigger }: { trigger: React.ReactNode }) {
+export function ContributeDialog({
+  open,
+  onOpenChange,
+  goalId,
+  productName,
+  suggestedAmount,
+  onSettled,
+}: {
+  open: boolean;
+  onOpenChange: (v: boolean) => void;
+  goalId: string;
+  productName: string;
+  suggestedAmount?: number;
+  onSettled?: () => void;
+}) {
   const [provider, setProvider] = React.useState<Provider>("mpesa");
-  const [amount, setAmount] = React.useState<number>(100_000);
+  const [amount, setAmount] = React.useState<number>(suggestedAmount ?? 100_000);
   const [phone, setPhone] = React.useState<string>("");
-  const [open, setOpen] = React.useState(false);
   const [step, setStep] = React.useState<Step>({ kind: "form" });
   const [error, setError] = React.useState<string | null>(null);
   const [pending, startTransition] = React.useTransition();
 
   const locale = useLocale();
-  const t = useDictionary().topup;
+  const dict = useDictionary();
+  const t = dict.contribute;
 
   React.useEffect(() => {
     if (!open) return;
@@ -84,14 +97,13 @@ export function TopUpDialog({ trigger }: { trigger: React.ReactNode }) {
 
   const submit = async () => {
     setError(null);
-    const res = await fetch("/api/wallet/topup", {
+    const res = await fetch(`/api/goals/${goalId}/topup`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ amountTzs: amount, provider, phone }),
     });
     const body = await res.json().catch(() => ({}));
     if (!res.ok || !body.paymentId) {
-      console.error("[topup]", body);
       setError(t.errorGeneric);
       return;
     }
@@ -106,52 +118,58 @@ export function TopUpDialog({ trigger }: { trigger: React.ReactNode }) {
   const reset = () => {
     setStep({ kind: "form" });
     setError(null);
-    setAmount(100_000);
   };
 
   const formattedAmount = formatTzs(amount, locale);
-  const providerLabel = PROVIDERS.find((p) => p.id === provider)?.label ?? "";
+  const providerLabel = t.providers[provider];
+  const description = t.description.replace("{product}", productName);
 
   return (
     <Dialog
       open={open}
-      onOpenChange={(o) => {
-        setOpen(o);
-        if (!o) setTimeout(reset, 250);
+      onOpenChange={(v) => {
+        onOpenChange(v);
+        if (!v) {
+          if (step.kind === "done") onSettled?.();
+          setTimeout(reset, 250);
+        }
       }}
     >
-      <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="sm:max-w-md">
         {step.kind === "form" && (
           <>
             <DialogHeader>
               <DialogTitle>{t.title}</DialogTitle>
-              <DialogDescription>{t.description}</DialogDescription>
+              <DialogDescription>{description}</DialogDescription>
             </DialogHeader>
 
-            <div className="mt-2 grid grid-cols-3 gap-2">
-              {PROVIDERS.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => setProvider(p.id)}
-                  className={`flex flex-col items-center gap-1 rounded-2xl border p-3 text-[11px] font-medium transition-all ${
-                    provider === p.id
-                      ? "border-foreground bg-foreground/5"
-                      : "border-border/70 hover:border-foreground/40"
-                  }`}
-                >
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background font-semibold">
-                    {p.logo}
-                  </div>
-                  {p.label}
-                </button>
-              ))}
+            <div className="mt-2">
+              <Label>{t.providerLabel}</Label>
+              <div className="mt-2 grid grid-cols-3 gap-2">
+                {PROVIDERS.map((p) => (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() => setProvider(p.id)}
+                    className={`flex flex-col items-center gap-1 rounded-2xl border p-3 text-[11px] font-medium transition-all ${
+                      provider === p.id
+                        ? "border-foreground bg-foreground/5"
+                        : "border-border/70 hover:border-foreground/40"
+                    }`}
+                  >
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-background font-semibold">
+                      {p.logo}
+                    </div>
+                    {t.providers[p.id]}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="mt-4">
-              <Label htmlFor="amount">{t.amountLabel}</Label>
+              <Label htmlFor="contribute-amount">{t.amountLabel}</Label>
               <Input
-                id="amount"
+                id="contribute-amount"
                 type="number"
                 inputMode="numeric"
                 value={amount}
@@ -176,9 +194,9 @@ export function TopUpDialog({ trigger }: { trigger: React.ReactNode }) {
             </div>
 
             <div className="mt-4">
-              <Label htmlFor="topup-phone">{t.mobileMoneyLabel}</Label>
+              <Label htmlFor="contribute-phone">{t.mobileMoneyLabel}</Label>
               <Input
-                id="topup-phone"
+                id="contribute-phone"
                 placeholder="255 7XX XXX XXX"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
@@ -198,8 +216,8 @@ export function TopUpDialog({ trigger }: { trigger: React.ReactNode }) {
                 onClick={() => startTransition(submit)}
                 disabled={amount < 1000 || phone.trim().length < 9 || pending}
               >
-                <Smartphone className="h-4 w-4" />{" "}
-                {t.mnoRequestButton.replace("{amount}", formattedAmount)}
+                <Smartphone className="h-4 w-4" />
+                {t.confirmButton.replace("{amount}", formattedAmount)}
               </Button>
             </DialogFooter>
           </>
@@ -230,7 +248,13 @@ export function TopUpDialog({ trigger }: { trigger: React.ReactNode }) {
                 {t.doneReference.replace("{ref}", step.reference)}
               </p>
             </div>
-            <Button className="rounded-full" onClick={() => setOpen(false)} size="lg">
+            <Button
+              className="rounded-full"
+              onClick={() => {
+                onOpenChange(false);
+              }}
+              size="lg"
+            >
               {t.doneButton}
             </Button>
           </div>

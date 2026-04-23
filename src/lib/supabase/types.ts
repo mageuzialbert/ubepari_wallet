@@ -4,10 +4,11 @@
 
 export type KycStatus = "none" | "pending" | "approved" | "rejected";
 export type OrderStatus = "pending" | "active" | "completed" | "cancelled";
-export type PaymentKind = "deposit" | "installment" | "topup" | "refund";
+export type PaymentKind = "deposit" | "installment" | "topup" | "refund" | "contribution";
 export type PaymentProvider = "mpesa" | "tigopesa" | "airtelmoney" | "card";
 export type PaymentStatus = "pending" | "success" | "failed";
 export type WalletEntryKind = "credit" | "debit";
+export type GoalStatus = "active" | "completed" | "cancelled";
 
 type ProfilesRow = {
   id: string;
@@ -22,6 +23,10 @@ type ProfilesRow = {
   terms_version_accepted: string | null;
   terms_accepted_at: string | null;
   deleted_at: string | null;
+  password_hash: string | null;
+  password_set_at: string | null;
+  password_failed_attempts: number;
+  password_locked_until: string | null;
   created_at: string;
   updated_at: string;
 };
@@ -70,10 +75,11 @@ type OrderInstallmentsRow = {
   payment_id: string | null;
 };
 
-type PaymentsRow = {
+export type PaymentsRow = {
   id: string;
   user_id: string;
   order_id: string | null;
+  goal_id: string | null;
   kind: PaymentKind;
   amount_tzs: number;
   provider: PaymentProvider;
@@ -83,6 +89,25 @@ type PaymentsRow = {
   raw_callback: Record<string, unknown> | null;
   created_at: string;
   settled_at: string | null;
+};
+
+export type GoalsRow = {
+  id: string;
+  user_id: string;
+  product_slug: string;
+  product_price_tzs: number;
+  target_months: number;
+  monthly_target_tzs: number;
+  contributed_tzs: number;
+  status: GoalStatus;
+  reference: string;
+  next_reminder_date: string | null;
+  created_at: string;
+  completed_at: string | null;
+  cancelled_at: string | null;
+  cancellation_reason: string | null;
+  receipt_number: string | null;
+  receipt_issued_at: string | null;
 };
 
 type WalletEntriesRow = {
@@ -229,10 +254,11 @@ export type Database = {
         Row: PaymentsRow;
         Insert: Omit<
           PaymentsRow,
-          "id" | "created_at" | "settled_at" | "status" | "evmark_ref" | "evmark_reference_id" | "raw_callback" | "order_id"
+          "id" | "created_at" | "settled_at" | "status" | "evmark_ref" | "evmark_reference_id" | "raw_callback" | "order_id" | "goal_id"
         > & {
           id?: string;
           order_id?: string | null;
+          goal_id?: string | null;
           status?: PaymentStatus;
           evmark_ref?: string | null;
           evmark_reference_id?: string | null;
@@ -240,6 +266,34 @@ export type Database = {
           settled_at?: string | null;
         };
         Update: Partial<PaymentsRow>;
+        Relationships: [];
+      };
+      goals: {
+        Row: GoalsRow;
+        Insert: Omit<
+          GoalsRow,
+          | "id"
+          | "created_at"
+          | "status"
+          | "contributed_tzs"
+          | "next_reminder_date"
+          | "completed_at"
+          | "cancelled_at"
+          | "cancellation_reason"
+          | "receipt_number"
+          | "receipt_issued_at"
+        > & {
+          id?: string;
+          status?: GoalStatus;
+          contributed_tzs?: number;
+          next_reminder_date?: string | null;
+          completed_at?: string | null;
+          cancelled_at?: string | null;
+          cancellation_reason?: string | null;
+          receipt_number?: string | null;
+          receipt_issued_at?: string | null;
+        };
+        Update: Partial<GoalsRow>;
         Relationships: [];
       };
       wallet_entries: {
@@ -326,7 +380,12 @@ export type Database = {
       };
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      increment_goal_contribution: {
+        Args: { p_goal_id: string; p_amount: number };
+        Returns: GoalsRow;
+      };
+    };
     Enums: {
       kyc_status: KycStatus;
       order_status: OrderStatus;
@@ -334,6 +393,7 @@ export type Database = {
       payment_provider: PaymentProvider;
       payment_status: PaymentStatus;
       wallet_entry_kind: WalletEntryKind;
+      goal_status: GoalStatus;
     };
   };
 };

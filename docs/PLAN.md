@@ -1,32 +1,59 @@
 # Ubepari Wallet — Production Plan
 
 **Last updated:** 2026-04-23
-**Status:** Customer account surface (Phase 7), legal pages (Phase 15.1), DB-backed product catalog (Phase 8), admin foundation (Phase 9), KYC review queue (Phase 10), product management (Phase 11), admin users + credit limits (Phase 12), admin orders + payments ops (Phase 13), admin reports (Phase 14), and legal/compliance/account-lifecycle (Phase 15: `LEGAL_VERSION`-aware signup consent persisted on `profiles.terms_version_accepted`/`terms_accepted_at`; OTP-confirmed `/account/delete` soft-deletes — wipes KYC storage, anonymizes profile via `phone=NULL`+scrambled names, deletes the auth user to free the phone, SMS receipt; `/account/export` zero-dep ZIP writer in `src/lib/export/zip.ts` packages profile/orders/installments/payments/wallet_entries/kyc_submissions as JSON; minimal cookie-disclosure banner in `src/components/cookie-disclosure.tsx`) are all done. Next up: observability, scale, hardening (Phase 16).
+**Status:** **Phase 17 — layaway pivot** (in progress today). Client dropped hire-purchase/credit entirely on 2026-04-23. Replaced with save-toward-a-goal model: user picks a product + term, contributes any amount any time via MNO, every top-up linked to a goal, monthly SMS reminder, PDF receipt for showroom pickup when target met. Auth gained password login alongside OTP (initial 10-char alnum SMS'd post-verify). Migration `0007_goals_and_auth.sql` adds `goals`, `goal_status` enum, `payments.goal_id`, `increment_goal_contribution` RPC, password-auth columns on `profiles`. Previous phases (7–16) still stand: their data stays inert in DB, their routes either 410-Gone or redirect to `/account/goals`.
+
+---
+
+## Pivot reference
+
+Full pivot plan: `C:\Users\SAK\.claude\plans\client-has-changed-the-wiggly-blanket.md`. Locked decisions (stock, refund, concurrency, password format, etc.) live there.
+
+**Operational notes:**
+- Migration `0007_goals_and_auth.sql` must be applied manually via Supabase SQL editor before deploy.
+- Env additions: `NEXT_PUBLIC_MAX_ACTIVE_GOALS=3`, `CRON_SECRET=<random>`, `GOAL_REMINDERS_ENABLED=1`, `SHOWROOM_ADDRESS=...`, `SITE_URL=https://www.ubeparipc.co.tz`.
+- Vercel Cron is wired at `vercel.json` (`/api/cron/goal-reminders`, `0 6 * * *` UTC = 09:00 EAT). Manual trigger works too: `curl -H "Authorization: Bearer $CRON_SECRET" https://.../api/cron/goal-reminders`.
+- `/wallet` and `/orders` routes redirect to `/account/goals`. `/api/orders`, `/api/wallet/topup`, `/api/wallet/pay-installment` return 410 Gone.
 
 ---
 
 ## Snapshot — what's already built
 
-Bilingual EN/SW hire-purchase wallet on Next.js 16 App Router. Supabase (auth + data + KYC storage), Evmark MNO push (deposit/topup/installment), OpenAI recommendations. All user-visible copy routes through `src/messages/{en,sw}.json` or `{en,sw}` fields in `src/lib/products.ts`.
+Bilingual EN/SW **layaway** wallet on Next.js 16 App Router. Supabase (auth + data + KYC storage), Evmark MNO push (contributions + legacy deposit/installment still handled inertly for old in-flight rows), OpenAI recommendations. All user-visible copy routes through `src/messages/{en,sw}.json` or `{en,sw}` fields in `src/lib/products.ts`.
 
 **Customer-facing pages that work today**
 
-- `/signup`, `/signin` — SMS OTP → custom JWT Supabase session
-- `/kyc` — submit NIDA + ID doc upload, status-aware view
-- `/store`, `/store/[slug]` — browse + reserve with deposit push (DB-backed catalog)
-- `/wallet` — balance + topup + pay installment + activity feed
-- `/orders`, `/orders/[id]` — list + full detail with installment schedule + payment history
-- `/account`, `/account/edit`, `/account/payments`, `/account/export`, `/account/delete` — profile view, edit, filtered payment history, ZIP data export, OTP-confirmed soft delete
-- `/recommend` — OpenAI `gpt-4o-mini` product advisor
-- `/support` — static support page
-- `/about` — mission, principles, stats, locations
-- `/legal/terms`, `/legal/privacy`, `/legal/hire-purchase-agreement` — bilingual legal pages
-- Header dropdown: avatar + Profile/Orders/Wallet/Sign out for signed-in users
+- `/signup` — SMS OTP verify → profile created → initial 10-char alphanumeric password generated, hashed, and SMS'd. Shows "password is on its way" confirmation, then continues to `/kyc`.
+- `/signin` — OTP tab (default) OR Password tab. Password login enforces 5-strike lockout for 15 minutes.
+- `/signin/reset` — OTP-verified password reset flow.
+- `/kyc` — submit NIDA + ID doc upload, status-aware view (unchanged).
+- `/store`, `/store/[slug]` — browse catalog. Detail page shows `SaveTowardPanel` (replaces `CreditCalculator`) with 3/6/9/12-month terms and a "Start saving" CTA that opens `StartGoalDialog` → creates a goal → offers immediate `ContributeDialog` or jump to goal page.
+- `/account/goals` — list of user's active / completed / cancelled goals with progress bars.
+- `/account/goals/[id]` — goal detail with large `GoalProgressRing`, contribution list, Contribute / Cancel buttons for active goals, Download receipt for completed goals.
+- `/wallet` → redirect to `/account/goals`. `/orders` and `/orders/[id]` → same redirect.
+- `/account`, `/account/edit`, `/account/payments`, `/account/export`, `/account/delete` — unchanged.
+- `/assistant` — streaming chat now uses goal-oriented tools: `compute_goal_plan`, `get_my_goals`, `get_goal_detail`, `explain_topic` (topics: layaway / kyc / reminder / receipt / refund).
+- `/support`, `/about`, legal pages — unchanged.
+- Landing hero + how-it-works + new FAQ block all rewritten for "Save up. Own it. No debt." messaging.
+- Header dropdown: avatar + Profile / My savings / KYC / Sign out.
+
+**Admin-facing changes**
+
+- `/admin/goals` — new list page, filter by status, shows customer + progress + receipt number.
+- `/admin/orders` — hidden from sidebar (replaced by `/admin/goals`), pages still exist but inert.
+
+**Money flow**
+
+- `POST /api/goals/[id]/topup` → insert `payments` row with `kind='contribution'` + `goal_id` → `pushMno()`.
+- Evmark callback → existing `/api/payments/mno/callback` → `settlePaymentSuccess` branches on `goal_id`: calls `increment_goal_contribution` RPC, writes `wallet_entries` credit with `note_key='contribution'`, auto-completes goal + assigns `UBE-YYYYMMDD-XXXX` receipt number + SMS'd confirmation if target met.
+- `GET /api/goals/[id]/receipt.pdf` — nodejs runtime, pdfkit + qrcode. QR targets `${SITE_URL}/admin/goals/verify/<receiptNumber>` (verify page not yet built — deferred).
+- `POST/GET /api/cron/goal-reminders` — Bearer-protected, no-ops unless `GOAL_REMINDERS_ENABLED=1`, advances `next_reminder_date` by one month per reminder sent.
 
 **Commit trail on `master`** (most recent first)
 
 | SHA | What |
 |---|---|
+| _(pending)_ | Phase 17 — layaway pivot: migration `0007_goals_and_auth.sql` (`goals` table + `goal_status` enum + `payments.goal_id` + `increment_goal_contribution` RPC + password-auth columns on `profiles`). `src/lib/goal.ts` (pure `computeMonthlyTarget`) + `src/lib/goals.ts` (createGoal/listGoalsForUser/getGoalDetail/cancelGoal + receipt-number gen + completion SMS). `settlePaymentSuccess` rewritten to branch on `goal_id`. New routes: `/api/goals`, `/api/goals/[id]`, `/api/goals/[id]/topup`, `/api/goals/[id]/cancel`, `/api/goals/[id]/receipt.pdf`, `/api/cron/goal-reminders`, `/api/auth/password/login`, `/api/auth/password/reset/request`, `/api/auth/password/reset/confirm`. Initial password generation + SMS in `/api/auth/otp/verify`. New UI: `SaveTowardPanel`, `StartGoalDialog`, `ContributeDialog`, `CancelGoalDialog`, `GoalProgressRing`, `GoalActions`, `LandingFaq`, assistant `GoalCard`/`GoalPlanCard`/`ContributionCard`. Landing copy rewrite EN+SW, password-auth copy EN+SW, goal/contribute/goals dict blocks EN+SW. Assistant tools retired (`compute_credit_plan`, order tools) and replaced (`compute_goal_plan`, `get_my_goals`, `get_goal_detail`). `/wallet`, `/orders`, `/api/orders`, `/api/wallet/topup`, `/api/wallet/pay-installment` retired (redirect / 410). Dead code deleted: `credit.ts`, `credit-calculator`, `reserve-dialog`, wallet dialogs, old assistant cards. Vercel Cron wired. |
 | `d345d2e` | Brand palette (OKLCH blue/cyan tokens) + PWA manifest/icons + hero CSS-tilt variant with three.js scene as fallback |
 | `2b76415` | Phase 16.5 — streaming AI assistant: migration `0006_ai_assistant.sql`, `askLlmStream()`, 8-tool allowlist, SSE chat route, conversations CRUD, chat UI with cards + history; `/recommend` → `/assistant` redirect + i18n cleanup |
 | `0ee9b07` | Phase 15 — signup terms consent (migration `0004_terms_consent.sql`), OTP-confirmed `/account/delete` (migration `0005_account_deletion.sql`), zero-dep ZIP `/account/export`, cookie disclosure |
@@ -149,7 +176,7 @@ Admin gate: `profiles.is_admin = true` plus a server-side helper `requireAdmin()
 - **KYC review:** **moving to in-app admin queue in Phase 10** (was manual via Supabase dashboard).
 - **Evmark:** live, `user='ipab'`, `api_source='iPAB'` (shared iPAB International account).
 - **AI Tech Tips:** real OpenAI `gpt-4o-mini` behind `askLlm()` adapter (`src/lib/llm.ts`).
-- **Deploy:** Vercel. Production domain **`ubeparipc.tech`**.
+- **Deploy:** Vercel. Production domain **`www.ubeparipc.co.tz`**.
 - **Refund policy (v1):** admin issues refund → posts a `payments` row with `kind='refund'`, `status='success'` + wallet credit entry. No automatic push back to MNO for v1 (Evmark refund API integration is v2); cash-out happens via manual bank transfer tracked in a `refunds` note field. Revisit once Evmark confirms refund-API support.
 - **Glossary:** Wallet / KYC / AI Tech Tips kept English. "Hire-purchase" → "Lipa kidogo kidogo".
 
@@ -394,15 +421,15 @@ Rebuild `/recommend` as a full customer assistant. The one-shot JSON advisor rep
 Only when Phases 7–16 are done does this phase make sense. Deploying before admin is built means ops happen via Supabase dashboard — which we've moved past.
 
 1. **Vercel project.** Import `mageuzialbert/ubepari_wallet`. Env vars for **Production** + **Preview**:
-   - `NEXT_PUBLIC_SITE_URL=https://ubeparipc.tech`
-   - `EVMARK_MNO_CALLBACK_URL=https://ubeparipc.tech/api/payments/mno/callback`
-   - `EVMARK_CARD_CALLBACK_URL=https://ubeparipc.tech/api/payments/card/callback`
+   - `NEXT_PUBLIC_SITE_URL=https://www.ubeparipc.co.tz`
+   - `EVMARK_MNO_CALLBACK_URL=https://www.ubeparipc.co.tz/api/payments/mno/callback`
+   - `EVMARK_CARD_CALLBACK_URL=https://www.ubeparipc.co.tz/api/payments/card/callback`
    - All Supabase, SMS, OpenAI, Evmark, Maps, Sentry, Upstash keys from `.env.local`.
-2. **DNS** — `ubeparipc.tech` (apex + `www`) → Vercel.
-3. **Evmark callback allowlist** — share `https://ubeparipc.tech/api/payments/mno/callback` with Evmark if required.
+2. **DNS** — `ubeparipc.co.tz` (apex + `www`) → Vercel.
+3. **Evmark callback allowlist** — share `https://www.ubeparipc.co.tz/api/payments/mno/callback` with Evmark if required.
 4. **Smoke tests** (both locales, both themes) — full signup → KYC (admin-approve via `/admin/kyc`) → store → reserve → deposit callback lands → order activates → wallet activity shows debits/credits → top-up → pay installment → `/recommend` prompt.
 5. **Security checklist.**
-   - GCP Maps API key → restrict by HTTP referrer to `*.ubeparipc.tech`.
+   - GCP Maps API key → restrict by HTTP referrer to `*.ubeparipc.co.tz`.
    - OpenAI → monthly spending cap.
    - `grep -r SUPABASE_SERVICE_ROLE_KEY .next/static || echo clean` — must print `clean`.
    - With anon key: `select from otp_challenges` / `admin_audit_log` must return empty (RLS).

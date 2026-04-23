@@ -6,6 +6,8 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 import { mintAccessToken, setSessionCookie } from "@/lib/session";
 import { logEvent } from "@/lib/events";
 import { LEGAL_VERSION } from "@/lib/legal";
+import { generateInitialPassword, hashPassword } from "@/lib/password";
+import { sendSms } from "@/lib/sms";
 
 type VerifyBody = {
   phone?: unknown;
@@ -117,6 +119,11 @@ export async function POST(req: NextRequest) {
     userId = createRes.data.user.id;
     userEmail = email;
 
+    // Generate + hash the user's initial password. We SMS the plaintext once;
+    // only the hash lives in the DB. Users can change it via the reset flow.
+    const initialPassword = generateInitialPassword();
+    const passwordHash = await hashPassword(initialPassword);
+
     const { error: profileErr } = await admin.from("profiles").insert({
       id: userId,
       phone,
@@ -125,6 +132,8 @@ export async function POST(req: NextRequest) {
       email,
       terms_version_accepted: LEGAL_VERSION,
       terms_accepted_at: new Date().toISOString(),
+      password_hash: passwordHash,
+      password_set_at: new Date().toISOString(),
     });
     if (profileErr) {
       await admin.auth.admin.deleteUser(userId);
@@ -133,11 +142,21 @@ export async function POST(req: NextRequest) {
         { status: 500 },
       );
     }
+
+    // SMS is best-effort: if the gateway fails the account still exists and
+    // the user can hit the password-reset flow. Log the failure for triage.
+    const smsResult = await sendSms(
+      phone,
+      `Karibu Ubepari. Nenosiri lako: ${initialPassword}. Lihifadhi vizuri. | Your password: ${initialPassword}`,
+    );
+    if (!smsResult.ok) {
+      logEvent("password.initial_sms_failed", { userId, phone, reason: smsResult.reason });
+    }
   }
 
   const token = await mintAccessToken({ userId, phone, email: userEmail });
   await setSessionCookie(token);
 
   logEvent("otp.verified", { userId, phone, newUser: !existing });
-  return NextResponse.json({ ok: true, userId });
+  return NextResponse.json({ ok: true, userId, newUser: !existing });
 }

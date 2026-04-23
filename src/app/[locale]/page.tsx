@@ -1,6 +1,7 @@
 import { LandingHero } from "@/components/landing/hero";
 import { FeaturedPcs } from "@/components/landing/featured-pcs";
 import { HowItWorks } from "@/components/landing/how-it-works";
+import { LandingFaq } from "@/components/landing/landing-faq";
 import { AiCta } from "@/components/landing/ai-cta";
 import { TrustStrip } from "@/components/landing/trust-strip";
 import { hasLocale } from "@/i18n/config";
@@ -23,6 +24,7 @@ export default async function HomePage({ params }: { params: HomePageParams }) {
       <LandingHero stackImages={stackImages} />
       <FeaturedPcs products={featured} />
       <HowItWorks />
+      <LandingFaq />
       <AiCta />
       <TrustStrip />
     </>

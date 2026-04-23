@@ -13,7 +13,7 @@ const PUBLIC_PATHS = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ubeparipc.tech";
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.ubeparipc.co.tz";
   const now = new Date();
 
   const entries: MetadataRoute.Sitemap = [];

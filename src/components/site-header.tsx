@@ -65,8 +65,7 @@ export function SiteHeader() {
 
   const accountItems = [
     { href: "/account", label: dict.header.accountMenu.profile },
-    { href: "/orders", label: dict.header.accountMenu.orders },
-    { href: "/wallet", label: dict.header.accountMenu.wallet },
+    { href: "/account/goals", label: dict.header.accountMenu.orders },
     { href: "/kyc", label: dict.header.accountMenu.kyc },
   ];
 
