@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { logEvent } from "@/lib/events";
+import { toGoalView } from "@/lib/goal-view";
 import { completeGoalIfReached } from "@/lib/goals";
 import { getSessionFromRequest } from "@/lib/session";
 import { supabaseAdmin } from "@/lib/supabase/admin";
@@ -75,7 +76,7 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({
     ok: true,
-    goal: completion.goal,
+    goal: toGoalView(completion.goal),
     completed: completion.kind === "completed",
   });
 }
