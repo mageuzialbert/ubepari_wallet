@@ -1,13 +1,13 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { cancelGoal } from "@/lib/goals";
-import { getSession } from "@/lib/session";
+import { getSessionFromRequest } from "@/lib/session";
 
 export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const session = await getSession();
+  const session = await getSessionFromRequest(req);
   if (!session) return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
   const { id } = await params;
 

@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { GOAL_TERMS, type GoalTerm } from "@/lib/goal";
 import { createGoal, listGoalsForUser } from "@/lib/goals";
-import { getSession } from "@/lib/session";
+import { getSessionFromRequest } from "@/lib/session";
 
 function asTerm(v: unknown): GoalTerm | null {
   return typeof v === "number" && (GOAL_TERMS as number[]).includes(v)
@@ -10,15 +10,15 @@ function asTerm(v: unknown): GoalTerm | null {
     : null;
 }
 
-export async function GET() {
-  const session = await getSession();
+export async function GET(req: NextRequest) {
+  const session = await getSessionFromRequest(req);
   if (!session) return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
   const goals = await listGoalsForUser(session.claims.userId);
   return NextResponse.json({ goals });
 }
 
 export async function POST(req: NextRequest) {
-  const session = await getSession();
+  const session = await getSessionFromRequest(req);
   if (!session) return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
 
   const body = (await req.json().catch(() => null)) as

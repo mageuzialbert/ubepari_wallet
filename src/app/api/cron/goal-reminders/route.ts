@@ -7,6 +7,7 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 import type { GoalsRow } from "@/lib/supabase/types";
 import { defaultLocale } from "@/i18n/config";
 import { formatTzs } from "@/lib/currency";
+import { getActiveTokensFor, sendExpoPush } from "@/lib/push";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -67,16 +68,40 @@ async function runReminders(): Promise<{
       `Hujambo ${firstName}, kumbuka lengo lako — weka ${amount} kwa ${productName} mwezi huu. ` +
       `Fungua Ubepari app ili kuweka kiasi. | Hi ${firstName}, save ${amount} toward ${productName} this month.`;
 
-    const result = await sendSms(profile.phone, text);
-    if (!result.ok) {
-      failed++;
-      logEvent("goal.reminder_sms_failed", {
-        goalId: goal.id,
-        userId: goal.user_id,
-        reason: result.reason,
-      });
-      continue;
+    // Prefer mobile push over SMS when the user has an active device token.
+    // SMS remains the fallback for users who haven't installed the app.
+    const tokens = await getActiveTokensFor(goal.user_id);
+    let delivered = false;
+    if (tokens.length > 0) {
+      const pushOk = await sendExpoPush(
+        tokens.map((t) => ({
+          to: t.token,
+          title: `Save ${amount} toward ${productName}`,
+          body: `Tap to open Ubepari and keep your goal on track.`,
+          data: { goalId: goal.id, kind: "goal_reminder" },
+          sound: "default",
+          priority: "high",
+        })),
+      );
+      if (pushOk) {
+        delivered = true;
+        logEvent("goal.reminder_push_sent", { goalId: goal.id, userId: goal.user_id });
+      }
     }
+
+    if (!delivered) {
+      const result = await sendSms(profile.phone, text);
+      if (!result.ok) {
+        failed++;
+        logEvent("goal.reminder_sms_failed", {
+          goalId: goal.id,
+          userId: goal.user_id,
+          reason: result.reason,
+        });
+        continue;
+      }
+    }
+
     await admin
       .from("goals")
       .update({ next_reminder_date: advanceOneMonth(goal.next_reminder_date ?? today) })

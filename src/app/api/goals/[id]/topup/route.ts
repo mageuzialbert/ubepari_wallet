@@ -4,7 +4,7 @@ import { generateReference, pushMno, type EvmarkProvider } from "@/lib/evmark";
 import { logEvent } from "@/lib/events";
 import { hasPendingPush } from "@/lib/payments";
 import { normalizeTzPhone } from "@/lib/phone";
-import { getSession } from "@/lib/session";
+import { getSessionFromRequest } from "@/lib/session";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 
 const ALLOWED: EvmarkProvider[] = ["mpesa", "tigopesa", "airtelmoney"];
@@ -15,7 +15,7 @@ export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const session = await getSession();
+  const session = await getSessionFromRequest(req);
   if (!session) return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
   const { id: goalId } = await params;
 
@@ -111,7 +111,18 @@ export async function POST(
       reference,
       reason: push.reason,
     });
-    await admin.from("payments").update({ status: "failed" }).eq("id", payment.id);
+    await admin
+      .from("payments")
+      .update({
+        status: "failed",
+        raw_callback: {
+          source: "push_failed",
+          reason: push.reason,
+          evmark_response: push.raw ?? null,
+        },
+        settled_at: new Date().toISOString(),
+      })
+      .eq("id", payment.id);
     return NextResponse.json(
       { error: "push_failed", detail: push.reason },
       { status: 502 },

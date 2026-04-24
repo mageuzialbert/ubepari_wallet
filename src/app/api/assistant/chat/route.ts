@@ -39,6 +39,10 @@ function sseEncoder() {
 }
 
 function readLocale(req: NextRequest): Locale {
+  const header = req.headers.get("x-locale") ?? req.headers.get("X-Locale");
+  if (header && hasLocale(header)) return header;
+  const query = new URL(req.url).searchParams.get("locale");
+  if (query && hasLocale(query)) return query;
   const cookie = req.cookies.get("NEXT_LOCALE")?.value;
   return cookie && hasLocale(cookie) ? cookie : defaultLocale;
 }
@@ -77,7 +81,7 @@ export async function POST(req: NextRequest) {
     return Response.json({ error: "too_long" }, { status: 400 });
   }
 
-  const ctx = await buildAssistantContext(locale);
+  const ctx = await buildAssistantContext(locale, req);
   const isSignedIn = ctx.user.authState === "signed_in";
 
   // Rate limits — signed-in by userId, anonymous by IP (hourly + daily).

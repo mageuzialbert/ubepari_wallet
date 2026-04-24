@@ -4,7 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 import type { Database } from "@/lib/supabase/types";
 import { supabaseForUser } from "@/lib/supabase/server";
-import { getSession } from "@/lib/session";
+import { getSession, getSessionFromRequest } from "@/lib/session";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import type { Locale } from "@/i18n/config";
 
@@ -29,8 +29,9 @@ export type AssistantCallContext = {
 
 export async function buildAssistantContext(
   locale: Locale,
+  req?: Request,
 ): Promise<AssistantCallContext> {
-  const session = await getSession();
+  const session = req ? await getSessionFromRequest(req) : await getSession();
   if (!session) {
     return {
       locale,
@@ -40,7 +41,7 @@ export async function buildAssistantContext(
     };
   }
 
-  const supabase = await supabaseForUser();
+  const supabase = await supabaseForUser(req);
   if (!supabase) {
     return {
       locale,

@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
-import { getSession } from "@/lib/session";
+import { getSessionFromRequest } from "@/lib/session";
 import { supabaseForUser } from "@/lib/supabase/server";
 
-export async function GET() {
-  const session = await getSession();
+export async function GET(req: NextRequest) {
+  const session = await getSessionFromRequest(req);
   if (!session) return NextResponse.json({ user: null });
 
-  const client = await supabaseForUser();
+  const client = await supabaseForUser(req);
   const { data: profile } = await client!
     .from("profiles")
     .select(

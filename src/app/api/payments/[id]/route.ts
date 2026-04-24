@@ -3,11 +3,11 @@ import { NextResponse } from "next/server";
 import { requireSupabaseForUser } from "@/lib/supabase/server";
 
 export async function GET(
-  _req: Request,
+  req: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const { client } = await requireSupabaseForUser();
+    const { client } = await requireSupabaseForUser(req);
     const { id } = await params;
 
     const { data, error } = await client

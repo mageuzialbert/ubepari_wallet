@@ -1,7 +1,7 @@
 import "server-only";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-import { getSession } from "@/lib/session";
+import { getSession, getSessionFromRequest } from "@/lib/session";
 import type { Database } from "@/lib/supabase/types";
 
 function clientFor(accessToken: string): SupabaseClient<Database> {
@@ -17,19 +17,22 @@ function clientFor(accessToken: string): SupabaseClient<Database> {
   );
 }
 
-export async function supabaseForUser(): Promise<SupabaseClient<Database> | null> {
-  const session = await getSession();
+// Cookie-only (web server components). Mobile callers should pass the request.
+export async function supabaseForUser(
+  req?: Request,
+): Promise<SupabaseClient<Database> | null> {
+  const session = req ? await getSessionFromRequest(req) : await getSession();
   if (!session) return null;
   return clientFor(session.accessToken);
 }
 
-export async function requireSupabaseForUser(): Promise<{
+export async function requireSupabaseForUser(req?: Request): Promise<{
   client: SupabaseClient<Database>;
   userId: string;
   phone: string;
   email: string | null;
 }> {
-  const session = await getSession();
+  const session = req ? await getSessionFromRequest(req) : await getSession();
   if (!session) throw new Error("unauthenticated");
   return {
     client: clientFor(session.accessToken),

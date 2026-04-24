@@ -72,7 +72,7 @@ export async function pushMno(opts: PushOptions): Promise<PushResult> {
     user,
     mobileNo: opts.mobileNo,
     reference: opts.reference,
-    callbackstatus: "Success",
+    callbackStatus: "Success",
   };
 
   try {
@@ -82,12 +82,23 @@ export async function pushMno(opts: PushOptions): Promise<PushResult> {
       body: JSON.stringify(body),
       cache: "no-store",
     });
-    const raw = (await res.json().catch(() => ({}))) as Record<string, unknown>;
+    const text = await res.text();
+    let raw: Record<string, unknown> = {};
+    try {
+      raw = text ? (JSON.parse(text) as Record<string, unknown>) : {};
+    } catch {
+      raw = { http_status: res.status, body_text: text.slice(0, 500) };
+    }
     const code = typeof raw.response_code === "number" ? raw.response_code : res.status;
     if (code === 200) {
       return { ok: true, hash, raw };
     }
-    const desc = typeof raw.response_desc === "string" ? raw.response_desc : "";
+    const desc =
+      typeof raw.response_desc === "string"
+        ? raw.response_desc
+        : typeof raw.body_text === "string"
+          ? raw.body_text
+          : "";
     return { ok: false, reason: `evmark_${code}: ${desc}`, raw };
   } catch (err) {
     return { ok: false, reason: String(err instanceof Error ? err.message : err) };
@@ -116,10 +127,13 @@ export function parseCallback(body: CallbackBody): ParsedCallback | null {
   const ref = typeof body.ThirdPartyReference === "string" ? body.ThirdPartyReference : null;
   if (!ref) return null;
   const status = typeof body.TransactionStatus === "string" ? body.TransactionStatus : "";
+  // Evmark's live MNO callback sends ResultType: "Completed" for success
+  // (string, not boolean). Boolean true is kept for the dev simulator.
+  const resultType = body.ResultType;
   const success =
-    body.ResultType === true ||
-    body.ResultType === "true" ||
-    /success/i.test(status);
+    (typeof resultType === "string" && resultType.toLowerCase() === "completed") ||
+    resultType === true ||
+    resultType === "true";
   return {
     success,
     transactionStatus: status,

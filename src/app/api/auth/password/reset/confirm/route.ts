@@ -4,7 +4,7 @@ import { logEvent } from "@/lib/events";
 import { verifyChallenge } from "@/lib/otp";
 import { hashPassword, isAcceptablePassword } from "@/lib/password";
 import { normalizeTzPhone } from "@/lib/phone";
-import { mintAccessToken, setSessionCookie } from "@/lib/session";
+import { mintSession } from "@/lib/session";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 
 export async function POST(req: NextRequest) {
@@ -54,13 +54,12 @@ export async function POST(req: NextRequest) {
     })
     .eq("id", profile.id);
 
-  const token = await mintAccessToken({
+  const { token, expiresAt } = await mintSession({
     userId: profile.id,
     phone,
     email: profile.email ?? null,
   });
-  await setSessionCookie(token);
 
   logEvent("password.reset_completed", { userId: profile.id });
-  return NextResponse.json({ ok: true, userId: profile.id });
+  return NextResponse.json({ ok: true, userId: profile.id, token, expiresAt });
 }

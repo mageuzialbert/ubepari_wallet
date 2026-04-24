@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
   const isSuccess = result !== "failed";
   const payload = {
-    ResultType: isSuccess,
+    ResultType: isSuccess ? "Completed" : "Failed",
     TransactionStatus: isSuccess ? "Success" : "Failed",
     TransID: transId ?? `DEV-${Date.now()}`,
     Amount: typeof amount === "number" ? String(amount) : (amount ?? "0"),

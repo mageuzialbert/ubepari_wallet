@@ -11,9 +11,14 @@ export type SessionClaims = {
   email: string | null;
 };
 
-type EncodedSession = {
+export type EncodedSession = {
   accessToken: string;
   claims: SessionClaims;
+};
+
+export type MintedSession = {
+  token: string;
+  expiresAt: string;
 };
 
 function jwtSecretKey(): Uint8Array {
@@ -78,4 +83,26 @@ export async function getSession(): Promise<EncodedSession | null> {
   const token = store.get(COOKIE_NAME)?.value;
   if (!token) return null;
   return verifyAccessToken(token);
+}
+
+// Mint a session, set the web cookie, and return the token + expiry for
+// clients that can't use cookies (the React Native app).
+export async function mintSession(claims: SessionClaims): Promise<MintedSession> {
+  const token = await mintAccessToken(claims);
+  await setSessionCookie(token);
+  const expiresAt = new Date(Date.now() + SESSION_TTL_SECONDS * 1000).toISOString();
+  return { token, expiresAt };
+}
+
+// Accept both the httpOnly cookie (web) and Authorization: Bearer (mobile).
+export async function getSessionFromRequest(req: Request): Promise<EncodedSession | null> {
+  const auth = req.headers.get("authorization") ?? req.headers.get("Authorization");
+  if (auth && auth.toLowerCase().startsWith("bearer ")) {
+    const token = auth.slice(7).trim();
+    if (token.length > 0) {
+      const verified = await verifyAccessToken(token);
+      if (verified) return verified;
+    }
+  }
+  return getSession();
 }

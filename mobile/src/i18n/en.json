@@ -1,0 +1,2001 @@
+{
+  "meta": {
+    "siteTitle": "Ubepari Wallet — Save up. Own it. No debt.",
+    "titleTemplate": "%s · Ubepari Wallet",
+    "siteDescription": "Tanzania's layaway platform for PCs. Pick your machine, save toward it any amount any time via M-Pesa, Tigo Pesa, or Airtel Money, and collect it when you hit your target. No interest. No debt."
+  },
+  "header": {
+    "signIn": "Sign in",
+    "getStarted": "Get started",
+    "openMenu": "Open menu",
+    "logoLabel": "Ubepari Wallet",
+    "account": "Account",
+    "accountMenu": {
+      "signedInAs": "Signed in as",
+      "profile": "Profile",
+      "orders": "My savings",
+      "wallet": "My wallet",
+      "kyc": "Identity (KYC)",
+      "signOut": "Sign out"
+    }
+  },
+  "nav": {
+    "store": "Store",
+    "aiTips": "AI Tech Tips",
+    "wallet": "Savings",
+    "orders": "Goals",
+    "goals": "My goals",
+    "support": "Support"
+  },
+  "cookies": {
+    "body": "Ubepari only uses functional cookies — your sign-in session and your theme preference. We don't track you, run ad pixels or share anything with third parties.",
+    "privacyLink": "Read our Privacy Notice",
+    "ok": "Got it",
+    "dismiss": "Dismiss"
+  },
+  "account": {
+    "metaTitle": "Account",
+    "eyebrow": "Your account",
+    "heading": "Account",
+    "subheading": "Your Ubepari identity and the trust you've built with us.",
+    "editCta": "Edit details",
+    "viewAllPayments": "View all payments",
+    "payments": {
+      "metaTitle": "Payment history",
+      "back": "Back to account",
+      "eyebrow": "Payment history",
+      "heading": "Everything you've paid.",
+      "subheading": "Deposits, installments, top-ups and refunds across your account.",
+      "filterAll": "All",
+      "filterDeposits": "Deposits",
+      "filterInstallments": "Installments",
+      "filterTopups": "Top-ups",
+      "filterRefunds": "Refunds",
+      "empty": "No payments yet.",
+      "emptyFiltered": "No payments match this filter.",
+      "linkedOrder": "For order",
+      "topupRow": "Wallet top-up",
+      "refundRow": "Refund",
+      "openOrder": "Open order"
+    },
+    "identity": {
+      "title": "Identity",
+      "nameLabel": "Name",
+      "namePlaceholder": "Not set yet",
+      "phoneLabel": "Phone",
+      "phoneHint": "Your phone is your sign-in. It can't be changed from here.",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Not set yet",
+      "memberSinceLabel": "Member since"
+    },
+    "kyc": {
+      "title": "Identity verification",
+      "statusApproved": "Approved",
+      "statusPending": "Under review",
+      "statusRejected": "Rejected",
+      "statusNone": "Not started",
+      "descApproved": "You're verified. All hire-purchase features are unlocked.",
+      "descPending": "We're reviewing your documents. This usually takes a business day.",
+      "descRejected": "Your last submission needs attention. Resubmit when you're ready.",
+      "descNone": "Complete KYC to reserve PCs on hire-purchase.",
+      "ctaStart": "Start KYC",
+      "ctaView": "View status",
+      "ctaResubmit": "Resubmit"
+    },
+    "credit": {
+      "title": "Credit",
+      "limitLabel": "Credit limit",
+      "limitHint": "The maximum you can finance on hire-purchase.",
+      "pointsLabel": "Credit points",
+      "pointsHint": "Earn points with every on-time installment. Points unlock higher limits."
+    },
+    "edit": {
+      "metaTitle": "Edit account",
+      "back": "Back to account",
+      "eyebrow": "Edit account",
+      "heading": "Your details",
+      "subheading": "Update your name and email. Phone changes aren't supported yet.",
+      "firstNameLabel": "First name",
+      "lastNameLabel": "Last name",
+      "emailLabel": "Email",
+      "emailHint": "Optional. Used for receipts and order updates.",
+      "phoneLabel": "Phone",
+      "phoneHint": "Linked to your account. Contact support to change it.",
+      "save": "Save changes",
+      "cancel": "Cancel",
+      "success": "Saved",
+      "errors": {
+        "invalid_email": "That doesn't look like a valid email.",
+        "name_too_long": "Names must be under 60 characters.",
+        "unknown": "Something went wrong. Try again in a moment."
+      }
+    },
+    "dataExport": {
+      "title": "Your data",
+      "body": "Download a ZIP archive containing everything we hold for your account — profile, orders, installments, payments, wallet history and KYC metadata.",
+      "cta": "Export my data"
+    },
+    "export": {
+      "metaTitle": "Export data",
+      "back": "Back to account",
+      "eyebrow": "Export data",
+      "heading": "Export your data",
+      "lede": "A snapshot of everything tied to your account, delivered as a ZIP of JSON files.",
+      "contentsTitle": "What's inside",
+      "contents": {
+        "profile": "profile.json — your profile row (name, phone, email, credit limit, KYC status).",
+        "orders": "orders.json — every hire-purchase order you've placed.",
+        "installments": "installments.json — the full schedule for each active order.",
+        "payments": "payments.json — deposits, installments, top-ups and refunds.",
+        "wallet": "wallet_entries.json — credits and debits behind your wallet balance.",
+        "kyc": "kyc_submissions.json — KYC metadata (document binary not included)."
+      },
+      "notExported": "Your uploaded identity document is not included — it lives in secure storage and is removed on account deletion.",
+      "download": "Download ZIP"
+    },
+    "dangerZone": {
+      "title": "Danger zone",
+      "body": "Permanently delete your Ubepari account. Past orders and payments are kept for accounting records, but your personal details and identity documents are removed.",
+      "cta": "Delete my account"
+    },
+    "delete": {
+      "metaTitle": "Delete account",
+      "back": "Back to account",
+      "eyebrow": "Delete account",
+      "heading": "Delete your account",
+      "lede": "This is permanent. Please read carefully before you continue.",
+      "warningTitle": "What happens when you delete:",
+      "warningBullets": {
+        "anonymized": "Your name, phone number and email are removed from your profile.",
+        "kycWiped": "Your KYC documents are deleted from our storage.",
+        "ordersKept": "Past orders, payments and wallet history are retained for legal and accounting records.",
+        "phoneFreed": "Your phone number is released and can be used to sign up again later.",
+        "irreversible": "This action cannot be undone."
+      },
+      "confirmLabel": "Type {word} to confirm",
+      "confirmWord": "DELETE",
+      "sendCode": "Send deletion code by SMS",
+      "codeSent": "We sent a 6-digit code to your phone.",
+      "codeSentHint": "Enter it below to permanently delete your account.",
+      "confirmDeletePermanently": "Delete my account permanently",
+      "cancel": "Cancel",
+      "doneHeading": "Your account has been deleted.",
+      "smsCode": "Ubepari: {code} is your account deletion code. Expires in 5 min. If you didn't request this, ignore and sign out.",
+      "smsReceipt": "Ubepari: Your account has been permanently deleted. Orders are retained for records.",
+      "errors": {
+        "unauthenticated": "Please sign in again.",
+        "notFound": "We couldn't find an active account for this session."
+      }
+    }
+  },
+  "footer": {
+    "shop": {
+      "title": "Shop",
+      "allPcs": "All PCs",
+      "gaming": "Gaming",
+      "design": "Design & Creators",
+      "students": "Students"
+    },
+    "wallet": {
+      "title": "Wallet",
+      "myWallet": "My Wallet",
+      "topUp": "Top up",
+      "orders": "Orders & Schedule",
+      "kyc": "KYC & Verification"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About Ubepari",
+      "support": "Support",
+      "referrals": "Referral Program",
+      "whatsapp": "WhatsApp"
+    },
+    "legal": {
+      "title": "Legal",
+      "terms": "Terms of Service",
+      "hirePurchase": "Hire-Purchase Agreement",
+      "privacy": "Privacy Policy"
+    },
+    "copyright": "© {year} Ubepari PC. Built in Dar es Salaam.",
+    "legalNote": "Credit facility operated by Ubepari PC. Hire-purchase regulated under Tanzanian consumer-finance law."
+  },
+  "support": {
+    "metaTitle": "Support",
+    "eyebrow": "Support",
+    "heading": "A real person, every time.",
+    "channels": {
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Fastest. Your order ID gets pre-filled.",
+        "cta": "Message us"
+      },
+      "call": {
+        "title": "Call us",
+        "description": "Mon–Sat, 9 AM – 6 PM EAT.",
+        "cta": "+255 000 000 000"
+      },
+      "email": {
+        "title": "Email",
+        "description": "Best for warranty & documentation.",
+        "cta": "support@ubepari.co.tz"
+      }
+    },
+    "faqsHeading": "Frequently asked",
+    "faqs": [
+      {
+        "q": "How does hire-purchase work?",
+        "a": "You pay 20% today and own the PC immediately. The balance is split over 3, 6, 9, or 12 months — paid through your Ubepari Wallet via mobile money or card."
+      },
+      {
+        "q": "What happens if I miss a payment?",
+        "a": "A 2% late fee applies after 7 days. Your PC is never repossessed without written notice and a 30-day grace window."
+      },
+      {
+        "q": "Can I pay the balance off early?",
+        "a": "Yes, and there's no fee for doing so. Early payoff may also unlock credit-point rewards."
+      },
+      {
+        "q": "Which payment providers work with Ubepari?",
+        "a": "M-Pesa, Tigo Pesa, Airtel Money, and Visa / Mastercard — all processed through Evmark's certified gateway."
+      }
+    ]
+  },
+  "about": {
+    "metaTitle": "About Ubepari",
+    "metaDescription": "Ubepari PC builds honest hire-purchase for Tanzania — 20% down, no hidden fees, and the PC you actually chose. Made in Dar es Salaam.",
+    "eyebrow": "About",
+    "heading": "Good computers, on terms that make sense.",
+    "intro": "Ubepari PC started with a simple observation: a good PC costs more than most Tanzanians can pay on any one day, even when they can comfortably pay for it over a year. Banks won't finance a laptop. Shops want the full amount upfront. So we built the missing piece — Lipa kidogo kidogo, a hire-purchase plan you can actually read and trust.",
+    "mission": {
+      "eyebrow": "What we do",
+      "body": "We sell personal computers and finance them ourselves, in Tanzanian Shillings, to people living in Tanzania. 20% deposit, the rest spread over 3, 6, 9, or 12 months. No guarantor. No collateral beyond the PC. No tricks buried in small print."
+    },
+    "story": {
+      "heading": "Why we exist",
+      "paragraphs": [
+        "In Dar es Salaam, a student who could earn with a design laptop often can't buy one. A small accounting firm that needs three office PCs is quoted a single up-front figure that kills the project. A freelance video editor replaces their aging machine with whatever they can afford that week — not what they actually need.",
+        "The gap isn't desire, or even income. The gap is the financing. Ubepari PC exists to close it. Built in Dar, for people in Dar — and, increasingly, the rest of Tanzania."
+      ]
+    },
+    "principles": {
+      "heading": "What we stand for",
+      "items": [
+        {
+          "title": "Honest pricing",
+          "body": "A term-based service fee (0% / 5% / 8% / 12%) and nothing else. No arrangement fee. No insurance line-item. No mystery."
+        },
+        {
+          "title": "The PC you picked",
+          "body": "We don't swap components, clone builds, or push the stock we're stuck with. You reserve it, we deliver it."
+        },
+        {
+          "title": "Swahili and English",
+          "body": "Your plan, your agreement, and your receipts — all available in both languages. Technical terms stay readable."
+        },
+        {
+          "title": "Real humans",
+          "body": "WhatsApp, call, or email. A person answers, not a ticket queue."
+        }
+      ]
+    },
+    "stats": {
+      "heading": "By the numbers",
+      "items": [
+        { "value": "20%", "label": "Deposit to reserve" },
+        { "value": "3–12", "label": "Months to pay" },
+        { "value": "0%", "label": "Service fee on the 3-month plan" },
+        { "value": "TZS", "label": "Everything priced locally" }
+      ]
+    },
+    "locations": {
+      "heading": "Where to find us",
+      "hq": {
+        "label": "Head office",
+        "value": "Magomeni Usalama, Dar es Salaam"
+      },
+      "shop": {
+        "label": "Showroom",
+        "value": "Magomeni Mapipa, Dar es Salaam"
+      },
+      "hours": {
+        "label": "Open",
+        "value": "Monday – Saturday, 9 AM – 6 PM EAT"
+      }
+    },
+    "cta": {
+      "heading": "Ready when you are.",
+      "body": "Browse the catalog, or tell us what you need and we'll match a plan to it.",
+      "shop": "Browse PCs",
+      "talk": "Talk to us"
+    }
+  },
+  "assistant": {
+    "metaTitle": "AI Tech Tips",
+    "brandBadge": "AI Tech Tips · beta",
+    "newChat": "New chat",
+    "historyLabel": "Recent chats",
+    "historyEmpty": "No chats yet.",
+    "composerPlaceholder": "Ask anything about Ubepari…",
+    "sendHint": "⌘/Ctrl + Enter to send",
+    "send": "Send",
+    "emptyHeading": "How can I help?",
+    "emptyHeadingPersonal": "Hi {name}, how can I help?",
+    "emptySubheading": "Ask about products, pricing, your orders, or how lipa kidogo kidogo works.",
+    "suggestedLabel": "Try",
+    "suggestedAnon": [
+      "What's the best laptop for a CS student under 2.5M?",
+      "How does lipa kidogo kidogo work?",
+      "Show me gaming PCs under 4M.",
+      "Explain the 20% deposit."
+    ],
+    "suggestedSignedIn": [
+      "When is my next installment due?",
+      "Show me my orders.",
+      "What's my wallet balance?",
+      "Recommend a laptop for creative work under 3.5M."
+    ],
+    "signInCtaForPersonal": "Sign in to ask about your orders, wallet, and installments.",
+    "signInAction": "Sign in",
+    "errorRateLimited": "You've reached the chat limit. Please try again in a little while.",
+    "errorGeneric": "Something went wrong. Try again in a moment.",
+    "cardCtaSeeSpec": "See spec",
+    "cardCtaViewOrder": "View order",
+    "cardNextDueLabel": "Next due",
+    "cardProgress": "{paid} of {total} paid",
+    "cardDeposit": "Deposit",
+    "cardMonthly": "Monthly",
+    "cardTotal": "Total",
+    "cardApr": "Service fee",
+    "cardPaid": "Paid",
+    "cardUnpaid": "Unpaid",
+    "cardStatus": {
+      "pending": "Pending",
+      "active": "Active",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "disclaimer": "AI-generated. Double-check important details before acting."
+  },
+  "hero": {
+    "badge": "Lipa kidogo kidogo — the premium way",
+    "headingLine1": "Save up. Own it.",
+    "headingLine2": "No debt. No interest.",
+    "subheading": "Pick your PC. Save toward it any time, any amount, via M-Pesa, Tigo Pesa, or Airtel Money. Collect it at our showroom when you hit your target.",
+    "ctaPrimary": "Browse PCs",
+    "ctaSecondary": "Ask AI Tech Tips →",
+    "featuredLabel": "Featured",
+    "featuredProduct": "MacBook Pro 14″ M4",
+    "priceFromLabel": "From",
+    "priceDisplay": "TZS 450,000 / mo"
+  },
+  "featured": {
+    "eyebrow": "Handpicked",
+    "heading": "The lineup, this season.",
+    "shopAll": "Shop all →",
+    "newBadge": "New",
+    "monthlyPrefix": "or {amount} / mo"
+  },
+  "howItWorks": {
+    "eyebrow": "How it works",
+    "heading": "Save. Reach. Collect.",
+    "body": "Ubepari is built around one idea: let you save toward the PC you want, on your own schedule, without getting into debt.",
+    "steps": [
+      {
+        "title": "Verify once.",
+        "body": "Upload your NIDA. Our KYC team approves you — usually within a few hours — and you can start saving."
+      },
+      {
+        "title": "Pick a PC, set a target.",
+        "body": "Choose a machine and a term — 3, 6, 9, or 12 months — as a guideline for your monthly savings. The price is locked in at today's amount."
+      },
+      {
+        "title": "Save. Collect.",
+        "body": "Top up any amount, any time, via M-Pesa, Tigo Pesa, or Airtel Money. We'll remind you once a month. When you hit your target, download your receipt and pick up your PC at our showroom."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "heading": "The short version.",
+    "items": [
+      {
+        "q": "Is this a loan?",
+        "a": "No. There's no interest, no debt, and nothing to repay. You're saving toward a PC you pick up once you've reached the target."
+      },
+      {
+        "q": "What if I want to stop?",
+        "a": "You can cancel any active goal from your account. Your contributions are held — contact support (support@ubeparipc.com) and we'll process a refund manually."
+      },
+      {
+        "q": "Can stock run out before I finish?",
+        "a": "We lock the price when you create your goal, but stock is first-come at pickup. If the exact model sells out, our team will offer an equivalent or refund your contributions."
+      },
+      {
+        "q": "Can I save for more than one PC?",
+        "a": "Yes — up to three active goals at a time. Complete or cancel one to start another."
+      },
+      {
+        "q": "How do I collect my PC?",
+        "a": "Once you hit the target, download your receipt from your goal page and bring it, with a valid ID, to our showroom at Magomeni Mapipa, Dar es Salaam."
+      }
+    ]
+  },
+  "aiCta": {
+    "badge": "AI Tech Tips",
+    "headingLine1": "Tell it your story.",
+    "headingLine2": "Get your PC.",
+    "body": "\"I'm a graphic designer who edits 4K video and occasionally plays Valorant with friends. Budget's around 4M.\" That's all it needs.",
+    "cta": "Start a conversation",
+    "chat": {
+      "userMessage": "I design book covers in Photoshop and want to start freelancing video edits. Budget around 3.5M.",
+      "aiPrefix": "For your use case I'd go with the ",
+      "aiProductName": "Dell XPS 15 OLED",
+      "aiSuffix": ". 3.5K OLED is a gift for retouching, and the RTX 4060 handles Premiere timelines smoothly.",
+      "price": "4.8M TZS",
+      "plan": "TZS 380K/mo · 12 mo",
+      "aiLabel": "AI"
+    }
+  },
+  "wallet": {
+    "metaTitle": "My Wallet",
+    "eyebrow": "Ubepari Wallet",
+    "greeting": "Hi, {name}.",
+    "pointsSuffix": "points",
+    "limitPrefix": "· limit {amount}",
+    "totalRemaining": "Total remaining",
+    "paidSoFar": "Paid so far",
+    "ownershipProgress": "Ownership progress",
+    "topUp": "Top up",
+    "viewSchedule": "View schedule →",
+    "nextDue": "Next due",
+    "nextDueBy": "by {date}",
+    "quickActions": "Quick actions",
+    "payThisMonth": "Pay this month ({amount})",
+    "shopAnother": "Shop another PC",
+    "activeOrders": "Active orders",
+    "monthly": "Monthly",
+    "monthsPaidOf": "{paid} of {total} months paid",
+    "recentActivity": "Recent activity",
+    "activityNotes": {
+      "payment": "Installment · {orderId}",
+      "topup": "Wallet top-up",
+      "deposit": "Deposit · {orderId}",
+      "refund": "Refund · {orderId}"
+    },
+    "emptyOrdersTitle": "No orders yet",
+    "emptyOrdersBody": "Reserve a PC and your plan lives here.",
+    "emptyActivity": "No activity yet.",
+    "browseStore": "Browse the store →",
+    "payInstallment": "Pay installment",
+    "emptyGreeting": "Welcome."
+  },
+  "orders": {
+    "metaTitle": "My Orders",
+    "eyebrow": "Orders",
+    "heading": "Your installments.",
+    "hirePurchaseLabel": "hire-purchase",
+    "principal": "Principal {amount}",
+    "paidOf": "Paid {paid} of {total}",
+    "monthly": "Monthly {amount}",
+    "progressHint": "{pct}% to full ownership · {months} months remaining",
+    "scheduleLabel": "Repayment schedule",
+    "browseStorePrefix": "Looking for another machine? ",
+    "browseStoreLink": "Browse the store →",
+    "emptyTitle": "No orders yet",
+    "emptyBody": "When you reserve a PC, it lives here with your full payment schedule.",
+    "payNow": "Pay now",
+    "statusPending": "Awaiting deposit",
+    "statusActive": "Active",
+    "statusCompleted": "Completed",
+    "statusCancelled": "Cancelled",
+    "viewDetails": "View details",
+    "detail": {
+      "metaTitle": "Order details",
+      "back": "Back to orders",
+      "notFoundTitle": "Order not found",
+      "notFoundBody": "This order doesn't exist or doesn't belong to your account.",
+      "referenceLabel": "Reference",
+      "placedOn": "Placed on {date}",
+      "activatedOn": "Activated on {date}",
+      "completedOn": "Completed on {date}",
+      "planLabel": "{months}-month plan",
+      "breakdown": {
+        "title": "Cost breakdown",
+        "cashPrice": "Cash price",
+        "deposit": "Deposit (20%)",
+        "financed": "Financed",
+        "serviceFee": "Service fee",
+        "total": "Total (cash + fee)",
+        "monthly": "Monthly installment"
+      },
+      "schedule": {
+        "title": "Repayment schedule",
+        "headerInstallment": "Installment",
+        "headerDue": "Due",
+        "headerAmount": "Amount",
+        "headerStatus": "Status",
+        "paidOn": "Paid {date}",
+        "unpaid": "Unpaid",
+        "overdue": "Overdue",
+        "next": "Next up"
+      },
+      "history": {
+        "title": "Payment history",
+        "empty": "No payments recorded for this order yet.",
+        "kindDeposit": "Deposit",
+        "kindInstallment": "Installment",
+        "kindRefund": "Refund",
+        "statusPending": "Pending",
+        "statusSuccess": "Success",
+        "statusFailed": "Failed",
+        "providerMpesa": "M-Pesa",
+        "providerTigopesa": "Tigo Pesa",
+        "providerAirtelmoney": "Airtel Money",
+        "providerCard": "Card",
+        "refLabel": "Ref"
+      },
+      "payNext": "Pay next installment"
+    }
+  },
+  "topup": {
+    "title": "Top up your Wallet",
+    "description": "Add funds to pay installments, reserve a PC, or keep ahead of your schedule.",
+    "amountLabel": "Amount",
+    "mobileMoneyLabel": "Mobile money number",
+    "mobileMoneyHint": "You'll get a {provider} USSD prompt to authorize the transfer.",
+    "cardNumberLabel": "Card number",
+    "expiryLabel": "Expiry",
+    "cvcLabel": "CVC",
+    "cardPayButton": "Pay {amount}",
+    "mnoRequestButton": "Request {amount}",
+    "pendingTitle": "Awaiting {provider} confirmation",
+    "pendingBody": "Check your phone and approve the USSD prompt.",
+    "doneTitle": "{amount} added to your Wallet",
+    "doneReference": "Reference: {ref}",
+    "doneButton": "Done",
+    "failedTitle": "Top-up didn't go through",
+    "failedBody": "The prompt was cancelled or expired. Try again when you're ready.",
+    "retryButton": "Try again",
+    "errorGeneric": "Something went wrong. Try again."
+  },
+  "store": {
+    "metaTitle": "Store — Every PC we stock",
+    "metaDescription": "Browse Ubepari's full lineup of gaming PCs, ultrabooks, and custom towers. Filter by use case, brand, and monthly payment.",
+    "eyebrow": "Store",
+    "heading": "Every PC we stock.",
+    "resultsSingular": "{count} model available right now. Every machine ships same-day from our Dar showroom.",
+    "resultsPlural": "{count} models available right now. Every machine ships same-day from our Dar showroom.",
+    "emptyTitle": "No PCs match those filters",
+    "emptyBody": "Try clearing a filter or two."
+  },
+  "product": {
+    "backLink": "All PCs",
+    "altView": "{name} alt view",
+    "cashPriceLabel": "cash price · {stock} in stock",
+    "perks": {
+      "pickup": {
+        "title": "Same-day pickup",
+        "body": "Collect from our Dar showroom."
+      },
+      "warranty": {
+        "title": "12-month warranty",
+        "body": "Included on every new machine."
+      }
+    },
+    "specsHeading": "Every spec, on the record.",
+    "specs": {
+      "processor": "Processor",
+      "generation": "Generation",
+      "memory": "Memory",
+      "storage": "Storage",
+      "graphics": "Graphics",
+      "display": "Display",
+      "os": "Operating system",
+      "weight": "Weight"
+    },
+    "relatedHeading": "You might also like",
+    "browseAll": "Browse all →"
+  },
+  "productCard": {
+    "lowStock": "Low stock",
+    "perMonthSuffix": "/mo"
+  },
+  "filters": {
+    "clearAll": "Clear all filters",
+    "usageLabel": "Usage",
+    "brandLabel": "Brand",
+    "monthlyLabel": "Monthly plan",
+    "priceLabels": {
+      "0-2000000": "Under 2M",
+      "2000000-4000000": "2M – 4M",
+      "4000000-6000000": "4M – 6M",
+      "6000000-99999999": "6M+"
+    }
+  },
+  "payInstallment": {
+    "title": "Pay this installment",
+    "description": "Push {amount} to {provider}. Approve on your phone to clear the installment.",
+    "providerLabel": "Pay with",
+    "phoneLabel": "Phone number",
+    "confirmButton": "Send prompt",
+    "cancelButton": "Cancel",
+    "pendingTitle": "Check your phone",
+    "pendingBody": "We sent a {provider} USSD prompt. Confirm it to mark the installment paid.",
+    "doneTitle": "Installment paid",
+    "doneBody": "Your schedule is updated. Nice work.",
+    "doneButton": "Close",
+    "failedTitle": "Payment didn't go through",
+    "failedBody": "The prompt was cancelled or expired. Try again when you're ready.",
+    "retryButton": "Try again",
+    "errorGeneric": "Something went wrong. Try again."
+  },
+  "reserve": {
+    "title": "Reserve with deposit",
+    "description": "Choose how to pay {amount} today. We'll push a prompt to your phone.",
+    "providerLabel": "Pay with",
+    "providers": {
+      "mpesa": "M-Pesa",
+      "tigopesa": "Tigo Pesa",
+      "airtelmoney": "Airtel Money"
+    },
+    "phoneLabel": "Phone number",
+    "confirmButton": "Send prompt",
+    "cancelButton": "Cancel",
+    "pendingTitle": "Check your phone",
+    "pendingBody": "We sent a {provider} USSD prompt. Confirm it to activate your order.",
+    "doneTitle": "Order confirmed",
+    "doneBody": "Your PC is reserved. See details in your orders.",
+    "doneCta": "View orders",
+    "failedTitle": "Payment didn't go through",
+    "failedBody": "The prompt was cancelled or expired. Try again when you're ready.",
+    "retryButton": "Try again",
+    "needsSignIn": "Sign in to reserve.",
+    "needsKyc": "Finish KYC to reserve.",
+    "errorGeneric": "Something went wrong. Try again."
+  },
+  "goal": {
+    "planLabel": "Save toward this PC",
+    "perMonthSuffix": "/ month",
+    "chooseDuration": "Choose your savings term",
+    "monthsSuffix": "months",
+    "termSuffix": "mo",
+    "rows": {
+      "price": "Target price",
+      "monthlyTarget": "Monthly target",
+      "term": "Term"
+    },
+    "startGoalButton": "Start saving",
+    "disclaimer": "No interest. No debt. Save at your own pace — we'll remind you once a month. Pick up at our showroom once you hit the target.",
+    "needsSignIn": "Sign in to start a goal.",
+    "needsKyc": "Finish KYC to start a goal.",
+    "kycCta": "Go to KYC",
+    "signInCta": "Sign in",
+    "tooManyActive": "You already have {max} active goals. Complete or cancel one first."
+  },
+  "startGoal": {
+    "title": "Start saving toward {product}",
+    "description": "You'll aim to set aside {monthly} per month for {months} months. No interest, no rush — contribute any amount any time, cancel any time.",
+    "cancelButton": "Cancel",
+    "confirmButton": "Create goal",
+    "successTitle": "Goal created",
+    "successBody": "Your goal is live. Contribute now or any time from your goals page.",
+    "successContributeNow": "Contribute now",
+    "successViewGoal": "View my goal",
+    "errorGeneric": "Something went wrong. Try again.",
+    "errorTooMany": "You already have {max} active goals.",
+    "errorKyc": "Finish KYC first.",
+    "errorSignIn": "Sign in first."
+  },
+  "contribute": {
+    "title": "Contribute to your goal",
+    "description": "You're saving toward {product}. Any amount helps.",
+    "amountLabel": "Amount (TZS)",
+    "mobileMoneyLabel": "Mobile money number",
+    "mobileMoneyHint": "We'll push a prompt to your {provider} number.",
+    "providerLabel": "Pay with",
+    "providers": {
+      "mpesa": "M-Pesa",
+      "tigopesa": "Tigo Pesa",
+      "airtelmoney": "Airtel Money"
+    },
+    "confirmButton": "Push {amount}",
+    "cancelButton": "Cancel",
+    "pendingTitle": "Check your {provider} phone",
+    "pendingBody": "We sent a prompt. Confirm it to add to your goal.",
+    "doneTitle": "Added {amount} to your goal",
+    "doneReference": "Reference: {ref}",
+    "doneButton": "Done",
+    "failedTitle": "Payment didn't go through",
+    "failedBody": "The prompt was cancelled or expired. Try again when you're ready.",
+    "retryButton": "Try again",
+    "errorGeneric": "Something went wrong. Try again."
+  },
+  "goals": {
+    "metaTitle": "My savings goals",
+    "eyebrow": "Savings",
+    "heading": "Your goals",
+    "subheading": "Save toward the PC you want, at your own pace.",
+    "emptyTitle": "No goals yet",
+    "emptyBody": "Pick a PC in the store to start your first goal.",
+    "browseStore": "Browse PCs",
+    "tabActive": "Active",
+    "tabCompleted": "Completed",
+    "tabCancelled": "Cancelled",
+    "progressPercent": "{percent}% saved",
+    "monthlyTarget": "Monthly target",
+    "contributed": "Saved so far",
+    "targetPrice": "Target",
+    "nextReminder": "Next reminder",
+    "contributeCta": "Contribute now",
+    "downloadReceipt": "Download receipt",
+    "cancelGoal": "Cancel goal",
+    "cancelDialogTitle": "Cancel this goal?",
+    "cancelDialogBody": "Your saved contributions will be held. Contact support for a manual refund. This can't be undone.",
+    "cancelReasonLabel": "Reason (optional)",
+    "cancelConfirm": "Yes, cancel",
+    "cancelKeep": "Keep saving",
+    "detailHeading": "Your goal",
+    "referenceLabel": "Reference",
+    "targetMonthsLabel": "Term",
+    "contributionsHeading": "Contributions",
+    "contributionsEmpty": "No contributions yet. Make your first top-up.",
+    "startedOn": "Started {date}",
+    "completedOn": "Completed {date}",
+    "cancelledOn": "Cancelled {date}",
+    "receiptNumberLabel": "Receipt #",
+    "pickUpAtShowroom": "Pick up at Ubepari PC, Magomeni Mapipa, Dar es Salaam — bring your receipt.",
+    "back": "Back to goals",
+    "statusLabel": {
+      "active": "Active",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "pending": "Pending",
+      "failed": "Failed",
+      "success": "Success"
+    }
+  },
+  "signin": {
+    "metaTitle": "Sign in",
+    "heading": "Sign in",
+    "welcome": "Welcome back to Ubepari Wallet.",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "255 7XX XXX XXX",
+    "sendOtp": "Send OTP",
+    "otpHint": "We'll text a 6-digit code to your phone.",
+    "newHere": "New here?",
+    "createAccountLink": "Create an account",
+    "notRegistered": "We don't have an account for this number. Create one at Sign up.",
+    "tabOtp": "OTP",
+    "tabPassword": "Password",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "signInWithPassword": "Sign in",
+    "forgotPassword": "Forgot your password?",
+    "passwordInvalid": "That phone and password don't match.",
+    "passwordLocked": "Too many wrong tries. Try again in 15 minutes.",
+    "passwordError": "Something went wrong. Try again."
+  },
+  "signup": {
+    "metaTitle": "Create account",
+    "heading": "Create your account",
+    "subtitle": "It takes 60 seconds. You'll verify your ID later, when you checkout.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "255 7XX XXX XXX",
+    "emailLabel": "Email (optional)",
+    "emailPlaceholder": "you@gmail.com",
+    "submit": "Create account",
+    "consentPrefix": "I agree to Ubepari's ",
+    "consentTerms": "Terms",
+    "consentComma": ", ",
+    "consentPrivacy": "Privacy Notice",
+    "consentAnd": ", and ",
+    "consentHirePurchase": "Hire-Purchase Agreement",
+    "consentSuffix": ".",
+    "consentRequired": "Please accept the Terms, Privacy Notice, and Hire-Purchase Agreement to continue.",
+    "alreadyHave": "Already have an account?",
+    "signInLink": "Sign in",
+    "passwordSentTitle": "Your password is on its way",
+    "passwordSentBody": "We've texted your initial password to your phone. Save it somewhere safe — you can use it to sign in, or keep using OTP.",
+    "passwordSentCta": "Continue to KYC"
+  },
+  "passwordReset": {
+    "metaTitle": "Reset password",
+    "heading": "Set a new password",
+    "body": "Enter your phone number. We'll text you a 6-digit code. Then choose a new password.",
+    "phoneLabel": "Phone number",
+    "sendCodeButton": "Send code",
+    "codeLabel": "Verification code",
+    "newPasswordLabel": "New password",
+    "newPasswordHint": "At least 8 characters.",
+    "confirmButton": "Set password",
+    "backToSignIn": "Back to sign in",
+    "successTitle": "Password updated",
+    "successBody": "You're signed in now.",
+    "continueButton": "Continue",
+    "errorWrongCode": "That code doesn't match.",
+    "errorExpired": "That code expired. Request a new one.",
+    "errorTooMany": "Too many wrong tries. Request a new code.",
+    "errorWeak": "Password must be at least 8 characters.",
+    "errorNotFound": "No account with that number.",
+    "errorGeneric": "Something went wrong. Try again."
+  },
+  "otp": {
+    "heading": "Check your phone",
+    "sentTo": "We sent a 6-digit code to {phone}.",
+    "codeLabel": "Verification code",
+    "codePlaceholder": "123456",
+    "verifyButton": "Verify & continue",
+    "resendButton": "Resend code",
+    "resendIn": "Resend in {seconds}s",
+    "changeNumber": "Change number",
+    "smsText": "Ubepari: {code} is your code. Expires in 5 min.",
+    "errors": {
+      "invalidPhone": "Please enter a Tanzanian phone number (e.g. 255712345678).",
+      "tooManyRequests": "Too many requests. Wait a minute.",
+      "expired": "That code expired. Request a new one.",
+      "wrong": "That code doesn't match.",
+      "tooManyAttempts": "Too many wrong tries. Request a new code.",
+      "smsFailed": "We couldn't send the SMS. Try again.",
+      "unknown": "Something went wrong. Try again."
+    }
+  },
+  "kyc": {
+    "metaTitle": "KYC & Verification",
+    "eyebrow": "Verification",
+    "heading": "Verify once. Shop forever.",
+    "body": "Upload one valid ID and we'll assign you a credit limit, usually within a few hours. Ubepari's KYC team reviews every submission.",
+    "nidaLabel": "NIDA number",
+    "nidaPlaceholder": "20000000-00000-00000-00",
+    "nidaHint": "20 digits. Find it on the front of your NIDA card.",
+    "legalFirstName": "Legal first name",
+    "legalLastName": "Legal last name",
+    "uploadLabel": "Upload ID document",
+    "uploadDrop": "Drop NIDA / Passport here",
+    "uploadFormats": "JPG or PDF · max 5 MB",
+    "uploadChoose": "Choose file",
+    "workplaceLabel": "Workplace / permit (optional)",
+    "workplacePlaceholder": "Employer or business name",
+    "workplaceHint": "Helps us approve a higher credit limit.",
+    "submit": "Submit for review",
+    "whatHappensNext": "What happens next",
+    "steps": [
+      "Our team matches your NIDA details to the national registry.",
+      "We run a soft credit check — no impact on your score.",
+      "You get your credit limit by SMS and email, usually within 4 hours."
+    ],
+    "submitted": "Submitted. We'll let you know within a few hours.",
+    "errorGeneric": "Something went wrong. Try again.",
+    "errorInvalidNida": "NIDA must be 20 digits.",
+    "errorMissingName": "Legal first and last name are both required.",
+    "errorMissingDoc": "Please attach your ID document.",
+    "errorDocTooLarge": "File must be under 5 MB.",
+    "errorDocType": "Use JPG, PNG, or PDF.",
+    "alreadyPendingTitle": "Under review",
+    "alreadyPendingBody": "We've received your documents. Most reviews clear within a few hours — we'll text and email when you're approved.",
+    "alreadyApprovedTitle": "You're verified",
+    "alreadyApprovedBody": "Your KYC is approved. Browse the store and choose your plan.",
+    "rejectedHeading": "Your previous submission was rejected",
+    "rejectedHint": "Please address the feedback below and resubmit.",
+    "rejectedNoNotes": "No reason was recorded — please contact support if you need help."
+  },
+  "trustStrip": {
+    "items": [
+      {
+        "title": "NIDA-verified",
+        "body": "Every customer is verified through Tanzania's National ID system."
+      },
+      {
+        "title": "Encrypted payments",
+        "body": "M-Pesa, Tigo Pesa, Airtel Money, and card — all via Evmark's certified gateway."
+      },
+      {
+        "title": "Same-day pickup",
+        "body": "Pay your deposit and collect your PC from our Dar showroom today."
+      },
+      {
+        "title": "WhatsApp support",
+        "body": "A real person on the other end. Your order ID is pre-filled."
+      }
+    ]
+  },
+  "legal": {
+    "eyebrow": "Legal",
+    "lastUpdated": "Last updated {date} · version {version}",
+    "lastUpdatedDate": "1 April 2026",
+    "toc": "Contents",
+    "controllingVersion": "The English version is the controlling version of this document. The Swahili translation is provided for convenience; if the two diverge, the English text prevails.",
+    "backToHome": "← Back to home",
+    "relatedHeading": "Related documents",
+    "relatedLinks": {
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "hirePurchase": "Hire-Purchase Agreement"
+    },
+    "contactBlock": {
+      "title": "Questions about this document?",
+      "body": "Reach a real person. For formal complaints, please write to the email below and include your phone number and order reference (if any).",
+      "emailLabel": "Email",
+      "emailValue": "support@ubeparipc.com",
+      "phoneLabel": "Phone",
+      "phoneValue": "+255 683 491 481",
+      "whatsappLabel": "WhatsApp",
+      "whatsappHref": "https://wa.me/255683491481",
+      "whatsappValue": "wa.me/255683491481",
+      "hqLabel": "Head office",
+      "hqValue": "Magomeni Usalama, Dar es Salaam, Tanzania",
+      "shopLabel": "Showroom",
+      "shopValue": "Magomeni Mapipa, Dar es Salaam, Tanzania"
+    },
+    "terms": {
+      "metaTitle": "Terms of Service",
+      "metaDescription": "The rules that govern your use of Ubepari Wallet — who we are, who can sign up, how payments and hire-purchase work, and your rights under Tanzanian law.",
+      "heading": "Terms of Service",
+      "intro": "These Terms are a legal agreement between you and Ubepari PC Co LTD. They govern your use of Ubepari Wallet — the website, the account, the hire-purchase plans, and every payment that runs through our platform. Please read them. By creating an account or reserving a PC, you confirm that you have read and accepted them.",
+      "sections": {
+        "about": {
+          "title": "1. Who we are",
+          "body": [
+            "Ubepari PC Co LTD (\"Ubepari\", \"we\", \"us\", \"our\") is a private limited company incorporated in the United Republic of Tanzania. Our head office is at Magomeni Usalama, Dar es Salaam; our showroom is at Magomeni Mapipa, Dar es Salaam.",
+            "Ubepari Wallet is the online platform through which Ubepari sells personal computers and finances their purchase on installment plans. The Wallet is operated by Ubepari directly; payment processing is handled by a licensed payment aggregator on our behalf (see section 8)."
+          ]
+        },
+        "eligibility": {
+          "title": "2. Who can use the service",
+          "body": [
+            "To create an account and buy from Ubepari Wallet you must:",
+            "• be at least 18 years old;\n• hold a valid Tanzanian National Identification Number (NIDA) or a valid passport recognised in Tanzania;\n• be resident in Tanzania and provide a Tanzanian mobile number (255XXXXXXXXX);\n• have the legal capacity to enter into a binding contract.",
+            "We may refuse to create an account, or close an existing one, where we reasonably believe these requirements are not met or where we are required to do so by law."
+          ]
+        },
+        "account": {
+          "title": "3. Your account",
+          "body": [
+            "Your account is tied to your phone number. We verify it by sending a one-time password (OTP) over SMS. You are responsible for keeping your phone and SIM card secure. Anyone with access to the OTP sent to your phone can sign in to your account — if you lose your phone, contact us immediately.",
+            "The information you give us at sign-up and during KYC (name, date of birth, NIDA, address, ID document) must be accurate and current. If your details change, you must update them. We rely on this information to operate the service and to meet our obligations under Tanzanian law.",
+            "One person, one account. Do not share, sell, or transfer your account. Using a false identity or someone else's identity is a criminal offence under the Electronic Transactions Act 2015."
+          ]
+        },
+        "kyc": {
+          "title": "4. Identity verification (KYC)",
+          "body": [
+            "Before you can reserve a PC or take out a hire-purchase plan you must complete Know-Your-Customer verification. You upload a clear copy of your NIDA card or passport, confirm your legal names, and may optionally add your workplace.",
+            "Our team reviews each submission manually. Most reviews clear within a few hours during business days. We may ask for additional documents or decline verification without giving reasons, as permitted by law.",
+            "Once you are verified, you are assigned a credit limit. Your credit limit is a commercial decision by Ubepari and can be changed at any time based on your payment history, our risk appetite, and regulatory guidance."
+          ]
+        },
+        "wallet": {
+          "title": "5. Ubepari Wallet",
+          "body": [
+            "Your Ubepari Wallet is a running ledger of the money you have paid in, the money we have debited for deposits and installments, and any refunds. It is not a bank account. Ubepari Wallet does not pay interest and does not provide payment services to third parties.",
+            "You can top up your Wallet via mobile money or card at any time. Top-ups are non-refundable in cash, but the balance can be applied to any current or future Ubepari purchase or installment.",
+            "If your account is closed, any positive Wallet balance will be refunded to the original payment method, less any amounts you owe us, within 30 business days."
+          ]
+        },
+        "purchases": {
+          "title": "6. Buying a PC",
+          "body": [
+            "When you reserve a PC, you are making an offer to buy it on the plan you selected. The sale is concluded when we confirm the order, the deposit has been received, and we have delivered or made the PC available for pickup at our showroom.",
+            "Prices are shown in Tanzanian Shillings (TZS) and include Value Added Tax where applicable. We try to keep catalog prices accurate but may correct obvious errors; if a price on your order differs materially from the price at the time you placed it because of a correction, we will contact you before charging the deposit.",
+            "Stock is limited. If a model goes out of stock between reservation and fulfilment, we will contact you with options: a similar model, wait for restock, or full refund of the deposit."
+          ]
+        },
+        "hirePurchaseRef": {
+          "title": "7. Hire-purchase plans",
+          "body": [
+            "If you choose a hire-purchase plan (3, 6, 9, or 12 months), the separate Hire-Purchase Agreement applies in addition to these Terms. That agreement is the contract of sale-by-installments and sets out the details of ownership, installments, default, and repossession in line with the Hire-Purchase Act, 1966.",
+            "By tapping the reserve button on a hire-purchase plan, you accept both these Terms and the Hire-Purchase Agreement for that specific order. Each order produces its own separate agreement."
+          ]
+        },
+        "payments": {
+          "title": "8. Payments and providers",
+          "body": [
+            "We accept M-Pesa, Tigo Pesa, Airtel Money and Visa / Mastercard cards. All payments are routed through a licensed aggregator (Evmark, operating under the iPAB International merchant arrangement) that holds the required licences with the Bank of Tanzania and the card networks. You authorise each payment explicitly, either by confirming the USSD prompt on your phone or by submitting your card details.",
+            "Payments are in TZS. If your card is issued in a different currency, your bank applies its own exchange rate and fees — check with them.",
+            "We never see or store your mobile-money PIN, and we do not store full card numbers on our servers. Card data is handled by the aggregator in line with PCI-DSS requirements."
+          ]
+        },
+        "fees": {
+          "title": "9. Fees and charges",
+          "body": [
+            "Cash purchases carry no service fee. Hire-purchase plans carry a service fee based on the term you choose: 0% for 3 months, 5% for 6 months, 8% for 9 months, and 12% for 12 months. The fee is calculated on the financed amount (the cash price less your 20% deposit) and is shown in full before you commit. Monthly installments are rounded up to the nearest 1,000 TZS.",
+            "We charge a late fee of 2% of the missed installment for each period that begins 7 days or more after the due date. Early payoff is free — you can clear your balance at any time without penalty.",
+            "We do not charge to top up your Wallet. Your mobile-money provider or card issuer may apply their own transaction fees — check with them."
+          ]
+        },
+        "warranty": {
+          "title": "10. Warranty, returns and defective goods",
+          "body": [
+            "Every new PC comes with the manufacturer's 12-month limited warranty. We pass this warranty through to you in full; we do not limit it. Warranty covers manufacturing defects, not accidental damage, liquid damage, or wear-and-tear.",
+            "If a PC arrives dead-on-arrival or develops a defect within 7 days of delivery, we will replace or repair it at no cost to you. After 7 days, we honour the manufacturer's warranty process and help you coordinate it.",
+            "These rights are in addition to any rights you may have under Tanzanian consumer-protection law. Nothing in these Terms limits those rights."
+          ]
+        },
+        "acceptableUse": {
+          "title": "11. Acceptable use",
+          "body": [
+            "You agree not to:",
+            "• use the service for any unlawful purpose, including money laundering, fraud, or financing illegal activity;\n• impersonate another person or misrepresent your identity;\n• attempt to bypass security, scrape the site with automation we have not authorised, or interfere with other users;\n• re-sell or commercially exploit the service without our written consent.",
+            "Breach of this section may result in immediate suspension or closure of your account, reporting to the police, and legal action for damages."
+          ]
+        },
+        "ip": {
+          "title": "12. Intellectual property",
+          "body": [
+            "The Ubepari name, logo, and the content and code of Ubepari Wallet are owned by Ubepari PC Co LTD or our licensors. You may view and use them only as part of using the service. You may not copy, modify, or publish them without our written permission.",
+            "Product photos, specifications, and brand names belong to their respective manufacturers and are used under licence or fair dealing."
+          ]
+        },
+        "availability": {
+          "title": "13. Service availability",
+          "body": [
+            "We do our best to keep Ubepari Wallet available around the clock, but we cannot guarantee uninterrupted service. We may need to take the service offline for maintenance, upgrades, or emergency fixes. Where possible, we will post advance notice on the site.",
+            "The service is provided \"as is\" and \"as available\". We disclaim all implied warranties to the maximum extent permitted by law, except as expressly stated in these Terms."
+          ]
+        },
+        "liability": {
+          "title": "14. Limitation of liability",
+          "body": [
+            "To the maximum extent permitted by law, our total liability to you for any claim arising out of or related to these Terms or your use of Ubepari Wallet is limited to the greater of (a) the total amount you have paid us in the 12 months before the claim, or (b) TZS 100,000.",
+            "We are not liable for indirect, incidental, special, consequential, or punitive damages, including loss of profit, revenue, data, or goodwill.",
+            "Nothing in this section limits liability for fraud, gross negligence, death or personal injury caused by our negligence, or any other liability that cannot be limited under Tanzanian law."
+          ]
+        },
+        "termination": {
+          "title": "15. Suspension and closure",
+          "body": [
+            "You can close your account at any time by writing to support@ubeparipc.com. Closure does not release you from obligations on any active hire-purchase plan.",
+            "We can suspend or close your account if we reasonably believe you are in breach of these Terms, have provided false information, are using the service for unlawful purposes, or if we are required to by law or regulator order. Where practicable we will give you notice and a chance to fix the issue first."
+          ]
+        },
+        "changes": {
+          "title": "16. Changes to these Terms",
+          "body": [
+            "We may change these Terms from time to time — for example, to reflect new products, new laws, or changes in how we operate. If the change is material, we will notify you by SMS, email, or in-app message at least 14 days before it takes effect. For non-material changes (typos, clarifications) we may update the document without individual notice.",
+            "The version and \"last updated\" date at the top of this page always reflect the current version. Continuing to use Ubepari Wallet after a change takes effect means you accept the new version. If you do not accept, stop using the service and close your account."
+          ]
+        },
+        "law": {
+          "title": "17. Governing law and disputes",
+          "body": [
+            "These Terms are governed by the laws of the United Republic of Tanzania, including the Electronic Transactions Act, 2015 and, where relevant, the Hire-Purchase Act, 1966 and the Personal Data Protection Act, 2022.",
+            "We prefer to resolve disputes directly — please write to us first. If that fails, the courts of Tanzania, sitting in Dar es Salaam, have exclusive jurisdiction. Nothing prevents you from filing a complaint with a competent regulator (for example, the Fair Competition Commission for consumer issues or the Personal Data Protection Commission for data issues)."
+          ]
+        },
+        "contact": {
+          "title": "18. Contact us",
+          "body": [
+            "If you have questions about these Terms, write to support@ubeparipc.com, call +255 683 491 481, or visit our showroom at Magomeni Mapipa, Dar es Salaam."
+          ]
+        }
+      }
+    },
+    "privacy": {
+      "metaTitle": "Privacy Policy",
+      "metaDescription": "How Ubepari collects, uses and protects your personal data — including your NIDA, phone number, KYC documents, and payment records — under the Tanzanian Personal Data Protection Act, 2022.",
+      "heading": "Privacy Policy",
+      "intro": "This policy explains what personal information Ubepari PC Co LTD collects when you use Ubepari Wallet, why we collect it, who we share it with, how long we keep it, and what rights you have over it. We have written it in plain language. If anything is unclear, email support@ubeparipc.com and we will help.",
+      "sections": {
+        "controller": {
+          "title": "1. Data controller",
+          "body": [
+            "The data controller is Ubepari PC Co LTD, a company incorporated in Tanzania, with its head office at Magomeni Usalama, Dar es Salaam. This means we decide what personal data to collect and how it is used, and we are accountable to you and to the Personal Data Protection Commission for how we handle it.",
+            "For privacy questions, write to support@ubeparipc.com with \"Privacy\" in the subject line. We aim to respond within 7 days."
+          ]
+        },
+        "whatWeCollect": {
+          "title": "2. What we collect",
+          "body": [
+            "From you directly when you sign up, verify, or transact:",
+            "• your mobile number in the format 255XXXXXXXXX;\n• your first and last name;\n• your email address (optional);\n• your NIDA number or passport details during KYC;\n• a photo or scan of your ID document;\n• your employer or business name (optional, during KYC);\n• details of the products you reserve and the plan you choose;\n• the phone number you use to authorise each mobile-money payment.",
+            "Automatically when you use the service:",
+            "• basic device information (browser, operating system, approximate IP-based location) for security and fraud prevention;\n• the dates, amounts, status and provider of each payment;\n• messages you send to our AI Tech Tips assistant.",
+            "From our payment aggregator (Evmark / iPAB):",
+            "• a transaction reference, provider reference, and the status (success / failure) of each payment authorised against your phone number."
+          ]
+        },
+        "whyWeCollect": {
+          "title": "3. Why we collect it and legal basis",
+          "body": [
+            "We collect your data only for the purposes listed below, and each is backed by a legal basis under the Personal Data Protection Act, 2022.",
+            "• Operating the service (performance of contract): creating your account, processing payments, fulfilling orders, managing hire-purchase plans.\n• KYC and credit decisions (legal obligation and legitimate interest): verifying your identity, assessing credit, preventing fraud and money laundering.\n• Customer support (performance of contract): answering questions, processing complaints, handling warranty.\n• Fraud and security (legitimate interest): logging, detecting suspicious activity, protecting other users and the business.\n• AI recommendations (performance of contract, with your explicit action): when you use AI Tech Tips, we send your question and our product catalog to our AI provider (see section 4). We do not send your name, phone number, NIDA, or any other identifier.\n• Service improvement (legitimate interest): aggregated, de-identified analysis of how people use the service. We do not use this to profile individuals.\n• Legal compliance (legal obligation): meeting our obligations under tax, financial-services, data-protection, and consumer-protection law."
+          ]
+        },
+        "processors": {
+          "title": "4. Who we share your data with",
+          "body": [
+            "We do not sell your data. We share it only with the processors below, each under a written agreement that limits what they may do with it:",
+            "• Evmark Tanzania Ltd, operating under the iPAB International merchant arrangement — for all mobile-money and card payment processing. They receive your phone number, the amount, and a reference code.\n• Messaging-service.co.tz — our SMS gateway. They receive your phone number and the message text (OTP codes, order confirmations).\n• Supabase, Inc. — our database and file-storage provider. Your account, KYC documents, and transaction records are stored on Supabase infrastructure in the EU-West (Ireland) region.\n• OpenAI, Inc. — our AI provider for the AI Tech Tips feature. They receive the text of your question and our product catalog; they do not receive your personal identifiers. Inputs to the OpenAI API are not used to train their models under their standard commercial terms.\n• Vercel, Inc. — our hosting and CDN provider. They see request metadata (IP, user-agent, URL) used to deliver pages and defend against abuse.",
+            "We will share your data with law enforcement, regulators, or courts if we are legally required to, and with our professional advisers (lawyers, auditors) where necessary and under duty of confidence."
+          ]
+        },
+        "crossBorder": {
+          "title": "5. Cross-border data transfers",
+          "body": [
+            "Some of our processors are outside Tanzania. Supabase stores your account and KYC data in the European Union (Ireland), OpenAI processes AI requests in the United States, and Vercel operates a global CDN. All transfers are made under contractual terms that require those processors to protect your data at a level equivalent to Tanzanian standards under the Personal Data Protection Act, 2022.",
+            "If you object to international transfer of your personal data, you should not use Ubepari Wallet and we cannot provide the service to you. Please write to support@ubeparipc.com if you wish to object and close your account."
+          ]
+        },
+        "retention": {
+          "title": "6. How long we keep your data",
+          "body": [
+            "We keep your data only as long as we need it.",
+            "• Account and contact details: while your account is open, plus 7 years after closure (to meet tax and financial-records law).\n• KYC documents (ID photos and NIDA): while your account is open, plus 7 years after closure, unless a specific law requires a shorter period.\n• Payment records: 10 years, in line with financial-records legislation.\n• OTP codes: deleted within 10 minutes of issue; phone + code-hash rows expire automatically.\n• AI Tech Tips messages: 90 days for support and quality review, then deleted.\n• Server logs (IP, user-agent): 90 days, then aggregated or deleted."
+          ]
+        },
+        "security": {
+          "title": "7. How we protect your data",
+          "body": [
+            "Your data is encrypted in transit (TLS) and at rest on our providers' infrastructure. KYC documents live in a private storage bucket that only service-role operations on our server can read. Access to your account is protected by phone + OTP; we do not use static passwords. Our database enforces row-level security so that one user cannot read another user's rows even if our application layer has a bug.",
+            "We train our team on data handling. We limit access to personal data to the staff who need it for their role. We log access to sensitive data.",
+            "No system is perfectly secure. If we ever suffer a personal-data breach that is likely to result in risk to your rights, we will notify you and the Personal Data Protection Commission within the timelines set by the Personal Data Protection Act, 2022."
+          ]
+        },
+        "yourRights": {
+          "title": "8. Your rights",
+          "body": [
+            "Under the Personal Data Protection Act, 2022 you have the right to:",
+            "• Access — ask for a copy of the personal data we hold about you.\n• Rectification — ask us to correct inaccurate or incomplete data.\n• Erasure — ask us to delete your data, subject to retention periods we are legally required to keep.\n• Objection — object to processing based on legitimate interest.\n• Restriction — ask us to stop processing your data temporarily while a query is resolved.\n• Portability — receive your data in a machine-readable format.\n• Withdraw consent — for any processing that was based on your consent.\n• Complain — lodge a complaint with the Personal Data Protection Commission of Tanzania.",
+            "To exercise any of these rights, write to support@ubeparipc.com from the email or phone number on your account. We respond within 30 days and may ask for proof of identity before acting."
+          ]
+        },
+        "cookies": {
+          "title": "9. Cookies and local storage",
+          "body": [
+            "We use one essential cookie — ubepari-session — to keep you signed in. It is set after you verify an OTP and is removed when you sign out. It is marked HttpOnly and Secure and cannot be read by scripts in the browser.",
+            "We also use local storage for your theme preference (light / dark) and your language choice (English / Swahili). These do not identify you.",
+            "We do not use advertising cookies or third-party analytics cookies by default. If this ever changes, we will update this policy and ask for your consent where required."
+          ]
+        },
+        "children": {
+          "title": "10. Children",
+          "body": [
+            "Ubepari Wallet is not directed at people under 18. We do not knowingly collect data from anyone under 18. If you believe a child has given us data, write to support@ubeparipc.com and we will delete it."
+          ]
+        },
+        "changes": {
+          "title": "11. Changes to this policy",
+          "body": [
+            "We may update this policy. If the update materially affects how we use your data, we will notify you by SMS, email, or in-app message at least 14 days before it takes effect. The version and \"last updated\" date at the top of this page always reflect the current version."
+          ]
+        },
+        "contact": {
+          "title": "12. Contact",
+          "body": [
+            "Write to support@ubeparipc.com, call +255 683 491 481, or visit our head office at Magomeni Usalama, Dar es Salaam. Mark privacy queries clearly so they reach the right team."
+          ]
+        }
+      }
+    },
+    "hirePurchase": {
+      "metaTitle": "Hire-Purchase Agreement",
+      "metaDescription": "The contract between Ubepari and you when you buy a PC on an installment plan — deposit, ownership, installments, late fees, default and repossession under the Hire-Purchase Act, 1966.",
+      "heading": "Hire-Purchase Agreement",
+      "intro": "This is the contract you enter into when you reserve a PC on a hire-purchase plan. It is made under the Hire-Purchase Act, 1966 and the laws of Tanzania. It should be read together with our Terms of Service and Privacy Policy. Each order you place on a plan creates a separate agreement; the specific price, deposit, term, service fee, and monthly installment are shown to you on the reservation screen and confirmed in your Wallet.",
+      "sections": {
+        "parties": {
+          "title": "1. Parties",
+          "body": [
+            "This agreement is between Ubepari PC Co LTD, a company incorporated in Tanzania with its head office at Magomeni Usalama, Dar es Salaam (\"Ubepari\", \"we\", the \"Owner\"), and you, the customer whose KYC details are on file (the \"Hirer\")."
+          ]
+        },
+        "definitions": {
+          "title": "2. Definitions",
+          "body": [
+            "\"Goods\" — the specific PC you have reserved, identified by model, serial number and order reference.\n\"Cash Price\" — the one-off price of the Goods if paid in full today, in TZS.\n\"Deposit\" — 20% of the Cash Price, paid at the time of reservation.\n\"Financed Amount\" — the Cash Price less the Deposit.\n\"Service Fee\" — a term-based fee on the Financed Amount: 0% for 3 months, 5% for 6 months, 8% for 9 months, 12% for 12 months.\n\"Total Hire Price\" — the Deposit plus the Financed Amount plus the Service Fee.\n\"Monthly Installment\" — the Financed Amount plus the Service Fee, divided by the number of months in the term, rounded up to the nearest 1,000 TZS.\n\"Wallet\" — your Ubepari Wallet account.\n\"Default\" — has the meaning given in section 11."
+          ]
+        },
+        "structure": {
+          "title": "3. Structure of the plan",
+          "body": [
+            "You pay the Deposit up front. On receipt of the Deposit we release the Goods to you (delivery or showroom pickup). You then pay the Monthly Installment once a month for the chosen term until the Total Hire Price is paid in full.",
+            "The exact numbers for your order — Cash Price, Deposit, Financed Amount, Service Fee, Monthly Installment, Total Hire Price, and due dates — are calculated live from the method published in our code repository (see src/lib/credit.ts) and shown on the reservation screen before you confirm. They are also recorded against your order in your Wallet."
+          ]
+        },
+        "terms": {
+          "title": "4. Available terms",
+          "body": [
+            "You may choose from the following terms at reservation:",
+            "• 3 months — 0% service fee\n• 6 months — 5% service fee\n• 9 months — 8% service fee\n• 12 months — 12% service fee",
+            "The Service Fee is applied to the Financed Amount (not the Cash Price). Monthly Installments are always rounded up to the nearest 1,000 TZS. A worked example is available on the product page."
+          ]
+        },
+        "deposit": {
+          "title": "5. Deposit",
+          "body": [
+            "The Deposit is paid at reservation via M-Pesa, Tigo Pesa, Airtel Money, or card, routed through our payment aggregator (Evmark / iPAB). The order is only confirmed once the Deposit has been settled on our side.",
+            "If you cancel before pickup or delivery, the Deposit is fully refundable within 14 days, to the original payment method."
+          ]
+        },
+        "delivery": {
+          "title": "6. Delivery and pickup",
+          "body": [
+            "Same-day pickup is available at our showroom in Magomeni Mapipa, Dar es Salaam. Delivery elsewhere in Dar es Salaam and upcountry is available by arrangement; a delivery charge may apply and will be quoted and agreed before dispatch.",
+            "You must present a valid ID (NIDA or passport) matching your KYC details at pickup. Risk in the Goods passes to you on delivery; ownership does not (see section 7)."
+          ]
+        },
+        "ownership": {
+          "title": "7. Ownership and risk",
+          "body": [
+            "Ubepari remains the legal owner of the Goods until the Total Hire Price has been paid in full, in line with the Hire-Purchase Act, 1966. Full ownership transfers to you automatically on payment of your last installment, without any further action by either party.",
+            "Risk of loss or damage passes to you on delivery. From that point you are responsible for protecting the Goods — for example, from theft, accidental damage, and liquid damage. You are strongly encouraged to arrange insurance. You must not sell, pledge, lease, or export the Goods before you own them."
+          ]
+        },
+        "installments": {
+          "title": "8. Installments",
+          "body": [
+            "Monthly Installments are due on the same day of the month as your delivery day (or, if that day does not exist in a given month, the last day of that month). Your repayment schedule is shown in the Orders section of your Wallet and you can pay ahead of schedule at any time.",
+            "You can pay installments manually from the Wallet, or top up the Wallet and let it apply automatically on the due date. We will send an SMS reminder 3 days before each due date."
+          ]
+        },
+        "lateFee": {
+          "title": "9. Late fees",
+          "body": [
+            "If a Monthly Installment is not paid by the due date, a late fee of 2% of the missed installment is charged once the installment is 7 or more days overdue. The late fee applies per overdue installment, not per day."
+          ]
+        },
+        "earlyPayoff": {
+          "title": "10. Early payoff",
+          "body": [
+            "You may clear the outstanding balance at any time, in part or in full. There is no early-payoff penalty. If you pay the Total Hire Price in full before the end of the term, the Service Fee is already baked into the Total Hire Price and is not rebated — but you save on any future late-fee risk and own the Goods outright immediately."
+          ]
+        },
+        "default": {
+          "title": "11. Default",
+          "body": [
+            "You are in default if any of the following happens:",
+            "• a Monthly Installment remains unpaid 30 days after its due date;\n• you provide materially false information during KYC;\n• you sell, pledge, lease, or export the Goods before ownership has transferred;\n• an insolvency procedure is opened against you.",
+            "Default gives us the rights in section 12, but only after we have sent you a written default notice (SMS, email, or letter) giving you 30 days to bring your account up to date."
+          ]
+        },
+        "repossession": {
+          "title": "12. Repossession and sale",
+          "body": [
+            "If you do not cure the default within the 30-day notice period, we may repossess the Goods. Repossession is carried out in line with the Hire-Purchase Act, 1966 — in particular, no repossession without written notice, and you have the right to cure your default at any time up to repossession.",
+            "If we repossess and sell the Goods, we will credit the net sale proceeds (sale price less reasonable costs of repossession and sale) against the outstanding Total Hire Price and the amount of any Service Fee attributable to the unexpired portion of the term. Any surplus is paid to you; any shortfall remains owed by you.",
+            "At any stage you retain the right to pay off the outstanding balance in full and keep the Goods."
+          ]
+        },
+        "warranty": {
+          "title": "13. Warranty",
+          "body": [
+            "The 12-month manufacturer warranty on the Goods is not affected by this agreement. Ubepari will help you coordinate warranty service throughout the term and after.",
+            "If the Goods are defective and must be replaced, the replacement Goods become subject to this same agreement as if delivered on the replacement date — installments continue on the original schedule."
+          ]
+        },
+        "customerDuties": {
+          "title": "14. Your duties",
+          "body": [
+            "While you do not yet own the Goods, you agree to:",
+            "• take reasonable care of the Goods;\n• keep them at your normal place of residence or business in Tanzania, and tell us if that address changes;\n• not modify the Goods in a way that materially reduces their value;\n• tell us promptly if the Goods are lost, stolen, or seriously damaged;\n• keep your KYC details current;\n• keep at least one working payment method on file."
+          ]
+        },
+        "amendments": {
+          "title": "15. Amendments",
+          "body": [
+            "This agreement cannot be changed verbally. Any amendment must be in writing and signed or electronically accepted by both parties."
+          ]
+        },
+        "law": {
+          "title": "16. Governing law",
+          "body": [
+            "This agreement is governed by the laws of the United Republic of Tanzania, in particular the Hire-Purchase Act, 1966 and the Electronic Transactions Act, 2015. The courts of Tanzania, sitting in Dar es Salaam, have exclusive jurisdiction over any dispute arising under it."
+          ]
+        },
+        "contact": {
+          "title": "17. Contact",
+          "body": [
+            "For anything concerning your hire-purchase plan — a missed installment, a change of address, a loss or theft report, an early-payoff request — write to support@ubeparipc.com, call +255 683 491 481, or visit the showroom at Magomeni Mapipa, Dar es Salaam."
+          ]
+        }
+      }
+    }
+  },
+  "admin": {
+    "shell": {
+      "eyebrow": "Signed in as"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "kyc": "KYC review",
+      "products": "Products",
+      "users": "Users",
+      "orders": "Orders",
+      "goals": "Goals",
+      "payments": "Payments",
+      "reports": "Reports",
+      "comingSoon": "Soon"
+    },
+    "dashboard": {
+      "metaTitle": "Admin",
+      "eyebrow": "Admin",
+      "heading": "Dashboard",
+      "body": "A daily read on orders, revenue, review queues, and inventory. Numbers come straight from the database — no caching, no estimation.",
+      "sections": {
+        "orders": "Orders",
+        "revenue": "Revenue (settled payments)",
+        "lowStock": "Low stock"
+      },
+      "labels": {
+        "today": "Today",
+        "sevenDays": "Last 7 days",
+        "thirtyDays": "Last 30 days",
+        "active": "Active",
+        "pendingKyc": "Pending KYC",
+        "overdue": "Overdue installments",
+        "stock": "{n} left",
+        "view": "View"
+      },
+      "revenueNote": "Includes successful deposits, installments, and top-ups. Refunds and pending payments are excluded.",
+      "lowStockEmpty": "Every active product has at least 3 units in stock."
+    },
+    "kyc": {
+      "metaTitle": "KYC review",
+      "eyebrow": "Admin",
+      "heading": "KYC review",
+      "body": "Approve or reject identity submissions. An SMS goes to the customer and the action is recorded in the audit log.",
+      "tabs": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "columns": {
+        "submittedAt": "Submitted",
+        "name": "Legal name",
+        "nida": "NIDA",
+        "workplace": "Workplace",
+        "reviewedAt": "Reviewed"
+      },
+      "empty": {
+        "pending": "Nothing waiting for review.",
+        "approved": "No approved submissions yet.",
+        "rejected": "No rejected submissions yet."
+      },
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "limitNotice": "Showing the first {n}. Older rows are hidden.",
+      "detail": {
+        "back": "← Back to queue",
+        "docHeading": "ID document",
+        "docMissing": "Document unavailable. Ask the customer to resubmit.",
+        "openDoc": "Open document",
+        "refresh": "Refresh preview",
+        "sectionIdentity": "Identity",
+        "sectionReview": "Review",
+        "nida": "NIDA",
+        "workplace": "Workplace",
+        "workplaceEmpty": "Not provided",
+        "phone": "Phone",
+        "submittedAt": "Submitted",
+        "reviewedAt": "Reviewed",
+        "reviewedBy": "Reviewer",
+        "notes": "Review notes",
+        "noNotes": "No notes recorded.",
+        "supersededWarning": "A newer submission from this customer exists. Review that one instead.",
+        "viewNewer": "View newest submission"
+      },
+      "actions": {
+        "approve": "Approve",
+        "reject": "Reject",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+      },
+      "approve": {
+        "confirmTitle": "Approve this submission?",
+        "confirmBody": "The customer will be notified by SMS and can place orders immediately.",
+        "submit": "Approve submission"
+      },
+      "reject": {
+        "notesLabel": "Reason for rejection",
+        "notesPlaceholder": "Describe what the customer needs to fix (visible to them in-app).",
+        "notesHint": "Max 500 characters. The customer sees the full reason after signing in.",
+        "confirmTitle": "Reject this submission?",
+        "confirmBody": "The customer will be notified by SMS to open the app and see the reason.",
+        "submit": "Reject submission"
+      },
+      "toast": {
+        "approved": "Approved. SMS sent to the customer.",
+        "rejected": "Rejected. SMS sent to the customer.",
+        "smsFailed": "Action saved, but the SMS failed — notify the customer manually.",
+        "alreadyReviewed": "This submission was already reviewed.",
+        "selfReview": "You can't review your own submission.",
+        "profileSyncFailed": "Profile sync failed — please retry to keep records in sync.",
+        "notesRequired": "A reason is required when rejecting.",
+        "error": "Something went wrong. Please try again."
+      }
+    },
+    "products": {
+      "metaTitle": "Products",
+      "eyebrow": "Admin",
+      "heading": "Products",
+      "body": "Manage the catalog staff sees in the store. Edits go live the moment you save.",
+      "tabs": {
+        "active": "Active",
+        "inactive": "Archived",
+        "all": "All"
+      },
+      "list": {
+        "searchPlaceholder": "Search by name, slug, or brand",
+        "allBrands": "All brands",
+        "new": "New product",
+        "empty": "No products match these filters.",
+        "columns": {
+          "name": "Product",
+          "brand": "Brand",
+          "price": "Cash price",
+          "stock": "Stock",
+          "status": "Status"
+        },
+        "status": {
+          "active": "Active",
+          "inactive": "Archived"
+        },
+        "stockOut": "Out of stock",
+        "featuredBadge": "Featured"
+      },
+      "actions": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "create": "Create product",
+        "delete": "Archive product",
+        "backToList": "← Back to products"
+      },
+      "form": {
+        "sectionIdentity": "Identity",
+        "sectionCopy": "Copy",
+        "sectionCommerce": "Commerce",
+        "sectionSpecs": "Specifications",
+        "sectionTags": "Usage tags",
+        "sectionImages": "Images",
+        "slugLabel": "Slug",
+        "slugHint": "URL-safe identifier. Lowercase letters, numbers and dashes only.",
+        "slugLocked": "Slug is locked because at least one order already references this product.",
+        "brandLabel": "Brand",
+        "nameEn": "Name (English)",
+        "nameSw": "Name (Swahili)",
+        "taglineEn": "Tagline (English)",
+        "taglineSw": "Tagline (Swahili)",
+        "descriptionEn": "Description (English)",
+        "descriptionSw": "Description (Swahili)",
+        "priceLabel": "Cash price (TZS)",
+        "priceHint": "Integer TZS. We compute the credit plan from this number.",
+        "stockLabel": "Stock",
+        "stockHint": "Decremented automatically when a deposit settles.",
+        "featuredLabel": "Featured on landing",
+        "activeLabel": "Visible in store",
+        "colorLabel": "Accent color",
+        "colorHint": "Hex code used behind product art on the detail page.",
+        "specs": {
+          "cpu": "CPU",
+          "cpuGeneration": "CPU generation",
+          "ram": "RAM",
+          "storage": "Storage",
+          "gpu": "GPU",
+          "display": "Display",
+          "os": "Operating system",
+          "weight": "Weight"
+        },
+        "tagsHint": "Pick every use case this machine handles well.",
+        "usageTags": {
+          "Gaming": "Gaming",
+          "Design": "Design",
+          "Coding": "Coding",
+          "Office": "Office",
+          "Student": "Student",
+          "Creator": "Creator"
+        },
+        "validation": {
+          "required": "Required",
+          "length": "Length out of range",
+          "format": "Bad format",
+          "range": "Out of allowed range",
+          "enum": "Pick one of the allowed values"
+        }
+      },
+      "images": {
+        "heading": "Images",
+        "hint": "Up to {max} images. JPEG, PNG or WebP, 4 MB max each. Drag tiles to reorder.",
+        "upload": "Upload image",
+        "uploading": "Uploading…",
+        "delete": "Remove",
+        "confirmDelete": "Remove this image?",
+        "altEn": "Alt text (English)",
+        "altSw": "Alt text (Swahili)",
+        "save": "Save alt",
+        "empty": "No images yet. Upload one to start.",
+        "toast": {
+          "uploaded": "Image uploaded.",
+          "removed": "Image removed.",
+          "reordered": "Order saved.",
+          "altSaved": "Alt text saved.",
+          "tooBig": "File too large (max 4 MB).",
+          "badType": "Only JPEG, PNG or WebP images are accepted.",
+          "limit": "You've reached the maximum of {max} images.",
+          "error": "Something went wrong. Please try again."
+        }
+      },
+      "delete": {
+        "confirmTitle": "Archive this product?",
+        "confirmBody": "It disappears from the store immediately. You can reactivate it later from the Archived tab.",
+        "submit": "Archive product"
+      },
+      "toast": {
+        "created": "Product created.",
+        "updated": "Saved.",
+        "deleted": "Product archived.",
+        "slugInUse": "That slug is already taken.",
+        "slugLocked": "You can't change the slug — orders reference it.",
+        "validation": "Check the highlighted fields.",
+        "notFound": "Product not found.",
+        "unauthenticated": "Sign in again to continue.",
+        "error": "Something went wrong. Please try again."
+      }
+    },
+    "users": {
+      "metaTitle": "Users",
+      "eyebrow": "Admin",
+      "heading": "Users",
+      "body": "Everyone signed up on Ubepari. Review profiles, adjust credit, and manage admin access.",
+      "list": {
+        "searchPlaceholder": "Search by phone, name, or email",
+        "empty": "No users match this search.",
+        "columns": {
+          "user": "User",
+          "phone": "Phone",
+          "email": "Email",
+          "kyc": "KYC",
+          "creditLimit": "Credit limit",
+          "orders": "Orders",
+          "joined": "Joined"
+        },
+        "adminBadge": "Admin",
+        "rootBadge": "Root"
+      },
+      "detail": {
+        "back": "← Back to users",
+        "sectionProfile": "Profile",
+        "sectionWallet": "Wallet",
+        "sectionOrders": "Orders",
+        "sectionPayments": "Payments",
+        "sectionKyc": "KYC history",
+        "labels": {
+          "phone": "Phone",
+          "email": "Email",
+          "name": "Name",
+          "joined": "Joined",
+          "creditLimit": "Credit limit",
+          "creditPoints": "Credit points",
+          "kyc": "KYC status",
+          "adminRole": "Admin",
+          "noName": "Not provided",
+          "noEmail": "Not provided"
+        },
+        "wallet": {
+          "balance": "Wallet balance",
+          "totalPaid": "Total paid",
+          "totalOwed": "Total outstanding",
+          "nextDue": "Next payment due",
+          "nextDueEmpty": "No scheduled payment"
+        },
+        "ordersEmpty": "This user has no orders yet.",
+        "paymentsEmpty": "No payments on file.",
+        "kycEmpty": "No KYC submissions yet.",
+        "kycLink": "Open submission",
+        "kycStatus": {
+          "none": "Not started",
+          "pending": "Pending",
+          "approved": "Approved",
+          "rejected": "Rejected"
+        },
+        "orderStatus": {
+          "pending": "Pending deposit",
+          "active": "Active",
+          "completed": "Completed",
+          "cancelled": "Cancelled"
+        },
+        "paymentStatus": {
+          "pending": "Pending",
+          "success": "Success",
+          "failed": "Failed"
+        },
+        "paymentKind": {
+          "deposit": "Deposit",
+          "installment": "Installment",
+          "topup": "Top-up",
+          "refund": "Refund",
+          "contribution": "Contribution"
+        }
+      },
+      "creditLimit": {
+        "title": "Change credit limit",
+        "currentLabel": "Current limit",
+        "newLabel": "New limit (TZS)",
+        "reasonLabel": "Reason",
+        "reasonPlaceholder": "Why is this limit changing? (recorded in the audit log)",
+        "reasonHint": "1–500 characters. Saved in the audit log.",
+        "submit": "Save limit",
+        "saving": "Saving…"
+      },
+      "adminRole": {
+        "title": "Admin access",
+        "grantAction": "Grant admin",
+        "revokeAction": "Revoke admin",
+        "reasonLabel": "Reason",
+        "reasonPlaceholder": "Why is this access changing?",
+        "reasonHint": "1–500 characters. Saved in the audit log.",
+        "grantSubmit": "Grant admin",
+        "revokeSubmit": "Revoke admin",
+        "rootOnlyNote": "Only the root admin can change admin access.",
+        "rootLocked": "This is the root admin account. Its access can only be changed by editing ROOT_ADMIN_PHONE.",
+        "selfLocked": "You can't change your own admin access from here."
+      },
+      "toast": {
+        "creditUpdated": "Credit limit updated.",
+        "adminGranted": "Admin access granted.",
+        "adminRevoked": "Admin access revoked.",
+        "validation": "Check the highlighted fields.",
+        "reasonRequired": "A reason is required.",
+        "forbidden": "You don't have permission to do that.",
+        "selfForbidden": "You can't change your own admin access.",
+        "rootForbidden": "The root admin can't be demoted from the UI.",
+        "notFound": "User not found.",
+        "unauthenticated": "Sign in again to continue.",
+        "error": "Something went wrong. Please try again."
+      }
+    },
+    "orders": {
+      "metaTitle": "Orders",
+      "eyebrow": "Admin",
+      "heading": "Orders",
+      "body": "Every hire-purchase order across the business. Recover lost callbacks, cancel stuck pending orders, and edit installment due dates when a customer needs a payment plan change.",
+      "list": {
+        "searchPlaceholder": "Search by reference, phone, name, or product",
+        "empty": "No orders match these filters.",
+        "applyFilters": "Apply",
+        "filters": {
+          "statusLabel": "Status",
+          "fromLabel": "From",
+          "toLabel": "To"
+        },
+        "tabs": {
+          "all": "All",
+          "pending": "Pending",
+          "active": "Active",
+          "completed": "Completed",
+          "cancelled": "Cancelled"
+        },
+        "columns": {
+          "reference": "Reference",
+          "user": "Customer",
+          "product": "Product",
+          "total": "Total",
+          "status": "Status",
+          "created": "Created",
+          "monthly": "Monthly"
+        },
+        "termLabel": "{n} mo"
+      },
+      "detail": {
+        "back": "← Back to orders",
+        "sectionCustomer": "Customer",
+        "sectionBreakdown": "Price breakdown",
+        "sectionInstallments": "Installments",
+        "sectionPayments": "Payments",
+        "sectionActions": "Actions",
+        "labels": {
+          "reference": "Reference",
+          "createdAt": "Created",
+          "activatedAt": "Activated",
+          "completedAt": "Completed",
+          "notSet": "—",
+          "cashPrice": "Cash price",
+          "deposit": "Deposit",
+          "financed": "Financed",
+          "serviceFee": "Service fee",
+          "total": "Total",
+          "monthly": "Monthly",
+          "plan": "Plan"
+        },
+        "statusLabels": {
+          "pending": "Pending deposit",
+          "active": "Active",
+          "completed": "Completed",
+          "cancelled": "Cancelled"
+        },
+        "paymentStatus": {
+          "pending": "Pending",
+          "success": "Success",
+          "failed": "Failed"
+        },
+        "paymentKind": {
+          "deposit": "Deposit",
+          "installment": "Installment",
+          "topup": "Top-up",
+          "refund": "Refund",
+          "contribution": "Contribution"
+        },
+        "installmentsEmpty": "No installments on this order.",
+        "paymentsEmpty": "No payments on this order yet.",
+        "installmentsHeaders": {
+          "sequence": "No.",
+          "dueDate": "Due",
+          "amount": "Amount",
+          "state": "State"
+        },
+        "installmentBadges": {
+          "paid": "Paid",
+          "unpaid": "Unpaid",
+          "overdue": "Overdue"
+        },
+        "scheduleEditor": {
+          "title": "Edit installment due dates",
+          "hint": "Change due dates on unpaid installments. Changes are recorded in the audit log.",
+          "reasonLabel": "Reason",
+          "reasonPlaceholder": "Why is the schedule changing?",
+          "reasonHint": "1–500 characters. Saved in the audit log.",
+          "submit": "Save schedule",
+          "saving": "Saving…",
+          "noChanges": "No changes yet. Adjust a due date above to enable save.",
+          "disabledNote": "Schedules can only be edited on active orders."
+        },
+        "manualActivate": {
+          "title": "Manual activate",
+          "body": "Use this only when the Evmark deposit push settled in reality but the callback never reached us. This calls the same settle path the callback would.",
+          "reasonLabel": "Reason",
+          "reasonPlaceholder": "Why are you activating this manually?",
+          "reasonHint": "1–500 characters. Saved in the audit log.",
+          "submit": "Activate order",
+          "saving": "Activating…",
+          "noDepositNote": "No pending deposit payment is on file. Ask the customer to reserve again."
+        },
+        "cancelOrder": {
+          "title": "Cancel order",
+          "body": "Flips status to Cancelled. Only available while the order is still pending a deposit.",
+          "reasonLabel": "Reason",
+          "reasonPlaceholder": "Why are you cancelling?",
+          "reasonHint": "1–500 characters. Saved in the audit log.",
+          "submit": "Cancel order",
+          "saving": "Cancelling…"
+        },
+        "refundAction": "Issue refund"
+      },
+      "toast": {
+        "activated": "Order activated.",
+        "cancelled": "Order cancelled.",
+        "scheduleUpdated": "Schedule updated.",
+        "refundIssued": "Refund credited to wallet.",
+        "validation": "Check the highlighted fields.",
+        "reasonRequired": "A reason is required.",
+        "wrongStatus": "This order is no longer eligible for that action.",
+        "noPendingDeposit": "No pending deposit to settle.",
+        "settleFailed": "Settlement failed. Check the logs.",
+        "notFound": "Order not found.",
+        "forbidden": "You don't have permission to do that.",
+        "unauthenticated": "Sign in again to continue.",
+        "error": "Something went wrong. Please try again."
+      }
+    },
+    "payments": {
+      "metaTitle": "Payments",
+      "eyebrow": "Admin",
+      "heading": "Payments",
+      "body": "Every payment on file — deposits, installments, top-ups, and refunds. Reconcile stuck pending rows and issue wallet-credit refunds.",
+      "list": {
+        "searchPlaceholder": "Search by reference, phone, name, or order",
+        "empty": "No payments match these filters.",
+        "applyFilters": "Apply",
+        "filters": {
+          "statusLabel": "Status",
+          "kindLabel": "Kind",
+          "providerLabel": "Provider",
+          "fromLabel": "From",
+          "toLabel": "To",
+          "all": "All"
+        },
+        "columns": {
+          "reference": "Reference",
+          "user": "Customer",
+          "order": "Order",
+          "kind": "Kind",
+          "amount": "Amount",
+          "provider": "Provider",
+          "status": "Status",
+          "created": "Created"
+        },
+        "noOrder": "—",
+        "reconcileAction": "Reconcile",
+        "refundAction": "Refund"
+      },
+      "statusLabels": {
+        "pending": "Pending",
+        "success": "Success",
+        "failed": "Failed"
+      },
+      "kindLabels": {
+        "deposit": "Deposit",
+        "installment": "Installment",
+        "topup": "Top-up",
+        "refund": "Refund",
+        "contribution": "Contribution"
+      },
+      "providerLabels": {
+        "mpesa": "M-Pesa",
+        "tigopesa": "Tigo Pesa",
+        "airtelmoney": "Airtel Money",
+        "card": "Card"
+      },
+      "reconcile": {
+        "title": "Reconcile payment",
+        "body": "Use when Evmark confirmed the transaction but the callback never reached us. Runs the same settle path as the live callback.",
+        "reasonLabel": "Reason",
+        "reasonPlaceholder": "Why are you reconciling this?",
+        "reasonHint": "1–500 characters. Saved in the audit log.",
+        "submit": "Reconcile",
+        "saving": "Reconciling…",
+        "confirmBody": "This will mark the payment as success, activate the order or mark the installment paid, and write wallet entries."
+      },
+      "toast": {
+        "reconciled": "Payment reconciled.",
+        "refundIssued": "Refund credited to wallet.",
+        "validation": "Check the highlighted fields.",
+        "reasonRequired": "A reason is required.",
+        "wrongStatus": "This payment is no longer pending.",
+        "wrongKind": "Refunds can't be refunded.",
+        "amountOutOfRange": "Refund amount can't exceed the original payment.",
+        "settleFailed": "Settlement failed. Check the logs.",
+        "notFound": "Payment not found.",
+        "forbidden": "You don't have permission to do that.",
+        "unauthenticated": "Sign in again to continue.",
+        "error": "Something went wrong. Please try again."
+      }
+    },
+    "refund": {
+      "title": "Issue refund",
+      "body": "A wallet credit is posted to the customer. No money moves back to the MNO automatically — that lands in v2.",
+      "amountLabel": "Amount (TZS)",
+      "amountHint": "Up to {max} — the full original payment.",
+      "reasonLabel": "Reason",
+      "reasonPlaceholder": "Why are you issuing this refund?",
+      "reasonHint": "1–500 characters. Saved in the audit log.",
+      "submit": "Issue refund",
+      "saving": "Issuing…",
+      "cancel": "Cancel"
+    },
+    "reports": {
+      "metaTitle": "Reports",
+      "eyebrow": "Admin",
+      "heading": "Reports",
+      "nav": {
+        "revenue": "Revenue",
+        "receivables": "Receivables",
+        "inventory": "Inventory",
+        "kyc": "KYC throughput"
+      },
+      "range": {
+        "today": "Today",
+        "7d": "7 days",
+        "30d": "30 days",
+        "90d": "90 days",
+        "ytd": "Year to date"
+      },
+      "export": {
+        "csv": "Export CSV",
+        "empty": "No data in this range yet."
+      },
+      "revenue": {
+        "metaTitle": "Revenue report",
+        "body": "Successful deposits, installments, and top-ups across the business. Refunds and pending payments are excluded.",
+        "kpi": {
+          "total": "Total",
+          "deposit": "Deposits",
+          "installment": "Installments",
+          "topup": "Top-ups"
+        },
+        "chart": {
+          "heading": "Daily revenue",
+          "byProvider": "By provider"
+        },
+        "table": {
+          "heading": "Daily breakdown",
+          "date": "Date",
+          "deposit": "Deposits",
+          "installment": "Installments",
+          "topup": "Top-ups",
+          "total": "Total"
+        }
+      },
+      "receivables": {
+        "metaTitle": "Receivables report",
+        "body": "Outstanding balance across active hire-purchase orders. Aged by the oldest overdue installment on each order.",
+        "kpi": {
+          "total": "Total outstanding",
+          "orders": "Orders",
+          "ordersSublabel": "Active with balance",
+          "overdue": "Overdue orders"
+        },
+        "bucketsHeading": "Aged buckets",
+        "buckets": {
+          "current": "Current",
+          "d0_30": "1–30 days",
+          "d31_60": "31–60 days",
+          "d61_90": "61–90 days",
+          "d90_plus": "90+ days"
+        },
+        "countLabel": "{n} orders",
+        "table": {
+          "heading": "By order",
+          "reference": "Reference",
+          "user": "Customer",
+          "nextDue": "Next due",
+          "overdueDays": "Overdue",
+          "balance": "Balance",
+          "daysSuffix": "{n} days"
+        },
+        "empty": "No outstanding balances right now."
+      },
+      "inventory": {
+        "metaTitle": "Inventory report",
+        "body": "Every active product and its current stock. Low-stock threshold is 3 units.",
+        "kpi": {
+          "products": "Active products",
+          "units": "Units in stock",
+          "lowStock": "Low stock",
+          "value": "Inventory value",
+          "valueSublabel": "Stock × cash price"
+        },
+        "table": {
+          "heading": "Stock by product",
+          "product": "Product",
+          "brand": "Brand",
+          "price": "Cash price",
+          "stock": "Stock",
+          "status": "Status"
+        },
+        "status": {
+          "ok": "In stock",
+          "lowStock": "Low stock",
+          "outOfStock": "Out of stock"
+        },
+        "empty": "No active products in the catalog yet."
+      },
+      "kyc": {
+        "metaTitle": "KYC throughput",
+        "body": "Submission volume, approval rate, and time-to-review for identity checks.",
+        "kpi": {
+          "submissions": "Submissions",
+          "approvalRate": "Approval rate",
+          "approvalRateSub": "{a} approved · {r} rejected",
+          "medianHours": "Median review time",
+          "pending": "Pending",
+          "pendingSub": "All-time open queue"
+        },
+        "hoursValue": "{n} h",
+        "chart": {
+          "heading": "Submissions per week",
+          "approved": "Approved",
+          "rejected": "Rejected",
+          "pending": "Pending"
+        },
+        "table": {
+          "heading": "Weekly breakdown",
+          "week": "Week of",
+          "submitted": "Submitted",
+          "approved": "Approved",
+          "rejected": "Rejected",
+          "pending": "Pending"
+        }
+      }
+    }
+  },
+  "install": {
+    "title": "Install Ubepari Wallet",
+    "subtitle": "Fast, full-screen, one tap from your home screen.",
+    "cta": "Install",
+    "iosHint": "Tap Share, then Add to Home Screen.",
+    "dismiss": "Dismiss"
+  }
+}

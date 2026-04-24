@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "name": "Ubepari",
+    "slug": "ubepari",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "ubepari",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "tz.co.ubeparipc.wallet",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Used to capture your national ID for KYC verification.",
+        "NSPhotoLibraryUsageDescription": "Used to pick your national ID photo for KYC verification.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "tz.co.ubeparipc.wallet",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "NOTIFICATIONS"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-font",
+      "expo-localization",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#1A2FB8",
+          "imageWidth": 220
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Used to pick your national ID photo for KYC verification.",
+          "cameraPermission": "Used to capture your national ID for KYC verification."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#1A2FB8"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

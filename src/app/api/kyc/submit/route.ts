@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-import { getSession } from "@/lib/session";
+import { getSessionFromRequest } from "@/lib/session";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { logEvent } from "@/lib/events";
 
@@ -8,7 +8,7 @@ const MAX_BYTES = 5 * 1024 * 1024;
 const ACCEPTED = new Set(["image/jpeg", "image/jpg", "image/png", "application/pdf"]);
 
 export async function POST(req: NextRequest) {
-  const session = await getSession();
+  const session = await getSessionFromRequest(req);
   if (!session) return NextResponse.json({ error: "unauthenticated" }, { status: 401 });
   const userId = session.claims.userId;
 

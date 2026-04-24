@@ -21,6 +21,24 @@ function resolveLocale(request: NextRequest): string {
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // CORS preflight for /api/* — lets the React Native app and other
+  // non-browser clients hit the bearer-token endpoints without per-route
+  // OPTIONS handlers.
+  if (pathname.startsWith("/api/") && request.method === "OPTIONS") {
+    return new NextResponse(null, {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,POST,PATCH,DELETE,OPTIONS",
+        "Access-Control-Allow-Headers": "Authorization, Content-Type, X-Locale",
+        "Access-Control-Max-Age": "86400",
+      },
+    });
+  }
+
+  // /api/* otherwise bypasses the locale redirect.
+  if (pathname.startsWith("/api/")) return;
+
   const hasLocale = (locales as readonly string[]).some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
@@ -33,5 +51,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|.*\\..*).*)"],
+  matcher: ["/((?!_next|.*\\..*).*)"],
 };
