@@ -446,6 +446,13 @@
     "paidSoFar": "Paid so far",
     "ownershipProgress": "Ownership progress",
     "topUp": "Top up",
+    "topUpCta": "Top up wallet",
+    "allocateCta": "Fund a goal",
+    "allocateShort": "Fund from wallet",
+    "available": "Available",
+    "allocated": "Allocated to goals",
+    "total": "Total in wallet",
+    "insufficient": "Not enough in Available.",
     "viewSchedule": "View schedule →",
     "nextDue": "Next due",
     "nextDueBy": "by {date}",
@@ -456,18 +463,65 @@
     "monthly": "Monthly",
     "monthsPaidOf": "{paid} of {total} months paid",
     "recentActivity": "Recent activity",
+    "bucket": {
+      "available": "Available",
+      "allocated": "Allocated"
+    },
     "activityNotes": {
       "payment": "Installment · {orderId}",
       "topup": "Wallet top-up",
       "deposit": "Deposit · {orderId}",
-      "refund": "Refund · {orderId}"
+      "refund": "Refund · {orderId}",
+      "contribution": "Contribution · {goalReference}",
+      "allocate_out": "Funded goal {goalReference}",
+      "allocate_in": "Funded goal {goalReference}",
+      "goal_cancelled": "Goal {goalReference} cancelled",
+      "goal_cancelled_refund": "Refund from cancelled goal {goalReference}",
+      "goal_completed": "Goal {goalReference} completed"
     },
     "emptyOrdersTitle": "No orders yet",
     "emptyOrdersBody": "Reserve a PC and your plan lives here.",
     "emptyActivity": "No activity yet.",
+    "emptyState": {
+      "title": "Your wallet is empty.",
+      "body": "Top up first, then set a goal to save toward."
+    },
     "browseStore": "Browse the store →",
     "payInstallment": "Pay installment",
     "emptyGreeting": "Welcome."
+  },
+  "topup": {
+    "title": "Top up wallet",
+    "description": "Add money to your Ubepari wallet. Use it to fund any of your goals.",
+    "amountLabel": "Amount (TZS)",
+    "providerLabel": "Pay with",
+    "mobileMoneyLabel": "Mobile money number",
+    "mobileMoneyHint": "We'll push a prompt to your {provider} number.",
+    "confirmButton": "Push {amount}",
+    "pendingTitle": "Check your {provider} phone",
+    "pendingBody": "We sent a prompt. Confirm it to add to your wallet.",
+    "doneTitle": "Added {amount} to your wallet",
+    "doneReference": "Reference: {ref}",
+    "doneButton": "Done",
+    "failedTitle": "Top-up didn't go through",
+    "failedBody": "The prompt was cancelled or expired. Try again when you're ready.",
+    "retryButton": "Try again",
+    "errorGeneric": "Something went wrong. Try again."
+  },
+  "allocate": {
+    "title": "Fund your goal",
+    "description": "You have {amount} available to move into a goal.",
+    "goalLabel": "Which goal?",
+    "amountLabel": "Amount (TZS)",
+    "remainingSuffix": "left",
+    "availableHint": "Available: {amount}",
+    "submit": "Fund goal",
+    "doneButton": "Done",
+    "success": "Moved {amount} into your goal.",
+    "noActiveGoals": "You don't have any active goals to fund. Start one in the store first.",
+    "overshootHint": "Amount exceeds what this goal still needs — only the remainder will count.",
+    "goalNotActive": "That goal is no longer active.",
+    "errorGeneric": "Something went wrong. Try again."
   },
   "orders": {
     "metaTitle": "My Orders",
@@ -536,27 +590,6 @@
       },
       "payNext": "Pay next installment"
     }
-  },
-  "topup": {
-    "title": "Top up your Wallet",
-    "description": "Add funds to pay installments, reserve a PC, or keep ahead of your schedule.",
-    "amountLabel": "Amount",
-    "mobileMoneyLabel": "Mobile money number",
-    "mobileMoneyHint": "You'll get a {provider} USSD prompt to authorize the transfer.",
-    "cardNumberLabel": "Card number",
-    "expiryLabel": "Expiry",
-    "cvcLabel": "CVC",
-    "cardPayButton": "Pay {amount}",
-    "mnoRequestButton": "Request {amount}",
-    "pendingTitle": "Awaiting {provider} confirmation",
-    "pendingBody": "Check your phone and approve the USSD prompt.",
-    "doneTitle": "{amount} added to your Wallet",
-    "doneReference": "Reference: {ref}",
-    "doneButton": "Done",
-    "failedTitle": "Top-up didn't go through",
-    "failedBody": "The prompt was cancelled or expired. Try again when you're ready.",
-    "retryButton": "Try again",
-    "errorGeneric": "Something went wrong. Try again."
   },
   "store": {
     "metaTitle": "Store — Every PC we stock",
@@ -745,6 +778,13 @@
     "receiptNumberLabel": "Receipt #",
     "pickUpAtShowroom": "Pick up at Ubepari PC, Magomeni Mapipa, Dar es Salaam — bring your receipt.",
     "back": "Back to goals",
+    "ownership": {
+      "justStarted": "You've started. Let's build this.",
+      "pushesLeft": "{count} pushes from yours",
+      "pushesLeftOne": "1 push from yours",
+      "almostThere": "Almost there",
+      "itsYours": "It's yours — pick up at shop"
+    },
     "statusLabel": {
       "active": "Active",
       "completed": "Completed",

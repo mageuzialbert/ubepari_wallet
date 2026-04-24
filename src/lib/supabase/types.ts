@@ -8,6 +8,7 @@ export type PaymentKind = "deposit" | "installment" | "topup" | "refund" | "cont
 export type PaymentProvider = "mpesa" | "tigopesa" | "airtelmoney" | "card";
 export type PaymentStatus = "pending" | "success" | "failed";
 export type WalletEntryKind = "credit" | "debit";
+export type WalletBucket = "available" | "allocated";
 export type GoalStatus = "active" | "completed" | "cancelled";
 
 type ProfilesRow = {
@@ -114,11 +115,19 @@ type WalletEntriesRow = {
   id: string;
   user_id: string;
   kind: WalletEntryKind;
+  bucket: WalletBucket;
+  allocation_goal_id: string | null;
   amount_tzs: number;
   payment_id: string | null;
   note_key: string;
   note_params: Record<string, unknown>;
   created_at: string;
+};
+
+type WalletBalancesRow = {
+  user_id: string;
+  bucket: WalletBucket;
+  balance_tzs: number;
 };
 
 type OtpChallengesRow = {
@@ -298,9 +307,13 @@ export type Database = {
       };
       wallet_entries: {
         Row: WalletEntriesRow;
-        Insert: Omit<WalletEntriesRow, "id" | "created_at" | "note_params" | "payment_id"> & {
+        Insert: Omit<
+          WalletEntriesRow,
+          "id" | "created_at" | "note_params" | "payment_id" | "allocation_goal_id"
+        > & {
           id?: string;
           payment_id?: string | null;
+          allocation_goal_id?: string | null;
           note_params?: Record<string, unknown>;
         };
         Update: Partial<WalletEntriesRow>;
@@ -379,10 +392,23 @@ export type Database = {
         Relationships: [];
       };
     };
-    Views: Record<string, never>;
+    Views: {
+      wallet_balances: {
+        Row: WalletBalancesRow;
+        Relationships: [];
+      };
+    };
     Functions: {
       increment_goal_contribution: {
         Args: { p_goal_id: string; p_amount: number };
+        Returns: GoalsRow | null;
+      };
+      allocate_to_goal: {
+        Args: { p_user_id: string; p_goal_id: string; p_amount: number };
+        Returns: GoalsRow;
+      };
+      cancel_goal_and_refund: {
+        Args: { p_goal_id: string; p_user_id: string; p_reason: string | null };
         Returns: GoalsRow;
       };
     };
@@ -393,6 +419,7 @@ export type Database = {
       payment_provider: PaymentProvider;
       payment_status: PaymentStatus;
       wallet_entry_kind: WalletEntryKind;
+      wallet_bucket: WalletBucket;
       goal_status: GoalStatus;
     };
   };

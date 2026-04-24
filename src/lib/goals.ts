@@ -182,28 +182,110 @@ export async function cancelGoal(
   reason: string | null,
 ): Promise<CancelGoalResult> {
   const admin = supabaseAdmin();
-  const { data: goal } = await admin
-    .from("goals")
-    .select("id, status")
-    .eq("id", goalId)
-    .eq("user_id", userId)
-    .maybeSingle();
-  if (!goal) return { ok: false, code: "not_found" };
-  if (goal.status !== "active") return { ok: false, code: "not_active" };
 
-  const now = new Date().toISOString();
-  const { error } = await admin
+  const { data, error } = await admin.rpc("cancel_goal_and_refund", {
+    p_goal_id: goalId,
+    p_user_id: userId,
+    p_reason: reason,
+  });
+
+  if (error) {
+    if (error.message.includes("not_active")) {
+      // Disambiguate: either the goal doesn't exist for this user, or it exists
+      // but isn't active. Cheap second read since the RPC failed fast anyway.
+      const { data: exists } = await admin
+        .from("goals")
+        .select("id")
+        .eq("id", goalId)
+        .eq("user_id", userId)
+        .maybeSingle();
+      return { ok: false, code: exists ? "not_active" : "not_found" };
+    }
+    return { ok: false, code: "db_error", detail: error.message };
+  }
+
+  const refundedTzs = (data as GoalsRow | null) ? 0 : 0; // contributed_tzs is zeroed in the RPC
+  logEvent("goal.cancelled", { userId, goalId, reason, refundedTzs });
+  return { ok: true };
+}
+
+// Shared completion path — called from settlement (payments.ts) and allocate
+// (api/wallet/allocate/route.ts) after contributed_tzs may have hit target.
+// Guards `status='active'` at the database level so the path is safe to call
+// concurrently. Writes the close-out debit against Allocated so the goal's
+// money leaves the user's wallet cleanly.
+export type CompleteGoalResult =
+  | { kind: "completed"; goal: GoalsRow }
+  | { kind: "not_reached"; goal: GoalsRow }
+  | { kind: "already_completed"; goal: GoalsRow };
+
+export async function completeGoalIfReached(goal: GoalsRow): Promise<CompleteGoalResult> {
+  if (goal.status !== "active") return { kind: "already_completed", goal };
+  if (goal.contributed_tzs < goal.product_price_tzs) {
+    return { kind: "not_reached", goal };
+  }
+
+  const admin = supabaseAdmin();
+  const completedAt = new Date().toISOString();
+  const receiptNumber = newReceiptNumber();
+
+  const { data: updated } = await admin
     .from("goals")
     .update({
-      status: "cancelled",
-      cancelled_at: now,
-      cancellation_reason: reason,
+      status: "completed",
+      completed_at: completedAt,
+      receipt_number: receiptNumber,
+      receipt_issued_at: completedAt,
     })
-    .eq("id", goalId);
-  if (error) return { ok: false, code: "db_error", detail: error.message };
+    .eq("id", goal.id)
+    .eq("status", "active")
+    .select("*")
+    .maybeSingle();
 
-  logEvent("goal.cancelled", { userId, goalId, reason });
-  return { ok: true };
+  if (!updated) {
+    // Lost the race — another path already flipped it. Return the current row.
+    const { data: current } = await admin
+      .from("goals")
+      .select("*")
+      .eq("id", goal.id)
+      .maybeSingle();
+    return { kind: "already_completed", goal: (current as GoalsRow) ?? goal };
+  }
+
+  const finalGoal = updated as GoalsRow;
+
+  // Close-out debit: the Allocated bucket returns to zero for this goal.
+  // Money leaves the user's wallet and is conceptually paid to Ubepari PC.
+  await admin.from("wallet_entries").insert({
+    user_id: finalGoal.user_id,
+    kind: "debit",
+    amount_tzs: finalGoal.product_price_tzs,
+    bucket: "allocated",
+    allocation_goal_id: finalGoal.id,
+    note_key: "goal_completed",
+    note_params: {
+      goalId: finalGoal.id,
+      goalReference: finalGoal.reference,
+      productSlug: finalGoal.product_slug,
+      receiptNumber: finalGoal.receipt_number,
+    },
+  });
+
+  logEvent("goal.completed", {
+    goalId: finalGoal.id,
+    userId: finalGoal.user_id,
+    receiptNumber: finalGoal.receipt_number,
+  });
+
+  // fire-and-forget SMS so caller latency stays low
+  void sendGoalCompletedSms(finalGoal).catch((err) =>
+    logEvent("goal.completion_sms_failed", {
+      goalId: finalGoal.id,
+      error: err instanceof Error ? err.message : String(err),
+    }),
+  );
+
+  return { kind: "completed", goal: finalGoal };
 }
 
 // Fire-and-forget SMS sent when a goal auto-completes. Called from settlement.

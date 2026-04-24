@@ -446,6 +446,13 @@
     "paidSoFar": "Kimelipwa hadi sasa",
     "ownershipProgress": "Umilikaji",
     "topUp": "Ongeza pesa",
+    "topUpCta": "Ongeza pesa Wallet",
+    "allocateCta": "Lipia lengo",
+    "allocateShort": "Lipia kutoka Wallet",
+    "available": "Inapatikana",
+    "allocated": "Imewekwa kwenye malengo",
+    "total": "Jumla kwenye Wallet",
+    "insufficient": "Wallet haina kiasi cha kutosha.",
     "viewSchedule": "Tazama ratiba →",
     "nextDue": "Malipo yanayofuata",
     "nextDueBy": "ifikapo {date}",
@@ -456,18 +463,65 @@
     "monthly": "Kwa mwezi",
     "monthsPaidOf": "Miezi {paid} kati ya {total} imelipwa",
     "recentActivity": "Shughuli za hivi karibuni",
+    "bucket": {
+      "available": "Inapatikana",
+      "allocated": "Imewekwa"
+    },
     "activityNotes": {
       "payment": "Awamu · {orderId}",
       "topup": "Kuongeza pesa kwenye Wallet",
       "deposit": "Malipo ya awali · {orderId}",
-      "refund": "Marejesho · {orderId}"
+      "refund": "Marejesho · {orderId}",
+      "contribution": "Mchango · {goalReference}",
+      "allocate_out": "Umelipia lengo {goalReference}",
+      "allocate_in": "Umelipia lengo {goalReference}",
+      "goal_cancelled": "Lengo {goalReference} limeghairiwa",
+      "goal_cancelled_refund": "Marejesho kutoka lengo {goalReference}",
+      "goal_completed": "Lengo {goalReference} limekamilika"
     },
     "emptyOrdersTitle": "Hakuna oda bado",
     "emptyOrdersBody": "Hifadhi PC na mpango wako utaonekana hapa.",
     "emptyActivity": "Hakuna shughuli bado.",
+    "emptyState": {
+      "title": "Wallet yako iko tupu.",
+      "body": "Ongeza pesa kwanza, kisha anzisha lengo la kuhifadhia."
+    },
     "browseStore": "Pitia duka →",
     "payInstallment": "Lipa awamu",
     "emptyGreeting": "Karibu."
+  },
+  "topup": {
+    "title": "Ongeza pesa kwenye Wallet",
+    "description": "Ongeza pesa kwenye Ubepari Wallet yako. Utatumia kulipia lengo lolote.",
+    "amountLabel": "Kiasi (TZS)",
+    "providerLabel": "Lipa kwa",
+    "mobileMoneyLabel": "Namba ya simu",
+    "mobileMoneyHint": "Tutatuma ombi kwenye namba yako ya {provider}.",
+    "confirmButton": "Tuma {amount}",
+    "pendingTitle": "Angalia simu yako ya {provider}",
+    "pendingBody": "Tumekutumia ombi. Thibitisha ili pesa ziingie Wallet.",
+    "doneTitle": "Umeongeza {amount} kwenye Wallet",
+    "doneReference": "Kumbukumbu: {ref}",
+    "doneButton": "Sawa",
+    "failedTitle": "Malipo hayakukamilika",
+    "failedBody": "Ombi lilighairiwa au muda uliisha. Jaribu tena utakapokuwa tayari.",
+    "retryButton": "Jaribu tena",
+    "errorGeneric": "Kitu kimeenda vibaya. Jaribu tena."
+  },
+  "allocate": {
+    "title": "Lipia lengo lako",
+    "description": "Una {amount} kwenye Wallet inayopatikana kuhamishia kwenye lengo.",
+    "goalLabel": "Lengo gani?",
+    "amountLabel": "Kiasi (TZS)",
+    "remainingSuffix": "kimebaki",
+    "availableHint": "Inapatikana: {amount}",
+    "submit": "Lipia lengo",
+    "doneButton": "Sawa",
+    "success": "Umehamisha {amount} kwenye lengo lako.",
+    "noActiveGoals": "Huna malengo hai ya kulipia. Anzisha moja dukani kwanza.",
+    "overshootHint": "Kiasi kinazidi kinachohitajika — kiasi kilichobaki tu kitahesabiwa.",
+    "goalNotActive": "Lengo hili halipo hai tena.",
+    "errorGeneric": "Kitu kimeenda vibaya. Jaribu tena."
   },
   "orders": {
     "metaTitle": "Oda zangu",
@@ -536,27 +590,6 @@
       },
       "payNext": "Lipa awamu inayofuata"
     }
-  },
-  "topup": {
-    "title": "Ongeza pesa kwenye Wallet yako",
-    "description": "Ongeza pesa kulipa awamu, kuhifadhi PC, au kuendelea mbele ya ratiba yako.",
-    "amountLabel": "Kiasi",
-    "mobileMoneyLabel": "Nambari ya mobile money",
-    "mobileMoneyHint": "{provider} itatuma ombi la USSD kwako uidhinishe malipo.",
-    "cardNumberLabel": "Nambari ya kadi",
-    "expiryLabel": "Muda wa mwisho",
-    "cvcLabel": "CVC",
-    "cardPayButton": "Lipa {amount}",
-    "mnoRequestButton": "Omba {amount}",
-    "pendingTitle": "Inasubiri uthibitisho wa {provider}",
-    "pendingBody": "Angalia simu yako na idhinisha ombi la USSD.",
-    "doneTitle": "{amount} imeongezwa kwenye Wallet yako",
-    "doneReference": "Kumbukumbu: {ref}",
-    "doneButton": "Sawa",
-    "failedTitle": "Malipo ya kuongeza hayakukamilika",
-    "failedBody": "Ombi liligharika au muda ulikwisha. Jaribu tena ukiwa tayari.",
-    "retryButton": "Jaribu tena",
-    "errorGeneric": "Kuna tatizo. Jaribu tena."
   },
   "store": {
     "metaTitle": "Duka — PC zote tulizonazo",
@@ -745,6 +778,13 @@
     "receiptNumberLabel": "Risiti #",
     "pickUpAtShowroom": "Chukua Ubepari PC, Magomeni Mapipa, Dar es Salaam — leta risiti yako.",
     "back": "Rudi kwenye malengo",
+    "ownership": {
+      "justStarted": "Umeanza. Tujenge hii pamoja.",
+      "pushesLeft": "Mipigo {count} kabla haijawa yako",
+      "pushesLeftOne": "Mpigo 1 kabla haijawa yako",
+      "almostThere": "Karibu sana",
+      "itsYours": "Ni yako — ichukue dukani"
+    },
     "statusLabel": {
       "active": "Amilifu",
       "completed": "Imekamilika",

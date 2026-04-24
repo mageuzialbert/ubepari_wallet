@@ -1,32 +1,42 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 
 import { CancelGoalDialog } from "@/components/goals/cancel-goal-dialog";
 import { ContributeDialog } from "@/components/goals/contribute-dialog";
+import { AllocateDialog } from "@/components/wallet/allocate-dialog";
 import { Button } from "@/components/ui/button";
-import { useDictionary, useLocale } from "@/i18n/provider";
+import { useDictionary } from "@/i18n/provider";
 
 export function GoalActions({
   goalId,
+  goalReference,
   productName,
   suggestedAmount,
+  remainingTzs,
+  availableTzs,
   isActive,
   isCompleted,
   receiptHref,
 }: {
   goalId: string;
+  goalReference: string;
   productName: string;
   suggestedAmount: number;
+  remainingTzs: number;
+  availableTzs: number;
   isActive: boolean;
   isCompleted: boolean;
   receiptHref?: string;
 }) {
-  const t = useDictionary().goals;
-  const locale = useLocale();
+  const dict = useDictionary();
+  const t = dict.goals;
+  const wt = dict.wallet;
   const [contribOpen, setContribOpen] = React.useState(false);
   const [cancelOpen, setCancelOpen] = React.useState(false);
+  const [allocOpen, setAllocOpen] = React.useState(false);
+
+  const canAllocate = availableTzs > 0 && remainingTzs > 0;
 
   return (
     <>
@@ -39,6 +49,16 @@ export function GoalActions({
           >
             {t.contributeCta}
           </Button>
+          {canAllocate && (
+            <Button
+              size="lg"
+              variant="secondary"
+              className="rounded-full"
+              onClick={() => setAllocOpen(true)}
+            >
+              {wt.allocateShort}
+            </Button>
+          )}
           <Button
             size="lg"
             variant="ghost"
@@ -68,14 +88,26 @@ export function GoalActions({
         suggestedAmount={suggestedAmount}
       />
 
+      <AllocateDialog
+        open={allocOpen}
+        onOpenChange={setAllocOpen}
+        availableTzs={availableTzs}
+        goals={[
+          {
+            id: goalId,
+            reference: goalReference,
+            productName,
+            remainingTzs,
+          },
+        ]}
+        defaultGoalId={goalId}
+      />
+
       <CancelGoalDialog
         open={cancelOpen}
         onOpenChange={setCancelOpen}
         goalId={goalId}
       />
-
-      {/* locale is used for potential future links — reference silences lint */}
-      <span className="hidden">{locale}</span>
     </>
   );
 }

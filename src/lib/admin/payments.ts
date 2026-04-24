@@ -307,6 +307,8 @@ export async function issueRefund(params: {
     kind: "credit",
     amount_tzs: amount,
     payment_id: inserted.id,
+    bucket: "available",
+    allocation_goal_id: null,
     note_key: "refund",
     note_params: {
       originalPaymentId: original.id,

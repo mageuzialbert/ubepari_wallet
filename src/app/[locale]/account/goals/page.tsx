@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { ActiveGoalCard } from "@/components/goals/active-goal-card";
+import { VestedPhoto } from "@/components/goals/vested-photo";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { formatTzs } from "@/lib/currency";
-import { formatDate } from "@/lib/datetime";
 import { listGoalsForUser } from "@/lib/goals";
 import { getProductsBySlugs } from "@/lib/products";
 import { getSession } from "@/lib/session";
+import { getWalletBalance } from "@/lib/wallet";
 import { hasLocale } from "@/i18n/config";
 
 import { getDictionary } from "../../dictionaries";
@@ -36,7 +36,10 @@ export default async function GoalsPage({ params }: { params: PageParams }) {
   const dict = await getDictionary(locale);
   const t = dict.goals;
 
-  const goals = await listGoalsForUser(session.claims.userId);
+  const [goals, wallet] = await Promise.all([
+    listGoalsForUser(session.claims.userId),
+    getWalletBalance(session.claims.userId),
+  ]);
   const productMap = await getProductsBySlugs(
     Array.from(new Set(goals.map((g) => g.product_slug))),
     locale,
@@ -80,48 +83,19 @@ export default async function GoalsPage({ params }: { params: PageParams }) {
               <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
                 {active.map((goal) => {
                   const product = productMap.get(goal.product_slug);
-                  const percent = Math.min(
-                    100,
-                    Math.round(
-                      (goal.contributed_tzs / goal.product_price_tzs) * 100,
-                    ),
-                  );
                   return (
-                    <Link
+                    <ActiveGoalCard
                       key={goal.id}
-                      href={`/${locale}/account/goals/${goal.id}`}
-                      className="block rounded-3xl border border-border/60 bg-card p-5 transition-colors hover:border-border"
-                    >
-                      <p className="text-[11px] text-muted-foreground">
-                        {goal.reference}
-                      </p>
-                      <p className="mt-1 text-[16px] font-semibold tracking-tight">
-                        {product?.name ?? goal.product_slug}
-                      </p>
-                      <div className="mt-5">
-                        <div className="flex justify-between text-[12px] text-muted-foreground">
-                          <span>
-                            {formatTzs(goal.contributed_tzs, locale)} / {formatTzs(goal.product_price_tzs, locale)}
-                          </span>
-                          <span>{percent}%</span>
-                        </div>
-                        <Progress value={percent} className="mt-2 h-1.5" />
-                      </div>
-                      <div className="mt-4 flex items-center justify-between text-[12px] text-muted-foreground">
-                        <span>
-                          {t.monthlyTarget}: {formatTzs(goal.monthly_target_tzs, locale)}
-                        </span>
-                        {goal.next_reminder_date && (
-                          <span>
-                            {t.nextReminder}:{" "}
-                            {formatDate(goal.next_reminder_date, locale, {
-                              day: "numeric",
-                              month: "short",
-                            })}
-                          </span>
-                        )}
-                      </div>
-                    </Link>
+                      goalId={goal.id}
+                      reference={goal.reference}
+                      productName={product?.name ?? goal.product_slug}
+                      productImage={product?.images[0]}
+                      productColorAccent={product?.colorAccent ?? null}
+                      productPriceTzs={goal.product_price_tzs}
+                      contributedTzs={goal.contributed_tzs}
+                      monthlyTargetTzs={goal.monthly_target_tzs}
+                      availableTzs={wallet.availableTzs}
+                    />
                   );
                 })}
               </div>
@@ -133,25 +107,37 @@ export default async function GoalsPage({ params }: { params: PageParams }) {
               <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
                 {completed.map((goal) => {
                   const product = productMap.get(goal.product_slug);
+                  const productName = product?.name ?? goal.product_slug;
                   return (
                     <Link
                       key={goal.id}
                       href={`/${locale}/account/goals/${goal.id}`}
-                      className="block rounded-3xl border border-border/60 bg-card p-5 transition-colors hover:border-border"
+                      className="block overflow-hidden rounded-3xl border border-border/60 bg-card transition-colors hover:border-border"
                     >
-                      <div className="flex items-center gap-2">
-                        <p className="text-[11px] text-muted-foreground">
-                          {goal.reference}
-                        </p>
-                        <span className="rounded-full bg-foreground px-2 py-0.5 text-[10px] font-medium text-background">
-                          {t.statusLabel.completed}
-                        </span>
-                      </div>
-                      <p className="mt-1 text-[16px] font-semibold tracking-tight">
-                        {product?.name ?? goal.product_slug}
-                      </p>
+                      <VestedPhoto
+                        imageUrl={product?.images[0]}
+                        alt={productName}
+                        percent={100}
+                        colorAccent={product?.colorAccent ?? null}
+                        state="completed"
+                        aspect="5/3"
+                      >
+                        <div className="flex items-end justify-between gap-3">
+                          <div className="min-w-0">
+                            <p className="text-[11px] uppercase tracking-[0.18em] text-white/70">
+                              {goal.reference}
+                            </p>
+                            <p className="mt-1 truncate text-[17px] font-semibold tracking-tight">
+                              {productName}
+                            </p>
+                          </div>
+                          <span className="shrink-0 rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-semibold backdrop-blur-md">
+                            {t.statusLabel.completed}
+                          </span>
+                        </div>
+                      </VestedPhoto>
                       {goal.receipt_number && (
-                        <p className="mt-3 text-[11px] text-muted-foreground">
+                        <p className="px-5 py-4 text-[12px] text-muted-foreground">
                           {t.receiptNumberLabel}: {goal.receipt_number}
                         </p>
                       )}
@@ -167,18 +153,29 @@ export default async function GoalsPage({ params }: { params: PageParams }) {
               <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
                 {cancelled.map((goal) => {
                   const product = productMap.get(goal.product_slug);
+                  const productName = product?.name ?? goal.product_slug;
                   return (
                     <Link
                       key={goal.id}
                       href={`/${locale}/account/goals/${goal.id}`}
-                      className="block rounded-3xl border border-border/60 bg-card/50 p-5 transition-colors hover:border-border"
+                      className="block overflow-hidden rounded-3xl border border-border/60 bg-card/50 transition-colors hover:border-border"
                     >
-                      <p className="text-[11px] text-muted-foreground">
-                        {goal.reference} · {t.statusLabel.cancelled}
-                      </p>
-                      <p className="mt-1 text-[16px] font-semibold tracking-tight text-muted-foreground">
-                        {product?.name ?? goal.product_slug}
-                      </p>
+                      <VestedPhoto
+                        imageUrl={product?.images[0]}
+                        alt={productName}
+                        percent={0}
+                        state="cancelled"
+                        aspect="5/3"
+                      >
+                        <div>
+                          <p className="text-[11px] uppercase tracking-[0.18em] text-white/70">
+                            {goal.reference} · {t.statusLabel.cancelled}
+                          </p>
+                          <p className="mt-1 truncate text-[17px] font-semibold tracking-tight text-white/85">
+                            {productName}
+                          </p>
+                        </div>
+                      </VestedPhoto>
                     </Link>
                   );
                 })}

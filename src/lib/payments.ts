@@ -1,7 +1,7 @@
 import "server-only";
 
 import { logEvent } from "@/lib/events";
-import { newReceiptNumber, sendGoalCompletedSms } from "@/lib/goals";
+import { completeGoalIfReached } from "@/lib/goals";
 import { decrementStockForOrder } from "@/lib/inventory";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import type { GoalsRow } from "@/lib/supabase/types";
@@ -81,51 +81,49 @@ export async function settlePaymentSuccess(params: {
       });
     }
 
+    const goal = updatedGoal as GoalsRow | null;
+    const noteParams = {
+      goalId: payment.goal_id,
+      goalReference: goal?.reference ?? null,
+      productSlug: goal?.product_slug ?? null,
+    };
+
+    // Money trio: MNO cash landed -> Available, swept into Allocated(goal).
+    // Modeled as credit+debit on Available + credit on Allocated so the
+    // Wallet UI shows the top-up arriving and then being earmarked.
     await admin.from("wallet_entries").insert({
       user_id: payment.user_id,
       kind: "credit",
       amount_tzs: payment.amount_tzs,
       payment_id: payment.id,
+      bucket: "available",
+      allocation_goal_id: null,
       note_key: "contribution",
-      note_params: {
-        goalId: payment.goal_id,
-        goalReference: (updatedGoal as GoalsRow | null)?.reference ?? null,
-        productSlug: (updatedGoal as GoalsRow | null)?.product_slug ?? null,
-      },
+      note_params: noteParams,
+    });
+    await admin.from("wallet_entries").insert({
+      user_id: payment.user_id,
+      kind: "debit",
+      amount_tzs: payment.amount_tzs,
+      payment_id: payment.id,
+      bucket: "available",
+      allocation_goal_id: null,
+      note_key: "allocate_out",
+      note_params: noteParams,
+    });
+    await admin.from("wallet_entries").insert({
+      user_id: payment.user_id,
+      kind: "credit",
+      amount_tzs: payment.amount_tzs,
+      payment_id: payment.id,
+      bucket: "allocated",
+      allocation_goal_id: payment.goal_id,
+      note_key: "contribution",
+      note_params: noteParams,
     });
 
-    const goal = updatedGoal as GoalsRow | null;
-    if (goal && goal.contributed_tzs >= goal.product_price_tzs && goal.status === "active") {
-      const receiptNumber = newReceiptNumber();
-      const { data: completed } = await admin
-        .from("goals")
-        .update({
-          status: "completed",
-          completed_at: settledAt,
-          receipt_number: receiptNumber,
-          receipt_issued_at: settledAt,
-        })
-        .eq("id", goal.id)
-        .eq("status", "active")
-        .select("*")
-        .maybeSingle();
-      const finalGoal = (completed as GoalsRow | null) ?? {
-        ...goal,
-        receipt_number: receiptNumber,
-        status: "completed" as const,
-      };
-      logEvent("goal.completed", {
-        goalId: goal.id,
-        userId: payment.user_id,
-        receiptNumber: finalGoal.receipt_number,
-      });
-      // fire-and-forget SMS so callback latency stays low
-      void sendGoalCompletedSms(finalGoal).catch((err) =>
-        logEvent("goal.completion_sms_failed", {
-          goalId: goal.id,
-          error: err instanceof Error ? err.message : String(err),
-        }),
-      );
+    if (goal) {
+      await completeGoalIfReached(goal);
     }
   } else if (payment.kind === "deposit" && payment.order_id) {
     // Legacy hire-purchase path. No new rows are being written with kind='deposit'
@@ -145,6 +143,8 @@ export async function settlePaymentSuccess(params: {
       kind: "credit",
       amount_tzs: payment.amount_tzs,
       payment_id: payment.id,
+      bucket: "available",
+      allocation_goal_id: null,
       note_key: "deposit",
       note_params: { orderId: orderRef },
     });
@@ -153,6 +153,8 @@ export async function settlePaymentSuccess(params: {
       kind: "debit",
       amount_tzs: payment.amount_tzs,
       payment_id: payment.id,
+      bucket: "available",
+      allocation_goal_id: null,
       note_key: "deposit",
       note_params: { orderId: orderRef },
     });
@@ -162,6 +164,8 @@ export async function settlePaymentSuccess(params: {
       kind: "credit",
       amount_tzs: payment.amount_tzs,
       payment_id: payment.id,
+      bucket: "available",
+      allocation_goal_id: null,
       note_key: "topup",
       note_params: {},
     });
@@ -186,6 +190,8 @@ export async function settlePaymentSuccess(params: {
       kind: "debit",
       amount_tzs: payment.amount_tzs,
       payment_id: payment.id,
+      bucket: "available",
+      allocation_goal_id: null,
       note_key: "payment",
       note_params: { orderId: orderRef },
     });
