@@ -4,7 +4,11 @@ import { getSessionFromRequest } from "@/lib/session";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { logEvent } from "@/lib/events";
 
-const ALLOWED_PLATFORMS = new Set(["ios", "android", "web"]);
+type DevicePlatform = "ios" | "android" | "web";
+const ALLOWED_PLATFORMS: readonly DevicePlatform[] = ["ios", "android", "web"];
+function isDevicePlatform(value: unknown): value is DevicePlatform {
+  return typeof value === "string" && (ALLOWED_PLATFORMS as readonly string[]).includes(value);
+}
 
 export async function POST(req: NextRequest) {
   const session = await getSessionFromRequest(req);
@@ -18,10 +22,7 @@ export async function POST(req: NextRequest) {
   const token = typeof body.token === "string" && body.token.trim().length > 0
     ? body.token.trim()
     : null;
-  const platform =
-    typeof body.platform === "string" && ALLOWED_PLATFORMS.has(body.platform)
-      ? body.platform
-      : null;
+  const platform = isDevicePlatform(body.platform) ? body.platform : null;
   if (!token || !platform) {
     return NextResponse.json({ error: "bad_request" }, { status: 400 });
   }

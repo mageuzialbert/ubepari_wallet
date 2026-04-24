@@ -203,6 +203,18 @@ type AiMessagesRow = {
   created_at: string;
 };
 
+export type DevicePlatform = "ios" | "android" | "web";
+
+type DeviceTokensRow = {
+  id: string;
+  user_id: string;
+  token: string;
+  platform: DevicePlatform;
+  created_at: string;
+  last_seen_at: string;
+  revoked_at: string | null;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -389,6 +401,17 @@ export type Database = {
           created_at?: string;
         };
         Update: Partial<AiMessagesRow>;
+        Relationships: [];
+      };
+      device_tokens: {
+        Row: DeviceTokensRow;
+        Insert: Pick<DeviceTokensRow, "user_id" | "token" | "platform"> & {
+          id?: string;
+          created_at?: string;
+          last_seen_at?: string;
+          revoked_at?: string | null;
+        };
+        Update: Partial<DeviceTokensRow>;
         Relationships: [];
       };
     };
