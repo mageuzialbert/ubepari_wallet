@@ -1,5 +1,4 @@
 import { Platform } from "react-native";
-import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 import Constants from "expo-constants";
 import { useRouter } from "expo-router";
@@ -8,7 +7,16 @@ import { useEffect } from "react";
 import { apiJson } from "@/api/client";
 import { useAuthStore, selectIsAuthed } from "@/auth/auth-store";
 
-Notifications.setNotificationHandler({
+// Expo Go on Android removed remote-push support in SDK 53 and the
+// expo-notifications module throws at *import time*. Lazily require it
+// only in environments that support it; otherwise treat push as a no-op.
+const isExpoGo = Constants.appOwnership === "expo";
+type NotificationsModule = typeof import("expo-notifications");
+const Notifications: NotificationsModule | null = isExpoGo
+  ? null
+  : (require("expo-notifications") as NotificationsModule);
+
+Notifications?.setNotificationHandler({
   handleNotification: async () => ({
     shouldPlaySound: true,
     shouldSetBadge: false,
@@ -20,6 +28,7 @@ Notifications.setNotificationHandler({
 let lastRegisteredToken: string | null = null;
 
 async function getExpoPushToken(): Promise<string | null> {
+  if (!Notifications) return null;
   if (!Device.isDevice) return null;
   const settings = await Notifications.getPermissionsAsync();
   let granted =
@@ -96,6 +105,7 @@ export function usePushRegistration() {
   }, [isAuthed]);
 
   useEffect(() => {
+    if (!Notifications) return;
     const sub = Notifications.addNotificationResponseReceivedListener((resp) => {
       const data = resp.notification.request.content.data as
         | { goalId?: string; kind?: string }
