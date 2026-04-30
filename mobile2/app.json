@@ -1,0 +1,74 @@
+{
+  "expo": {
+    "name": "UBEPARI Wallet",
+    "slug": "ubepari-wallet",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "ubepari",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#172FAB"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.ubepari.wallet",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Used to capture your national ID for KYC verification.",
+        "NSPhotoLibraryUsageDescription": "Used to attach your national ID photo for KYC verification.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#172FAB"
+      },
+      "package": "com.ubepari.wallet",
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.NOTIFICATIONS",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-asset",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Used to attach your national ID photo for KYC verification.",
+          "cameraPermission": "Used to capture your national ID for KYC verification."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#172FAB"
+        }
+      ],
+      "expo-web-browser",
+      "expo-localization"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "71fee2bd-8002-4e7e-acd7-21a63cb3439e"
+      }
+    }
+  }
+}
