@@ -52,19 +52,36 @@ function languageRule(locale: "en" | "sw") {
     : "Reply in English. If the user writes in Swahili, reply in Swahili.";
 }
 
+function fmtTzs(n: number): string {
+  return `TZS ${n.toLocaleString("en-US")}`;
+}
+
 function userContextBlock(user: AssistantUserContext): string {
   if (user.authState === "anonymous") {
     return `User context:\n- authState: anonymous\n- locale: ${user.locale}`;
   }
-  return [
-    "User context:",
+  const lines = [
+    "User context (live snapshot — already known, do NOT call tools just to fetch this):",
     `- authState: signed_in`,
     `- locale: ${user.locale}`,
     `- firstName: ${user.firstName ?? "(unknown)"}`,
     `- kycStatus: ${user.kycStatus}`,
+    `- walletAvailable: ${fmtTzs(user.walletAvailableTzs)}`,
+    `- walletAllocated: ${fmtTzs(user.walletAllocatedTzs)}`,
+    `- walletTotal: ${fmtTzs(user.walletTotalTzs)}`,
     `- activeGoalCount: ${user.activeGoalCount}`,
     `- nextReminderDate: ${user.nextReminderDate ?? "(none)"}`,
-  ].join("\n");
+  ];
+  if (user.activeGoals.length > 0) {
+    lines.push("- activeGoals:");
+    for (const g of user.activeGoals) {
+      const remaining = Math.max(0, g.priceTzs - g.contributedTzs);
+      lines.push(
+        `    • ${g.productName} (ref ${g.reference}) — paid ${fmtTzs(g.contributedTzs)} of ${fmtTzs(g.priceTzs)}, ${fmtTzs(remaining)} remaining, monthly target ${fmtTzs(g.monthlyTargetTzs)}, next reminder ${g.nextReminderDate ?? "(none)"}`,
+      );
+    }
+  }
+  return lines.join("\n");
 }
 
 export function buildSystemPrompt(user: AssistantUserContext): string {
