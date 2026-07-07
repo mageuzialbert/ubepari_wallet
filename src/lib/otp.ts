@@ -67,21 +67,41 @@ export async function verifyChallenge(
     return { ok: false, code: "too_many_attempts" };
   }
 
-  const match = await bcrypt.compare(submittedCode, row.code_hash);
-
-  if (!match) {
-    await admin
-      .from("otp_challenges")
-      .update({ attempts: row.attempts + 1 })
-      .eq("id", row.id);
+  // Atomically claim this attempt BEFORE checking the code. The conditional
+  // update (`attempts = row.attempts + 1` only WHERE attempts is still
+  // unchanged) is a compare-and-swap: if many requests race with the same
+  // stale `attempts` value, exactly one wins and the rest update zero rows.
+  // Losers do not get to compare the code, so concurrency cannot exceed the
+  // MAX_ATTEMPTS cap — the previous read-then-write left the cap bypassable
+  // and the 6-digit code brute-forceable.
+  const { data: claimed } = await admin
+    .from("otp_challenges")
+    .update({ attempts: row.attempts + 1 })
+    .eq("id", row.id)
+    .eq("attempts", row.attempts)
+    .is("consumed_at", null)
+    .select("id");
+  if (!claimed || claimed.length === 0) {
     return { ok: false, code: "wrong" };
   }
 
-  const { error: consumeErr } = await admin
+  const match = await bcrypt.compare(submittedCode, row.code_hash);
+  if (!match) {
+    return { ok: false, code: "wrong" };
+  }
+
+  // Consume, guarding against a concurrent second success double-using the
+  // same challenge.
+  const { data: consumed, error: consumeErr } = await admin
     .from("otp_challenges")
     .update({ consumed_at: new Date().toISOString() })
-    .eq("id", row.id);
+    .eq("id", row.id)
+    .is("consumed_at", null)
+    .select("id");
   if (consumeErr) throw consumeErr;
+  if (!consumed || consumed.length === 0) {
+    return { ok: false, code: "wrong" };
+  }
 
   return { ok: true };
 }

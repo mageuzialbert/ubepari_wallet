@@ -4,6 +4,7 @@ import { logEvent } from "@/lib/events";
 import { verifyChallenge } from "@/lib/otp";
 import { hashPassword, isAcceptablePassword } from "@/lib/password";
 import { normalizeTzPhone } from "@/lib/phone";
+import { checkRate, clientIp } from "@/lib/rate-limit";
 import { mintSession } from "@/lib/session";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 
@@ -25,6 +26,16 @@ export async function POST(req: NextRequest) {
   }
   if (!isAcceptablePassword(body.newPassword)) {
     return NextResponse.json({ error: "weak_password" }, { status: 400 });
+  }
+
+  // Defence-in-depth against OTP brute force on the reset path (primary guard
+  // is the per-challenge attempt cap in verifyChallenge).
+  const ip = clientIp(req);
+  if (
+    !checkRate(`reset-confirm:ip:${ip}`, 20, 60 * 60).ok ||
+    !checkRate(`reset-confirm:phone:${phone}`, 10, 60 * 60).ok
+  ) {
+    return NextResponse.json({ error: "too_many_requests" }, { status: 429 });
   }
 
   const verification = await verifyChallenge(phone, body.code);

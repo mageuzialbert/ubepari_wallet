@@ -24,7 +24,10 @@ export async function POST(req: NextRequest) {
   const parsed = parseCallback(raw);
   if (!parsed) return ackRejected("no_reference");
 
-  if (parsed.hash && !isValidCallbackHash(parsed.hash, user)) {
+  // The hash authenticates the caller as Evmark. It is REQUIRED — a missing
+  // hash must never be treated as "skip the check", or anyone who knows a
+  // payment reference could forge a success callback and settle it unpaid.
+  if (!parsed.hash || !isValidCallbackHash(parsed.hash, user)) {
     return ackRejected("bad_hash");
   }
 
@@ -40,6 +43,19 @@ export async function POST(req: NextRequest) {
 
   if (payment.status === "success" || payment.status === "failed") {
     return ackSuccess();
+  }
+
+  // For a success callback, the amount actually paid must match what we
+  // expected. A mismatch (partial payment, or a forged/tampered amount)
+  // must not settle the full stored amount. TZS has no subunits, so compare
+  // as rounded integers.
+  if (parsed.success && parsed.amount !== null) {
+    const paidTzs = Math.round(Number(parsed.amount));
+    if (!Number.isFinite(paidTzs) || paidTzs !== payment.amount_tzs) {
+      return ackRejected(
+        `amount_mismatch: expected ${payment.amount_tzs}, got ${parsed.amount}`,
+      );
+    }
   }
 
   if (!parsed.success) {

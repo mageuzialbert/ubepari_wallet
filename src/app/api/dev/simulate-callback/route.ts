@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { dailyHash } from "@/lib/evmark";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 
 // Dev-only helper: Evmark can't reach localhost, so this fakes the callback.
 // Usage:
@@ -24,12 +25,24 @@ export async function POST(req: NextRequest) {
 
   if (!reference) return NextResponse.json({ error: "reference_required" }, { status: 400 });
 
+  // The real callback now verifies the paid amount against the payment row, so
+  // default the simulated Amount to the actual expected amount (overridable).
+  let resolvedAmount = typeof amount === "number" ? String(amount) : amount;
+  if (resolvedAmount === undefined) {
+    const { data: payment } = await supabaseAdmin()
+      .from("payments")
+      .select("amount_tzs")
+      .eq("evmark_reference_id", reference)
+      .maybeSingle();
+    resolvedAmount = payment ? String(payment.amount_tzs) : "0";
+  }
+
   const isSuccess = result !== "failed";
   const payload = {
     ResultType: isSuccess ? "Completed" : "Failed",
     TransactionStatus: isSuccess ? "Success" : "Failed",
     TransID: transId ?? `DEV-${Date.now()}`,
-    Amount: typeof amount === "number" ? String(amount) : (amount ?? "0"),
+    Amount: resolvedAmount,
     Hash: dailyHash(user),
     ThirdPartyReference: reference,
   };

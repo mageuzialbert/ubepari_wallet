@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { normalizeTzPhone } from "@/lib/phone";
+import { checkRate, clientIp } from "@/lib/rate-limit";
 import { verifyChallenge } from "@/lib/otp";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { mintSession } from "@/lib/session";
@@ -43,6 +44,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "invalid_phone" }, { status: 400 });
   }
   const phone = normalized.value;
+
+  // Defence-in-depth against OTP brute force (the per-challenge attempt cap in
+  // verifyChallenge is the primary guard). Limit tries per IP and per phone.
+  const ip = clientIp(req);
+  if (
+    !checkRate(`otp-verify:ip:${ip}`, 20, 60 * 60).ok ||
+    !checkRate(`otp-verify:phone:${phone}`, 10, 60 * 60).ok
+  ) {
+    return NextResponse.json({ error: "too_many_requests" }, { status: 429 });
+  }
 
   const verification = await verifyChallenge(phone, codeRaw);
   if (!verification.ok) {

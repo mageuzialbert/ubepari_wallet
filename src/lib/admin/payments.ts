@@ -268,7 +268,26 @@ export async function issueRefund(params: {
   if (!original) return { ok: false, error: "not_found" };
   if (original.status !== "success") return { ok: false, error: "wrong_status" };
   if (original.kind === "refund") return { ok: false, error: "wrong_kind" };
-  if (amount > original.amount_tzs) {
+
+  // Guard against repeated / cumulative over-refunding. Each refund is a
+  // separate row tagged with the original payment id; sum what has already
+  // been refunded and reject when this refund would push the total past the
+  // original amount. Without this, an admin could refund the same payment
+  // repeatedly and mint unbounded wallet credit.
+  const { data: priorRefunds, error: priorErr } = await admin
+    .from("payments")
+    .select("amount_tzs")
+    .eq("kind", "refund")
+    .eq("raw_callback->>originalPaymentId", original.id);
+  if (priorErr) {
+    console.error("[admin-payments] prior-refund lookup failed", priorErr);
+    return { ok: false, error: "unknown" };
+  }
+  const refundedSoFar = (priorRefunds ?? []).reduce(
+    (sum, r) => sum + (r.amount_tzs ?? 0),
+    0,
+  );
+  if (refundedSoFar + amount > original.amount_tzs) {
     return { ok: false, error: "amount_out_of_range", issues: { amount: "range" } };
   }
 
